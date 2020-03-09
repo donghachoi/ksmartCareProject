@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
+
+<th:block layout:fragment="customTitle">
+	<title>index</title>
+</th:block>
+
+<th:block layout:fragment="customContents">
+	수가 리스트가 나올 화면입니다.
+<div class="outer">
+	<div class="inner bg-light lter">
+		<div class="row">
+			<div class="col-lg-12 ui-sortable">
+					<div class="box ui-sortable-handle"
+						style="position: relative; left: 0px; top: 0px;">
+						<header>
+							<div class="icons">
+								<i class="fa fa-table"></i>
+							</div>
+							<h5>수가 테이플</h5>
+						</header>
+						<div id="collapse4" class="body">
+							<div id="dataTable_wrapper"
+								class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="dataTables_length" id="dataTable_length">
+											<label>연도별 검색
+												<select name="dataTable_length" aria-controls="dataTable" class="form-control input-sm">
+													<option value="2018">2018</option>
+													<option value="2019">2019</option>
+													<option value="2020">2020</option>
+												</select>
+											</label>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div id="dataTable_filter" class="dataTables_filter">
+											<label>Search:
+												<input type="search"
+												class="form-control input-sm" placeholder=""
+												aria-controls="dataTable">
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-12">
+										<table id="dataTable"
+											class="table table-bordered table-condensed table-hover table-striped dataTable no-footer"
+											role="grid" aria-describedby="dataTable_info">
+											<thead>
+												<tr role="row">
+													<th class="sorting_asc" tabindex="0" aria-controls="dataTable"
+														rowspan="1" colspan="1"
+														aria-label="Rendering engine: activate to sort column descending"
+														style="width: 286px;" aria-sort="ascending">
+													방문구분
+													</th>
+													<th class="sorting" tabindex="0" aria-controls="dataTable"
+														rowspan="1" colspan="1"
+														aria-label="Browser: activate to sort column ascending"
+														style="width: 348px;">
+													방문상세시간 및 타입
+													</th>
+													<th class="sorting" tabindex="0" aria-controls="dataTable"
+														rowspan="1" colspan="1"
+														aria-label="Platform(s): activate to sort column ascending"
+														style="width: 321px;">
+													년도
+													</th>
+													<th class="sorting" tabindex="0" aria-controls="dataTable"
+														rowspan="1" colspan="1"
+														aria-label="Engine version: activate to sort column ascending"
+														style="width: 249px;">
+													수가
+													</th>
+													<th class="sorting" tabindex="0" aria-controls="dataTable"
+														rowspan="1" colspan="1"
+														aria-label="CSS grade: activate to sort column ascending"
+														style="width: 186px;">
+													본인부담금
+													</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="b : ${benefitcost}" role="row" class="odd">
+													<td th:text="${b.serviceCategory}" class="sorting_1"></td>
+													<td th:text="${b.serviceTimeAndType}"></td>
+													<td th:text="${b.benefitCostYear}"></td>
+													<td th:text="${b.benefitCost}"></td>
+													<td th:text="${b.nonBenefitCost}"></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="dataTables_info" id="dataTable_info" role="status"
+											aria-live="polite">
+											Showing 1 to 10 of 57 entries
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="dataTables_paginate paging_simple_numbers"
+											id="dataTable_paginate">
+											
+											<ul class="pagination">
+												<li class="paginate_button previous disabled"
+													aria-controls="dataTable" tabindex="0" id="dataTable_previous">
+													<a href="#">Previous</a> </li>
+												<li class="paginate_button active" aria-controls="dataTable"
+													tabindex="0"><a href="#">1</a></li>
+												<li class="paginate_button " aria-controls="dataTable"
+													tabindex="0"><a href="#">2</a></li>
+												<li class="paginate_button " aria-controls="dataTable"
+													tabindex="0"><a href="#">3</a></li>
+												<li class="paginate_button " aria-controls="dataTable"
+													tabindex="0"><a href="#">4</a></li>
+												<li class="paginate_button " aria-controls="dataTable"
+													tabindex="0"><a href="#">5</a></li>
+												<li class="paginate_button " aria-controls="dataTable"
+													tabindex="0"><a href="#">6</a></li>
+												<li class="paginate_button next" aria-controls="dataTable"
+													tabindex="0" id="dataTable_next"><a href="#">Next</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</th:block>
+<th:block layout:fragment="customPlugin">
+	<!--jQuery -->
+            <script src="assets/lib/jquery/jquery.js"></script>
+
+            <!--Bootstrap -->
+            <script src="assets/lib/bootstrap/js/bootstrap.js"></script>
+            <!-- MetisMenu -->
+            <script src="assets/lib/metismenu/metisMenu.js"></script>
+            <!-- onoffcanvas -->
+            <script src="assets/lib/onoffcanvas/onoffcanvas.js"></script>
+            <!-- Screenfull -->
+            <script src="assets/lib/screenfull/screenfull.js"></script>
+            <!-- Metis core scripts -->
+            <script src="assets/js/core.js"></script>
+            <!-- Metis demo scripts -->
+            <script src="assets/js/app.js"></script>
+            <script src="assets/js/style-switcher.js"></script>
+</th:block>
+</html>

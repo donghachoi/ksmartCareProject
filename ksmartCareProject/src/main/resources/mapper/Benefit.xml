@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.cafe24.choiyooq1.mapper.BenefitMapper"> <!-- namespace="mapper 인터페이스 경로!!!!" -->
+  
+  <!-- 수가 resultMap --> 
+  <resultMap type="com.cafe24.choiyooq1.domain.BenefitCost" id="BenefitCostMap">
+  	<result property="benefitCostCode" column="benefit_cost_code"/>
+  	<result property="serviceCategory" column="service_category"/>
+  	<result property="serviceTimeAndType" column="service_time_and_type"/>
+  	<result property="benefitCostYear" column="benefit_cost_year"/>
+  	<result property="benefitCost" column="benefit_cost"/>
+  	<result property="nonBenefitCost" column="non_benefit_cost"/>
+  </resultMap>
+  
+  <select id="getBenefitCost" resultType="com.cafe24.choiyooq1.domain.BenefitCost" resultMap="BenefitCostMap">
+		 SELECT 
+			benefit_cost_code
+			,service_category
+			,service_time_and_type
+			,benefit_cost_year
+			,benefit_cost
+			,non_benefit_cost
+		FROM 
+			benefit_cost
+  </select>
+  </mapper>
