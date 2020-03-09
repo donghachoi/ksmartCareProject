@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div id="left" th:fragment="leftmenuFragment">
+	<div class="media user-media bg-dark dker">
+		<div class="user-media-toggleHover">
+			<span class="fa fa-user"></span>
+		</div>
+		<div class="user-wrapper bg-dark">
+			<a class="user-link" href=""> <img
+				class="media-object img-thumbnail user-img" alt="User Picture"
+				src="assets/img/user.gif"> <span
+				class="label label-danger user-label">16</span>
+			</a>
+
+			<div class="media-body">
+				<h5 class="media-heading">Archie</h5>
+				<ul class="list-unstyled user-info">
+					<li><a href="">Administrator</a></li>
+					<li>Last Access : <br> <small><i
+							class="fa fa-calendar"></i>&nbsp;16 Mar 16:32</small>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- #menu -->
+	<ul id="menu" class="bg-blue dker">
+		<li class="nav-header">Menu</li>
+		<li class="nav-divider"></li>
+		<li class="">
+			<a href="javascript:;"> 
+				<i class="fa fa-building "></i> 
+				<span class="link-title">#직원관리</span>
+				<span class="fa arrow"></span>
+			</a>
+			
+			<!-- 직원등록 -->
+			<ul class="collapse">
+				<li>
+					<a href="boxed.html"> 
+						<i class="fa fa-angle-right"></i>
+						&nbsp;#직원등록
+					</a>
+				</li>
+				<li>
+					<a href="fixed-header-boxed.html"> 
+						<i class="fa fa-angle-right"></i>
+						&nbsp;#직원수정
+					</a>
+				</li>
+				<li>
+					<a href="fixed-header-fixed-mini-sidebar.html"> 
+						<i class="fa fa-angle-right"></i>
+						&nbsp;#직원삭제
+					</a>
+				</li>
+				<li>
+					<a href="fixed-header-menu.html"> 
+						<i class="fa fa-angle-right"></i>
+						&nbsp;#직원검색 직급별
+					</a>
+				</li>
+				<li>
+					<a href="fixed-header-mini-sidebar.html"> 
+						<i class="fa fa-angle-right"></i>
+						&nbsp;#직원검색 상태별
+					</a>
+				</li>
+			</ul>			
+		</li>
+		
+		<!-- 직원자격증 관리 -->
+		<li class="">
+			<a href="javascript:;"> 
+				<i class="fa fa-building "></i> 
+				<span class="link-title">#직원자격증 관리</span>
+				<span class="fa arrow"></span>
+			</a>
+			<ul class="collapse">
+				<li>
+					<a href="boxed.html"> 
+						<i class="fa fa-angle-right"></i>
+						&nbsp;#직원자격증 등록
+					</a>
+				</li>
+				<li>
+					<a href="fixed-header-boxed.html"> 
+						<i class="fa fa-angle-right"></i>
+						&nbsp;#직원자격증 수정
+					</a>
+				</li>
+				<li>
+					<a href="fixed-header-fixed-mini-sidebar.html"> 
+						<i class="fa fa-angle-right"></i>
+						&nbsp;#직원자격증 삭제
+					</a>
+				</li>
+				<li>
+					<a href="fixed-header-menu.html"> 
+						<i class="fa fa-angle-right"></i>
+						&nbsp;#직원자격증 검색 자격증이름별
+					</a>
+				</li>
+				<li>
+					<a href="fixed-header-mini-sidebar.html"> 
+						<i class="fa fa-angle-right"></i>
+						&nbsp;#직원자격증 검색 발급일 별
+					</a>
+				</li>
+			</ul>
+		</li>
+	
+	<!-- 보호자관리 -->
+	<li class="">
+		<a href="javascript:;"> 
+			<i class="fa fa-building"></i>
+			<span class="link-title">#보호자관리</span> 
+			<span class="fa arrow"></span>
+		</a>
+		<ul class="collapse">
+			<li>
+				<a href="bgcolor.html"> 
+				<i class="fa fa-angle-right"></i>
+				&nbsp;#보호자등록
+				</a>
+			</li>
+			<li>
+				<a href="bgimage.html"> 
+					<i class="fa fa-angle-right"></i>
+					&nbsp;#보호자수정
+				</a>
+			</li>
+			<li>
+				<a href="button.html"> 
+				<i class="fa fa-angle-right"></i>
+				&nbsp;#보호자삭제
+				</a>
+			</li>
+			<li>
+				<a href="icon.html"> 
+				<i class="fa fa-angle-right"></i>
+				&nbsp;#보호자검색
+				</a>
+			</li>
+		</ul>
+	</li>
+	
+	<!-- 수급자관리 -->	
+	<li class="">
+		<a href="javascript:;"> 
+			<i class="fa fa-building"></i>
+			<span class="link-title">수급자관리</span> 
+			<span class="fa arrow"></span>
+		</a>
+			<ul class="collapse">
+				<li><a href="form-general.html"> <i
+						class="fa fa-angle-right"></i>&nbsp;#수급자등록
+				</a></li>
+				<li><a href="form-validation.html"> <i
+						class="fa fa-angle-right"></i>&nbsp;#수급자수정
+				</a></li>
+				<li><a href="form-wizard.html"> <i
+						class="fa fa-angle-right"></i>&nbsp;#수급자삭제
+				</a></li>
+				<li><a href="form-wysiwyg.html"> <i
+						class="fa fa-angle-right"></i>&nbsp;#수급자검색
+				</a></li>
+			</ul>
+	</li>
+	
+	<!-- 수급자등급관리 -->	
+		<li class="">
+		<a href="javascript:;"> 
+			<i class="fa fa-building"></i>
+			<span class="link-title">수급자등급관리</span> 
+			<span class="fa arrow"></span>
+		</a>
+			<ul class="collapse">
+				<li><a href="form-general.html"> <i
+						class="fa fa-angle-right"></i>&nbsp;#수급자등급등록
+				</a></li>
+				<li><a href="form-validation.html"> <i
+						class="fa fa-angle-right"></i>&nbsp;#수급자등급수정
+				</a></li>
+				<li><a href="form-wizard.html"> <i
+						class="fa fa-angle-right"></i>&nbsp;#수급자등급삭제
+				</a></li>
+				<li><a href="form-wysiwyg.html"> <i
+						class="fa fa-angle-right"></i>&nbsp;#수급자등급검색
+				</a></li>
+			</ul>
+	</li>
+	
+		<!-- 수급자 검사관리 -->	
+		<li class="">
+		<a href="javascript:;"> 
+			<i class="fa fa-building"></i>
+			<span class="link-title">수급자 검사관리</span> 
+			<span class="fa arrow"></span>
+		</a>
+			<ul class="collapse">
+				<li><a href="form-general.html"> <i
+						class="fa fa-angle-right"></i>&nbsp;#수급자 검사관리 등록
+				</a></li>
+				<li><a href="form-validation.html"> <i
+						class="fa fa-angle-right"></i>&nbsp;#수급자 검사관리 수정
+				</a></li>
+				<li><a href="form-wizard.html"> <i
+						class="fa fa-angle-right"></i>&nbsp;#수급자 검사관리 삭제
+				</a></li>
+				<li><a href="form-wysiwyg.html"> <i
+						class="fa fa-angle-right"></i>&nbsp;#수급자 검사관리 검색
+				</a></li>
+			</ul>
+	</li>
+	
+		<!-- 수급자 계약계약현황관리 -->	
+		<li class="">
+		<a href="javascript:;"> 
+			<i class="fa fa-building"></i>
+			<span class="link-title">수급자 계약계약현황관리</span> 
+			<span class="fa arrow"></span>
+		</a>
+			<ul class="collapse">
+				<li><a href="form-general.html"> <i
+						class="fa fa-angle-right"></i>&nbsp;#수급자 계약현황관리 등록
+				</a></li>
+				<li><a href="form-validation.html"> <i
+						class="fa fa-angle-right"></i>&nbsp;#수급자 계약현황관리 수정
+				</a></li>
+				<li><a href="form-wizard.html"> <i
+						class="fa fa-angle-right"></i>&nbsp;#수급자 계약현황관리 삭제
+				</a></li>
+				<li><a href="form-wysiwyg.html"> <i
+						class="fa fa-angle-right"></i>&nbsp;#수급자 계약현황관리 검색 수급자별
+				</a></li>
+				<li><a href="form-wysiwyg.html"> <i
+						class="fa fa-angle-right"></i>&nbsp;#수급자 계약현황관리 검색 상태별
+				</a></li>				
+			</ul>
+	</li>	
+
+		<!-- 방문일정관리 -->	
+		<li class="">
+		<a href="javascript:;"> 
+			<i class="fa fa-building"></i>
+			<span class="link-title">방문일정관리</span> 
+			<span class="fa arrow"></span>
+		</a>
+			<ul class="collapse">
+				<li><a href="form-general.html"> <i
+						class="fa fa-angle-right"></i>&nbsp;#방문일정등록(수급자)
+				</a></li>
+				<li><a href="form-validation.html"> <i
+						class="fa fa-angle-right"></i>&nbsp;#방문일정수정
+				</a></li>
+				<li><a href="form-wizard.html"> <i
+						class="fa fa-angle-right"></i>&nbsp;#방문일정삭제
+				</a></li>
+				<li><a href="form-wysiwyg.html"> <i
+						class="fa fa-angle-right"></i>&nbsp;#방문일정검색 수급자별
+				</a></li>
+				<li><a href="form-wysiwyg.html"> <i
+						class="fa fa-angle-right"></i>&nbsp;#방문일정검색 요양보호사별
+				</a></li>	
+				<li><a href="form-wysiwyg.html"> <i
+						class="fa fa-angle-right"></i>&nbsp;#방문일정검색 기간별
+				</a></li>								
+			</ul>
+	</li>	
+	
+	
+		<!-- 태그 비교관리 -->
+		<li class="">
+			<a href="javascript:;"> 
+				<i class="fa fa-building"></i> 
+				<span class="link-title">#태그 비교관리</span>
+				<span class="fa arrow"></span>
+			</a>
+			<ul class="collapse">
+				<li>
+					<a href="boxed.html"> 
+						<i class="fa fa-angle-right"></i>
+						&nbsp;#태그 리스트 조회 및 검색
+					</a>
+				</li>
+				<li>
+					<a href="fixed-header-boxed.html"> 
+						<i class="fa fa-angle-right"></i>
+						&nbsp;#비교결과 리스트
+					</a>
+				</li>
+				<li>
+					<a href="fixed-header-fixed-mini-sidebar.html"> 
+						<i class="fa fa-angle-right"></i>
+						&nbsp;#비교결과 검색
+					</a>
+				</li>
+			</ul>
+		</li>	
+	
+		<!-- 방문일정 대비 예상청구비용 -->
+		<li class="">
+			<a href="javascript:;"> 
+				<i class="fa fa-building"></i> 
+				<span class="link-title">#방문일정 대비 예상청구비용</span>
+				<span class="fa arrow"></span>
+			</a>
+			<ul class="collapse">
+				<li>
+					<a href="boxed.html"> 
+						<i class="fa fa-angle-right"></i>
+						&nbsp;#방문일정 대비 예상청구비용 관리
+					</a>
+				</li>
+				<li>
+					<a href="fixed-header-boxed.html"> 
+						<i class="fa fa-angle-right"></i>
+						&nbsp;#방문일정 대비 예상청구비용 검색
+					</a>
+				</li>
+			</ul>
+		</li>		
+	
+		<!--  태그 결과값 대비 공단 청구액 -->
+		<li class="">
+			<a href="javascript:;"> 
+				<i class="fa fa-building"></i> 
+				<span class="link-title">#태그 결과값 대비 공단 청구액</span>
+				<span class="fa arrow"></span>
+			</a>
+			<ul class="collapse">
+				<li>
+					<a href="boxed.html"> 
+						<i class="fa fa-angle-right"></i>
+						&nbsp;#태그 결과값 대비 공단 청구액 관리
+					</a>
+				</li>
+				<li>
+					<a href="fixed-header-boxed.html"> 
+						<i class="fa fa-angle-right"></i>
+						&nbsp;#태그 결과값 대비 공단 청구액 검색
+					</a>
+				</li>
+			</ul>
+		</li>	
+		
+		<!--  태그 결과값 대비 수급자 청구액 -->
+		<li class="">
+			<a href="javascript:;"> 
+				<i class="fa fa-building"></i> 
+				<span class="link-title">#태그 결과값 대비 수급자 청구액</span>
+				<span class="fa arrow"></span>
+			</a>
+			<ul class="collapse">
+				<li>
+					<a href="boxed.html"> 
+						<i class="fa fa-angle-right"></i>
+						&nbsp;#태그 결과값 대비 수급자 청구액 관리
+					</a>
+				</li>
+				<li>
+					<a href="fixed-header-boxed.html"> 
+						<i class="fa fa-angle-right"></i>
+						&nbsp;#태그 결과값 대비 수급자 청구액 검색
+					</a>
+				</li>
+			</ul>
+		</li>			
+		
+		<!--  공단 및 수급자 수금 및 미납금 -->
+		<li class="">
+			<a href="javascript:;"> 
+				<i class="fa fa-building"></i> 
+				<span class="link-title">#공단 및 수급자 수금 및 미납금</span>
+				<span class="fa arrow"></span>
+			</a>
+			<ul class="collapse">
+				<li>
+					<a href="boxed.html"> 
+						<i class="fa fa-angle-right"></i>
+						&nbsp;#공단 및 수급자 수금 및 미납금 관리
+					</a>
+				</li>
+				<li>
+					<a href="fixed-header-boxed.html"> 
+						<i class="fa fa-angle-right"></i>
+						&nbsp;#공단 및 수급자 수금 및 미납금 검색
+					</a>
+				</li>
+			</ul>
+		</li>		
+		
+		<!--  직원 급여 관리  -->
+		<li class="">
+			<a href="javascript:;"> 
+				<i class="fa fa-building"></i> 
+				<span class="link-title">#직원 급여 관리</span>
+				<span class="fa arrow"></span>
+			</a>
+			<ul class="collapse">
+				<li>
+					<a href="boxed.html"> 
+						<i class="fa fa-angle-right"></i>
+						&nbsp;#직원 급여  관리
+					</a>
+				</li>
+				<li>
+					<a href="fixed-header-boxed.html"> 
+						<i class="fa fa-angle-right"></i>
+						&nbsp;#직원 급여  확정(등록)
+					</a>
+				</li>
+				<li>
+					<a href="fixed-header-boxed.html"> 
+						<i class="fa fa-angle-right"></i>
+						&nbsp;#직원 급여  검색
+					</a>
+				</li>				
+			</ul>
+		</li>					
+	</ul>
+	<!-- /#menu -->
+</div>
+<!-- /#left -->
+
+</html>
