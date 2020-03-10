@@ -9,6 +9,7 @@ metisAdmin: Base
 ========================================================================== */
 body {
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  
 }
 /*********************************************************/
 /*                 Layout Styles                         */
@@ -2359,7 +2360,7 @@ div.uploader {
 }
 .bg-dark {
   background-color: #444;
-  color: #fff !important;
+  color: #000000 !important;
 }
 .bg-dark.dker,
 .bg-dark > .dker {
