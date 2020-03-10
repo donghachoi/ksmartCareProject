@@ -18,7 +18,7 @@
 							<div class="icons">
 								<i class="fa fa-table"></i>
 							</div>
-							<h5>수가 테이블</h5>
+							<h5>수급자 리스트</h5>
 						</header>
 						<div id="collapse4" class="body">
 							<div id="dataTable_wrapper"
@@ -26,11 +26,11 @@
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="dataTables_length" id="dataTable_length">
-											<label>연도별 검색
+											<label>그룹별
 												<select name="dataTable_length" aria-controls="dataTable" class="form-control input-sm">
-													<option value="2018">2018</option>
-													<option value="2019">2019</option>
-													<option value="2020">2020</option>
+													<option value="A">A</option>
+													<option value="B">B</option>
+													<option value="C">C</option>
 												</select>
 											</label>
 										</div>
@@ -56,31 +56,43 @@
 														rowspan="1" colspan="1"
 														aria-label="Rendering engine: activate to sort column descending"
 														style="width: 286px;" aria-sort="ascending">
-													방문구분
+													수급자코드
 													</th>
 													<th class="sorting" tabindex="0" aria-controls="dataTable"
 														rowspan="1" colspan="1"
 														aria-label="Browser: activate to sort column ascending"
 														style="width: 348px;">
-													방문상세시간 및 타입
+													수급자이름
 													</th>
 													<th class="sorting" tabindex="0" aria-controls="dataTable"
 														rowspan="1" colspan="1"
 														aria-label="Platform(s): activate to sort column ascending"
 														style="width: 321px;">
-													년도
+													생년월일
 													</th>
 													<th class="sorting" tabindex="0" aria-controls="dataTable"
 														rowspan="1" colspan="1"
 														aria-label="Engine version: activate to sort column ascending"
 														style="width: 249px;">
-													수가
+													성별
 													</th>
 													<th class="sorting" tabindex="0" aria-controls="dataTable"
 														rowspan="1" colspan="1"
 														aria-label="CSS grade: activate to sort column ascending"
 														style="width: 186px;">
-													본인부담금
+													등급
+													</th>
+													<th class="sorting" tabindex="0" aria-controls="dataTable"
+														rowspan="1" colspan="1"
+														aria-label="CSS grade: activate to sort column ascending"
+														style="width: 186px;">
+													계약일
+													</th>
+													<th class="sorting" tabindex="0" aria-controls="dataTable"
+														rowspan="1" colspan="1"
+														aria-label="CSS grade: activate to sort column ascending"
+														style="width: 186px;">
+													인정만료일
 													</th>
 												</tr>
 											</thead>
@@ -133,6 +145,13 @@
 						</div>
 					</div>
 				</div>
+			</div>
+		</div>
+	</div>
+	<div class="outer">
+		<div class="inner bg-light lter">
+			<div class="row">
+			 직원 상세 정보
 			</div>
 		</div>
 	</div>
