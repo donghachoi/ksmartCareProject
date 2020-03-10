@@ -25,9 +25,9 @@ public class MainController {
 	
 	
 	/* 시험용 수가 리스트 */
-	@GetMapping("/suga")
+	@GetMapping("/benefitcost")
 	public String sugaList(Model model) {
 		model.addAttribute("benefitcost", benefitMapper.getBenefitCost());
-		return "suga/sugaList";
+		return "benefit/benefitCostList";
 	}
 }
