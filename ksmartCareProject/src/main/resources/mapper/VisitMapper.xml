@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.cafe24.choiyooq1.mapper.VisitMapper">
+  
+  	<select id="elderAllList" parameterType="String" resultType="com.cafe24.choiyooq1.com.cafe24.choiyooq1.domain.Elder">
+     SELECT e.elder_final_service_approval_level as elder_final_service_approval_level,
+     e.elder_name as elder_name, e.elder_disease as elder_disease, 
+     e.elder_final_service_status as elder_final_service_status,
+     b.benefit_max_cost as benefit_max_cost
+     FROM elder AS e INNER JOIN benefit_max AS b 
+     ON e.elder_final_service_approval_level = b.service_level 
+     AND benefit_max_year= date_format(NOW(), '%Y') 
+     WHERE center_code= #{center_code}
+    </select>
+  
+  </mapper>

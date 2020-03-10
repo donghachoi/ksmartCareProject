@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-<head th:replace="fragments/head :: headFragment"></head>
+<div th:replace="fragments/head :: headFragment"></div>	
 <body class="  ">
 	<div class="bg-dark dk" id="wrap">
-		<div id="wrapper">
 			<div th:replace="fragments/topNavbar :: topNavbarFragment"></div>
 			
 			<div th:replace="fragments/leftmenu :: leftmenuFragment"></div>	
@@ -12,14 +11,11 @@
 			<div id="content">
 				<th:block layout:fragment="customContents"></th:block>
 			</div>
-	
-			<!-- <div th:replace="fragments/right :: rightFragment"></div> -->
-			<!-- <div th:include="fragments/right :: rightFragment"></div> -->
-			
+		
+			<div th:replace="fragments/right :: rightFragment"></div>
+	</div>
 			<div th:replace="fragments/footer :: footerFragment"></div>
 			
 			<th:block layout:fragment="customPlugin"></th:block>
-		</div>
-	</div>
 </body>
 </html>
