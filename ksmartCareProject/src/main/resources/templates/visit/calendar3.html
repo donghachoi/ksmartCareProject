@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/default}">
+
+<!-- 사용자css -->
+<th:block layout:fragment="customCss">
+
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.0/fullcalendar.min.css">
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css">
+</th:block>
+
+<th:block layout:fragment="customContents">
+	<div class="outer">
+		<div class="inner bg-light lter">
+			<!--Begin Datatables-->
+			<div class="row">
+				<!--수급자 목록-->
+				<div class="col-lg-6">
+					<div class="box">
+						<header>
+							<div class="icons">
+								<i class="fa fa-table"></i>
+							</div>
+							<h5>수급자 목록</h5>
+						</header>
+						<div id="collapse4" class="body">
+							<table id="dataTable"
+								class="table table-bordered table-condensed table-hover sortableTable">
+								<thead>
+									<tr>
+										<th>상태</th>
+										<th>이름</th>
+										<th>등급</th>
+										<th>수가한도</th>
+										<th>공단 청구 얘정금액</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Trident</td>
+										<td>Internet Explorer 4.0</td>
+										<td>Win 95+</td>
+										<td>4</td>
+										<td>X</td>
+									</tr>
+									<tr>
+										<td>Trident</td>
+										<td>Internet Explorer 5.0</td>
+										<td>Win 95+</td>
+										<td>5</td>
+										<td>C</td>
+									</tr>
+									<tr>
+										<td>Trident</td>
+										<td>Internet Explorer 5.5</td>
+										<td>Win 95+</td>
+										<td>5.5</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Trident</td>
+										<td>Internet Explorer 6</td>
+										<td>Win 98+</td>
+										<td>6</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Trident</td>
+										<td>Internet Explorer 7</td>
+										<td>Win XP SP2+</td>
+										<td>7</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Trident</td>
+										<td>AOL browser (AOL desktop)</td>
+										<td>Win XP</td>
+										<td>6</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Gecko</td>
+										<td>Firefox 1.0</td>
+										<td>Win 98+ / OSX.2+</td>
+										<td>1.7</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Gecko</td>
+										<td>Firefox 1.5</td>
+										<td>Win 98+ / OSX.2+</td>
+										<td>1.8</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Gecko</td>
+										<td>Firefox 2.0</td>
+										<td>Win 98+ / OSX.2+</td>
+										<td>1.8</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Gecko</td>
+										<td>Firefox 3.0</td>
+										<td>Win 2k+ / OSX.3+</td>
+										<td>1.9</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Gecko</td>
+										<td>Camino 1.0</td>
+										<td>OSX.2+</td>
+										<td>1.8</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Gecko</td>
+										<td>Camino 1.5</td>
+										<td>OSX.3+</td>
+										<td>1.8</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Gecko</td>
+										<td>Netscape 7.2</td>
+										<td>Win 95+ / Mac OS 8.6-9.2</td>
+										<td>1.7</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Gecko</td>
+										<td>Netscape Browser 8</td>
+										<td>Win 98SE+</td>
+										<td>1.7</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Gecko</td>
+										<td>Netscape Navigator 9</td>
+										<td>Win 98+ / OSX.2+</td>
+										<td>1.8</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Gecko</td>
+										<td>Mozilla 1.0</td>
+										<td>Win 95+ / OSX.1+</td>
+										<td>1</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Gecko</td>
+										<td>Mozilla 1.1</td>
+										<td>Win 95+ / OSX.1+</td>
+										<td>1.1</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Gecko</td>
+										<td>Mozilla 1.2</td>
+										<td>Win 95+ / OSX.1+</td>
+										<td>1.2</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Gecko</td>
+										<td>Mozilla 1.3</td>
+										<td>Win 95+ / OSX.1+</td>
+										<td>1.3</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Gecko</td>
+										<td>Mozilla 1.4</td>
+										<td>Win 95+ / OSX.1+</td>
+										<td>1.4</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Gecko</td>
+										<td>Mozilla 1.5</td>
+										<td>Win 95+ / OSX.1+</td>
+										<td>1.5</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Gecko</td>
+										<td>Mozilla 1.6</td>
+										<td>Win 95+ / OSX.1+</td>
+										<td>1.6</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Gecko</td>
+										<td>Mozilla 1.7</td>
+										<td>Win 98+ / OSX.1+</td>
+										<td>1.7</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Gecko</td>
+										<td>Mozilla 1.8</td>
+										<td>Win 98+ / OSX.1+</td>
+										<td>1.8</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Gecko</td>
+										<td>Seamonkey 1.1</td>
+										<td>Win 98+ / OSX.2+</td>
+										<td>1.8</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Gecko</td>
+										<td>Epiphany 2.20</td>
+										<td>Gnome</td>
+										<td>1.8</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Webkit</td>
+										<td>Safari 1.2</td>
+										<td>OSX.3</td>
+										<td>125.5</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Webkit</td>
+										<td>Safari 1.3</td>
+										<td>OSX.3</td>
+										<td>312.8</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Webkit</td>
+										<td>Safari 2.0</td>
+										<td>OSX.4+</td>
+										<td>419.3</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Webkit</td>
+										<td>Safari 3.0</td>
+										<td>OSX.4+</td>
+										<td>522.1</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Webkit</td>
+										<td>OmniWeb 5.5</td>
+										<td>OSX.4+</td>
+										<td>420</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Webkit</td>
+										<td>iPod Touch / iPhone</td>
+										<td>iPod</td>
+										<td>420.1</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Webkit</td>
+										<td>S60</td>
+										<td>S60</td>
+										<td>413</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Presto</td>
+										<td>Opera 7.0</td>
+										<td>Win 95+ / OSX.1+</td>
+										<td>-</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Presto</td>
+										<td>Opera 7.5</td>
+										<td>Win 95+ / OSX.2+</td>
+										<td>-</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Presto</td>
+										<td>Opera 8.0</td>
+										<td>Win 95+ / OSX.2+</td>
+										<td>-</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Presto</td>
+										<td>Opera 8.5</td>
+										<td>Win 95+ / OSX.2+</td>
+										<td>-</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Presto</td>
+										<td>Opera 9.0</td>
+										<td>Win 95+ / OSX.3+</td>
+										<td>-</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Presto</td>
+										<td>Opera 9.2</td>
+										<td>Win 88+ / OSX.3+</td>
+										<td>-</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Presto</td>
+										<td>Opera 9.5</td>
+										<td>Win 88+ / OSX.3+</td>
+										<td>-</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Presto</td>
+										<td>Opera for Wii</td>
+										<td>Wii</td>
+										<td>-</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Presto</td>
+										<td>Nokia N800</td>
+										<td>N800</td>
+										<td>-</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Presto</td>
+										<td>Nintendo DS browser</td>
+										<td>Nintendo DS</td>
+										<td>8.5</td>
+										<td>C/A1</td>
+									</tr>
+									<tr>
+										<td>KHTML</td>
+										<td>Konqureror 3.1</td>
+										<td>KDE 3.1</td>
+										<td>3.1</td>
+										<td>C</td>
+									</tr>
+									<tr>
+										<td>KHTML</td>
+										<td>Konqureror 3.3</td>
+										<td>KDE 3.3</td>
+										<td>3.3</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>KHTML</td>
+										<td>Konqureror 3.5</td>
+										<td>KDE 3.5</td>
+										<td>3.5</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Tasman</td>
+										<td>Internet Explorer 4.5</td>
+										<td>Mac OS 8-9</td>
+										<td>-</td>
+										<td>X</td>
+									</tr>
+									<tr>
+										<td>Tasman</td>
+										<td>Internet Explorer 5.1</td>
+										<td>Mac OS 7.6-9</td>
+										<td>1</td>
+										<td>C</td>
+									</tr>
+									<tr>
+										<td>Tasman</td>
+										<td>Internet Explorer 5.2</td>
+										<td>Mac OS 8-X</td>
+										<td>1</td>
+										<td>C</td>
+									</tr>
+									<tr>
+										<td>Misc</td>
+										<td>NetFront 3.1</td>
+										<td>Embedded devices</td>
+										<td>-</td>
+										<td>C</td>
+									</tr>
+									<tr>
+										<td>Misc</td>
+										<td>NetFront 3.4</td>
+										<td>Embedded devices</td>
+										<td>-</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Misc</td>
+										<td>Dillo 0.8</td>
+										<td>Embedded devices</td>
+										<td>-</td>
+										<td>X</td>
+									</tr>
+									<tr>
+										<td>Misc</td>
+										<td>Links</td>
+										<td>Text only</td>
+										<td>-</td>
+										<td>X</td>
+									</tr>
+									<tr>
+										<td>Misc</td>
+										<td>Lynx</td>
+										<td>Text only</td>
+										<td>-</td>
+										<td>X</td>
+									</tr>
+									<tr>
+										<td>Misc</td>
+										<td>IE Mobile</td>
+										<td>Windows Mobile 6</td>
+										<td>-</td>
+										<td>C</td>
+									</tr>
+									<tr>
+										<td>Misc</td>
+										<td>PSP browser</td>
+										<td>PSP</td>
+										<td>-</td>
+										<td>C</td>
+									</tr>
+									<tr>
+										<td>Other browsers</td>
+										<td>All others</td>
+										<td>-</td>
+										<td>-</td>
+										<td>U</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<!--/수급자 목록-->
+
+				<div class="col-lg-6">
+
+					<!--수급자 제공급여 요약-->
+					<div class="box">
+						<header>
+							<div class="icons">
+								<i class="fa fa-table"></i>
+							</div>
+							<h5>수급자 제공급여 요약</h5>
+							<div class="toolbar">
+								<div class="btn-group">
+									<a href="#defaultTable" data-toggle="collapse"
+										class="btn btn-sm btn-default minimize-box"> <i
+										class="fa fa-angle-up"></i>
+									</a>
+								</div>
+							</div>
+						</header>
+						<div id="collapse4" class="body">
+							<table
+								class="table table-bordered table-condensed table-hover table-striped">
+								<thead>
+									<tr>
+										<th colspan="2">급여한도</th>
+										<th colspan="2">1300000</th>
+										<th>급여 잔액</th>
+										<th>50000</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>구분</td>
+										<td>횟수</td>
+										<td>급여 계</td>
+										<td>본인부담</td>
+										<td>비급여+초과</td>
+										<td>수당</td>
+									</tr>
+									<tr>
+										<td>요양</td>
+										<td>1</td>
+										<td>70,020</td>
+										<td>10,500</td>
+										<td>0</td>
+										<td>46,440</td>
+									</tr>
+									<tr>
+										<td>목욕</td>
+										<td>2</td>
+										<td>Win 95+</td>
+										<td>5.5</td>
+										<td>A</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>간호</td>
+										<td>2</td>
+										<td>Win 95+</td>
+										<td>5.5</td>
+										<td>A</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>계</td>
+										<td>2</td>
+										<td>Win 95+</td>
+										<td>5.5</td>
+										<td>A</td>
+										<td>A</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!--/수급자 제공급여 요약-->
+
+					<!--서비스 구분-->
+					<div class="box">
+						<header>
+							<div class="icons">
+								<i class="fa fa-table"></i>
+							</div>
+							<h5>서비스 구분</h5>
+							<div class="toolbar">
+								<div class="btn-group">
+									<a href="#defaultTable" data-toggle="collapse"
+										class="btn btn-sm btn-default minimize-box"> <i
+										class="fa fa-angle-up"></i>
+									</a>
+								</div>
+							</div>
+						</header>
+						<div id="collapse4" class="body">
+							<table
+								class="table table-bordered table-condensed table-hover table-striped">
+								<thead>
+									<tr>
+										<th colspan="2">급여한도</th>
+										<th colspan="2">1300000</th>
+										<th>급여 잔액</th>
+										<th>50000</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>구분</td>
+										<td>횟수</td>
+										<td>급여 계</td>
+										<td>본인부담</td>
+										<td>비급여+초과</td>
+										<td>수당</td>
+									</tr>
+									<tr>
+										<td>요양</td>
+										<td>1</td>
+										<td>70,020</td>
+										<td>10,500</td>
+										<td>0</td>
+										<td>46,440</td>
+									</tr>
+									<tr>
+										<td>목욕</td>
+										<td>2</td>
+										<td>Win 95+</td>
+										<td>5.5</td>
+										<td>A</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>간호</td>
+										<td>2</td>
+										<td>Win 95+</td>
+										<td>5.5</td>
+										<td>A</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>계</td>
+										<td>2</td>
+										<td>Win 95+</td>
+										<td>5.5</td>
+										<td>A</td>
+										<td>A</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!--/서비스 구분-->
+				</div>
+			</div>
+			<!-- /.row -->
+			<!--End Datatables-->
+
+			<!--방문등록  -->
+			<div class="box">
+				<header>
+					<h5>방문일정 등록</h5>
+				</header>
+				<div class="body">
+					<div class="row">
+						<div class="col-lg-3">
+							<div class="well well-sm">
+								<div id="add-event-form">
+									<fieldset>
+										<legend>서비스 종류 설정</legend>
+										<input id="title" name="title" type="text"
+											placeholder="서비스 종류 " class="form-control input-small">
+
+										<div class="radio">
+											<label> <input type="radio" name="priority"
+												value="label label-primary"> <span
+												class="label label-primary">방문요양</span>
+											</label>
+										</div>
+										<div class="radio">
+											<label> <input type="radio" name="priority"
+												value="label label-success"> <span
+												class="label label-success">방문목욕</span>
+											</label>
+										</div>
+										<div class="radio">
+											<label> <input type="radio" name="priority"
+												value="label label-danger"> <span
+												class="label label-danger">방문간호</span>
+											</label>
+										</div>
+										<br>
+										<button id="add-event" type="button"
+											class="btn btn-sm btn-default">추가 버튼</button>
+									</fieldset>
+								</div>
+
+							</div>
+							<div class="well well-sm">
+								<h4>서비스 등록 버튼</h4>
+								<ul id='external-events' class="list-unstyled">
+									<li class="external-event"><span
+										class="label label-primary">방문요양 30분</span></li>
+									<li class="external-event"><span
+										class="label label-primary">방문요양 60분</span></li>
+									<li class="external-event"><span
+										class="label label-primary">방문요양 90분</span></li>
+									<li class="external-event"><span
+										class="label label-primary">방문요양 120분</span></li>
+									<li class="external-event"><span
+										class="label label-success">차 미이용</span></li>
+									<li class="external-event"><span
+										class="label label-success">차 이용</span></li>
+								</ul>
+
+								<div class="checkbox anim-checkbox h4">
+									<input type="checkbox" id="drop-remove" class="danger">
+									<label for="drop-remove">remove after drop</label>
+								</div>
+							</div>
+						</div>
+						<div id="calendar" class="col-lg-9"></div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- /.inner -->
+		<!-- /방문등록  -->
+	</div>
+	<!-- /.outer -->
+	</div>
+	</div>
+
+</th:block>
+<th:block layout:fragment="customPlugin">
+	<!--jQuery -->
+	<script src="assets/lib/jquery/jquery.js"></script>
+	<!-- Tables -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+	<script src="assets/js/jquery.dataTables.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
+	<!-- 움직임 관련  -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+
+	<!-- calendar -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+	<script src="assets/js/fullcalendar.js"></script>
+
+	<!--Bootstrap -->
+	<script src="assets/lib/bootstrap/js/bootstrap.js"></script>
+	<!-- MetisMenu -->
+	<script src="assets/lib/metismenu/metisMenu.js"></script>
+	<!-- onoffcanvas -->
+	<script src="assets/lib/onoffcanvas/onoffcanvas.js"></script>
+	<!-- Screenfull -->
+	<script src="assets/lib/screenfull/screenfull.js"></script>
+
+	<!-- Metis core scripts -->
+	<script src="assets/js/core.js"></script>
+	<!-- Metis demo scripts -->
+	<script src="assets/js/app.js"></script>
+
+	<script>
+		$(function() {
+			Metis.MetisCalendar();
+			Metis.MetisTable();
+			//Metis.metisSortable();
+		});
+	</script>
+	<script src="assets/js/style-switcher.js"></script>
+</th:block>
+</html>
