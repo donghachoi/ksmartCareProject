@@ -23,6 +23,11 @@ public class MainController {
 		return "index";
 	}
 	
+	@GetMapping("/login")
+	public String firstlogin() {
+		return "login/firstlogin";
+	}
+	
 	
 	/* 시험용 수가 리스트 */
 	@GetMapping("/benefitcost")
