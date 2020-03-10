@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.cafe24.choiyooq1.mapper.VisitMapper">
   
-  	<select id="elderAllList" parameterType="String" resultType="com.cafe24.choiyooq1.com.cafe24.choiyooq1.domain.Elder">
+  	<select id="elderAllList" parameterType="String" resultType="com.cafe24.choiyooq1.domain.Elder">
      SELECT e.elder_final_service_approval_level as elder_final_service_approval_level,
      e.elder_name as elder_name, e.elder_disease as elder_disease, 
      e.elder_final_service_status as elder_final_service_status,
