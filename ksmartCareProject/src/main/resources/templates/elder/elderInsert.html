@@ -23,6 +23,7 @@
 				            </div>
 				        </header>
 				        <div id="div-1" class="body">
+<!-- form -->
 				            <form class="form-horizontal">
 				                <div class="form-group">
 				                    <label for="text1" class="control-label col-lg-4">아이디</label>
@@ -93,7 +94,7 @@
 				                </div>
 				                <!-- /.form-group -->
 				             <div class="form-group">
-				                    <label for="text2" class="control-label col-lg-4">연락처</label>
+				                    <label for="text2" class="control-label col-lg-4">연락처(수급자)</label>
 				
 				                    <div class="col-lg-3">
 				                        <input type="text" id="text2" placeholder="000-000-0000" class="form-control">
@@ -118,50 +119,46 @@
 				             <label class="control-label col-lg-4">본인부담률</label>
 				                <div class="col-lg-3">
 				                    <select class="form-control">
-				                        <option value="">==선택==</option>
-				                        <option value="치매">치매</option>
-				                        <option value="중풍">중풍</option>
-				                        <option value="파킨슨병">파킨슨병</option>         
-				                        <option value="기타">기타</option>         
+				                        <option value="">==본인부담==</option>
+				                        <option value="15">일반(15%)</option>
+				                        <option value="7.5">의료(7.5%)</option>
+				                        <option value="">기초(0%)</option>
+				                        <option value="7.5">감경(7.5%)</option>
+				                        <option value="6">감경60%(6%)</option>
+				                        <option value="9">감경40%(7.5%)</option>
+				                        <option value="6">의료(6%)</option>
 				                    </select>
 				                </div>
 				            </div>
 				            <!-- /.form-group -->
 				                 <div class="form-group">
-				             <label class="control-label col-lg-4">근무 형태</label>
-				         
-				                <div class="col-lg-3">
-				                    <select class="form-control">
-				                        <option>전임</option>
-				                        <option>계약직</option>
-				                        <option>시간제</option>         
-				                    </select>
-				                </div>
+				            <label for="text2" class="control-label col-lg-4">보장기관</label>
+				                    <div class="col-lg-3">
+				                        <input type="text" class="form-control">
+				                        <button text="검색"  class="form-control">보장기관 검색</button>
+				                    </div>
 				            </div>
 				            <!-- /.form-group -->
 				            <div class="form-group">
-				                    <label for="text1" class="control-label col-lg-4">직급</label>
-				
+				                    <label for="text1" class="control-label col-lg-4">장기요양인정번호</label>
 				                    <div class="col-lg-3">
 				                        <input type="text" id="text1"  class="form-control">
 				                    </div>
 				                </div>
 				                <!-- /.form-group -->
 				            <div class="form-group">
-				               <label class="control-label col-lg-4">급여산정방식</label>
+				               <label class="control-label col-lg-4">장기요양인정유효기간</label>
 				         
 				                <div class="col-lg-3">
-				                    <select class="form-control">
-				                        <option>월급제</option>
-				                        <option>시급제</option>      
-				                    </select>
+				                    <input type="date" class="form-control">~
+				                    <input type="date" class="form-control">
 				                </div>
 				            </div>
 				            <!-- /.form-group -->
 				                
 				                
 				                <div class="form-group">
-				                    <label for="limiter" class="control-label col-lg-4">Input limiter</label>
+				                    <label for="limiter" class="control-label col-lg-4">기타정보</label>
 				
 				                    <div class="col-lg-3">
 				                        <textarea id="limiter" class="form-control"></textarea>
