@@ -6,7 +6,6 @@
 <th:block layout:fragment="customTitle">
 	<title>index</title>
 </th:block>
-
 <th:block layout:fragment="customContents">
 <div class="outer">
 	<div class="inner bg-light lter">
@@ -97,12 +96,14 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr th:each="b : ${benefitcost}" role="row" class="odd">
-													<td th:text="${b.serviceCategory}" class="sorting_1"></td>
-													<td th:text="${b.serviceTimeAndType}"></td>
-													<td th:text="${b.benefitCostYear}"></td>
-													<td th:text="${b.benefitCost}"></td>
-													<td th:text="${b.nonBenefitCost}"></td>
+												<tr role="row" class="odd">
+													<td class="sorting_1">수급자코드</td>
+													<td>수급자이름</td>
+													<td>생년월일</td>
+													<td>성별</td>
+													<td>등급</td>
+													<td>계약일</td>
+													<td>인정만료일</td>
 												</tr>
 											</tbody>
 										</table>
@@ -143,26 +144,52 @@
 								</div>
 							</div>
 						</div>
-			<div class="row">
-				<div class="col-lg-12 ui-sortable">
-					<div class="box ui-sortable-handle"
-							style="position: relative; left: 0px; top: 0px;">
-							<header>
-								<div class="icons">
-									<i class="fa fa-table"></i>
+								<div class="col-lg-12 ui-sortable">
+									<div class="box ui-sortable-handle">
+										<header>
+												<div class="icons">
+													<i class="fa fa-table"></i>
+												</div>
+											<h5>직원 상세 정보</h5>
+											<div class="toolbar">
+												<div class="btn-group">
+													<a href="#defaultTable" data-toggle="collapse"
+														class="btn btn-sm btn-default minimize-box"> <i
+														class="fa fa-angle-up"></i>
+													</a> <a class="btn btn-danger btn-sm close-box"> <i
+														class="fa fa-times"></i>
+													</a>
+												</div>
+											</div>
+										</header>
+										<div id="defaultTable" class="body collapse in">
+											<table class="table responsive-table">
+												<thead>
+													<tr>
+														<th>#</th>
+														<th>First Name</th>
+														<th>Last Name</th>
+														<th>Score</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>4</td>
+														<td>Adam</td>
+														<td>Johnson</td>
+														<td>67</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
 								</div>
-								<h5>직원 상세 정보</h5>
-							</header>
-							직원 정보가 나옵니다.
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-		
+
 </th:block>
 <th:block layout:fragment="customPlugin">
 	<!--jQuery -->
