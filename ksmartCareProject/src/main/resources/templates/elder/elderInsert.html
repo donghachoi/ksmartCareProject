@@ -8,6 +8,10 @@
 </th:block>
 
 <th:block layout:fragment="customContents">
+<!-- 날짜 입력때문에 추가한거. -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.1/css/datepicker3.min.css">
+<!-- 날짜 입력때문에 추가한거. -->
 <div class="outer">
 	<div class="inner bg-light lter">
 			<div class="row">
@@ -28,7 +32,7 @@
 				                <div class="form-group">
 				                    <label for="text1" class="control-label col-lg-4">아이디</label>
 				                    <div class="col-lg-3">
-				                        <input type="text" id="text1"  class="form-control">
+				                        <input type="text" class="form-control">
 				                    </div>
 				                </div>
 				                <!-- /.form-group -->
@@ -36,7 +40,7 @@
 				                    <label for="text1" class="control-label col-lg-4">이름</label>
 				
 				                    <div class="col-lg-3">
-				                        <input type="text" id="text1" class="form-control">
+				                        <input type="text" class="form-control">
 				                    </div>
 				                </div>
 				                <!-- /.form-group -->
@@ -45,7 +49,7 @@
 				                    <label for="pass1" class="control-label col-lg-4">비밀번호</label>
 				
 				                    <div class="col-lg-3">
-				                        <input class="form-control" type="password" id="pass1"
+				                        <input class="form-control" type="password" 
 				                               data-original-title="Please use your secure password" data-placement="top"/>
 				                    </div>
 				                </div>
@@ -78,7 +82,6 @@
 				                            <div class="checkbox">
 				                                <label>
 				                                    <input class="uniform" type="radio" name="수급자성별선택" value="여">여
-				                             
 				                                </label>
 				                            </div>
 				                       </div>
@@ -89,7 +92,7 @@
 				                    <label for="text2" class="control-label col-lg-4">주민등록번호</label>
 				
 				                    <div class="col-lg-3">
-				                        <input type="text" id="text2" placeholder="000000-0000000" class="form-control">
+				                        <input type="text" placeholder="000000-0000000" class="form-control">
 				                    </div>
 				                </div>
 				                <!-- /.form-group -->
@@ -97,7 +100,7 @@
 				                    <label for="text2" class="control-label col-lg-4">연락처(수급자)</label>
 				
 				                    <div class="col-lg-3">
-				                        <input type="text" id="text2" placeholder="000-000-0000" class="form-control">
+				                        <input type="text" placeholder="000-000-0000" class="form-control">
 				                    </div>
 				                </div>
 				                <!-- /.form-group -->
@@ -135,62 +138,84 @@
 				            <label for="text2" class="control-label col-lg-4">보장기관</label>
 				                    <div class="col-lg-3">
 				                        <input type="text" class="form-control">
-				                        <button text="검색"  class="form-control">보장기관 검색</button>
 				                    </div>
-				            </div>
+				                        <button class="btn btn-default">보장기관 검색</button>
+				            	 </div>
 				            <!-- /.form-group -->
 				            <div class="form-group">
 				                    <label for="text1" class="control-label col-lg-4">장기요양인정번호</label>
 				                    <div class="col-lg-3">
-				                        <input type="text" id="text1"  class="form-control">
+				                        <input type="text" class="form-control">
 				                    </div>
 				                </div>
 				                <!-- /.form-group -->
-				            <div class="form-group">
-				               <label class="control-label col-lg-4">장기요양인정유효기간</label>
-				         
-				                <div class="col-lg-3">
-				                    <input type="date" class="form-control">~
-				                    <input type="date" class="form-control">
-				                </div>
-				            </div>
+				            	<div class="form-group">
+				              		<label class="control-label col-lg-4">장기요양인정유효기간</label>
+									
+									<div class="col-lg-3">
+											<div class="input-group input-append  date"
+											data-date="102/2012" data-date-format="yyyy-mm-dd"
+											data-date-viewmode="years" data-date-minviewmode="months">
+											<input class="form-control" type="text" placeholder="0000-00-00"> 
+											<span class="input-group-addon add-on"><i
+												class="fa fa-calendar"></i></span>
+											</div>
+											~
+											<div class="input-group input-append  date"
+											data-date="102/2012" data-date-format="yyyy-mm-dd"
+											data-date-viewmode="years" data-date-minviewmode="months">
+											<input class="form-control" type="text" placeholder="0000-00-00"> 
+											<span class="input-group-addon add-on"><i
+												class="fa fa-calendar"></i></span>
+											</div>
+									</div>
+								</div>
 				            <!-- /.form-group -->
-				                
-				                
 				                <div class="form-group">
 				                    <label for="limiter" class="control-label col-lg-4">기타정보</label>
 				
 				                    <div class="col-lg-3">
-				                        <textarea id="limiter" class="form-control"></textarea>
+				                        <textarea class="form-control"></textarea>
 				                    </div>
 				                </div>
 				                <!-- /.row -->
-				
-				
-				            </form>
+								<div class="form-group">
+									<div class="form-actions">
+										<label for="text1" class="control-label col-lg-5"></label>
+
+										<div class="col-lg-3">
+											<input type="submit" value="등록하기" class="btn btn-primary">
+										</div>
+									</div>
+								</div>
+								<!-- /.form-group -->
+							</form>
 				        </div>
 				    </div>
 			</div>
 		</div>
 	</div>
 </div>
+
 </th:block>
 <th:block layout:fragment="customPlugin">
-	<!--jQuery -->
-            <script src="assets/lib/jquery/jquery.js"></script>
 
+			<!--jQuery -->
+            <script src="/assets/lib/jquery/jquery.js"></script>
             <!--Bootstrap -->
-            <script src="assets/lib/bootstrap/js/bootstrap.js"></script>
+            <script src="/assets/lib/bootstrap/js/bootstrap.js"></script>
             <!-- MetisMenu -->
-            <script src="assets/lib/metismenu/metisMenu.js"></script>
+            <script src="/assets/lib/metismenu/metisMenu.js"></script>
             <!-- onoffcanvas -->
-            <script src="assets/lib/onoffcanvas/onoffcanvas.js"></script>
+            <script src="/assets/lib/onoffcanvas/onoffcanvas.js"></script>
             <!-- Screenfull -->
-            <script src="assets/lib/screenfull/screenfull.js"></script>
+            <script src="/assets/lib/screenfull/screenfull.js"></script>
             <!-- Metis core scripts -->
-            <script src="assets/js/core.js"></script>
+            <script src="/assets/js/core.js"></script>
             <!-- Metis demo scripts -->
-            <script src="assets/js/app.js"></script>
-            <script src="assets/js/style-switcher.js"></script>
+            <script src="/assets/js/app.js"></script>
+            <script src="/assets/js/style-switcher.js"></script>
+            
 </th:block>
+
 </html>

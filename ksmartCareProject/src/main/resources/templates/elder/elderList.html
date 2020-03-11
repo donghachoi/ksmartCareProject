@@ -5,6 +5,7 @@
 
 <th:block layout:fragment="customTitle">
 	<title>index</title>
+
 </th:block>
 <th:block layout:fragment="customContents">
 <div class="outer">
@@ -156,8 +157,6 @@
 													<a href="#defaultTable" data-toggle="collapse"
 														class="btn btn-sm btn-default minimize-box"> <i
 														class="fa fa-angle-up"></i>
-													</a> <a class="btn btn-danger btn-sm close-box"> <i
-														class="fa fa-times"></i>
 													</a>
 												</div>
 											</div>
@@ -204,14 +203,21 @@
 											</tr>
 											<tr>
 												<th class="m_sp">인정등급/번호</th>
-												<td>3등급 / L0010162566</td>
+												<td>3등급 / L0010162566 
+													<button type="button"  
+														data-toggle="modal" data-target="#myModal"
+														class="btn btn-default btn-xs btn-line"
+														style="float: right;"
+														>
+														<span class="ui-button-text">등급인정관리</span>
+													</button>
+												</td>
 												<th>인정기간</th>
+												
 												<td colspan="3" class="btpd">
 													<div class="bt_txt_align2">2019.02.08 ~ 2022.02.07</div>
 													<div class="bt_txt_align">
-														<!-- span class="btn_injung" obj-type="openLayer" style="width:120px;" btn-rel="mod_patient_term"
-              page-info="{'type':'modal','view':'/share_layer/patient/mod.patient_term'}"
-              param-info="{'param':'exe','pamfkey':'237665','pamname':'강순예'}">등급/인정기간 변경등록</span-->
+													
 													</div>
 												</td>
 											</tr>
@@ -247,26 +253,103 @@
 							</div>
 						</div>
 					</div>
+					<!-- 등급 및 인정기간 관리  Modal -->
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" style="position: absolute;">
+					  <div class="modal-dialog modal-lg">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					        <h1 class="modal-title" id="myModalLabel">등급 및 인정기간 관리</h1>
+					      </div>
+					      <div class="modal-body">
+								<h3>인정기간 이력</h3>
+								<div class="row">
+									<div id="collapse4" class="col-sm-12">
+										<table id="dataTable"
+											class="table table-bordered table-condensed table-hover table-striped">
+											<thead>
+												<tr>
+													<th>등급</th>
+													<th>인정시작</th>
+													<th>인정종료</th>
+													<th>인정번호</th>
+													<th>비고</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr class="odd">
+													<td >등급</td>
+													<td>인정시작</td>
+													<td>인정종료</td>
+													<td>인정번호</td>
+													<td>비고</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<h3>이력 등록/수정</h3>
+								<div class="row" >
+									<div class="col-sm-12" >
+										<!-- <form action="#" method="post" class="roundBox"> -->
+											<div class="form-group" style="background-color: #CCCCCC; border-radius: 2px; padding: 10px;" >
+											<label>등급
+											<select>
+												<option value="">=등급=</option>
+												<option value="01">1등급</option>
+												<option value="02">2등급</option>
+												<option value="03">3등급</option>
+												<option value="04">4등급</option>
+												<option value="05">5등급</option>
+												<option value="00">등급외</option>
+												<option value="12">인지지원</option>
+											</select>
+											</label>
+											<label>유효기간
+											<div class="small ui-buttonset" style="margin:0px; display:inline; margin-left:50px;">
+									          <input type="radio" name="termYear" value="1" id="termYear1" checked="" class="ui-helper-hidden-accessible"><label for="termYear1" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" role="button" aria-pressed="true"><span class="ui-button-text">1년</span></label>
+									          <input type="radio" name="termYear" value="2" id="termYear2" class="ui-helper-hidden-accessible"><label for="termYear2" class="ui-button ui-widget ui-state-default ui-button-text-only" role="button" aria-pressed="false"><span class="ui-button-text">2년</span></label>
+									          <input type="radio" name="termYear" value="3" id="termYear3" class="ui-helper-hidden-accessible"><label for="termYear3" class="ui-button ui-widget ui-state-default ui-button-text-only" role="button" aria-pressed="false"><span class="ui-button-text">3년</span></label>
+									          <input type="radio" name="termYear" value="4" id="termYear4" class="ui-helper-hidden-accessible"><label for="termYear4" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" role="button" aria-pressed="false"><span class="ui-button-text">4년</span></label>
+									        </div>
+											<input type="date">~<input type="date"></label>
+											<label>장기요양인정번호
+											<input type="text" maxlength="11" placeholder="L0000000000">
+											</label>
+											<button class="btn btn-metis-5 btn-xs" style="margin: 0 auto;" >등록하기/수정하기</button>
+											</div>
+										<!-- </form> -->
+									</div>
+								</div>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+					        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+					      </div>
+					    </div>
+					  </div>
+					</div>
 				</div>
 			</div>
 
 </th:block>
 <th:block layout:fragment="customPlugin">
-	<!--jQuery -->
-            <script src="assets/lib/jquery/jquery.js"></script>
+
+            <!-- jQuery 기본 js파일 -->
+            <script src="/assets/lib/jquery/jquery.js"></script>
 
             <!--Bootstrap -->
-            <script src="assets/lib/bootstrap/js/bootstrap.js"></script>
+            <script src="/assets/lib/bootstrap/js/bootstrap.js"></script>
             <!-- MetisMenu -->
-            <script src="assets/lib/metismenu/metisMenu.js"></script>
+            <script src="/assets/lib/metismenu/metisMenu.js"></script>
             <!-- onoffcanvas -->
-            <script src="assets/lib/onoffcanvas/onoffcanvas.js"></script>
+            <script src="/assets/lib/onoffcanvas/onoffcanvas.js"></script>
             <!-- Screenfull -->
-            <script src="assets/lib/screenfull/screenfull.js"></script>
+            <script src="/assets/lib/screenfull/screenfull.js"></script>
             <!-- Metis core scripts -->
-            <script src="assets/js/core.js"></script>
+            <script src="/assets/js/core.js"></script>
             <!-- Metis demo scripts -->
-            <script src="assets/js/app.js"></script>
-            <script src="assets/js/style-switcher.js"></script>
+            <script src="/assets/js/app.js"></script>
+            <script src="/assets/js/style-switcher.js"></script>
 </th:block>
 </html>
