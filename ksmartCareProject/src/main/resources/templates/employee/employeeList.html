@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
+<th:block> 
+	<head>
+	    
+	    <!-- Bootstrap -->
+	    <link rel="stylesheet" href="assets/lib/bootstrap/css/bootstrap.css">
+	    
+	    <!-- Font Awesome -->
+	    <link rel="stylesheet" href="assets/lib/font-awesome/css/font-awesome.css">
+	    
+	    <!-- Metis core stylesheet -->
+	    <link rel="stylesheet" href="assets/css/main.css">
+	    
+	    <!-- metisMenu stylesheet -->
+	    <link rel="stylesheet" href="assets/lib/metismenu/metisMenu.css">
+	    
+	    <!-- onoffcanvas stylesheet -->
+	    <link rel="stylesheet" href="assets/lib/onoffcanvas/onoffcanvas.css">
+	    
+	    <!-- animate.css stylesheet -->
+	    <link rel="stylesheet" href="assets/lib/animate.css/animate.css">
+		
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css">
+
+		
+	 	<script>
+	        less = {
+	            env: "development",
+	            relativeUrls: false,
+	            rootpath: "/assets/"
+	        };
+	    </script>
+	    <link rel="stylesheet" href="assets/css/style-switcher.css">
+	    <link rel="stylesheet/less" type="text/css" href="assets/less/theme.less">
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.js"></script>
+	</head>
+</th:block>
+<th:block layout:fragment="customTitle">
+	<title>index</title>
+</th:block>
+<!-- 페이지 안내  -->
+<th:block layout:fragment="customContents">
+	<body class="  ">
+	    <div class="bg-dark dk" id="wrap">
+	    	<div id="top">
+				<header class="head">
+					<div class="main-bar">
+						<h3><i class="fa fa-table"></i>&nbsp;직원 리스트 </h3>
+					</div>
+			        <!-- /.main-bar -->
+				</header>
+				<!-- /.head -->
+			</div>
+			<!-- /#top -->
+		</div>
+		<div id="content">
+			<div class="outer">
+				<div class="inner bg-light lter">
+					<!-- 직원 리스트 테이블 시작  -->
+					<div class="row">
+						<div class="col-lg-12 ui-sortable">
+							<div class="box ui-sortable-handle">
+								<header>
+									<div class="icons"><i class="fa fa-table"></i>
+									</div>
+							        <h5>Dynamic Table</h5>
+							     </header>
+							     <div id="collapse4" class="body">
+									<div class="row">
+										<div class="col-sm-12">
+											<table id="dataTable" class="table table-bordered" style="font-size: 10px">
+												<thead>
+													<tr role="row">
+														<th>직원아이디</th>
+												        <th>장기요양기관번호</th>
+												        <th>센터명</th>
+												        <th>이름</th>
+												        <th>비밀번호</th>
+												        <th>직종</th>
+												        <th>성별</th>
+												        <th>주민등록번호</th>
+												        <th>연락처</th>
+												        <th>근무시작일</th>
+												        <th>근무상태</th>
+												        <th>근무형태</th>
+												        <th>직급</th>
+												        <th>급여산정방식</th>
+												        <th>근로계약시급</th>
+												        <th>급여계좌</th>
+												        <th>예금주</th>												                 
+													</tr>
+												</thead>
+												<tbody>
+													<tr role="row" class="odd">
+											            <td class="sorting_1">e_000001</td>
+											            <td>3-41590-00001</td>
+											            <td>전주스마트재가센터</td>
+											            <td>이형열</td>
+											            <td>pw001</td>
+											            <td>관리책임자</td>
+											            <td>남</td>
+											            <td>731001-1111111</td>
+											            <td>010-7788-1008</td>
+											            <td>2020-03-09</td>
+											            <td>재직</td>
+											            <td>전임</td>
+											            <td>과장</td>
+											            <td>월급제</td>
+											            <td>0</td>
+											            <td>70020588783</td>
+											            <td>이형열</td>
+											        </tr><tr role="row" class="odd">
+											            <td class="sorting_1">e_000002</td>
+											            <td>3-41590-00001</td>
+											            <td>전주스마트재가센터</td>
+											            <td>나요보</td>
+											            <td>pw002</td>
+											            <td>요양보호사</td>
+											            <td>여</td>
+											            <td>661111-2111111</td>
+											            <td>010-1234-1235</td>
+											            <td>2020-02-20</td>
+											            <td>휴직</td>
+											            <td>전임</td>
+											            <td>주임</td>
+											            <td>월급제</td>
+											            <td>0</td>
+											            <td>6546544483</td>
+											            <td>나요보</td>
+											        </tr><tr role="row" class="odd">
+											            <td class="sorting_1">e_000003</td>
+											            <td>3-41590-00001</td>
+											            <td>전주스마트재가센터</td>
+											            <td>나보호</td>
+											            <td>pw003</td>
+											            <td>요양보호사</td>
+											            <td>남</td>
+											            <td>771231-1111122</td>
+											            <td>010-1212-1236</td>
+											            <td>2018-01-01</td>
+											            <td>재직</td>
+											            <td>계약직</td>
+											            <td>사원</td>
+											            <td>월급제</td>
+											            <td>0</td>
+											            <td>789789789</td>
+											            <td>나보호</td>
+											        </tr><tr role="row" class="odd">
+											            <td class="sorting_1">e_000004</td>
+											            <td>3-41590-00001</td>
+											            <td>전주스마트재가센터</td>
+											            <td>나사무</td>
+											            <td>pw004</td>
+											            <td>사무원</td>
+											            <td>여</td>
+											            <td>811111-2111111</td>
+											            <td>010-1234-1237</td>
+											            <td>2018-01-02</td>
+											            <td>재직</td>
+											            <td>전임</td>
+											            <td>사원</td>
+											            <td>월급제</td>
+											            <td>0</td>
+											            <td>456456444</td>
+											            <td>나사무</td>
+											        </tr><tr role="row" class="odd">
+											            <td class="sorting_1">e_000005</td>
+											            <td>3-41590-00001</td>
+											            <td>전주스마트재가센터</td>
+											            <td>나간호</td>
+											            <td>pw005</td>
+											            <td>간호조무사</td>
+											            <td>남</td>
+											            <td>711111-1111115</td>
+											            <td>010-1234-1338</td>
+											            <td>2017-01-02</td>
+											            <td>재직</td>
+											            <td>전임</td>
+											            <td>사원</td>
+											            <td>월급제</td>
+											            <td>0</td>
+											            <td>1231247</td>
+											            <td>나간호</td>
+											        </tr><tr role="row" class="odd">
+											            <td class="sorting_1">e_000006</td>
+											            <td>3-41590-00002</td>
+											            <td>덕진효사랑재가센터</td>
+											            <td>가관리</td>
+											            <td>pw001</td>
+											            <td>관리책임자</td>
+											            <td>남</td>
+											            <td>730721-1111133</td>
+											            <td>010-4568-1234</td>
+											            <td>2017-01-01</td>
+											            <td>퇴사</td>
+											            <td>시간제</td>
+											            <td>사원</td>
+											            <td>월급제</td>
+											            <td>0</td>
+											            <td>9879877801</td>
+											            <td>가관리</td>
+											        </tr><tr role="row" class="odd">
+											            <td class="sorting_1">e_000007</td>
+											            <td>3-41590-00002</td>
+											            <td>덕진효사랑재가센터</td>
+											            <td>가요보</td>
+											            <td>pw002</td>
+											            <td>사회복지사</td>
+											            <td>여</td>
+											            <td>610219-2111444</td>
+											            <td>010-4578-1238</td>
+											            <td>2016-01-01</td>
+											            <td>재직</td>
+											            <td>계약직</td>
+											            <td>사원</td>
+											            <td>월급제</td>
+											            <td>0</td>
+											            <td>456654456</td>
+											            <td>가요보</td>
+											        </tr><tr role="row" class="odd">
+											            <td class="sorting_1">e_000008</td>
+											            <td>3-41590-00002</td>
+											            <td>덕진효사랑재가센터</td>
+											            <td>가보호</td>
+											            <td>pw003</td>
+											            <td>사회복지사</td>
+											            <td>여</td>
+											            <td>630830-2111456</td>
+											            <td>010-6547-1346</td>
+											            <td>2016-01-01</td>
+											            <td>재직</td>
+											            <td>계약직</td>
+											            <td>사원</td>
+											            <td>월급제</td>
+											            <td>0</td>
+											            <td>741345679</td>
+											            <td>가보호</td>
+											        </tr><tr role="row" class="odd">
+											            <td class="sorting_1">e_000009</td>
+											            <td>3-41590-00002</td>
+											            <td>덕진효사랑재가센터</td>
+											            <td>최은희</td>
+											            <td>pw004</td>
+											            <td>관리책임자</td>
+											            <td>여</td>
+											            <td>681114-2480747</td>
+											            <td>010-3481-9428</td>
+											            <td>2015-03-09</td>
+											            <td>재직</td>
+											            <td>전임</td>
+											            <td>대표</td>
+											            <td>월급제</td>
+											            <td>0</td>
+											            <td>4679852142</td>
+											            <td>최은희</td>
+											        </tr>
+												</tbody>
+											</table>								                	
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 센터 리스트 끝  -->
+
+				</div>
+				<!-- /.inner -->
+			</div>
+			<!-- /.outer -->
+		</div>
+		<!-- /#content -->           
+		<!-- /#wrap -->          
+	</body>
+</th:block>
+<th:block layout:fragment="customPlugin">
+ 	<!--jQuery -->
+    <script src="assets/lib/jquery/jquery.js"></script>
+    Bootstrap
+	<script src="assets/lib/bootstrap/js/bootstrap.js"></script>
+    MetisMenu
+    <script src="assets/lib/metismenu/metisMenu.js"></script>
+    onoffcanvas
+    <script src="assets/lib/onoffcanvas/onoffcanvas.js"></script>
+    Screenfull
+    <script src="assets/lib/screenfull/screenfull.js"></script>
+    Metis core scripts
+    <script src="assets/js/core.js"></script>
+    Metis demo scripts
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/style-switcher.js"></script> -->
+    
+    <!--jQuery -->
+    <script src="assets/lib/jquery/jquery.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+
+	<!--Bootstrap -->
+	<script src="assets/lib/bootstrap/js/bootstrap.js"></script>
+	
+	<!-- MetisMenu -->
+	<script src="assets/lib/metismenu/metisMenu.js"></script>
+	
+	<!-- onoffcanvas -->
+	<script src="assets/lib/onoffcanvas/onoffcanvas.js"></script>
+	
+	<!-- Screenfull -->
+	<script src="assets/lib/screenfull/screenfull.js"></script>
+
+	<!-- Metis core scripts -->
+	<script src="assets/js/core.js"></script>
+	
+	<!-- Metis demo scripts -->
+	<script src="assets/js/app.js"></script>
+	<script>
+		$(function() {
+			$('#dataTable').DataTable({
+				"language": 
+					{
+					"sInfo": " 총_TOTAL_건의 자료 중  _START_번부터~_END_번까지 ",
+					"lengthMenu": "_MENU_ 개씩 보기",
+					"search":         "검색:",
+					"paginate": {
+					"first":      "First",
+					"last":       "Last",
+					"next":       "다음",
+					"previous":   "이전"
+                    }
+					
+				}    	    
+			});
+		});
+	</script>
+
+	<script src="assets/js/style-switcher.js"></script>
+</th:block>
+</html>
