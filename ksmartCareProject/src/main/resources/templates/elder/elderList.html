@@ -52,7 +52,7 @@
       </div>
 <div id="content">
 <div class="outer">
-</div>
+
 	<div class="inner bg-light lter">
 		<div class="row">
 			<div class="col-lg-12 ui-sortable">
@@ -148,7 +148,7 @@
 														<td>2019.02.08 ~ 2022.02.07
 														<button type="button"  
 																data-toggle="modal" data-target="#myModal"
-																class="btn btn-default btn-sm btn-line">
+																class="btn btn-primary btn-sm">
 																<span>등급인정관리</span>
 															</button></td>
 														<th></th>
@@ -159,7 +159,7 @@
 														<td colspan="3">2022-03-12
 															<button type="button"  
 																data-toggle="modal" data-target="#myModal3"
-																class="btn btn-default btn-sm btn-line">
+																class="btn btn-primary btn-sm">
 															<span>계약관리</span>
 															</button></td>
 														<th></th>
@@ -208,7 +208,7 @@
 												<td>2019-03-01</td>	
 												<td><button type="button"  
 																data-toggle="modal" data-target="#myModal2"
-																class="btn btn-default btn-sm btn-line">
+																class="btn btn-primary btn-sm">
 																<span class="ui-button-text">확인</span>
 													</button>
 												</td>
@@ -379,45 +379,50 @@
 											class="table table-bordered table-condensed table-hover table-striped">
 											<thead>
 												<tr>
-													<th>번호</th>
-													<th>낙상위험측정</th>
-													<th>욕창위험측정</th>
-													<th>인지기능검사</th>
-													<th>욕구사정</th>
+													<th>급여구분</th>
+													<th>계약일</th>
+													<th>계약기간</th>
+													<th>비고</th>
 												</tr>
 											</thead>
 											<tbody>
 												<tr class="odd">
-													<td >1</td>
+													<td >요양,목욕,간호</td>
 													<td>2020-03-01</td>
-													<td>2020-03-01</td>
-													<td>2020-03-01</td>
-													<td>2020-03-01</td>
+													<td>2020-03-01~2023-03-01</td>
+													<td></td>
 												</tr>
 											</tbody>
 										</table>
 									</div>
 								</div>
-								<h3>이력 등록/수정</h3>
-								<div class="row" >
+								<h3>계약 등록/계약이력 수정</h3>
+								<div class="row">
 									<div class="col-sm-12" >
-										<table class="table">
-											<tr>
-												<th>관리일 체크</th>
-												<td>
-												<label style="margin-right:10px;"><input type="checkbox" value="낙상위험">낙상위험측정</label>
-												<label style="margin-right:10px;"><input type="checkbox" value="욕창위험측정">욕창위험측정</label>
-												<label style="margin-right:10px;"><input type="checkbox" value="인지기능검사">인지기능검사</label>
-												<label style="margin-right:10px;"><input type="checkbox" value="욕구사정">욕구사정</label>
-												</td>
-												<td></td>
-											</tr>
-											<tr>
-												<th>날짜</th>
-												<td><input type="date"><button class="btn btn-metis-5 btn-xs" style="text-align: right; margin-left: 10px;" >등록하기/수정하기</button></td>
-											</tr>
-										</table>
-											
+										<!-- <form action="#" method="post" class="roundBox"> -->
+										<div class="form-group" style="background-color: #CCCCCC; border-radius: 2px; padding: 10px;" >
+											<input type="checkbox" value="001" ><label><span>요양</span></label>
+											<input type="checkbox" value="002" ><label><span>목욕</span></label>
+											<input type="checkbox" value="003" ><label><span>간호</span></label>
+											<div>
+												<label>계약일
+													<div style="margin:0px; display:inline; margin-left:224px;">
+														<input type="date">
+													</div>
+												</label>
+											</div>
+											<label>유효기간
+												<div style="margin:0px; display:inline; margin-left:50px;">
+										          <input type="radio" name="termYear" value="1" id="termYear1" checked="" class="ui-helper-hidden-accessible"><label for="termYear1" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" role="button" aria-pressed="true"><span class="ui-button-text">1년</span></label>
+										          <input type="radio" name="termYear" value="2" id="termYear2" class="ui-helper-hidden-accessible"><label for="termYear2" class="ui-button ui-widget ui-state-default ui-button-text-only" role="button" aria-pressed="false"><span class="ui-button-text">2년</span></label>
+										          <input type="radio" name="termYear" value="3" id="termYear3" class="ui-helper-hidden-accessible"><label for="termYear3" class="ui-button ui-widget ui-state-default ui-button-text-only" role="button" aria-pressed="false"><span class="ui-button-text">3년</span></label>
+										          <input type="radio" name="termYear" value="4" id="termYear4" class="ui-helper-hidden-accessible"><label for="termYear4" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" role="button" aria-pressed="false"><span class="ui-button-text">4년</span></label>
+										        </div>
+												<input type="date">~<input type="date">
+											</label>
+											<button class="btn btn-metis-5 btn-xs" style="margin: 0 auto;" >등록하기/수정하기</button>
+										</div>
+										<!-- </form> -->
 									</div>
 								</div>
 					      </div>
@@ -430,6 +435,7 @@
 					</div>
 					<!-- 계약관리 model End -->
 				</div>
+			</div>
 </th:block>
 <th:block layout:fragment="customPlugin">
 
