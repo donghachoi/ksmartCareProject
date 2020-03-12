@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/default}">
+
+<!-- 사용자css -->
+<th:block layout:fragment="customCss">
+   <link rel="stylesheet" href="assets/lib/font-awesome/css/font-awesome.css">
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.0/fullcalendar.min.css">
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css">
+</th:block>
+<th:block layout:fragment="customScript">
+	<Script>
+			$(document).ready(function(){
+				$('#eldername').on('click', function(){
+
+					$.ajax({
+						type : 'get',
+						url : '/elder_benefit_cost'
+						//url: list?id=id001&pw=pw001  //get방식 
+						async : 'true',
+						data: { elder_id: $(this).val()}, 
+						//List컨트롤러는 aapplication/json 형식으로만 처리하기 때문에 컨텐트 타입을 지정함
+						contentType : 'text',
+						//dataType: [응답 데이터 형식] 명시하지 않을 경우 자동으로 추축
+						success : function(data){
+							alert(JSON.stringify(data));
+						},
+						error : function(error){
+							console.log("error", error);
+						}
+					});
+				
+				});
+			});	
+		</Script>
+</th:block>
+		
+<th:block layout:fragment="customContents">
+	<div class="outer">
+		<div class="inner bg-light lter">
+			<!--Begin Datatables-->
+			<div class="row">
+				<!--수급자 목록-->
+				<div class="col-lg-6">
+					<div class="box">
+						<header>
+							<div class="icons">
+								<i class="fa fa-table"></i>
+							</div>
+							<h5>수급자 목록</h5>
+						</header>
+						<div id="collapse4" class="body">
+							<table id="dataTable"
+								class="table table-bordered table-condensed table-hover sortableTable">
+								<thead>
+									<tr>
+										<th>상태</th>
+										<th>이름</th>
+										<th>등급</th>
+										<th>질병구분</th>
+										<th>수가한도</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="g: ${list}">
+										<td th:text="${g.elder_final_service_status}"></td>
+										<td id="eldername"><a th:href="@{/elder_benefit_cost(elder_id=${g.elder_id})}">[[${g.elder_name}]]</a></td>
+										<!-- <td id="eldername"><a th:href="@{/elder_benefit_cost(elder_name=${g.elder_name})}">[[${g.elder_name}]]</a></td>-->
+										<td th:text="${g.elder_final_service_approval_level}"></td>
+										<td th:text="${g.elder_disease}"></td>
+										<td th:text="${g.benefit_max_cost}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<!--/수급자 목록-->
+
+				<div class="col-lg-6">
+
+					<!--수급자 제공급여 요약-->
+					<div class="box">
+						<header>
+							<div class="icons">
+								<i class="fa fa-table"></i>
+							</div>
+							<h5>수급자 제공급여 요약</h5>
+							<div class="toolbar">
+								<div class="btn-group">
+									<a href="#defaultTable" data-toggle="collapse"
+										class="btn btn-sm btn-default minimize-box"> 
+										<i class="fa fa-angle-up"></i>
+									</a>
+								</div>
+							</div>
+						</header>
+
+							<div id="collapse4" class="body">
+								<!-- /.col-lg-6 -->
+						   <form class="form-horizontal">
+							<div class="row form-group">
+								<div class="col-lg-3">
+									<select name ="sk" class="form-control autotab" style="width:100px; height:30px; align:center">
+										<option value="2020">2020</option>
+										<option value="2019">2019</option>
+										<option value="2018">2018</option>
+									</select>
+								</div>
+								<div>
+									<a href="#" class="btn btn-default btn-xs">1월</a>
+									<a href="#" class="btn btn-default btn-xs">3월</a>
+									<a href="#" class="btn btn-default btn-xs">4월</a>
+									<a href="#" class="btn btn-default btn-xs">5월</a>
+									<a href="#" class="btn btn-default btn-xs">6월</a>
+									<a href="#" class="btn btn-default btn-xs">7월</a>
+									<a href="#" class="btn btn-default btn-xs">8월</a>
+									<a href="#" class="btn btn-default btn-xs">9월</a>
+									<a href="#" class="btn btn-default btn-xs">10월</a>
+									<a href="#" class="btn btn-default btn-xs">11월</a>
+									<a href="#" class="btn btn-default btn-xs">12월</a>
+								</div>
+								
+							</div>
+							</form>
+							<!-- /.row -->
+							<!-- /.col-lg-6 -->
+
+								<div id="collapse4" class="body">
+									<table
+										class="table table-bordered table-condensed table-hover table-striped">
+										<thead>
+											<tr>
+												<th colspan="2">급여한도</th>
+												<th colspan="2">1300000</th>
+												<th>급여 잔액</th>
+												<th>50000</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>구분</td>
+												<td>횟수</td>
+												<td>급여 계</td>
+												<td>본인부담</td>
+												<td>비급여+초과</td>
+												<td>수당</td>
+											</tr>
+											<tr>
+												<td>요양</td>
+												<td>1</td>
+												<td>70,020</td>
+												<td>10,500</td>
+												<td>0</td>
+												<td>46,440</td>
+											</tr>
+											<tr>
+												<td>목욕</td>
+												<td>2</td>
+												<td>Win 95+</td>
+												<td>5.5</td>
+												<td>A</td>
+												<td>A</td>
+											</tr>
+											<tr>
+												<td>간호</td>
+												<td>2</td>
+												<td>Win 95+</td>
+												<td>5.5</td>
+												<td>A</td>
+												<td>A</td>
+											</tr>
+											<tr>
+												<td>계</td>
+												<td>2</td>
+												<td>Win 95+</td>
+												<td>5.5</td>
+												<td>A</td>
+												<td>A</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+							<!--/수급자 제공급여 요약-->
+
+							<!--서비스 구분-->
+							<div class="box">
+								<header>
+									<div class="icons">
+										<i class="fa fa-table"></i>
+									</div>
+									<h5>서비스 구분</h5>
+									<div class="toolbar">
+										<div class="btn-group">
+											<a href="#defaultTable" data-toggle="collapse"
+												class="btn btn-sm btn-default minimize-box"> <i
+												class="fa fa-angle-up"></i>
+											</a>
+										</div>
+									</div>
+								</header>
+								<div id="collapse4" class="body">
+									<table
+										class="table table-bordered table-condensed table-hover table-striped">
+										<thead>
+											<tr>
+												<th colspan="2">급여한도</th>
+												<th colspan="2">1300000</th>
+												<th>급여 잔액</th>
+												<th>50000</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>구분</td>
+												<td>횟수</td>
+												<td>급여 계</td>
+												<td>본인부담</td>
+												<td>비급여+초과</td>
+												<td>수당</td>
+											</tr>
+											<tr>
+												<td>요양</td>
+												<td>1</td>
+												<td>70,020</td>
+												<td>10,500</td>
+												<td>0</td>
+												<td>46,440</td>
+											</tr>
+											<tr>
+												<td>목욕</td>
+												<td>2</td>
+												<td>Win 95+</td>
+												<td>5.5</td>
+												<td>A</td>
+												<td>A</td>
+											</tr>
+											<tr>
+												<td>간호</td>
+												<td>2</td>
+												<td>Win 95+</td>
+												<td>5.5</td>
+												<td>A</td>
+												<td>A</td>
+											</tr>
+											<tr>
+												<td>계</td>
+												<td>2</td>
+												<td>Win 95+</td>
+												<td>5.5</td>
+												<td>A</td>
+												<td>A</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<!--/서비스 구분-->
+					</div>
+			</div>
+			<!-- /.row -->
+			<!--End Datatables-->
+
+			<!--방문등록  -->
+			<div class="box">
+				<header>
+					<h5>방문일정 등록</h5>
+				</header>
+				<div class="body">
+					<div class="row">
+						<div class="col-lg-3">
+							<div class="well well-sm">
+								<div id="add-event-form">
+									<fieldset>
+										<legend>서비스 종류 설정</legend>
+										<input id="title" name="title" type="text"
+											placeholder="서비스 종류 " class="form-control input-small">
+
+										<div class="radio">
+											<label> <input type="radio" name="priority"
+												value="label label-primary"> <span
+												class="label label-primary">방문요양</span>
+											</label>
+										</div>
+										<div class="radio">
+											<label> <input type="radio" name="priority"
+												value="label label-success"> <span
+												class="label label-success">방문목욕</span>
+											</label>
+										</div>
+										<div class="radio">
+											<label> <input type="radio" name="priority"
+												value="label label-danger"> <span
+												class="label label-danger">방문간호</span>
+											</label>
+										</div>
+										<br>
+										<button id="add-event" type="button"
+											class="btn btn-sm btn-default">추가 버튼</button>
+									</fieldset>
+								</div>
+
+							</div>
+							<div class="well well-sm">
+								<h4>서비스 등록 버튼</h4>
+								<ul id='external-events' class="list-unstyled">
+									<li class="external-event"><span
+										class="label label-primary">방문요양 30분</span></li>
+									<li class="external-event"><span
+										class="label label-primary">방문요양 60분</span></li>
+									<li class="external-event"><span
+										class="label label-primary">방문요양 90분</span></li>
+									<li class="external-event"><span
+										class="label label-primary">방문요양 120분</span></li>
+									<li class="external-event"><span
+										class="label label-success">차 미이용</span></li>
+									<li class="external-event"><span
+										class="label label-success">차 이용</span></li>
+								</ul>
+
+								<div class="checkbox anim-checkbox h4">
+									<input type="checkbox" id="drop-remove" class="danger">
+									<label for="drop-remove">remove after drop</label>
+								</div>
+							</div>
+						</div>
+						<div id="calendar" class="col-lg-9"></div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- /.inner -->
+		<!-- /방문등록  -->
+	</div>
+	<!-- /.outer -->
+	</div>
+	</div>
+
+</th:block>
+<th:block layout:fragment="customPlugin">
+	<!--jQuery -->
+	<script src="assets/lib/jquery/jquery.js"></script>
+	<!-- Tables -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+	<script src="assets/js/jquery.dataTables.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
+	<!-- 움직임 관련  -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+
+	<!-- 캘린더 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+	<script src="assets/lib/fullcalendar/fullcalendar.js"></script>
+	<script src="assets/lib/fullcalendar/locale/ko.js"></script>
+
+
+	<!-- 셀렉트 박스  -->
+
+	
+	<!--Bootstrap -->
+	<script src="assets/lib/bootstrap/js/bootstrap.js"></script>
+	<!-- MetisMenu -->
+	<script src="assets/lib/metismenu/metisMenu.js"></script>
+	<!-- onoffcanvas -->
+	<script src="assets/lib/onoffcanvas/onoffcanvas.js"></script>
+	<!-- Screenfull -->
+	<script src="assets/lib/screenfull/screenfull.js"></script>
+
+	<!-- Metis core scripts -->
+	<script src="assets/js/core.js"></script>
+	<!-- Metis demo scripts -->
+	<script src="assets/js/app.js"></script>
+
+	<script>
+		$(function() {
+			Metis.MetisCalendar();
+			Metis.MetisTable();
+			//Metis.metisSortable();
+		});
+	</script>
+	<script src="assets/js/style-switcher.js"></script>
+</th:block>
+</html>

@@ -14,11 +14,17 @@
     <link rel="stylesheet" href='vendor/css/select2.min.css' />
     <link rel="stylesheet" href='vendor/css/bootstrap-datetimepicker.min.css' />
     <link rel="stylesheet" href="vendor/css/main.css">	
+    <link rel="stylesheet" href="vendor/css/fullcalendar.min.css" />
+    <link rel="stylesheet" href="vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" href='vendor/css/select2.min.css' />
+    <link rel="stylesheet" href='vendor/css/bootstrap-datetimepicker.min.css' />
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 	
+    <link rel="stylesheet" href="vendor/css/main.css">
+
 </th:block>
 <th:block layout:fragment="customScript">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -185,6 +191,10 @@
 						</div>
 							<!--/수급자 제공급여 요약-->
 				</div>
+
+
+					</div>
+
 			</div>
 			<!-- /.row -->
 			<!--End Datatables-->
@@ -206,9 +216,33 @@
         <div id="wrapper">
             <div id="loading"></div>
             <div id="calendar"></div>
+        <!-- 일자 클릭시 메뉴오픈 -->
+        <div id="contextMenu" class="dropdown clearfix">
+            <ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
+                style="display:block;position:static;margin-bottom:5px;">
+                <li><a tabindex="-1" href="#">카테고리1</a></li>
+                <li><a tabindex="-1" href="#">카테고리2</a></li>
+                <li><a tabindex="-1" href="#">카테고리3</a></li>
+                <li><a tabindex="-1" href="#">카테고리4</a></li>
+                <li class="divider"></li>
+                <li><a tabindex="-1" href="#" data-role="close">Close</a></li>
+            </ul>
         </div>
 
-
+        <div id="wrapper">
+            <div id="loading"></div>
+            <div id="calendar"></div>
+        </div>
+        <!-- 일정 추가 MODAL -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="eventModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body">
         <!-- 일정 추가 MODAL -->
         <div class="modal fade" tabindex="-1" role="dialog" id="eventModal">
             <div class="modal-dialog" role="document">
@@ -361,8 +395,13 @@
     <script src="vendor/js/editEvent.js"></script>
     <script src="vendor/js/etcSetting.js"></script>
 
+
 	<!-- 셀렉트 박스  -->
 
+
+	<!-- 셀렉트 박스  -->
+
+	
 	<!--Bootstrap -->
 	<script src="assets/lib/bootstrap/js/bootstrap.js"></script>
 	<!-- MetisMenu -->
