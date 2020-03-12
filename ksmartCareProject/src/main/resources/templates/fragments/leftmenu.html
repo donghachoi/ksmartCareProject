@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div id="left" th:fragment="leftmenuFragment">
+<div id="left" th:fragment="leftmenuFragment" style="border: 1px solid #">
 	<div class="media user-media bg-dark dker">
 		<div class="user-media-toggleHover">
 			<span class="fa fa-user"></span>
@@ -218,12 +218,12 @@
 		<li class="">
 		<a href="javascript:;"> 
 			<i class="fa fa-building"></i>
-			<span class="link-title">#방문일정관리 9</span> 
+			<span class="link-title">!방문일정관리 9</span> 
 			<span class="fa arrow"></span>
 		</a>
 			<ul class="collapse">
-				<li><a href="#"> <i
-						class="fa fa-angle-right"></i>&nbsp;#방문일정등록(수급자) 9-1
+				<li><a th:href="@{/calendar(center_code=3-41590-00001)}"> <i
+						class="fa fa-angle-right"></i>&nbsp;!방문일정등록(수급자) 9-1
 				</a></li>
 				<li><a href="#"> <i
 						class="fa fa-angle-right"></i>&nbsp;#방문일정검색 수급자별 9-2
@@ -391,6 +391,7 @@
 	</ul>
 	<!-- /#menu -->
 </div>
+
 <!-- /#left -->
 
 </html>
