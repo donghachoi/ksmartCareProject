@@ -12,11 +12,21 @@ public class ElderController {
 	
 	@Autowired BenefitMapper benefitMapper;
 	
+	/* 수급자 등록 */
+	@GetMapping("/employee/elderInsert")
+	public String elderInsert() {
+		return "elder/elderInsert";
+	}
 	
 	/* 수급자 리스트 */
-	@GetMapping("/elderList")
-	public String getdelderList(Model model) {
-		model.addAttribute("benefitcost", benefitMapper.getBenefitCost());
+	@GetMapping("/employee/elderList")
+	public String elderList(Model model) {
 		return "elder/elderList";
+	}
+	
+	/* 부트스트랩 확인용 */
+	@GetMapping("/table")
+	public String table() {
+		return "elder/table";
 	}
 }
