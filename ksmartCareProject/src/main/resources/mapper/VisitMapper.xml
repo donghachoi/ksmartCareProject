@@ -6,20 +6,25 @@
   
   	<select id="elderAllList" parameterType="String" resultType="com.cafe24.choiyooq1.domain.Elder">
 	     SELECT e.elder_final_service_approval_level as elder_final_service_approval_level,
-	     e.elder_id as elder_id, e.elder_name as elder_name, e.elder_disease as elder_disease, 
-	     e.elder_final_service_status as elder_final_service_status,
-	     b.benefit_max_cost as benefit_max_cost
+	     	e.elder_id as elder_id, e.elder_name as elder_name, e.elder_disease as elder_disease, 
+	     	e.elder_final_service_status as elder_final_service_status,
+	    	 b.benefit_max_cost as benefit_max_cost
 	     FROM elder AS e INNER JOIN benefit_max AS b 
-	     ON e.elder_final_service_approval_level = b.service_level 
-	     AND benefit_max_year= date_format(NOW(), '%Y') 
+	     	ON e.elder_final_service_approval_level = b.service_level 
+	     	AND benefit_max_year= date_format(NOW(), '%Y') 
 	     WHERE center_code= #{center_code}
     </select>
   
   	<select id="elderBenefitCost" parameterType="String" resultType="com.cafe24.choiyooq1.domain.Visit">
 		select visit_service_category, sum(visit_service_time) AS visit_service_time, 
-		COUNT(visit_service_category) AS visit_plan_time
+			COUNT(visit_service_category) AS visit_plan_time
 		from visit WHERE elder_id=#{elder_id} 
-		AND monthly_claim_group_code=CONCAT(#{syear},'-',#{smoth})
-		GROUP BY visit_service_category
+			AND monthly_claim_group_code=CONCAT(#{syear},'-',#{smoth})
+			GROUP BY visit_service_category
+  	</select>
+  	
+  	<select id="empCategory" parameterType="String" resultType="com.cafe24.choiyooq1.domain.Employee">
+  		SELECT employee_id, employee_name FROM employee 
+  		WHERE center_code=#{center_code} AND employee_category=#{empcategory}
   	</select>
   </mapper>

@@ -11417,7 +11417,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfoEmpty": "Showing 0 to 0 of 0 entries",
+			"sInfoEmpty": "",     //"Showing 0 to 0 of 0 entries",
 	
 	
 			/**
@@ -11439,7 +11439,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfoFiltered": "(filtered from _MAX_ total entries)",
+			"sInfoFiltered": "",    //검색 총 개수 (총 _MAX_ 개 )
 	
 	
 			/**
@@ -11557,7 +11557,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sLengthMenu": "Show _MENU_ entries",
+			"sLengthMenu": " _MENU_",  //열 보여줌 
 	
 	
 			/**
@@ -11637,7 +11637,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sSearch": "Search:",
+			"sSearch": "검색:",    
 	
 	
 			/**
@@ -11695,7 +11695,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sZeroRecords": "No matching records found"
+			"sZeroRecords": "검색 결과가 없습니다"
 		},
 	
 	

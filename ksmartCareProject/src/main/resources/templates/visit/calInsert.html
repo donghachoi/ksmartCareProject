@@ -5,17 +5,17 @@
 
 <!-- 사용자css -->
 <th:block layout:fragment="customCss">
-   <link rel="stylesheet" href="assets/lib/font-awesome/css/font-awesome.css">
+   <link rel="stylesheet" href="/assets/lib/font-awesome/css/font-awesome.css">
    
-    <link rel="stylesheet" href="vendor/css/fullcalendar.min.css" />
-    <link rel="stylesheet" href="vendor/css/bootstrap.min.css">
-    <link rel="stylesheet" href='vendor/css/select2.min.css' />
-    <link rel="stylesheet" href='vendor/css/bootstrap-datetimepicker.min.css' />
+    <link rel="stylesheet" href="/vendor/css/fullcalendar.min.css" />
+    <link rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendor/css/select2.min.css" />
+    <link rel="stylesheet" href="/vendor/css/bootstrap-datetimepicker.min.css" />
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-    <link rel="stylesheet" href="vendor/css/main.css">
+    <link rel="stylesheet" href="/vendor/css/main.css">
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css">
 </th:block>
@@ -31,7 +31,7 @@
 			var cname = $(this).attr('cname');
 				$.ajax({
 					type : 'POST',
-					url : 'employee/elderbenefitcost',
+					url : '/employee/velderbenefitcost',
 					data: {elder_id : id},
 					dataType : 'json',
 					success : function(data){
@@ -54,21 +54,28 @@
 						console.log("error", error);
 					}
 			});
-		
 		});
 		
-		
 		//직원 분류해서 보여줌
-		$('.eldername').on("click", function(){
-			var employee_category = $(this).attr('employee_category');
+		$('.eldername1').on("click", function(){
+			
+			var empcategory = $(this).attr('empcategory');
+			var empservice = $(this).attr('empservice');
 			$.ajax({
-				url: "employee/employee_category",
-				data : { employee_category : employee_category},
+				url: "/employee/vemployeecategory",
+				data : { empcategory : empcategory},
 				dateType: "json",
 				type: "GET",
 				success : function(data){
-					
-				}
+					$('#empcategory').find('option').remove();
+					$('.modal-title').text(empservice);
+					for(var i=0; i<data.length; i++){
+						$('#empcategory').append("<option value='"+ data[i].employee_id + "\'>"+ data[i].employee_name +"</option>");
+					   }
+					},
+	            error:function(){
+	                alert("ajax통신 실패!!!");
+	            }
 				
 			});
 		});
@@ -214,9 +221,9 @@
 	        <div id="contextMenu" class="dropdown clearfix">
 	            <ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
 	                style="display:block;position:static;margin-bottom:5px;">
-	                <li><a tabindex="-1" href="javascript:void(0)" class="eldername" th:employee_category="요양보호사">방문요양</a></li>
-	                <li><a tabindex="-1" href="javascript:void(0)" class="eldername" th:employee_category="요양보호사">방문목욕</a></li>
-	                <li><a tabindex="-1" href="javascript:void(0)" class="eldername" th:employee_category="간호">방문간호</a></li>
+	                <li><a tabindex="-1" href="javascript:void(0)" class="eldername1" th:empcategory="요양보호사" th:empservice="방문요양">방문요양</a></li>
+	                <li><a tabindex="-1" href="javascript:void(0)" class="eldername1" th:empcategory="요양보호사" th:empservice="방문목욕">방문목욕</a></li>
+	                <li><a tabindex="-1" href="javascript:void(0)" class="eldername1" th:empcategory="간호조무사" th:empservice="방문간호">방문간호</a></li>
 	                <li class="divider"></li>
 	                <li><a tabindex="-1" href="#" data-role="close">Close</a></li>
 	            </ul>
@@ -249,9 +256,7 @@
 	                        <div class="row">
 	                            <div class="col-xs-12">
 	                                <label class="col-xs-4" for="edit-title">요양사 선택</label>
-	                                <select class="inputModal" type="text" name="edit-type" id="edit-type">               
-	                                    <option value="카테고리1">김요양</option>
-	                                    <option value="카테고리2">방문목욕</option>
+	                                <select class="inputModal" type="text" name="empcategory" id="empcategory">               
 	                                </select>
 	                            </div>
 	                        </div>
@@ -363,53 +368,53 @@
 </th:block>
 <th:block layout:fragment="customPlugin">
 	<!--jQuery -->
-	<script src="assets/lib/jquery/jquery.js"></script>
+	<script src="/assets/lib/jquery/jquery.js"></script>
 	<!-- Tables -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
-	<script src="assets/js/jquery.dataTables.js"></script>
+	<script src="/assets/js/jquery.dataTables.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
 	<!-- 움직임 관련  -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 
 	<!-- 캘린더 -->
-    <script src="vendor/js/jquery.min.js"></script>
-    <script src="vendor/js/bootstrap.min.js"></script>
-    <script src="vendor/js/moment.min.js"></script>
-    <script src="vendor/js/fullcalendar.min.js"></script>
-    <script src="vendor/js/ko.js"></script>
-    <script src="vendor/js/select2.min.js"></script>
-    <script src="vendor/js/bootstrap-datetimepicker.min.js"></script>
-    <script src="vendor/js/main.js"></script>
-    <script src="vendor/js/addEvent.js"></script>
-    <script src="vendor/js/editEvent.js"></script>
-    <script src="vendor/js/etcSetting.js"></script>
+    <!--  <script src="/vendor/js/jquery.min.js"></script>  Search 안나옴-->
+    <script src="/vendor/js/bootstrap.min.js"></script>
+    <script src="/vendor/js/moment.min.js"></script>
+    <script src="/vendor/js/fullcalendar.min.js"></script>
+    <script src="/vendor/js/ko.js"></script>
+    <script src="/vendor/js/select2.min.js"></script>
+    <script src="/vendor/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="/vendor/js/main.js"></script>
+    <script src="/vendor/js/addEvent.js"></script>
+    <script src="/vendor/js/editEvent.js"></script>
+    <script src="/vendor/js/etcSetting.js"></script>
 
 
 	<!-- 셀렉트 박스  -->
 
 	
 	<!--Bootstrap -->
-	<script src="assets/lib/bootstrap/js/bootstrap.js"></script>
+	<script src="/assets/lib/bootstrap/js/bootstrap.js"></script>
 	<!-- MetisMenu -->
-	<script src="assets/lib/metismenu/metisMenu.js"></script>
+	<script src="/assets/lib/metismenu/metisMenu.js"></script>
 	<!-- onoffcanvas -->
-	<script src="assets/lib/onoffcanvas/onoffcanvas.js"></script>
+	<script src="/assets/lib/onoffcanvas/onoffcanvas.js"></script>
 	<!-- Screenfull -->
-	<script src="assets/lib/screenfull/screenfull.js"></script>
+	<script src="/assets/lib/screenfull/screenfull.js"></script>
 
 	<!-- Metis core scripts -->
-	<script src="assets/js/core.js"></script>
+	<script src="/assets/js/core.js"></script>
 	<!-- Metis demo scripts -->
-	<script src="assets/js/app.js"></script>
+	<script src="/assets/js/app.js"></script>
 
 	<script>
 		$(function() {
-			Metis.MetisCalendar();
+			//Metis.MetisCalendar();
 			Metis.MetisTable();
 			//Metis.metisSortable();
 		});
 	</script>
-	<script src="assets/js/style-switcher.js"></script>
+	<script src="/assets/js/style-switcher.js"></script>
 </th:block>
 </html>

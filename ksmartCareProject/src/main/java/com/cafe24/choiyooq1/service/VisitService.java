@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cafe24.choiyooq1.domain.Elder;
+import com.cafe24.choiyooq1.domain.Employee;
 import com.cafe24.choiyooq1.domain.Visit;
 import com.cafe24.choiyooq1.mapper.VisitMapper;
 
@@ -22,11 +23,15 @@ public class VisitService {
 		return list;
 	}
 	
-	public List<Visit> elderBenefitCost(String elder_id, String syear, 
-			String smoth){
+	public List<Visit> elderBenefitCost(String elder_id, String syear, String smoth){
 		
 		List<Visit> list = visitMapper.elderBenefitCost(elder_id, syear, smoth);
+		return list;
+	}
+	
+	public List<Employee> empCategory(String empcategory, String centercode){
 		
+		List<Employee> list = visitMapper.empCategory(empcategory, centercode);
 		return list;
 	}
 }
