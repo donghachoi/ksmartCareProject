@@ -20,7 +20,7 @@ var newEvent = function (start, end, eventType) {
 
     $("#contextMenu").hide(); //메뉴 숨김
 
-    modalTitle.html('새로운 일정');
+    modalTitle.html('방문일정');
     editStart.val(start);
     editEnd.val(end);
     editType.val(eventType).prop("selected", true);

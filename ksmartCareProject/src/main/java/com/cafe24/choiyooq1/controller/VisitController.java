@@ -25,7 +25,7 @@ public class VisitController {
 	private String center_code= "3-41590-00001";
 	
 	//수급자 목록
-	@GetMapping("/calendar")
+	@GetMapping("employee/calendar")
 	public String visitElderInsert(@RequestParam(value="center_code", required = false) String center_code, Model model) {
 		List<Elder> list = visitservice.elderAllList(center_code);
 		
@@ -34,7 +34,7 @@ public class VisitController {
 	}
 	
 	//수급자 제공급여 요약
-	@PostMapping("/elderbenefitcost")
+	@PostMapping("employee/elderbenefitcost")
 	//@PostMapping(value="/elderbenefitcost", produces = "application/json")
 	public @ResponseBody List<Visit> elderBenefitCost(@RequestParam(value="elder_id") String elder_id, 
 			@RequestParam(value="syear", required=false, defaultValue="2020") String syear,
@@ -44,4 +44,8 @@ public class VisitController {
 
 		return list; 
 	}
+	
+	//직원별 카테고리 
+	@GetMapping("")
+	public @ResponseBody List<> 
 }
