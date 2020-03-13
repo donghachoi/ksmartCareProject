@@ -22,9 +22,9 @@
 			AND monthly_claim_group_code=CONCAT(#{syear},'-',#{smoth})
 			GROUP BY visit_service_category
   	</select>
-  	
+
   	<select id="empCategory" parameterType="String" resultType="com.cafe24.choiyooq1.domain.Employee">
   		SELECT employee_id, employee_name FROM employee 
-  		WHERE center_code=#{center_code} AND employee_category=#{empcategory}
+  		WHERE center_code=#{center_code} AND employee_category LIKE CONCAT('%', #{empcategory}, '%')
   	</select>
   </mapper>

@@ -23,6 +23,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 	$(document).ready(function(){
+		
 		//수급자 정보를 가져옴
 		$('.eldername').on('click', function(){
 			$('tr').remove('#remove2');
@@ -68,17 +69,38 @@
 				type: "GET",
 				success : function(data){
 					$('#empcategory').find('option').remove();
-					$('.modal-title').text(empservice);
+					$('#edit-type').find('option').remove();
+					$('.modal-title').text("방문"+empservice);
 					for(var i=0; i<data.length; i++){
-						$('#empcategory').append("<option value='"+ data[i].employee_id + "\'>"+ data[i].employee_name +"</option>");
+						$('#empcategory').append("<option value=\'"+ data[i].employee_id + "\'>"
+								+ data[i].employee_name +"</option>");
 					   }
-					},
+					
+					if(empservice =='요양'){
+						var test = "<option value=\'요양\'>인지활동</option>";
+						test += "<option value=\'요양\'>가족케어</option>";
+						test += "<option value=\'요양\'>치매가족휴가(0회)</option>";
+						
+						$('#edit-type').append(test);
+					}
+					if(empservice == '목욕'){
+						var test = "<option value=\'차량이용(차량 내)\'>차량이용(차량 내)</option>";
+							test += "<option value=\'차량이용(가정 내)\'>차량이용(가정 내)</option>";
+							test += "<option value=\'차량미이용\'>차량미이용</option>";
+							
+						$('#edit-type').append(test);
+					 }
+					if(empservice == '간호'){
+						$('#edit-type').parent().hide();
+					}
+				},
 	            error:function(){
 	                alert("ajax통신 실패!!!");
 	            }
-				
 			});
 		});
+		
+		//--직원 분류해서 보여줌
 		
 	})
 	</script>
@@ -221,9 +243,9 @@
 	        <div id="contextMenu" class="dropdown clearfix">
 	            <ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
 	                style="display:block;position:static;margin-bottom:5px;">
-	                <li><a tabindex="-1" href="javascript:void(0)" class="eldername1" th:empcategory="요양보호사" th:empservice="방문요양">방문요양</a></li>
-	                <li><a tabindex="-1" href="javascript:void(0)" class="eldername1" th:empcategory="요양보호사" th:empservice="방문목욕">방문목욕</a></li>
-	                <li><a tabindex="-1" href="javascript:void(0)" class="eldername1" th:empcategory="간호조무사" th:empservice="방문간호">방문간호</a></li>
+	                <li><a tabindex="-1" href="javascript:void(0)" class="eldername1" th:empcategory="요양" th:empservice="요양">방문요양</a></li>
+	                <li><a tabindex="-1" href="javascript:void(0)" class="eldername1" th:empcategory="요양" th:empservice="목욕">방문목욕</a></li>
+	                <li><a tabindex="-1" href="javascript:void(0)" class="eldername1" th:empcategory="간호" th:empservice="간호">방문간호</a></li>
 	                <li class="divider"></li>
 	                <li><a tabindex="-1" href="#" data-role="close">Close</a></li>
 	            </ul>
@@ -244,11 +266,11 @@
 	                                aria-hidden="true">&times;</span></button>
 	                        <h4 class="modal-title"></h4>
 	                    </div>
-	                    <div class="modal-body">
-	
+	                    <div class="modal-body"> 
+	                      <form ></form>
 	                        <div class="row">
 	                            <div class="col-xs-12">
-	                                <label class="col-xs-4" for="edit-allDay">하루종일</label>
+	                                <label class="col-xs-4" for="edit-allDay">비급여 체크</label>
 	                                <input class='allDayNewEvent' id="edit-allDay" type="checkbox">
 	                            </div>
 	                        </div>
@@ -276,9 +298,6 @@
 	                            <div class="col-xs-12">
 	                                <label class="col-xs-4" for="edit-type">구분</label>
 	                                <select class="inputModal" type="text" name="edit-type" id="edit-type">               
-	                                    <option value="카테고리1">방문요양</option>
-	                                    <option value="카테고리2">방문목욕</option>
-	                                    <option value="카테고리3">방문간호</option>
 	                                </select>
 	                            </div>
 	                        </div>
@@ -300,7 +319,7 @@
 	                        </div>
 	                        <div class="row">
 	                            <div class="col-xs-12">
-	                                <label class="col-xs-4" for="edit-desc">설명</label>
+	                                <label class="col-xs-4" for="edit-desc">비고</label>
 	                                <textarea rows="4" cols="50" class="inputModal" name="edit-desc"
 	                                    id="edit-desc"></textarea>
 	                            </div>
@@ -319,6 +338,7 @@
 	            </div><!-- /.modal-dialog -->
 	        </div><!-- /.modal -->
 	
+ </div>
 	        <div class="panel panel-default">
 	
 	            <div class="panel-heading">
@@ -355,8 +375,10 @@
 	                    </div>
 	                </div>
 	
-	            </div>
+	            </div> 
 	        </div>
+	  
+	        
 	        <!-- /.filter panel -->
 	    </div>
 	    <!-- /.container -->
