@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!doctype html>
 <html>
 
@@ -1408,3 +1409,710 @@
         </body>
 
 </html>
+=======
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
+<th:block> 
+   <head>
+       
+       <!-- Bootstrap -->
+       <link rel="stylesheet" href="assets/lib/bootstrap/css/bootstrap.css">
+       
+       <!-- Font Awesome -->
+       <link rel="stylesheet" href="assets/lib/font-awesome/css/font-awesome.css">
+       
+       <!-- Metis core stylesheet -->
+       <link rel="stylesheet" href="assets/css/main.css">
+       
+       <!-- metisMenu stylesheet -->
+       <link rel="stylesheet" href="assets/lib/metismenu/metisMenu.css">
+       
+       <!-- onoffcanvas stylesheet -->
+       <link rel="stylesheet" href="assets/lib/onoffcanvas/onoffcanvas.css">
+       
+       <!-- animate.css stylesheet -->
+       <link rel="stylesheet" href="assets/lib/animate.css/animate.css">
+      
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css">
+
+      
+       <script>
+           less = {
+               env: "development",
+               relativeUrls: false,
+               rootpath: "/assets/"
+           };
+       </script>
+       <link rel="stylesheet" href="assets/css/style-switcher.css">
+       <link rel="stylesheet/less" type="text/css" href="assets/less/theme.less">
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.js"></script>
+   </head>
+</th:block>
+<th:block layout:fragment="customTitle">
+   <title>index</title>
+</th:block>
+<!-- 페이지 안내  -->
+<th:block layout:fragment="customContents">
+   <body class="  ">
+       <div class="bg-dark dk" id="wrap">
+          <div id="top">
+            <header class="head">
+               <div class="main-bar">
+                  <h3><i class="fa fa-table"></i>&nbsp;센터 리스트 </h3>
+               </div>
+                 <!-- /.main-bar -->
+            </header>
+            <!-- /.head -->
+         </div>
+         <!-- /#top -->
+      </div>
+      <div class="wrap" wcode="DEMO080036" rowid="8618"><ul class="form approvalBox typeA"><li><div class="grade">원장</div><div class="signBox"></div></li><li><div class="grade">사회복지사</div><div class="signBox"></div></li></ul>
+	<h1 id="title"><span name="year">2020</span>년 <span name="month">01</span>월 급여명세서 (<span name="wName">김기기</span>)</h1>
+	<div class="wInfo">
+		<div>성명 : <span name="wName">김기기</span><span name="birthdate"></span></div>
+		<div style="float:right;">사원번호 : <span name="wID">10000</span></div>
+	</div>
+
+	<div class="awBoxGroup" style="width:26%">
+		<table class="awBox awA">
+			<caption>수당(분개)ⓐ</caption>
+			<tbody><tr>
+				<th><span name="key_name"></span></th>
+				<td><span name="key_value" amt="">0</span></td>
+			</tr>
+		<tr>
+				<th><span name="key_name">기본급</span></th>
+				<td><span name="key_value" amt="">790,280</span></td>
+			</tr><tr>
+				<th><span name="key_name">주휴수당</span></th>
+				<td><span name="key_value" amt="">145,420</span></td>
+			</tr><tr>
+				<th><span name="key_name">연차수당</span></th>
+				<td><span name="key_value" amt="">63,230</span></td>
+			</tr><tr>
+				<th><span name="key_name">야간근로수당</span></th>
+				<td><span name="key_value" amt="">0</span></td>
+			</tr><tr>
+				<th><span name="key_name">휴일근로수당</span></th>
+				<td><span name="key_value" amt="">8,590</span></td>
+			</tr><tr>
+				<th><span name="key_name">연장근로수당</span></th>
+				<td><span name="key_value" amt="">0</span></td>
+			</tr><tr>
+				<th><span name="key_name">보전수당</span></th>
+				<td><span name="key_value" amt="">-58,080</span></td>
+			</tr><tr>
+				<th><span name="key_name">식비</span></th>
+				<td><span name="key_value" amt="">0</span></td>
+			</tr><tr class="sum">
+				<th><span name="key_name">계</span></th>
+				<td><span name="key_value" amt="">949,440</span></td>
+			</tr></tbody></table>
+	</div>
+
+	<div class="awBoxGroup" style="width:26%">
+		<table class="awBox awB">
+			<caption>수당(추가)ⓑ</caption>
+			<tbody><tr>
+				<th><span name="key_name"></span></th>
+				<td><span name="key_value" amt="">0</span></td>
+			</tr>
+		<tr>
+				<th><span name="key_name">장기근속장려금</span></th>
+				<td><span name="key_value" amt="">60,000</span></td>
+			</tr><tr>
+				<th><span name="key_name">인지활동수당</span></th>
+				<td><span name="key_value" amt="">0</span></td>
+			</tr><tr>
+				<th><span name="key_name">가가가</span></th>
+				<td><span name="key_value" amt="">1</span></td>
+			</tr><tr>
+				<th><span name="key_name">ㅁㅁㅁ</span></th>
+				<td><span name="key_value" amt="">2</span></td>
+			</tr><tr class="sum">
+				<th><span name="key_name">계</span></th>
+				<td><span name="key_value" amt="">60,003</span></td>
+			</tr></tbody></table>
+
+		<table class="awBox awC">
+			<caption>공제(-)ⓒ</caption>
+			<tbody><tr>
+				<th><span name="key_name"></span></th>
+				<td><span name="key_value" amt="">0</span></td>
+			</tr>
+		<tr>
+				<th><span name="key_name">본인부담금</span></th>
+				<td><span name="key_value" amt="">0</span></td>
+			</tr><tr>
+				<th><span name="key_name">ㄹㄹㄹㄹ</span></th>
+				<td><span name="key_value" amt="">222</span></td>
+			</tr><tr class="sum">
+				<th><span name="key_name">계</span></th>
+				<td><span name="key_value" amt="">222</span></td>
+			</tr></tbody></table>
+	</div>
+
+	<div class="awBoxGroup" style="width:21%">
+		<table class="awBox awD">
+			<caption>소득세(-)ⓓ</caption>
+			<tbody><tr>
+				<th><span name="key_name"></span></th>
+				<td><span name="key_value" amt="">0</span></td>
+			</tr>
+		<tr>
+				<th><span name="key_name">근로소득세</span></th>
+				<td><span name="key_value" amt="">0</span></td>
+			</tr><tr>
+				<th><span name="key_name">사업소득세</span></th>
+				<td><span name="key_value" amt="">0</span></td>
+			</tr><tr>
+				<th><span name="key_name">지방소득세</span></th>
+				<td><span name="key_value" amt="">0</span></td>
+			</tr><tr class="sum">
+				<th><span name="key_name">계</span></th>
+				<td><span name="key_value" amt="">0</span></td>
+			</tr></tbody></table>
+		<table class="awBox awE">
+			<caption>사회보험(-)ⓔ<div class="duru_rate" style="float: right; font-size: 7pt; font-weight: normal; display: block;">두루누리:국민,고용</div></caption>
+			<tbody><tr>
+				<th><span name="key_name"></span></th>
+				<td><span name="key_value" amt="">0</span></td>
+			</tr>
+		<tr>
+				<th><span name="key_name">국민연금</span></th>
+				<td><span name="key_value" amt="">0</span></td>
+			</tr><tr>
+				<th><span name="key_name">건강보험</span></th>
+				<td><span name="key_value" amt="">23,560</span></td>
+			</tr><tr>
+				<th><span name="key_name">장기요양보험</span></th>
+				<td><span name="key_value" amt="">2,410</span></td>
+			</tr><tr>
+				<th><span name="key_name">고용보험</span></th>
+				<td><span name="key_value" amt="">4,850</span></td>
+			</tr><tr class="sum">
+				<th><span name="key_name">계</span></th>
+				<td><span name="key_value" amt="">30,820</span></td>
+			</tr></tbody></table>
+	</div>
+
+	<div class="awBoxGroup" style="float:right; margin-right:0; width:calc(27% - 10px)">
+		<table class="total work">
+			<caption>근로집계</caption>
+			<tbody><tr>
+				<th>일수</th>
+				<th>기본</th>
+				<th>야간</th>
+				<th>휴일</th>
+				<th>연장</th>
+				<th>총근로</th>
+			</tr>
+			<tr>
+				<td><span name="dayCnt">25</span></td>
+				<td><span name="stmBase_h">90</span></td>
+				<td><span name="stmMngt_h">0</span></td>
+				<td><span name="stmHoliday_h">2</span></td>
+				<td><span name="overTime_h">0</span></td>
+				<td><span name="stmTotal_h">92</span></td>
+			</tr>
+		</tbody></table>
+
+		<table class="total pay" style="border:1px solid #000">
+			<caption>지급금액</caption>
+			<tbody><tr>
+				<th>급여<br>
+					(ⓐ+ⓑ)</th>
+				<td><span name="abTotal" amt="">1,009,443</span></td>
+			</tr>
+			<tr>
+				<th>공제(-)<br>
+					(ⓒ+ⓓ+ⓔ)</th>
+				<td><span name="sum_cde" amt="">31,042</span></td>
+			</tr>
+			<tr>
+				<th>지급금액</th>
+				<td><span name="pay_amount" amt="">978,401</span></td>
+			</tr>
+		</tbody></table>
+	</div>
+
+	<div style="clear:both"></div>
+
+	<div> <!-- 비고 전달사항 -->
+		<table class="form memo typeA" style="width: 100%; min-height: 60px; border: 1px solid rgb(0, 0, 0); display: none;">
+			<caption>비고, 전달사항</caption>
+			<tbody><tr style="background:#fff; text-align:left">
+				<td>
+				<p name="message" style="width:100%; min-height:45px; margin:0; padding:2px 5px"></p>
+				<textarea name="message" style="width:100%; display:none; min-height:45px" class="ui-widget ui-widget-content ui-corner-all"></textarea>
+				</td>
+			</tr>
+		</tbody></table>
+	</div>
+
+	<div class="tail_oInfo">이지케어재가복지센터 Tel 019-002-0000, Fax 0505-877-0933</div>
+
+	<hr class="blockLine">
+
+	<div> <!-- 하단 근무내역 집계 -->
+		<div style="width:calc(45% - 5px); margin-right:5px; float:left; "> <!-- 좌 -->
+			<div>
+				<table class="form pay_type typeA" pay_type="01" style="display: table;"> <!--  -->
+					<caption><span name="year">2020</span>년 <span name="month">01</span>월 보장급여 산정내역(단순시급)</caption>
+					<thead>
+						<tr>
+							<th>근로일수</th>
+							<th>근로시간</th>
+							<th>시급단가</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr bgcolor="#efefef">
+							<td style="text-align:center"><span name="dayCnt">25</span>일</td>
+							<td><span name="stmTotal_h">92</span>시간(<span name="stmTotal">5520</span>분)</td>
+							<td><span name="hAmount" amt="">10,320</span>원</td>
+						</tr>
+					</tbody>
+				</table>
+
+				
+
+				
+			</div>
+
+
+			<div> <!-- service_summary -->
+				<table class="form service_summary typeA" style="display: none;">
+					<caption>
+						<span name="year">2020</span>년 <span name="month">01</span>월 건별집계
+					</caption>
+					<thead>
+						<tr>
+							<th>수급자</th>
+							<th>제공서비스</th>
+							<th>수가인정-시간<br>계(야간,심야)</th>
+							<th>횟수</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><span name="pName"></span></td>
+							<td><!-- 
+								<span name="wName"></span><br> -->
+								[<span name="sKind_title"></span>] <span name="sTitle"></span>
+							</td>
+							<td>
+								<span name="stmTotal"></span>(<span name="stmNgt"></span>, <span name="stmMngt"></span>)분
+							</td>
+							<td><span name="sCnt"></span></td>
+						</tr>
+					<tr>
+							<td><span name="pName">부실해</span></td>
+							<td><!-- 
+								<span name="wName"></span><br> -->
+								[<span name="sKind_title">요양</span>] <span name="sTitle">180분</span>
+							</td>
+							<td>
+								<span name="stmTotal">180</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분
+							</td>
+							<td><span name="sCnt">20</span></td>
+						</tr><tr>
+							<td><span name="pName">부실해</span></td>
+							<td><!-- 
+								<span name="wName"></span><br> -->
+								[<span name="sKind_title">요양</span>] <span name="sTitle">270분초과</span>
+							</td>
+							<td>
+								<span name="stmTotal">420</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분
+							</td>
+							<td><span name="sCnt">1</span></td>
+						</tr><tr>
+							<td><span name="pName">박수급</span></td>
+							<td><!-- 
+								<span name="wName"></span><br> -->
+								[<span name="sKind_title">목욕</span>] <span name="sTitle">방문목욕(60분)</span>
+							</td>
+							<td>
+								<span name="stmTotal">60</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분
+							</td>
+							<td><span name="sCnt">4</span></td>
+						</tr><tr>
+							<td><span name="pName">부실해</span></td>
+							<td><!-- 
+								<span name="wName"></span><br> -->
+								[<span name="sKind_title">요양</span>] <span name="sTitle">270분초과</span>
+							</td>
+							<td>
+								<span name="stmTotal">480</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분
+							</td>
+							<td><span name="sCnt">2</span></td>
+						</tr><tr>
+							<td><span name="pName">독고수급</span></td>
+							<td><!-- 
+								<span name="wName"></span><br> -->
+								[<span name="sKind_title">목욕</span>] <span name="sTitle">방문목욕(60분)</span>
+							</td>
+							<td>
+								<span name="stmTotal">60</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분
+							</td>
+							<td><span name="sCnt">1</span></td>
+						</tr><tr>
+							<td><span name="pName">노징수</span></td>
+							<td><!-- 
+								<span name="wName"></span><br> -->
+								[<span name="sKind_title">요양</span>] <span name="sTitle">60분</span>
+							</td>
+							<td>
+								<span name="stmTotal">60</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분
+							</td>
+							<td><span name="sCnt">3</span></td>
+						</tr><tr>
+							<td><span name="pName">노징수</span></td>
+							<td><!-- 
+								<span name="wName"></span><br> -->
+								[<span name="sKind_title">요양</span>] <span name="sTitle">60분(30%)</span>
+							</td>
+							<td>
+								<span name="stmTotal">60</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분
+							</td>
+							<td><span name="sCnt">1</span></td>
+						</tr></tbody>
+				</table>
+			</div> <!-- service_summary -->
+
+		</div> <!-- 좌 -->
+
+
+		<div style="width:55%; float:right;"> <!-- 우 -->
+			<table class="form schedule_list typeA" style="display: none;">
+				<caption>
+					<span name="year">2020</span>년 <span name="month">01</span>월 근로내역
+				</caption>
+				<thead>
+					<tr>
+						<th>No</th>
+						<th>날짜</th>
+						<th>수급자</th>
+						<th>서비스</th>
+						<th>서비스시간</th>
+						<th style="letter-spacing:-1px;">수가인정-시간<br>계(야간,심야)</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><span name="no"></span></td>
+						<td><span name="date"></span>(<span name="day"></span>)</td>
+						<td><span name="pName"></span></td>
+						<td>[<span name="sKind_title"></span>] <span name="sTitle"></span></td>
+						<td><span name="stH"></span>:<span name="stM"></span>~<span name="etH"></span>:<span name="etM"></span></td>
+						<td><span name="stmTotal"></span>(<span name="stmNgt"></span>, <span name="stmMngt"></span>)분</td>
+					</tr>
+				<tr>
+						<td><span name="no">1</span></td>
+						<td><span name="date">02</span>(<span name="day">목</span>)</td>
+						<td><span name="pName">부실해</span></td>
+						<td>[<span name="sKind_title">요양</span>] <span name="sTitle">180분</span></td>
+						<td><span name="stH">09</span>:<span name="stM">00</span>~<span name="etH">12</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">180</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">2</span></td>
+						<td><span name="date">03</span>(<span name="day">금</span>)</td>
+						<td><span name="pName">부실해</span></td>
+						<td>[<span name="sKind_title">요양</span>] <span name="sTitle">270분초과</span></td>
+						<td><span name="stH">09</span>:<span name="stM">00</span>~<span name="etH">16</span>:<span name="etM">30</span></td>
+						<td><span name="stmTotal">420</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">3</span></td>
+						<td><span name="date">04</span>(<span name="day">토</span>)</td>
+						<td><span name="pName">부실해</span></td>
+						<td>[<span name="sKind_title">요양</span>] <span name="sTitle">180분</span></td>
+						<td><span name="stH">09</span>:<span name="stM">00</span>~<span name="etH">12</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">180</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">4</span></td>
+						<td><span name="date">06</span>(<span name="day">월</span>)</td>
+						<td><span name="pName">박수급</span></td>
+						<td>[<span name="sKind_title">목욕</span>] <span name="sTitle">방문목욕(60분)</span></td>
+						<td><span name="stH">17</span>:<span name="stM">00</span>~<span name="etH">18</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">60</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">5</span></td>
+						<td><span name="date">06</span>(<span name="day">월</span>)</td>
+						<td><span name="pName">부실해</span></td>
+						<td>[<span name="sKind_title">요양</span>] <span name="sTitle">270분초과</span></td>
+						<td><span name="stH">09</span>:<span name="stM">00</span>~<span name="etH">17</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">480</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">6</span></td>
+						<td><span name="date">07</span>(<span name="day">화</span>)</td>
+						<td><span name="pName">독고수급</span></td>
+						<td>[<span name="sKind_title">목욕</span>] <span name="sTitle">방문목욕(60분)</span></td>
+						<td><span name="stH">11</span>:<span name="stM">03</span>~<span name="etH">12</span>:<span name="etM">13</span></td>
+						<td><span name="stmTotal">60</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">7</span></td>
+						<td><span name="date">07</span>(<span name="day">화</span>)</td>
+						<td><span name="pName">부실해</span></td>
+						<td>[<span name="sKind_title">요양</span>] <span name="sTitle">270분초과</span></td>
+						<td><span name="stH">09</span>:<span name="stM">00</span>~<span name="etH">17</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">480</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">8</span></td>
+						<td><span name="date">08</span>(<span name="day">수</span>)</td>
+						<td><span name="pName">부실해</span></td>
+						<td>[<span name="sKind_title">요양</span>] <span name="sTitle">180분</span></td>
+						<td><span name="stH">09</span>:<span name="stM">00</span>~<span name="etH">12</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">180</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">9</span></td>
+						<td><span name="date">09</span>(<span name="day">목</span>)</td>
+						<td><span name="pName">부실해</span></td>
+						<td>[<span name="sKind_title">요양</span>] <span name="sTitle">180분</span></td>
+						<td><span name="stH">09</span>:<span name="stM">00</span>~<span name="etH">12</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">180</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">10</span></td>
+						<td><span name="date">10</span>(<span name="day">금</span>)</td>
+						<td><span name="pName">부실해</span></td>
+						<td>[<span name="sKind_title">요양</span>] <span name="sTitle">180분</span></td>
+						<td><span name="stH">09</span>:<span name="stM">00</span>~<span name="etH">12</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">180</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">11</span></td>
+						<td><span name="date">11</span>(<span name="day">토</span>)</td>
+						<td><span name="pName">부실해</span></td>
+						<td>[<span name="sKind_title">요양</span>] <span name="sTitle">180분</span></td>
+						<td><span name="stH">09</span>:<span name="stM">00</span>~<span name="etH">12</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">180</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">12</span></td>
+						<td><span name="date">13</span>(<span name="day">월</span>)</td>
+						<td><span name="pName">박수급</span></td>
+						<td>[<span name="sKind_title">목욕</span>] <span name="sTitle">방문목욕(60분)</span></td>
+						<td><span name="stH">17</span>:<span name="stM">00</span>~<span name="etH">18</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">60</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">13</span></td>
+						<td><span name="date">13</span>(<span name="day">월</span>)</td>
+						<td><span name="pName">부실해</span></td>
+						<td>[<span name="sKind_title">요양</span>] <span name="sTitle">180분</span></td>
+						<td><span name="stH">09</span>:<span name="stM">00</span>~<span name="etH">12</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">180</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">14</span></td>
+						<td><span name="date">14</span>(<span name="day">화</span>)</td>
+						<td><span name="pName">부실해</span></td>
+						<td>[<span name="sKind_title">요양</span>] <span name="sTitle">180분</span></td>
+						<td><span name="stH">09</span>:<span name="stM">00</span>~<span name="etH">12</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">180</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">15</span></td>
+						<td><span name="date">15</span>(<span name="day">수</span>)</td>
+						<td><span name="pName">부실해</span></td>
+						<td>[<span name="sKind_title">요양</span>] <span name="sTitle">180분</span></td>
+						<td><span name="stH">09</span>:<span name="stM">00</span>~<span name="etH">12</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">180</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">16</span></td>
+						<td><span name="date">16</span>(<span name="day">목</span>)</td>
+						<td><span name="pName">부실해</span></td>
+						<td>[<span name="sKind_title">요양</span>] <span name="sTitle">180분</span></td>
+						<td><span name="stH">09</span>:<span name="stM">00</span>~<span name="etH">12</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">180</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">17</span></td>
+						<td><span name="date">17</span>(<span name="day">금</span>)</td>
+						<td><span name="pName">부실해</span></td>
+						<td>[<span name="sKind_title">요양</span>] <span name="sTitle">180분</span></td>
+						<td><span name="stH">09</span>:<span name="stM">00</span>~<span name="etH">12</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">180</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">18</span></td>
+						<td><span name="date">18</span>(<span name="day">토</span>)</td>
+						<td><span name="pName">부실해</span></td>
+						<td>[<span name="sKind_title">요양</span>] <span name="sTitle">180분</span></td>
+						<td><span name="stH">09</span>:<span name="stM">00</span>~<span name="etH">12</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">180</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">19</span></td>
+						<td><span name="date">20</span>(<span name="day">월</span>)</td>
+						<td><span name="pName">박수급</span></td>
+						<td>[<span name="sKind_title">목욕</span>] <span name="sTitle">방문목욕(60분)</span></td>
+						<td><span name="stH">17</span>:<span name="stM">00</span>~<span name="etH">18</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">60</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">20</span></td>
+						<td><span name="date">20</span>(<span name="day">월</span>)</td>
+						<td><span name="pName">부실해</span></td>
+						<td>[<span name="sKind_title">요양</span>] <span name="sTitle">180분</span></td>
+						<td><span name="stH">09</span>:<span name="stM">00</span>~<span name="etH">12</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">180</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">21</span></td>
+						<td><span name="date">21</span>(<span name="day">화</span>)</td>
+						<td><span name="pName">노징수</span></td>
+						<td>[<span name="sKind_title">요양</span>] <span name="sTitle">60분</span></td>
+						<td><span name="stH">15</span>:<span name="stM">00</span>~<span name="etH">16</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">60</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">22</span></td>
+						<td><span name="date">21</span>(<span name="day">화</span>)</td>
+						<td><span name="pName">부실해</span></td>
+						<td>[<span name="sKind_title">요양</span>] <span name="sTitle">180분</span></td>
+						<td><span name="stH">09</span>:<span name="stM">00</span>~<span name="etH">12</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">180</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">23</span></td>
+						<td><span name="date">22</span>(<span name="day">수</span>)</td>
+						<td><span name="pName">부실해</span></td>
+						<td>[<span name="sKind_title">요양</span>] <span name="sTitle">180분</span></td>
+						<td><span name="stH">09</span>:<span name="stM">00</span>~<span name="etH">12</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">180</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">24</span></td>
+						<td><span name="date">22</span>(<span name="day">수</span>)</td>
+						<td><span name="pName">노징수</span></td>
+						<td>[<span name="sKind_title">요양</span>] <span name="sTitle">60분</span></td>
+						<td><span name="stH">15</span>:<span name="stM">00</span>~<span name="etH">16</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">60</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">25</span></td>
+						<td><span name="date">23</span>(<span name="day">목</span>)</td>
+						<td><span name="pName">부실해</span></td>
+						<td>[<span name="sKind_title">요양</span>] <span name="sTitle">180분</span></td>
+						<td><span name="stH">09</span>:<span name="stM">00</span>~<span name="etH">12</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">180</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">26</span></td>
+						<td><span name="date">23</span>(<span name="day">목</span>)</td>
+						<td><span name="pName">노징수</span></td>
+						<td>[<span name="sKind_title">요양</span>] <span name="sTitle">60분</span></td>
+						<td><span name="stH">15</span>:<span name="stM">00</span>~<span name="etH">16</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">60</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">27</span></td>
+						<td><span name="date">24</span>(<span name="day">금</span>)</td>
+						<td><span name="pName">노징수</span></td>
+						<td>[<span name="sKind_title">요양</span>] <span name="sTitle">60분(30%)</span></td>
+						<td><span name="stH">15</span>:<span name="stM">00</span>~<span name="etH">16</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">60</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">28</span></td>
+						<td><span name="date">27</span>(<span name="day">월</span>)</td>
+						<td><span name="pName">박수급</span></td>
+						<td>[<span name="sKind_title">목욕</span>] <span name="sTitle">방문목욕(60분)</span></td>
+						<td><span name="stH">17</span>:<span name="stM">00</span>~<span name="etH">18</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">60</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">29</span></td>
+						<td><span name="date">28</span>(<span name="day">화</span>)</td>
+						<td><span name="pName">부실해</span></td>
+						<td>[<span name="sKind_title">요양</span>] <span name="sTitle">180분</span></td>
+						<td><span name="stH">09</span>:<span name="stM">00</span>~<span name="etH">12</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">180</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">30</span></td>
+						<td><span name="date">29</span>(<span name="day">수</span>)</td>
+						<td><span name="pName">부실해</span></td>
+						<td>[<span name="sKind_title">요양</span>] <span name="sTitle">180분</span></td>
+						<td><span name="stH">09</span>:<span name="stM">00</span>~<span name="etH">12</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">180</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">31</span></td>
+						<td><span name="date">30</span>(<span name="day">목</span>)</td>
+						<td><span name="pName">부실해</span></td>
+						<td>[<span name="sKind_title">요양</span>] <span name="sTitle">180분</span></td>
+						<td><span name="stH">09</span>:<span name="stM">00</span>~<span name="etH">12</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">180</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr><tr>
+						<td><span name="no">32</span></td>
+						<td><span name="date">31</span>(<span name="day">금</span>)</td>
+						<td><span name="pName">부실해</span></td>
+						<td>[<span name="sKind_title">요양</span>] <span name="sTitle">180분</span></td>
+						<td><span name="stH">09</span>:<span name="stM">00</span>~<span name="etH">12</span>:<span name="etM">00</span></td>
+						<td><span name="stmTotal">180</span>(<span name="stmNgt">0</span>, <span name="stmMngt">0</span>)분</td>
+					</tr></tbody>
+				<tfoot>
+					<tr>
+						<td colspan="4" align="center">계</td>
+						<td colspan="2" align="right"><span name="stmTotal_h">92.0</span>시간 /  <span name="stmTotal">5520</span>(<span name="stmNgt">0</span>,<span name="stmMngt">0</span>)분
+					</td></tr>
+				</tfoot>
+			</table>
+		</div> <!-- 우 -->
+
+		<div style="clear:both"></div>
+	</div> <!-- 하단 근무내역 집계 -->
+</div>
+      <!-- /#content -->           
+      <!-- /#wrap -->          
+   </body>
+</th:block>
+<th:block layout:fragment="customPlugin">
+    <!--jQuery -->
+    <script src="assets/lib/jquery/jquery.js"></script>
+    Bootstrap
+   <script src="assets/lib/bootstrap/js/bootstrap.js"></script>
+    MetisMenu
+    <script src="assets/lib/metismenu/metisMenu.js"></script>
+    onoffcanvas
+    <script src="assets/lib/onoffcanvas/onoffcanvas.js"></script>
+    Screenfull
+    <script src="assets/lib/screenfull/screenfull.js"></script>
+    Metis core scripts
+    <script src="assets/js/core.js"></script>
+    Metis demo scripts
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/style-switcher.js"></script> -->
+    
+    <!--jQuery -->
+    <script src="assets/lib/jquery/jquery.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+
+   <!--Bootstrap -->
+   <script src="assets/lib/bootstrap/js/bootstrap.js"></script>
+   
+   <!-- MetisMenu -->
+   <script src="assets/lib/metismenu/metisMenu.js"></script>
+   
+   <!-- onoffcanvas -->
+   <script src="assets/lib/onoffcanvas/onoffcanvas.js"></script>
+   
+   <!-- Screenfull -->
+   <script src="assets/lib/screenfull/screenfull.js"></script>
+
+   <!-- Metis core scripts -->
+   <script src="assets/js/core.js"></script>
+   
+   <!-- Metis demo scripts -->
+   <script src="assets/js/app.js"></script>
+   <script>
+      $(function() {
+         $('#dataTable').DataTable({
+            "language": 
+               {
+               "sInfo": " 총_TOTAL_건의 자료 중  _START_번부터~_END_번까지 ",
+               "lengthMenu": "_MENU_ 개씩 보기",
+               "search":         "검색:",
+               "paginate": {
+               "first":      "First",
+               "last":       "Last",
+               "next":       "다음",
+               "previous":   "이전"
+                    }
+               
+            }           
+         });
+      });
+   </script>
+
+   <script src="assets/js/style-switcher.js"></script>
+</th:block>
+</html>
+>>>>>>> refs/heads/choi

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
+
+<th:block layout:fragment="customTitle">
+	<title>index</title>
+<!-- Bootstrap -->
+       <link rel="stylesheet" href="assets/lib/bootstrap/css/bootstrap.css">
+       
+       <!-- Font Awesome -->
+       <link rel="stylesheet" href="assets/lib/font-awesome/css/font-awesome.css">
+       
+       <!-- Metis core stylesheet -->
+       <link rel="stylesheet" href="assets/css/main.css">
+       
+       <!-- metisMenu stylesheet -->
+       <link rel="stylesheet" href="assets/lib/metismenu/metisMenu.css">
+       
+       <!-- onoffcanvas stylesheet -->
+       <link rel="stylesheet" href="assets/lib/onoffcanvas/onoffcanvas.css">
+       
+       <!-- animate.css stylesheet -->
+       <link rel="stylesheet" href="assets/lib/animate.css/animate.css">
+      
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css">
+
+       <script>
+           less = {
+               env: "development",
+               relativeUrls: false,
+               rootpath: "/assets/"
+           };
+       </script>
+       <link rel="stylesheet" href="/assets/css/style-switcher.css">
+       <link rel="stylesheet/less" type="text/css" href="/assets/less/theme.less">
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.js"></script>
+</th:block>
+<th:block layout:fragment="customContents">
+<body class="">
+	<div class="bg-dark dk" id="wrap">
+    	<div id="top">
+        	<header class="head">
+	            <div class="main-bar">
+	               <h3><i class="fa fa-table"></i>&nbsp;직원 급여 관리</h3>
+	            </div>
+			</header>
+		</div>
+	</div>
+	<div id="content">
+		<div class="outer">
+			<div class="inner bg-light lter">
+				<div class="row">
+					<div class="col-lg-12 ui-sortable">
+						<div class="box ui-sortable-handle"
+							style="position: relative; left: 0px; top: 0px;">
+							<header>
+								<div class="icons">
+									<i class="fa fa-table"></i>
+								</div>
+								<h5>직원 급여 관리</h5>
+							</header>
+							<!-- 테이블 Start -->
+							<div id="collapse4" class="body">
+								<div class="row">
+									<div class="col-sm-12">
+										<table id="dataTable" class="table table-bordered table-hover" style="font-size: 10px">
+											<thead>
+												<tr role="row">
+													<th>직원 이름</th>
+													<th>총급여</th>
+													<th>추가수당</th>
+													<th>공제</th>
+													<th>성별</th>
+													<th>등급</th>
+													<th>계약일</th>
+													<th>총급여</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr role="row" class="odd">
+													<th>직원 이름1</th>
+													<th>총급여1</th>
+													<th>추가수당1</th>
+													<th>공제1</th>
+													<th>성별1</th>
+													<th>등급1</th>
+													<th>계약일1</th>
+													<th>총급여1</th>
+												</tr>
+												<tr role="row" class="odd">
+													<th>직원 이름2</th>
+													<th>총급여2</th>
+													<th>추가수당2</th>
+													<th>공제2</th>
+													<th>성별2</th>
+													<th>등급2</th>
+													<th>계약일2</th>
+													<th>총급여2</th>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<!-- 테이블 End -->
+						</div>		
+					</div>				
+				</div>						
+			</div>									
+		</div>						
+	</div>
+</body>
+</th:block>
+<th:block layout:fragment="customPlugin">
+
+            <!-- jQuery 기본 js파일 -->
+            <script src="/assets/lib/jquery/jquery.js"></script>
+
+            <!--Bootstrap -->
+            <script src="/assets/lib/bootstrap/js/bootstrap.js"></script>
+            <!-- MetisMenu -->
+            <script src="/assets/lib/metismenu/metisMenu.js"></script>
+            <!-- onoffcanvas -->
+            <script src="/assets/lib/onoffcanvas/onoffcanvas.js"></script>
+            <!-- Screenfull -->
+            <script src="/assets/lib/screenfull/screenfull.js"></script>
+            <!-- Metis core scripts -->
+            <script src="/assets/js/core.js"></script>
+            <!-- Metis demo scripts -->
+            <script src="/assets/js/app.js"></script>
+            <script src="/assets/js/style-switcher.js"></script>
+            
+            <!-- 테이블 js -->
+		   	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+		    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+		    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
+		    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
+		    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <script>
+      $(function() {
+         $('#dataTable').DataTable({
+            "language": 
+               {
+               "sInfo": " 총_TOTAL_건의 자료 중  _START_번부터~_END_번까지 ",
+               "lengthMenu": "_MENU_ 개씩 보기",
+               "search":         "검색:",
+               "paginate": {
+               "first":      "First",
+               "last":       "Last",
+               "next":       "다음",
+               "previous":   "이전"
+                    }
+            }           
+         });
+      });
+   </script>
+</th:block>
+</html>
