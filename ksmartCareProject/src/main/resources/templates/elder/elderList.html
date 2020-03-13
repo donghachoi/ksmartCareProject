@@ -6,22 +6,22 @@
 <th:block layout:fragment="customTitle">
 	<title>index</title>
 <!-- Bootstrap -->
-       <link rel="stylesheet" href="assets/lib/bootstrap/css/bootstrap.css">
+       <link rel="stylesheet" href="/assets/lib/bootstrap/css/bootstrap.css">
        
        <!-- Font Awesome -->
-       <link rel="stylesheet" href="assets/lib/font-awesome/css/font-awesome.css">
+       <link rel="stylesheet" href="/assets/lib/font-awesome/css/font-awesome.css">
        
        <!-- Metis core stylesheet -->
-       <link rel="stylesheet" href="assets/css/main.css">
+       <link rel="stylesheet" href="/assets/css/main.css">
        
        <!-- metisMenu stylesheet -->
-       <link rel="stylesheet" href="assets/lib/metismenu/metisMenu.css">
+       <link rel="stylesheet" href="/assets/lib/metismenu/metisMenu.css">
        
        <!-- onoffcanvas stylesheet -->
-       <link rel="stylesheet" href="assets/lib/onoffcanvas/onoffcanvas.css">
+       <link rel="stylesheet" href="/assets/lib/onoffcanvas/onoffcanvas.css">
        
        <!-- animate.css stylesheet -->
-       <link rel="stylesheet" href="assets/lib/animate.css/animate.css">
+       <link rel="stylesheet" href="/assets/lib/animate.css/animate.css">
       
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css">
 
@@ -273,16 +273,21 @@
 													<option value="12">인지지원</option>
 												</select>
 											</label>
+											<div>
+												<label>장기요양인정번호
+													<input type="text" maxlength="11" placeholder="L0000000000">
+												</label>
+											</div>
 											<label>유효기간
 												<div style="margin:0px; display:inline; margin-left:50px;">
-										          <input type="radio" name="termYear" value="1" id="termYear1" checked="" class="ui-helper-hidden-accessible"><label for="termYear1" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" role="button" aria-pressed="true"><span class="ui-button-text">1년</span></label>
-										          <input type="radio" name="termYear" value="2" id="termYear2" class="ui-helper-hidden-accessible"><label for="termYear2" class="ui-button ui-widget ui-state-default ui-button-text-only" role="button" aria-pressed="false"><span class="ui-button-text">2년</span></label>
-										          <input type="radio" name="termYear" value="3" id="termYear3" class="ui-helper-hidden-accessible"><label for="termYear3" class="ui-button ui-widget ui-state-default ui-button-text-only" role="button" aria-pressed="false"><span class="ui-button-text">3년</span></label>
-										          <input type="radio" name="termYear" value="4" id="termYear4" class="ui-helper-hidden-accessible"><label for="termYear4" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" role="button" aria-pressed="false"><span class="ui-button-text">4년</span></label>
+										          <label><input type="radio" class="yearCheck" name="termYear" value="1" checked><span>1년</span></label>
+										          <label><input type="radio" class="yearCheck" name="termYear" value="2" ><span>2년</span></label>
+										          <label><input type="radio" class="yearCheck" name="termYear" value="3" ><span>3년</span></label>
+										          <label><input type="radio" class="yearCheck" name="termYear" value="4" ><span>4년</span></label>
 										        </div>
-												<input type="date">~<input type="date"></label>
-												<label>장기요양인정번호
-												<input type="text" maxlength="11" placeholder="L0000000000">
+										        <div>
+												<input type="date" name="startDate">~<input type="date" name="lastDate">
+												</div>
 											</label>
 											<button class="btn btn-metis-5 btn-xs" style="margin: 0 auto;" >등록하기/수정하기</button>
 										</div>
@@ -406,19 +411,21 @@
 											<input type="checkbox" value="003" ><label><span>간호</span></label>
 											<div>
 												<label>계약일
-													<div style="margin:0px; display:inline; margin-left:224px;">
+													<div style="margin:0px; display:inline;">
 														<input type="date">
 													</div>
 												</label>
 											</div>
 											<label>유효기간
 												<div style="margin:0px; display:inline; margin-left:50px;">
-										          <input type="radio" name="termYear" value="1" id="termYear1" checked="" class="ui-helper-hidden-accessible"><label for="termYear1" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" role="button" aria-pressed="true"><span class="ui-button-text">1년</span></label>
-										          <input type="radio" name="termYear" value="2" id="termYear2" class="ui-helper-hidden-accessible"><label for="termYear2" class="ui-button ui-widget ui-state-default ui-button-text-only" role="button" aria-pressed="false"><span class="ui-button-text">2년</span></label>
-										          <input type="radio" name="termYear" value="3" id="termYear3" class="ui-helper-hidden-accessible"><label for="termYear3" class="ui-button ui-widget ui-state-default ui-button-text-only" role="button" aria-pressed="false"><span class="ui-button-text">3년</span></label>
-										          <input type="radio" name="termYear" value="4" id="termYear4" class="ui-helper-hidden-accessible"><label for="termYear4" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" role="button" aria-pressed="false"><span class="ui-button-text">4년</span></label>
+										          <label><input type="radio" name="termYear" value="1" checked><span>1년</span></label>
+										          <label><input type="radio" name="termYear" value="2" ><span>2년</span></label>
+										          <label><input type="radio" name="termYear" value="3" ><span>3년</span></label>
+										          <label><input type="radio" name="termYear" value="4" ><span>4년</span></label>
 										        </div>
-												<input type="date">~<input type="date">
+										        <div>
+												<input type="date" name="startDate">~<input type="date" name="lastDate">
+												</div>
 											</label>
 											<button class="btn btn-metis-5 btn-xs" style="margin: 0 auto;" >등록하기/수정하기</button>
 										</div>
@@ -461,7 +468,7 @@
 		    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
 		    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
 		    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
-		    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+		    <script src="/assets/lib/jquery/jquery.ui.touch-punch.min.js"></script>
     <script>
       $(function() {
          $('#dataTable').DataTable({
@@ -478,6 +485,28 @@
                     }
             }           
          });
+      });
+      
+      
+      $(document).ready(function(){
+			var startDate = $('input[name="startDate"]');
+			var lastDate = $('input[name="lastDate"]');
+    	  $('#myModal').on('show.bs.modal', function (e) {
+    		  console.log(startDate.text());
+    		  
+    		})
+    	  
+    	  
+    	  /* 체크박스 체크된 년도로 날짜 계산하기 */
+    	  $('input[name="termYear"]').change(function(){
+			
+			var year = startDate.val().substring(0,4)
+			var monthToDay = startDate.val().substring(4)
+			var yearInt = parseInt(year)
+			var checkedInt = parseInt($(this).val())
+			lastDate.val((yearInt+checkedInt)+monthToDay)
+		});
+    	  
       });
    </script>
 </th:block>
