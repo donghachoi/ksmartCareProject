@@ -9,7 +9,7 @@ public class EmployeeContorller {
 	@GetMapping("/insertemp")
 	
 	public String insertEmployee() {
-		return "employee/insertemployee";
+		return "employee/insertEmployee";
 	}
 	@GetMapping("/emplist")
 	
