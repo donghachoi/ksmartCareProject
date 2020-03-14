@@ -24,5 +24,8 @@
 			,non_benefit_cost
 		FROM 
 			benefit_cost
+		order by 
+			4,4 ASC;
+		
   </select>
   </mapper>

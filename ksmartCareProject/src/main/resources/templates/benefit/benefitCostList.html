@@ -69,27 +69,42 @@
 							<div id="collapse4" class="body">
 								<div class="row">
 									<div class="col-sm-11">
-										<table id="dataTable" class="table table-bordered table-hover" style="font-size: 10px">
-												<thead>
-													<tr role="row">
-														<th>직원아이디</th>
-														<th>이름</th>
-														<th>직종</th>
-														<th>성별</th>
-														<th>연락처</th>
-														<th>비고</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr th:each="b : ${benefitcost}" role="row" class="odd">
-														<td th:text="${b.serviceCategory}" class="sorting_1"></td>
-													    <td th:text="${b.serviceTimeAndType}"></td>
-													    <td th:text="${b.benefitCostYear}"></td>
-													    <td th:text="${b.benefitCost}"></td>
-													    <td th:text="${b.nonBenefitCost}"></td>
-													    <td></td>
-													</tr>
-											</tbody>
+									<table>
+										<tbody>
+										    <tr>
+										    	<td>년도 : </td>
+										        <td>
+										        	<select id="year" name="year">
+														<option value="">=년도=</option>
+														<option value="2018">2018</option>
+														<option value="2019">2019</option>
+														<option value="2020">2020</option>
+													</select>
+										        </td>
+										   	</tr>
+										</tbody>
+											<table id="dataTable" class="table table-bordered table-hover" style="font-size: 10px">
+													<thead>
+														<tr role="row">
+															<th>서비스종류</th>
+															<th>시간/종류</th>
+															<th>년도</th>
+															<th>수가</th>
+															<th>본인부담금</th>
+															<th>비고</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr th:each="b : ${benefitcost}" role="row" class="odd">
+															<td th:text="${b.serviceCategory}" class="sorting_1"></td>
+														    <td th:text="${b.serviceTimeAndType}"></td>
+														    <td th:text="${b.benefitCostYear}"></td>
+														    <td th:text="${b.benefitCost}"></td>
+														    <td th:text="${b.nonBenefitCost}"></td>
+														    <td></td>
+														</tr>
+												</tbody>
+											</table>
 										</table>
 									</div>
 								</div>
@@ -130,23 +145,43 @@
 		    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
 		    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
     <script>
+    
+   	  $.fn.dataTable.ext.search.push(
+   			    function( settings, data, dataIndex ) {
+   			        var choosYear = parseInt( $('#year').val(), 10 );
+   			        var year = parseFloat( data[2] ) || 0; // use data for the age column
+   			 
+   			        if ( isNaN( choosYear )  || ( choosYear == year ) )
+   			        {
+   			            return true;
+   			        }
+   			        return false;
+   			    }
+   			);
       $(function() {
-         $('#dataTable').DataTable({
-            "language": 
-               {
-               "sInfo": " 총_TOTAL_건의 자료 중  _START_번부터~_END_번까지 ",
-               "lengthMenu": "_MENU_ 개씩 보기",
-               "search":         "검색:",
-               "paginate": {
-               "first":      "First",
-               "last":       "Last",
-               "next":       "다음",
-               "previous":   "이전"
-                    }
-            }
+    	  
+
+    	  var table = $('#dataTable').DataTable({
+			"paging" : false,
+			"language": 
+			   {
+			   "sInfo": " 총_TOTAL_건의 자료 중  _START_번부터~_END_번까지 ",
+			   "lengthMenu": "_MENU_ 개씩 보기",
+			   "search":         "검색:",
+			   "paginate": {
+			   "first":      "First",
+			   "last":       "Last",
+			   "next":       "다음",
+			   "previous":   "이전"
+			        }
+			}
          });
-         
+    	  $('#year').change( function() {
+    	        table.draw();
+    	    } );
       });
+      
+      
    </script>
 </th:block>
 </html>
