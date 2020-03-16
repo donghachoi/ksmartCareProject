@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
+
+<th:block layout:fragment="customTitle">
+	<title>index</title>
+<!-- Bootstrap -->
+       <link rel="stylesheet" href="/assets/lib/bootstrap/css/bootstrap.css">
+       
+       <!-- Font Awesome -->
+       <link rel="stylesheet" href="/assets/lib/font-awesome/css/font-awesome.css">
+       
+       <!-- Metis core stylesheet -->
+       <link rel="stylesheet" href="/assets/css/main.css">
+       
+       <!-- metisMenu stylesheet -->
+       <link rel="stylesheet" href="/assets/lib/metismenu/metisMenu.css">
+       
+       <!-- onoffcanvas stylesheet -->
+       <link rel="stylesheet" href="/assets/lib/onoffcanvas/onoffcanvas.css">
+       
+       <!-- animate.css stylesheet -->
+       <link rel="stylesheet" href="/assets/lib/animate.css/animate.css">
+      
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css">
+
+       <script>
+           less = {
+               env: "development",
+               relativeUrls: false,
+               rootpath: "/assets/"
+           };
+       </script>
+       <link rel="stylesheet" href="/assets/css/style-switcher.css">
+       <link rel="stylesheet/less" type="text/css" href="/assets/less/theme.less">
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.js"></script>
+</th:block>
+<th:block layout:fragment="customContents">
+	<body class="  ">
+		<div class="bg-dark dk" id="wrap">
+			<div id="top">
+				<header class="head">
+					<div class="main-bar">
+						<h3><i class="fa fa-table"></i>&nbsp;보호자 리스트 </h3>
+					</div>
+                 	<!-- /.main-bar -->
+            	</header>
+            	<!-- /.head -->
+			</div>
+   			 <!-- /#top -->
+		</div>
+		<!-- /#wrap -->
+		<div id="content">
+	<div class="outer">
+
+	<div class="inner bg-light lter">
+		<!-- 보호자리스트 테이블 Start -->
+		<div class = "row">
+		<div class="box">
+			<div class="col-lg-4 ui-sortable">
+					<div class="box ui-sortable-handle"
+						style="position: relative; left: 0px; right: 0px; top: 0px;">
+						<header>
+							<div class="icons">
+								<i class="fa fa-table"></i>
+							</div>
+							<h5>보호자 리스트</h5>
+						</header>
+						
+						<div id="collapse4" class="body">
+							<div class="row">
+								<div class="col-sm-12">
+									<table id="dataTable" class="table table-bordered table-hover" style="font-size: 10px">
+										<thead>
+											<tr role="row">
+												<th>보호자코드</th>
+												<th>수급자코드</th>
+												<th>수급자이름</th>
+												<th>보호자이름</th>
+												<th>연락처</th>
+											</tr>
+									</thead>
+										<tbody>
+											<tr role="row" class="odd">
+												<td class="sorting_1">b_000001</td>
+											    <td>s_000001</td>
+											    <td>나수급</td>
+											    <td>나보호</td>
+											    <td>010-1212-1236</td>      
+											</tr>
+											<tr role="row" class="odd">
+											    <td class="sorting_1">b_000002</td>
+											    <td>s_000001</td>
+											    <td>나수급</td>
+											    <td>나가족</td>
+											    <td>010-1405-1254</td>
+											</tr>
+											<tr role="row" class="odd">
+												<td class="sorting_1">b_000003</td>
+											    <td>s_000001</td>
+											    <td>나수급</td>
+											    <td>나보모</td>
+											    <td>010-4479-7531</td>
+											</tr>
+											<tr role="row" class="odd">
+											    <td class="sorting_1">b_000004</td>
+											    <td>s_000003</td>
+											    <td>나아파</td>
+											    <td>나가가족</td>
+											    <td>010-1345-7220</td>
+											</tr>
+											<tr role="row" class="odd">
+											    <td class="sorting_1">b_000005</td>
+											    <td>s_000004</td>
+											    <td>가수급</td>
+											    <td>가보호</td>
+											    <td>010-6547-1346</td>
+											</tr>
+											<tr role="row" class="odd">
+											     <td class="sorting_1">b_000006</td>
+											     <td>s_000004</td>
+											     <td>가수급</td>
+											     <td>가가족</td>
+											     <td>010-1234-1237</td>
+											</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>				
+			</div>
+				<!-- 테이블 End -->
+				<!-- 보호자 상세정보 테이블 Start -->
+								<div class="col-lg-8 ui-sortable">
+									<div class="box ui-sortable-handle">
+										<header>
+											<div class="icons">
+												<i class="fa fa-table"></i>
+											</div>
+											<h5>보호자 상세 정보</h5>
+											<div class="toolbar">
+											
+												<div class="btn-group">
+											
+													<button type="button"  
+																	data-toggle="modal" data-target="#myModal"
+																	class="btn btn-default btn-sm btn-line"
+																	>
+																	<span class="ui-button-text">정보수정</span>
+													</button>
+													<button type="button"  
+																	data-toggle="modal" data-target="#myModal"
+																	class="btn btn-default btn-sm btn-line"
+																	>
+																	<span class="ui-button-text">보호자삭제</span>
+													</button>
+													<!-- <a href="#defaultTable" data-toggle="collapse"
+														class="btn btn-sm btn-default minimize-box"> 
+														<i class="fa fa-angle-up"></i>
+													</a> -->
+												</div>
+											</div>
+										</header>
+										<div id="defaultTable" class="body collapse in">
+										
+											<table class="table responsive-table" >
+												<tbody>
+													<tr>
+														<th rowspan="2"><img src="/assets/img/test_peng.png"></th>
+														
+														<th>보호자코드</th>
+														<td>b_000001</td>
+														<th>수급자코드</th>
+														<td>s_000001</td>
+														<th>수급자이름</th>
+														<td>나수급</td>
+													</tr>
+													<tr>
+														<th>보호자이름</th>
+														<td>나보호</td>
+														<th>보호자비번</th>
+														<td>pw006</td>
+														<th>성별</th>
+														<td>남</td>
+													</tr>
+													<tr>
+														<th>주민등록번호</th>
+														<td>771231-1111122</td>
+														<th>연락처</th>
+														<td>010-1212-1236</td>
+														<th>등록일</th>
+														<td>2020-03-01</td>
+														<th>수급자와의 관계</th>
+														<td>자녀</td>
+													</tr>
+													<tr>
+														<th>주소(거주지)</th>
+														<td>전주시 완산구 우림로 897-50 (용복동)</td>
+														<th>주소(우편물)</th>
+														<td>전주시 완산구 우림로 897-51 (용복동)</td>
+														<th>수급자 동거여부</th>
+														<td>비동거</td>
+														<th></th>
+														<td></td>	
+													</tr>
+													<tr>
+														<th>비고</th>
+														<td colspan="4"></td>
+													</tr>
+												</tbody>
+											</table>								
+										</div>
+									</div>
+								</div>
+								
+								<!-- 보호자 상세정보 End-->
+							</div>
+						</div>
+					</div>
+					<!-- 자격증 정보 및  관리  Modal -->
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" style="position: absolute; padding-top: 200px">
+					  <div class="modal-dialog modal-lg">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						        <div class="icons">
+									<i class="fa fa-check"></i>
+								</div>
+							<h3 class="modal-title" id="myModalLabel">자격증 정보 및 관리</h3>
+						  </div>
+					      <div class="modal-body">
+								<h3>자격 정보</h3>
+								<div class="row">
+									<div id="collapse4" class="col-sm-12">
+										<table id="dataTable"
+											class="table table-bordered table-condensed table-hover table-striped">
+											<thead>
+												<tr>
+													<th>직원아이디</th>
+													<th>이름</th>
+													<th>직종자격</th>
+													<th>자격번호</th>
+													<th>발급(취득)일</th>
+													<th>기타추가자격</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr class="odd">
+													<td>e_000001</td>
+													<td>이형열</td>
+													<td>정보처리기사</td>
+													<td>10-12345-456</td>
+													<td>2019-01-01</td>
+													<td></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<h3>자격 등록/수정</h3>
+								<div class="col-sm-12" >
+									<div class="row" >
+										<!-- <form action="#" method="post" class="roundBox"> -->
+										<div class="form-group" style="background-color: #CCCCCC; border-radius: 2px; padding: 10px; padding-bottom: 35px" >
+											<label>자격정보
+												<select>
+													<option value="">=자격정보 선택=</option>
+													<option value="사회복지사 1급">사회복지사 1급</option>
+													<option value="사회복지사 2급">사회복지사 2급</option>
+													<option value="사회복지사 3급">사회복지사 3급</option>
+													<option value="요양보호사 1급">요양보호사 1급</option>
+													<option value="요양보호사 2급">요양보호사 2급</option>
+													<option value="요양보호사 기존 유예자">요양보호사 기존 유예자</option>
+													<option value="의사">의사</option>
+													<option value="방문간호전담 간호사">방문간호전담 간호사</option>
+													<option value="방문간호전담 이외 간호사">방문간호전담 이외 간호사</option>
+													<option value="방문간호전담 간호조무사">방문간호전담 간호조무사</option>
+													<option value="방문간호전담 이외 간호조무사">방문간호전담 이외 간호조무사</option>
+													<option value="물리치료사">물리치료사</option>
+													<option value="작업치료사">작업치료사</option>
+													<option value="영양사">영양사</option>
+													<option value="정보처리기사">정보처리기사</option>
+													<option value="기타">기타</option>
+												</select>
+											</label>
+											<label>자격번호
+												<input type="text" maxlength="11" >
+											</label>
+						                   <label> 자격발급(취득)일
+						                         <input type="date">
+						                   </label>
+						               
+						                   <!-- /.row -->
+  										   <label>기타추가자격(중복선택가능)</label>
+												<div class="checkbox">
+													
+													<label>
+										              <input class="uniform" type="checkbox" value="option1" >간호사
+										            </label> 
+										            <label> 
+										              <input class="uniform" type="checkbox" value="option2">간호조무사
+										            </label>   
+										            <label> 
+										              <input class="uniform" type="checkbox" value="option2">물리치료사
+										            </label>
+ 													<label> 
+										              <input class="uniform" type="checkbox" value="option2">사회복지사 1급
+										            </label>
+										            <label>   
+										              <input class="uniform" type="checkbox" value="option2">사회복지사 2급
+										            </label>
+										            <label>   
+										              <input class="uniform" type="checkbox" value="option2">사회복지사 3급
+										            </label>
+										            <label>  
+										              <input class="uniform" type="checkbox" value="option2">작업치료사
+										            </label>
+										            <label> 
+										              <input class="uniform" type="checkbox" value="option2">기타
+										            </label>  
+										        	</div>
+										         	<label style="float:right; width:80%">
+													<button type="button" class="btn btn-metis-5 btn-xs" onclick="submit_frm_tab081_A()" style="float:right" >저장</button>
+										         	</label>
+										        	</div>
+												 </div>
+                    						</div>
+				                    	</div>
+									      <div class="modal-footer">
+								        	<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+									        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+									      </div>
+									    </div>
+									</div> 
+								</div>
+						
+					 
+					 
+				
+					<!-- 등급관리 model End -->
+					<!-- 상태변경 및 관리내역 기록 Modal -->
+					<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" style="position: absolute; padding-top: 200px">
+					  <div class="modal-dialog modal-lg">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					        <h1 class="modal-title" id="myModalLabel">상태변경 및 관리내역 기록</h1>
+					      </div>
+					      <div class="modal-body">
+								<div class="row">
+									<div id="collapse4" class="col-sm-12">
+										<table id="dataTable"
+											class="table table-bordered table-condensed table-hover table-striped">
+											<thead>
+												<tr>
+													<th>번호</th>
+													<th>낙상위험측정</th>
+													<th>욕창위험측정</th>
+													<th>인지기능검사</th>
+													<th>욕구사정</th>
+												</tr>
+											</thead>
+											
+										</table>
+									</div>
+								</div>
+								<h3>이력 등록/수정</h3>
+								<div class="row" >
+									<div class="col-sm-12" >
+										
+											
+									</div>
+								</div>
+					      </div>
+					      <div class="modal-footer">
+				        	<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+					        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+					      </div>
+					    </div>
+					  </div>
+					</div>
+					<!-- 등급관리 model End -->
+				
+		</div>
+	</body>
+</th:block>
+<th:block layout:fragment="customPlugin">
+
+            <!-- jQuery 기본 js파일 -->
+            <script src="/assets/lib/jquery/jquery.js"></script>
+
+            <!--Bootstrap -->
+            <script src="/assets/lib/bootstrap/js/bootstrap.js"></script>
+            <!-- MetisMenu -->
+            <script src="/assets/lib/metismenu/metisMenu.js"></script>
+            <!-- onoffcanvas -->
+            <script src="/assets/lib/onoffcanvas/onoffcanvas.js"></script>
+            <!-- Screenfull -->
+            <script src="/assets/lib/screenfull/screenfull.js"></script>
+            <!-- Metis core scripts -->
+            <script src="/assets/js/core.js"></script>
+            <!-- Metis demo scripts -->
+            <script src="/assets/js/app.js"></script>
+            <script src="/assets/js/style-switcher.js"></script>
+            
+            <!-- 테이블 js -->
+		   	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+		    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+		    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
+		    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
+		    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <script>
+      $(function() {
+         $('#dataTable').DataTable({
+            "language": 
+               {
+               "sInfo": " 총_TOTAL_건의 자료 중  _START_번부터~_END_번까지 ",
+               "lengthMenu": "_MENU_ 개씩 보기",
+               "search":         "검색:",
+               "paginate": {
+               "first":      "First",
+               "last":       "Last",
+               "next":       "다음",
+               "previous":   "이전"
+                    }
+            }           
+         });
+      });
+   </script>
+</th:block>
+</html>
