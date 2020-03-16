@@ -2,176 +2,171 @@ package com.cafe24.choiyooq1.domain;
 
 public class Elder {
 
-	private String elder_id;
-	private String elder_name;
-	private String center_code;
-	private String center_name;
-	private String elder_birthname;
-	private String elder_gender;
-	private String elder_final_service_approval_level;
-	private String elder_final_service_status;
-	private String elder_disease;
-	private String elder_coinsurance;
-	private String total_visits;
-	private String total_service_time;
-	private String service_localmanage_code;
-	private String service_localmanage_name;
-	private String long_term_care_numver;
-	private String long_term_care_validity;
-	private String elder_phone;
-	private String elder_adress_for_stay;
-	private String elder_adress_for_post;
-	private String elder_remarks;
-	private String elder_groups;
-	private int benefit_max_cost;
-	
-	public String getElder_id() {
-		return elder_id;
+	private String elderId;
+	private String elderName;
+	private String centerCode;
+	private String centerName;
+	private String elderBirthname;
+	private String elderGender;
+	private String elderFinalServiceApprovalLevel;
+	private String elderFinalServiceStatus;
+	private String elderDisease;
+	private String elderCoinsurance;
+	private String totalVisits;
+	private String totalServiceTime;
+	private String serviceLocalmanageCode;
+	private String serviceLocalmanageName;
+	private String longTermCareNumver;
+	private String longTermCareValidity;
+	private String elderPhone;
+	private String elderAdressForStay;
+	private String elderAdressForPost;
+	private String elderRemarks;
+	private String elderGroups;
+	private int benefitMaxCost;
+	public String getElderId() {
+		return elderId;
 	}
-	public void setElder_id(String elder_id) {
-		this.elder_id = elder_id;
+	public void setElderId(String elderId) {
+		this.elderId = elderId;
 	}
-	public String getElder_name() {
-		return elder_name;
+	public String getElderName() {
+		return elderName;
 	}
-	public void setElder_name(String elder_name) {
-		this.elder_name = elder_name;
+	public void setElderName(String elderName) {
+		this.elderName = elderName;
 	}
-	public String getCenter_code() {
-		return center_code;
+	public String getCenterCode() {
+		return centerCode;
 	}
-	public void setCenter_code(String center_code) {
-		this.center_code = center_code;
+	public void setCenterCode(String centerCode) {
+		this.centerCode = centerCode;
 	}
-	public String getCenter_name() {
-		return center_name;
+	public String getCenterName() {
+		return centerName;
 	}
-	public void setCenter_name(String center_name) {
-		this.center_name = center_name;
+	public void setCenterName(String centerName) {
+		this.centerName = centerName;
 	}
-	public String getElder_birthname() {
-		return elder_birthname;
+	public String getElderBirthname() {
+		return elderBirthname;
 	}
-	public void setElder_birthname(String elder_birthname) {
-		this.elder_birthname = elder_birthname;
+	public void setElderBirthname(String elderBirthname) {
+		this.elderBirthname = elderBirthname;
 	}
-	public String getElder_gender() {
-		return elder_gender;
+	public String getElderGender() {
+		return elderGender;
 	}
-	public void setElder_gender(String elder_gender) {
-		this.elder_gender = elder_gender;
+	public void setElderGender(String elderGender) {
+		this.elderGender = elderGender;
 	}
-	public String getElder_final_service_approval_level() {
-		return elder_final_service_approval_level;
+	public String getElderFinalServiceApprovalLevel() {
+		return elderFinalServiceApprovalLevel;
 	}
-	public void setElder_final_service_approval_level(String elder_final_service_approval_level) {
-		this.elder_final_service_approval_level = elder_final_service_approval_level;
+	public void setElderFinalServiceApprovalLevel(String elderFinalServiceApprovalLevel) {
+		this.elderFinalServiceApprovalLevel = elderFinalServiceApprovalLevel;
 	}
-	public String getElder_final_service_status() {
-		return elder_final_service_status;
+	public String getElderFinalServiceStatus() {
+		return elderFinalServiceStatus;
 	}
-	public void setElder_final_service_status(String elder_final_service_status) {
-		this.elder_final_service_status = elder_final_service_status;
+	public void setElderFinalServiceStatus(String elderFinalServiceStatus) {
+		this.elderFinalServiceStatus = elderFinalServiceStatus;
 	}
-	public String getElder_disease() {
-		return elder_disease;
+	public String getElderDisease() {
+		return elderDisease;
 	}
-	public void setElder_disease(String elder_disease) {
-		this.elder_disease = elder_disease;
+	public void setElderDisease(String elderDisease) {
+		this.elderDisease = elderDisease;
 	}
-	public String getElder_coinsurance() {
-		return elder_coinsurance;
+	public String getElderCoinsurance() {
+		return elderCoinsurance;
 	}
-	public void setElder_coinsurance(String elder_coinsurance) {
-		this.elder_coinsurance = elder_coinsurance;
+	public void setElderCoinsurance(String elderCoinsurance) {
+		this.elderCoinsurance = elderCoinsurance;
 	}
-	public String getTotal_visits() {
-		return total_visits;
+	public String getTotalVisits() {
+		return totalVisits;
 	}
-	public void setTotal_visits(String total_visits) {
-		this.total_visits = total_visits;
+	public void setTotalVisits(String totalVisits) {
+		this.totalVisits = totalVisits;
 	}
-	public String getTotal_service_time() {
-		return total_service_time;
+	public String getTotalServiceTime() {
+		return totalServiceTime;
 	}
-	public void setTotal_service_time(String total_service_time) {
-		this.total_service_time = total_service_time;
+	public void setTotalServiceTime(String totalServiceTime) {
+		this.totalServiceTime = totalServiceTime;
 	}
-	public String getService_localmanage_code() {
-		return service_localmanage_code;
+	public String getServiceLocalmanageCode() {
+		return serviceLocalmanageCode;
 	}
-	public void setService_localmanage_code(String service_localmanage_code) {
-		this.service_localmanage_code = service_localmanage_code;
+	public void setServiceLocalmanageCode(String serviceLocalmanageCode) {
+		this.serviceLocalmanageCode = serviceLocalmanageCode;
 	}
-	public String getService_localmanage_name() {
-		return service_localmanage_name;
+	public String getServiceLocalmanageName() {
+		return serviceLocalmanageName;
 	}
-	public void setService_localmanage_name(String service_localmanage_name) {
-		this.service_localmanage_name = service_localmanage_name;
+	public void setServiceLocalmanageName(String serviceLocalmanageName) {
+		this.serviceLocalmanageName = serviceLocalmanageName;
 	}
-	public String getLong_term_care_numver() {
-		return long_term_care_numver;
+	public String getLongTermCareNumver() {
+		return longTermCareNumver;
 	}
-	public void setLong_term_care_numver(String long_term_care_numver) {
-		this.long_term_care_numver = long_term_care_numver;
+	public void setLongTermCareNumver(String longTermCareNumver) {
+		this.longTermCareNumver = longTermCareNumver;
 	}
-	public String getLong_term_care_validity() {
-		return long_term_care_validity;
+	public String getLongTermCareValidity() {
+		return longTermCareValidity;
 	}
-	public void setLong_term_care_validity(String long_term_care_validity) {
-		this.long_term_care_validity = long_term_care_validity;
+	public void setLongTermCareValidity(String longTermCareValidity) {
+		this.longTermCareValidity = longTermCareValidity;
 	}
-	public String getElder_phone() {
-		return elder_phone;
+	public String getElderPhone() {
+		return elderPhone;
 	}
-	public void setElder_phone(String elder_phone) {
-		this.elder_phone = elder_phone;
+	public void setElderPhone(String elderPhone) {
+		this.elderPhone = elderPhone;
 	}
-	public String getElder_adress_for_stay() {
-		return elder_adress_for_stay;
+	public String getElderAdressForStay() {
+		return elderAdressForStay;
 	}
-	public void setElder_adress_for_stay(String elder_adress_for_stay) {
-		this.elder_adress_for_stay = elder_adress_for_stay;
+	public void setElderAdressForStay(String elderAdressForStay) {
+		this.elderAdressForStay = elderAdressForStay;
 	}
-	public String getElder_adress_for_post() {
-		return elder_adress_for_post;
+	public String getElderAdressForPost() {
+		return elderAdressForPost;
 	}
-	public void setElder_adress_for_post(String elder_adress_for_post) {
-		this.elder_adress_for_post = elder_adress_for_post;
+	public void setElderAdressForPost(String elderAdressForPost) {
+		this.elderAdressForPost = elderAdressForPost;
 	}
-	public String getElder_remarks() {
-		return elder_remarks;
+	public String getElderRemarks() {
+		return elderRemarks;
 	}
-	public void setElder_remarks(String elder_remarks) {
-		this.elder_remarks = elder_remarks;
+	public void setElderRemarks(String elderRemarks) {
+		this.elderRemarks = elderRemarks;
 	}
-	public String getElder_groups() {
-		return elder_groups;
+	public String getElderGroups() {
+		return elderGroups;
 	}
-	public void setElder_groups(String elder_groups) {
-		this.elder_groups = elder_groups;
+	public void setElderGroups(String elderGroups) {
+		this.elderGroups = elderGroups;
 	}
-	
-	
-	public int getBenefit_max_cost() {
-		return benefit_max_cost;
+	public int getBenefitMaxCost() {
+		return benefitMaxCost;
 	}
-	public void setBenefit_max_cost(int benefit_max_cost) {
-		this.benefit_max_cost = benefit_max_cost;
+	public void setBenefitMaxCost(int benefitMaxCost) {
+		this.benefitMaxCost = benefitMaxCost;
 	}
-	
 	@Override
 	public String toString() {
-		return "Elder [elder_id=" + elder_id + ", elder_name=" + elder_name + ", center_code=" + center_code
-				+ ", center_name=" + center_name + ", elder_birthname=" + elder_birthname + ", elder_gender="
-				+ elder_gender + ", elder_final_service_approval_level=" + elder_final_service_approval_level
-				+ ", elder_final_service_status=" + elder_final_service_status + ", elder_disease=" + elder_disease
-				+ ", elder_coinsurance=" + elder_coinsurance + ", total_visits=" + total_visits
-				+ ", total_service_time=" + total_service_time + ", service_localmanage_code="
-				+ service_localmanage_code + ", service_localmanage_name=" + service_localmanage_name
-				+ ", long_term_care_numver=" + long_term_care_numver + ", long_term_care_validity="
-				+ long_term_care_validity + ", elder_phone=" + elder_phone + ", elder_adress_for_stay="
-				+ elder_adress_for_stay + ", elder_adress_for_post=" + elder_adress_for_post + ", elder_remarks="
-				+ elder_remarks + ", elder_groups=" + elder_groups + "]";
-	}                   
+		return "Elder [elderId=" + elderId + ", elderName=" + elderName + ", centerCode=" + centerCode + ", centerName="
+				+ centerName + ", elderBirthname=" + elderBirthname + ", elderGender=" + elderGender
+				+ ", elderFinalServiceApprovalLevel=" + elderFinalServiceApprovalLevel + ", elderFinalServiceStatus="
+				+ elderFinalServiceStatus + ", elderDisease=" + elderDisease + ", elderCoinsurance=" + elderCoinsurance
+				+ ", totalVisits=" + totalVisits + ", totalServiceTime=" + totalServiceTime
+				+ ", serviceLocalmanageCode=" + serviceLocalmanageCode + ", serviceLocalmanageName="
+				+ serviceLocalmanageName + ", longTermCareNumver=" + longTermCareNumver + ", longTermCareValidity="
+				+ longTermCareValidity + ", elderPhone=" + elderPhone + ", elderAdressForStay=" + elderAdressForStay
+				+ ", elderAdressForPost=" + elderAdressForPost + ", elderRemarks=" + elderRemarks + ", elderGroups="
+				+ elderGroups + ", benefitMaxCost=" + benefitMaxCost + "]";
+	}
 }

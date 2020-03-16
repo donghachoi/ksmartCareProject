@@ -21,4 +21,7 @@ public interface VisitMapper {
 	//직원별 목록
 	public List<Employee> empCategory(String center_code, String empcategory);
 	
+	//일정 등록하기
+	public List<Visit> visitInsert(Visit visit);
+	
 }

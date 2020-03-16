@@ -2,136 +2,134 @@ package com.cafe24.choiyooq1.domain;
 
 public class Employee {
 	
-	private String employee_id;
-	private String center_code;
-	private String center_name;
-	private String employee_name;
-	private String employee_pw;
-	private String employee_category;
-	private String employee_gender;
-	private String employee_personal_number;
-	private String employee_phone;
-	private String employee_start_date;
-	private String employee_working_status;
-	private String employee_working_type;
-	private String employee_position;
-	private String employee_pay_type;
-	private String employee_hourly_pay;
-	private String employee_account;
-	private String employee_account_holder;
-	public String getEmployee_id() {
-		return employee_id;
+	private String employeeId;
+	private String centerCode;
+	private String centerName;
+	private String employeeName;
+	private String employeePw;
+	private String employeeCategory;
+	private String employeeGender;
+	private String employeePersonalNumber;
+	private String employeePhone;
+	private String employeeStartDate;
+	private String employeeWorkingStatus;
+	private String employeeWorkingType;
+	private String employeePosition;
+	private String employeePayType;
+	private String employeeHourlyPay;
+	private String employeeAccount;
+	private String employeeAccountHolder;
+	public String getEmployeeId() {
+		return employeeId;
 	}
-	public void setEmployee_id(String employee_id) {
-		this.employee_id = employee_id;
+	public void setEmployeeId(String employeeId) {
+		this.employeeId = employeeId;
 	}
-	public String getCenter_code() {
-		return center_code;
+	public String getCenterCode() {
+		return centerCode;
 	}
-	public void setCenter_code(String center_code) {
-		this.center_code = center_code;
+	public void setCenterCode(String centerCode) {
+		this.centerCode = centerCode;
 	}
-	public String getCenter_name() {
-		return center_name;
+	public String getCenterName() {
+		return centerName;
 	}
-	public void setCenter_name(String center_name) {
-		this.center_name = center_name;
+	public void setCenterName(String centerName) {
+		this.centerName = centerName;
 	}
-	public String getEmployee_name() {
-		return employee_name;
+	public String getEmployeeName() {
+		return employeeName;
 	}
-	public void setEmployee_name(String employee_name) {
-		this.employee_name = employee_name;
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
 	}
-	public String getEmployee_pw() {
-		return employee_pw;
+	public String getEmployeePw() {
+		return employeePw;
 	}
-	public void setEmployee_pw(String employee_pw) {
-		this.employee_pw = employee_pw;
+	public void setEmployeePw(String employeePw) {
+		this.employeePw = employeePw;
 	}
-	public String getEmployee_category() {
-		return employee_category;
+	public String getEmployeeCategory() {
+		return employeeCategory;
 	}
-	public void setEmployee_category(String employee_category) {
-		this.employee_category = employee_category;
+	public void setEmployeeCategory(String employeeCategory) {
+		this.employeeCategory = employeeCategory;
 	}
-	public String getEmployee_gender() {
-		return employee_gender;
+	public String getEmployeeGender() {
+		return employeeGender;
 	}
-	public void setEmployee_gender(String employee_gender) {
-		this.employee_gender = employee_gender;
+	public void setEmployeeGender(String employeeGender) {
+		this.employeeGender = employeeGender;
 	}
-	public String getEmployee_personal_number() {
-		return employee_personal_number;
+	public String getEmployeePersonalNumber() {
+		return employeePersonalNumber;
 	}
-	public void setEmployee_personal_number(String employee_personal_number) {
-		this.employee_personal_number = employee_personal_number;
+	public void setEmployeePersonalNumber(String employeePersonalNumber) {
+		this.employeePersonalNumber = employeePersonalNumber;
 	}
-	public String getEmployee_phone() {
-		return employee_phone;
+	public String getEmployeePhone() {
+		return employeePhone;
 	}
-	public void setEmployee_phone(String employee_phone) {
-		this.employee_phone = employee_phone;
+	public void setEmployeePhone(String employeePhone) {
+		this.employeePhone = employeePhone;
 	}
-	public String getEmployee_start_date() {
-		return employee_start_date;
+	public String getEmployeeStartDate() {
+		return employeeStartDate;
 	}
-	public void setEmployee_start_date(String employee_start_date) {
-		this.employee_start_date = employee_start_date;
+	public void setEmployeeStartDate(String employeeStartDate) {
+		this.employeeStartDate = employeeStartDate;
 	}
-	public String getEmployee_working_status() {
-		return employee_working_status;
+	public String getEmployeeWorkingStatus() {
+		return employeeWorkingStatus;
 	}
-	public void setEmployee_working_status(String employee_working_status) {
-		this.employee_working_status = employee_working_status;
+	public void setEmployeeWorkingStatus(String employeeWorkingStatus) {
+		this.employeeWorkingStatus = employeeWorkingStatus;
 	}
-	public String getEmployee_working_type() {
-		return employee_working_type;
+	public String getEmployeeWorkingType() {
+		return employeeWorkingType;
 	}
-	public void setEmployee_working_type(String employee_working_type) {
-		this.employee_working_type = employee_working_type;
+	public void setEmployeeWorkingType(String employeeWorkingType) {
+		this.employeeWorkingType = employeeWorkingType;
 	}
-	public String getEmployee_position() {
-		return employee_position;
+	public String getEmployeePosition() {
+		return employeePosition;
 	}
-	public void setEmployee_position(String employee_position) {
-		this.employee_position = employee_position;
+	public void setEmployeePosition(String employeePosition) {
+		this.employeePosition = employeePosition;
 	}
-	public String getEmployee_pay_type() {
-		return employee_pay_type;
+	public String getEmployeePayType() {
+		return employeePayType;
 	}
-	public void setEmployee_pay_type(String employee_pay_type) {
-		this.employee_pay_type = employee_pay_type;
+	public void setEmployeePayType(String employeePayType) {
+		this.employeePayType = employeePayType;
 	}
-	public String getEmployee_hourly_pay() {
-		return employee_hourly_pay;
+	public String getEmployeeHourlyPay() {
+		return employeeHourlyPay;
 	}
-	public void setEmployee_hourly_pay(String employee_hourly_pay) {
-		this.employee_hourly_pay = employee_hourly_pay;
+	public void setEmployeeHourlyPay(String employeeHourlyPay) {
+		this.employeeHourlyPay = employeeHourlyPay;
 	}
-	public String getEmployee_account() {
-		return employee_account;
+	public String getEmployeeAccount() {
+		return employeeAccount;
 	}
-	public void setEmployee_account(String employee_account) {
-		this.employee_account = employee_account;
+	public void setEmployeeAccount(String employeeAccount) {
+		this.employeeAccount = employeeAccount;
 	}
-	public String getEmployee_account_holder() {
-		return employee_account_holder;
+	public String getEmployeeAccountHolder() {
+		return employeeAccountHolder;
 	}
-	public void setEmployee_account_holder(String employee_account_holder) {
-		this.employee_account_holder = employee_account_holder;
+	public void setEmployeeAccountHolder(String employeeAccountHolder) {
+		this.employeeAccountHolder = employeeAccountHolder;
 	}
-	
 	@Override
 	public String toString() {
-		return "Employee [employee_id=" + employee_id + ", center_code=" + center_code + ", center_name=" + center_name
-				+ ", employee_name=" + employee_name + ", employee_pw=" + employee_pw + ", employee_category="
-				+ employee_category + ", employee_gender=" + employee_gender + ", employee_personal_number="
-				+ employee_personal_number + ", employee_phone=" + employee_phone + ", employee_start_date="
-				+ employee_start_date + ", employee_working_status=" + employee_working_status
-				+ ", employee_working_type=" + employee_working_type + ", employee_position=" + employee_position
-				+ ", employee_pay_type=" + employee_pay_type + ", employee_hourly_pay=" + employee_hourly_pay
-				+ ", employee_account=" + employee_account + ", employee_account_holder=" + employee_account_holder
-				+ "]";
-	}                 
+		return "Employee [employeeId=" + employeeId + ", centerCode=" + centerCode + ", centerName=" + centerName
+				+ ", employeeName=" + employeeName + ", employeePw=" + employeePw + ", employeeCategory="
+				+ employeeCategory + ", employeeGender=" + employeeGender + ", employeePersonalNumber="
+				+ employeePersonalNumber + ", employeePhone=" + employeePhone + ", employeeStartDate="
+				+ employeeStartDate + ", employeeWorkingStatus=" + employeeWorkingStatus + ", employeeWorkingType="
+				+ employeeWorkingType + ", employeePosition=" + employeePosition + ", employeePayType="
+				+ employeePayType + ", employeeHourlyPay=" + employeeHourlyPay + ", employeeAccount=" + employeeAccount
+				+ ", employeeAccountHolder=" + employeeAccountHolder + "]";
+	}
 }
