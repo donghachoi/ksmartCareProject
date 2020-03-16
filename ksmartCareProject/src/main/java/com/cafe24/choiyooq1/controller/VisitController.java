@@ -40,7 +40,7 @@ public class VisitController {
 	//수급자 총 금
 	@PostMapping("/employee/velderbenefitcost")
 	//@PostMapping(value="/elderbenefitcost", produces = "application/json")
-	public @ResponseBody Map<String, Object> velderBenefitCost(@RequestParam(value="elder_id") String elder_id, 
+	public @ResponseBody Map<String, Integer> velderBenefitCost(@RequestParam(value="elder_id") String elder_id, 
 			@RequestParam(value="maxcost") int maxcost,
 			@RequestParam(value="syear", required=false) String syear,
 			@RequestParam(value="smonth" , required=false) String smonth) {
@@ -51,7 +51,9 @@ public class VisitController {
 			smonth = Integer.toString(today.get(Calendar.MONTH) + 1);
 		}
 		
-		Map<String, Object>  list = visitservice.elderBenefitCost(elder_id, syear, smonth, maxcost);
+		Map<String, Integer>  list = visitservice.elderBenefitCost(elder_id, syear, smonth, maxcost);
+		list.put("syear", syear);
+		list.put("smonth", smonth);
 		
 		return list; 
 	}

@@ -11,18 +11,18 @@ public class MainController {
 	
 	@GetMapping("/")
 	public String index1() {
-		return "index1";
+		return "/index1";
 	}
 	
 	
 	@GetMapping("/1")
 	public String index2() {
-		return "index";
+		return "/index";
 	}
 	
 	@GetMapping("/login")
 	public String firstlogin() {
-		return "login/firstlogin";
+		return "/login/firstlogin";
 	}
 	
 	

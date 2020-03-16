@@ -41,27 +41,45 @@ public class VisitService {
 	    int yoyang = 0;
 	    int bath =0;
 	    int nurse =0;
-		
+	    int getYoyang =0;
+	    int getbath =0;
+	    int getnurse =0;
+	    int mgetYoyang =0;
+	    int mgetbath =0;
+	    int mgetnurse =0;
+	    
 		for(int i=0; i< list.size(); i++) {
 			Visit vit= list.get(i);
 			BenefitCost bcost =  visitMapper.serviceCost(syear, vit.getVisitServiceCategory(),  
 					vit.getVisitServiceTime());
-			getBenefitCost = bcost.getBenefitCost();
-		
+			
 			BenefitCost += bcost.getBenefitCost();
 			NonBenefitCost += bcost.getNonBenefitCost();
 			//setlist.add(bcost);
 			
 			if(bcost.getServiceCategory().contains("요양")) {
+				getYoyang = bcost.getBenefitCost();
+				mgetYoyang = bcost.getNonBenefitCost();
 				yoyang +=1;
 			}else if(bcost.getServiceCategory().contains("목욕")) {
+				getbath = bcost.getBenefitCost();
+				mgetbath = bcost.getNonBenefitCost();
 				bath += 1;
 			}else if(bcost.getServiceCategory().contains("간호")) {
+				getnurse = bcost.getBenefitCost();
+				mgetnurse = bcost.getNonBenefitCost();
 				nurse += 1;
 			}
 		}
 
 		int subCost = maxcost - BenefitCost;
+		getYoyang = getYoyang * yoyang;
+		getbath = getbath * bath;
+		getnurse = getnurse * nurse;
+		mgetYoyang = mgetYoyang *yoyang;
+		mgetbath = mgetbath * bath;
+		mgetnurse = mgetnurse * nurse;
+		int tolnum = yoyang+bath+nurse;
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("yoyang", yoyang);   //요양 총 횟수
 		map.put("bath", bath);       //목욕 총 횟수
@@ -70,7 +88,15 @@ public class VisitService {
 		map.put("NonBenefitCost", NonBenefitCost); //총 본인 부담비용
 		map.put("maxcost", maxcost);     //최대한도 수가 비용
 		map.put("subCost", subCost);     //잔액 
+		map.put("getYoyang", getYoyang);   //요양 수가
+		map.put("getbath", getbath);       //목욕 수가
+		map.put("getnurse", getnurse);     //간호 수가
+		map.put("mgetYoyang", mgetYoyang);  //요양 본인 부담금 
+		map.put("mgetbath", mgetbath);      //목욕 본인 부담금
+		map.put("mgetnurse", mgetnurse);	//간호 본인 부담금 
+		map.put("tolnum", tolnum);          //총 횟수
 		
+		System.out.println(getYoyang);	
 		return map;
 		
 		//System.out.println(BenefitCost);

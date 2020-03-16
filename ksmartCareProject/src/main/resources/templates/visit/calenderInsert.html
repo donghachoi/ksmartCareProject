@@ -47,10 +47,17 @@
 						    $("#bathInt").text(data.bath);
 						    $("#nurseInt").text(data.nurse);
 						    
-						    for(int i=0; i< data.getBenefitCost.length; i++){
-						    	$('#bcost'+[i]).text(data.getBenefitCost[i]);
-						    }
-						    
+							$("#bcost1").text(data.getYoyang);
+							$("#bcost2").text(data.getbath);
+							$("#bcost3").text(data.getnurse);
+							
+							$("#mcoat1").text(data.mgetYoyang);
+							$("#mcoat2").text(data.mgetbath);
+							$("#mcoat3").text(data.mgetnurse);
+							
+							$("#tolnum").text(data.tolnum);
+							$("#tolnum2").text(data.BenefitCost);
+							$("#tolnum3").text(data.NonBenefitCost);
 						    /**
 						    	var str = '<tr id="remove2"><td>'+ ali[i].visitServiceCategory+'</td>';
 						    	str += '<td>'+ ali[i].visitPlanTime+'</td>';
@@ -220,7 +227,7 @@
 											<tr>
 												<th colspan="2">급여한도</th>
 												<th id="maxCost"></th>
-												<th colspan="2">급여 잔액</th>
+												<th>급여 잔액</th>
 												<th id="mixCost"> </th>
 											</tr>
 										</thead>
@@ -228,7 +235,6 @@
 											<tr id="row1">
 												<td>구분</td>
 												<td>횟수</td>
-												<td>총시간</td>
 												<td>급여계</td>
 												<td>본인부담</td>
 												<td>비급여+초과</td>
@@ -236,33 +242,29 @@
 											<tr>
 												<td>요양</td>
 												<td id="yoyangInt"></td>
-												<td></td>
 												<td id="bcost1"></td>
-												<td></td>
+												<td id="mcoat1"></td>
 												<td></td>
 											</tr>
 											<tr>
 												<td>목욕</td>
 												<td id="bathInt"></td>
-												<td></td>
 												<td id="bcost2"></td>
-												<td></td>
+												<td id="mcoat2"></td>
 												<td></td>
 											</tr>
 											<tr>
 												<td>간호</td>
 												<td id="nurseInt"></td>
-												<td></td>
 												<td id="bcost3"></td>
-												<td></td>
+												<td id="mcoat3"><td>
 												<td></td>
 											</tr>																						
 											<tr>
 												<td>계</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
+												<td id="tolnum"></td>
+												<td id="tolnum2"></td>
+												<td id="tolnum3"></td>
 												<td></td>
 											</tr>
 										</tbody>
