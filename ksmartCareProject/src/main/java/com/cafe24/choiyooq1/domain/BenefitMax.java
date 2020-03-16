@@ -5,6 +5,7 @@ public class BenefitMax {
 	private String serviceLevel;
 	private String benefitMaxYear;
 	private int benefitMaxCost;
+	
 	public String getBenefitMaxCode() {
 		return benefitMaxCode;
 	}

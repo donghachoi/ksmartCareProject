@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.cafe24.choiyooq1.mapper.BenefitMapper"> <!-- namespace="mapper 인터페이스 경로!!!!" -->
   
-  <!-- 수가 resultMap --> 
+  <!-- 수가 리스트 resultMap --> 
   <resultMap type="com.cafe24.choiyooq1.domain.BenefitCost" id="BenefitCostMap">
   	<result property="benefitCostCode" column="benefit_cost_code"/>
   	<result property="serviceCategory" column="service_category"/>
@@ -14,6 +14,13 @@
   	<result property="nonBenefitCost" column="non_benefit_cost"/>
   </resultMap>
   
+    <!-- 수가 한도 resultMap --> 
+  <resultMap type="com.cafe24.choiyooq1.domain.BenefitMax" id="BenefitMaxMap">
+  	<result property="benefitMaxCode" column="benefit_max_code"/>
+  	<result property="serviceLevel" column="service_level"/>
+  	<result property="benefitMaxYear" column="benefit_max_year"/>
+  	<result property="benefitMaxCost" column="benefit_max_cost"/>
+  </resultMap>
   <select id="getBenefitCost" resultType="com.cafe24.choiyooq1.domain.BenefitCost" resultMap="BenefitCostMap">
 		 SELECT 
 			benefit_cost_code
@@ -24,8 +31,16 @@
 			,non_benefit_cost
 		FROM 
 			benefit_cost
-		order by 
-			4,4 ASC;
 		
+  </select>
+  
+  <select id="getBenefitMax" resultType="com.cafe24.choiyooq1.domain.BenefitMax" resultMap="BenefitMaxMap">
+	SELECT 
+		benefit_max_code
+		,service_level
+		,benefit_max_year
+		,benefit_max_cost
+	FROM
+		benefit_max
   </select>
   </mapper>
