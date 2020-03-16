@@ -52,8 +52,8 @@ public class VisitController {
 		}
 		
 		Map<String, Integer>  list = visitservice.elderBenefitCost(elder_id, syear, smonth, maxcost);
-		list.put("syear", syear);
-		list.put("smonth", smonth);
+		list.put("syear", Integer.parseInt(syear));
+		list.put("smonth", Integer.parseInt(smonth));
 		
 		return list; 
 	}

@@ -5,10 +5,11 @@
 
 <!-- 사용자css -->
 <th:block layout:fragment="customCss">
+
    <link rel="stylesheet" href="/assets/lib/font-awesome/css/font-awesome.css">
    
     <link rel="stylesheet" href="/vendor/css/fullcalendar.min.css" />
-    <link rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<!--     <link rel="stylesheet" href="/vendor/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="/vendor/css/select2.min.css" />
     <link rel="stylesheet" href="/vendor/css/bootstrap-datetimepicker.min.css" />
 
@@ -24,10 +25,10 @@
 	<!-- <script src="/vendor/js/visit.js"></script> -->
 	<script th:inline="javascript">
 		$(document).ready(function(){
-			
+			$('.trigth').css('text-align', 'right');
 			//수급자 총 금액과 잔액 가져옴 
 			$('.eldername').on('click', function(){
-				$('tr').remove('#remove2');
+				//$('tr').remove('#remove2');
 				var id = $(this).attr('data-elder-id');
 				var cost = $(this).attr('max-cost');
 				var cname = $(this).attr('cname');
@@ -37,34 +38,41 @@
 						data: {elder_id : id, maxcost : cost},
 						dataType : 'json',
 						success : function(data){
-								
-						    var jsonStr = JSON.stringify(data);
-						    var ali = JSON.parse(jsonStr);
-						    $('#maxCost').text(cost);
+						
+						    $('#maxCost').text(data.maxcost);
+						    $('#mixCost').text(data.subCost);
 						    $('#cname').html("<b>"+cname+"</b>");
-						    var yearcheck= ali[0].monthlyClaimGroupCode.split("-");
-						    var year = yearcheck[0];
-						    var month = yearcheck[1];
-						    $('#syear').val(year).attr("selected", "selected");
-						    $('#smonth').val(month).attr("selected", "selected");
 						    $('input[name=elder_id]').val(id);
-						    for(var i=0; i<Object.keys(ali).length; i++){ 
-						    	var str = '<tr id="remove2"><td>'+ ali[i].visitServiceCategory+'</td>';
-						    	str += '<td>'+ ali[i].visitPlanTime+'</td>';
-						    	str += '<td>'+ ali[i].visitServiceTime+'</td>';
-						    	str += '<td></td>';
-						    	str += '<td></td>';
-						    	str += '<td></td></tr>';
-						    	$("#row1").after(str);
-						    }
-						    $('#syear').val(yearcheck[0]).attr("selected", "selected");
-						    $('#smonth').val(yearcheck[1]).attr("selected", "selected");
+						    $('input[name=maxcost]').val(cost);
+	
+						    $("#yoyangInt").text(data.yoyang);
+						    $("#bathInt").text(data.bath);
+						    $("#nurseInt").text(data.nurse);
+						    
+							$("#bcost1").text(data.getYoyang);
+							$("#bcost2").text(data.getbath);
+							$("#bcost3").text(data.getnurse);
+							
+							$("#mcoat1").text(data.mgetYoyang);
+							$("#mcoat2").text(data.mgetbath);
+							$("#mcoat3").text(data.mgetnurse);
+							
+							$("#tolnum").text(data.tolnum);
+							$("#tolnum2").text(data.BenefitCost);
+							$("#tolnum3").text(data.NonBenefitCost);
+
+						    $('#syear').val(String(data.syear)).attr("selected", "selected");
+						    $('#smonth').val(String(data.smonth)).attr("selected", "selected");
 						},
 						error : function(error){
 							console.log("error", error);
 						}
 				});
 			});
+			
+			//년도와 달로 수가값 가져옴
+			
+			
 			
 			//직원 분류해서 보여줌
 			$('.serviceMenu').on("click", function(){
@@ -169,7 +177,6 @@
 				<!--/수급자 목록-->
 
 				<div class="col-lg-6">
-
 					<!--수급자 제공급여 요약-->
 					<div class="box">
 						<header>
@@ -181,11 +188,9 @@
 
 						<div id="collapse4" class="body">
 								<!-- /.col-lg-6 -->
-						  
-							<div class="row form-group">
-							 
+							<div class="row form-group">	 
 								<div class="col-lg-5">
-								<form th:action="@{/employee/velderbenefitcost}" method="post">
+								<form method="post" class="yearserch">
 									<select name ="syear" class="autotab input-sm" id="syear">
 										<option th:value="2020">2020</option>
 										<option th:value="2019">2019</option>
@@ -197,6 +202,7 @@
 									</th:block>
 									</select>
 									<input type="hidden" name="elder_id">
+									<input type="hidden" name="maxcost">
 									<button type="submit" class="btn btn-primary btn-sm">검색</button>
 								</form>							
 							    </div>
@@ -208,33 +214,52 @@
 
 							<!-- /.row -->
 							<!-- /.col-lg-6 -->
-                         
+
 								<div id="collapse4" class="body">
 									<table
 										class="table table-bordered table-condensed table-hover table-striped">
 										<thead>
 											<tr>
 												<th colspan="2">급여한도</th>
-												<th id="maxCost"></th>
-												<th colspan="2">급여 잔액</th>
-												<th id="mixCost"> </th>
+												<th id="maxCost" class="trigth"></th>
+												<th>급여 잔액</th>
+												<th id="mixCost" class="trigth"></th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr id="row1">
-												<td>구분</td>
-												<td>횟수</td>
-												<td>총시간</td>
-												<td>급여계</td>
-												<td>본인부담</td>
-												<td>비급여+초과</td>
+												<td><b>구분</b></td>
+												<td><b>횟수</b></td>
+												<td><b>급여계</b></td>
+												<td><b>본인부담</b></td>
+												<td><b>비급여+초과</b></td>
 											</tr>
 											<tr>
-												<td>계</td>
+												<td><b>요양</b></td>
+												<td id="yoyangInt" class="trigth"></td>
+												<td id="bcost1" class="trigth"></td>
+												<td id="mcoat1" class="trigth"></td>
 												<td></td>
+											</tr>
+											<tr>
+												<td><b>목욕</b></td>
+												<td id="bathInt" class="trigth"></td>
+												<td id="bcost2" class="trigth"></td>
+												<td id="mcoat2" class="trigth"></td>
 												<td></td>
-												<td></td>
-												<td></td>
+											</tr>
+											<tr>
+												<td><b>간호</b></td>
+												<td id="nurseInt" class="trigth"></td>
+												<td id="bcost3" class="trigth"></td>
+												<td id="mcoat3" class="trigth"><td>
+
+											</tr>																						
+											<tr>
+												<td><b>계</b></td>
+												<td id="tolnum" class="trigth"></td>
+												<td id="tolnum2" class="trigth"></td>
+												<td id="tolnum3" class="trigth"></td>
 												<td></td>
 											</tr>
 										</tbody>
@@ -243,8 +268,83 @@
 							</div>
 						</div>
 							<!--/수급자 제공급여 요약-->
-					</div>
+							
+						<!-- 일정 등록 탭-->
+						<div class="box">
+							<header>
+								<div class="icons">
+									<i class="fa fa-table"></i>
+								</div>
+								<h5>일정등록</h5>
+								<div class="toolbar">
+									<div class="btn-group">
+										<a href="#defaultTable" data-toggle="collapse"
+											class="btn btn-sm">
+										</a>
+									</div>
+								</div>
+							</header>
+							<div id="collapse4" class="body">
+								<table
+									class="table table-bordered table-condensed table-hover table-striped">
+									<thead>
+										<tr>
+											<th colspan="2">급여한도</th>
+											<th colspan="2">1300000</th>
+											<th>급여 잔액</th>
+											<th>50000</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>구분</td>
+											<td>횟수</td>
+											<td>급여 계</td>
+											<td>본인부담</td>
+											<td>비급여+초과</td>
+											<td>수당</td>
+										</tr>
+										<tr>
+											<td>요양</td>
+											<td>1</td>
+											<td>70,020</td>
+											<td>10,500</td>
+											<td>0</td>
+											<td>46,440</td>
+										</tr>
+										<tr>
+											<td>목욕</td>
+											<td>2</td>
+											<td>Win 95+</td>
+											<td>5.5</td>
+											<td>A</td>
+											<td>A</td>
+										</tr>
+										<tr>
+											<td>간호</td>
+											<td>2</td>
+											<td>Win 95+</td>
+											<td>5.5</td>
+											<td>A</td>
+											<td>A</td>
+										</tr>
+										<tr>
+											<td>계</td>
+											<td>2</td>
+											<td>Win 95+</td>
+											<td>5.5</td>
+											<td>A</td>
+											<td>A</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!--/수급자 제공급여 요약-->							
+							
+				</div>									
 			</div>
+
 			<!-- /.row -->
 			<!--End Datatables-->
 
