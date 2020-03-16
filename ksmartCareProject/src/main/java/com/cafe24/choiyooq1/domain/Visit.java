@@ -11,7 +11,7 @@ public class Visit {
 	private String employeeName;
 	private String visitPlanDate;
 	private String visitPlanTime;
-	private int visitServiceTime;
+	private String visitServiceTime;
 	private String familyRelation;
 	private String visitServiceCategory;
 	private String monthlyClaimGroupCode;
@@ -19,7 +19,15 @@ public class Visit {
 	private String description;
 	private String yoyangBathNonBenefit;
 	private String serviceCategoryDetail;
+	private int count;
 	
+	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
 	public String getYoyangBathNonBenefit() {
 		return yoyangBathNonBenefit;
 	}
@@ -92,10 +100,10 @@ public class Visit {
 	public void setVisitPlanTime(String visitPlanTime) {
 		this.visitPlanTime = visitPlanTime;
 	}
-	public int getVisitServiceTime() {
+	public String getVisitServiceTime() {
 		return visitServiceTime;
 	}
-	public void setVisitServiceTime(int visitServiceTime) {
+	public void setVisitServiceTime(String visitServiceTime) {
 		this.visitServiceTime = visitServiceTime;
 	}
 	public String getFamilyRelation() {

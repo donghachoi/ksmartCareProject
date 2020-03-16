@@ -22,10 +22,10 @@
 			
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- <script src="/vendor/js/visit.js"></script> -->
-	<script>
+	<script th:inline="javascript">
 		$(document).ready(function(){
 			
-			//수급자 정보를 가져옴
+			//수급자 총 금액과 잔액 가져옴 
 			$('.eldername').on('click', function(){
 				$('tr').remove('#remove2');
 				var id = $(this).attr('data-elder-id');
@@ -34,21 +34,24 @@
 					$.ajax({
 						type : 'POST',
 						url : '/employee/velderbenefitcost',
-						data: {elder_id : id},
+						data: {elder_id : id, maxcost : cost},
 						dataType : 'json',
 						success : function(data){
-								
-						    var jsonStr = JSON.stringify(data);
-						    var ali = JSON.parse(jsonStr);
-						    $('#maxCost').text(cost);
+						
+						    $('#maxCost').text(data.maxcost);
+						    $('#mixCost').text(data.subCost);
 						    $('#cname').html("<b>"+cname+"</b>");
-						    var yearcheck= ali[0].monthlyClaimGroupCode.split("-");
-						    var year = yearcheck[0];
-						    var month = yearcheck[1];
-						    $('#syear').val(year).attr("selected", "selected");
-						    $('#smonth').val(month).attr("selected", "selected");
 						    $('input[name=elder_id]').val(id);
-						    for(var i=0; i<Object.keys(ali).length; i++){ 
+	
+						    $("#yoyangInt").text(data.yoyang);
+						    $("#bathInt").text(data.bath);
+						    $("#nurseInt").text(data.nurse);
+						    
+						    for(int i=0; i< data.getBenefitCost.length; i++){
+						    	$('#bcost'+[i]).text(data.getBenefitCost[i]);
+						    }
+						    
+						    /**
 						    	var str = '<tr id="remove2"><td>'+ ali[i].visitServiceCategory+'</td>';
 						    	str += '<td>'+ ali[i].visitPlanTime+'</td>';
 						    	str += '<td>'+ ali[i].visitServiceTime+'</td>';
@@ -56,7 +59,8 @@
 						    	str += '<td></td>';
 						    	str += '<td></td></tr>';
 						    	$("#row1").after(str);
-						    }
+                            */
+	 					    	
 						    $('#syear').val(yearcheck[0]).attr("selected", "selected");
 						    $('#smonth').val(yearcheck[1]).attr("selected", "selected");
 						},
@@ -225,10 +229,34 @@
 												<td>구분</td>
 												<td>횟수</td>
 												<td>총시간</td>
+												<td>급여계</td>
 												<td>본인부담</td>
 												<td>비급여+초과</td>
-												<td>수당</td>
 											</tr>
+											<tr>
+												<td>요양</td>
+												<td id="yoyangInt"></td>
+												<td></td>
+												<td id="bcost1"></td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>목욕</td>
+												<td id="bathInt"></td>
+												<td></td>
+												<td id="bcost2"></td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>간호</td>
+												<td id="nurseInt"></td>
+												<td></td>
+												<td id="bcost3"></td>
+												<td></td>
+												<td></td>
+											</tr>																						
 											<tr>
 												<td>계</td>
 												<td></td>

@@ -2,19 +2,17 @@ package com.cafe24.choiyooq1.controller;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cafe24.choiyooq1.domain.BenefitCost;
 import com.cafe24.choiyooq1.domain.Elder;
 import com.cafe24.choiyooq1.domain.Employee;
 import com.cafe24.choiyooq1.domain.Visit;
@@ -36,13 +34,14 @@ public class VisitController {
 		List<Elder> list = visitservice.elderAllList(center_code);
 		
 		model.addAttribute("list", list);
-		return "visit/calenderInsert";
+		return "/visit/calenderInsert";
 	}
 	
-	//수급자 제공급여 요약
+	//수급자 총 금
 	@PostMapping("/employee/velderbenefitcost")
 	//@PostMapping(value="/elderbenefitcost", produces = "application/json")
-	public @ResponseBody List<Visit> velderBenefitCost(@RequestParam(value="elder_id") String elder_id, 
+	public @ResponseBody Map<String, Object> velderBenefitCost(@RequestParam(value="elder_id") String elder_id, 
+			@RequestParam(value="maxcost") int maxcost,
 			@RequestParam(value="syear", required=false) String syear,
 			@RequestParam(value="smonth" , required=false) String smonth) {
 		
@@ -52,7 +51,8 @@ public class VisitController {
 			smonth = Integer.toString(today.get(Calendar.MONTH) + 1);
 		}
 		
-		List<Visit> list = visitservice.elderBenefitCost(elder_id, syear, smonth);
+		Map<String, Object>  list = visitservice.elderBenefitCost(elder_id, syear, smonth, maxcost);
+		
 		return list; 
 	}
 	
@@ -61,9 +61,9 @@ public class VisitController {
 	public String vyerSearch(@RequestParam(value="elder_id") String elder_id, @RequestParam(value="syear") String syear, 
 			@RequestParam(value="smonth") String smonth, Model model){
 		
-		List<Visit> list = visitservice.elderBenefitCost(elder_id, syear, smonth);
+		//List<Visit> list = visitservice.elderBenefitCost(elder_id, syear, smonth);
 	
-		model.addAttribute("velderbenefitcost", list);
+		//model.addAttribute("velderbenefitcost", list);
 		return "/visit/calenderInsert";
 	}	
 	

@@ -46,7 +46,8 @@
 	  	<result property="backgroundColor" column="backgroundColor"/>
 	  	<result property="description" column="description"/>
 	  	<result property="yoyangBathNonBenefit" column="yoyang_bath_non_benefit"/>  
-	  	<result property="serviceCategoryDetail" column="service_category_detail"/> 	  		  		  		  		  		  		  		  		  		  	
+	  	<result property="serviceCategoryDetail" column="service_category_detail"/> 
+	  	<result property="count" column="count"/> 	  		  		  		  		  		  		  		  		  		  	
     </resultMap>
     
      <resultMap type="com.cafe24.choiyooq1.domain.Employee" id="EmployeeMap">
@@ -69,7 +70,18 @@
 	  	<result property="employeeAccountHolder" column="employee_account_holder"/>				  		  		  		  		  		  		  		  		  		  		  		  		  	
     </resultMap>
     
-        
+    
+   <resultMap type="com.cafe24.choiyooq1.domain.BenefitCost" id="BenefitCostMap">
+  	<result property="benefitCostCode" column="benefit_cost_code"/>
+  	<result property="serviceCategory" column="service_category"/>
+  	<result property="serviceTimeAndType" column="service_time_and_type"/>
+  	<result property="benefitCostYear" column="benefit_cost_year"/>
+  	<result property="benefitCost" column="benefit_cost"/>
+  	<result property="nonBenefitCost" column="non_benefit_cost"/>
+  </resultMap>
+  
+     
+    <!-- 수급자 정보 목록 -->
   	<select id="elderAllList" parameterType="String" resultMap="ElderMap">
 	     SELECT e.elder_final_service_approval_level as elder_final_service_approval_level,
 	     	e.elder_id as elder_id, e.elder_name as elder_name, e.elder_disease as elder_disease, 
@@ -81,19 +93,28 @@
 	     WHERE center_code= #{center_code}
     </select>
   
+  <!-- 수급자 서비스 내용 -->
   	<select id="elderBenefitCost" parameterType="String" resultMap="VisitMap">
-		select visit_service_category, monthly_claim_group_code, sum(visit_service_time) AS visit_service_time, 
-			COUNT(visit_service_category) AS visit_plan_time
-		from visit WHERE elder_id=#{elder_id} 
+		select visit_service_category, monthly_claim_group_code, visit_service_time
+		from visit WHERE elder_id=#{elder_id}
 			AND monthly_claim_group_code=CONCAT(#{syear},'-',#{smoth})
-			GROUP BY visit_service_category
   	</select>
+  	
+   <!-- 서비스 종류별 금액 -->
+   
+   <select id="serviceCost" parameterType="String" resultMap="BenefitCostMap">
+	select * FROM benefit_cost WHERE benefit_cost_year = ${syear}
+	AND service_time_and_type = #{stype} AND service_category LIKE CONCAT('%', #{scategory})
+   </select>
 
+   <!-- 직업별 직원  -->
   	<select id="empCategory" parameterType="String" resultMap="EmployeeMap">
   		SELECT employee_id, employee_name FROM employee 
   		WHERE center_code=#{center_code} AND employee_category LIKE CONCAT('%', #{empcategory}, '%')
   	</select>
   	
+  	
+  	<!-- 일정 등록 -->
   	<insert id="visitInsert" parameterType="Visit">
   	
   	
