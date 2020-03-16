@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.cafe24.choiyooq1.mapper">
+  
+    <resultMap type="com.cafe24.choiyooq1.domain.Elder" id="ElderMap">
+	  	<result property="elderId" column="elder_id"/>
+	  	<result property="elderName" column="elder_name"/>
+	  	<result property="centerCode" column="center_code"/>	  	
+	  	<result property="centerName" column="center_name"/>	  	
+	  	<result property="elderBirthname" column="elder_birthdate"/>
+	  	<result property="elderGender" column="elder_gender"/>
+	  	<result property="elderFinalServiceApprovalLevel" column="elder_final_service_approval_level"/>
+	  	<result property="elderFinalServiceStatus" column="elder_final_service_status"/>
+	  	<result property="elderDisease" column="elder_disease"/>
+	  	<result property="elderCoinsurance" column="elder_coinsurance"/>
+	  	<result property="totalVisits" column="total_visits"/>
+	  	<result property="totalServiceTime" column="total_service_time"/>
+	  	<result property="serviceLocalmanageCode" column="service_localmanage_code"/>
+	  	<result property="serviceLocalmanageName" column="service_localmanage_name"/>
+	  	<result property="longTermCareNumver" column="long_term_care_numver"/>
+	  	<result property="longTermCareValidity" column="long_term_care_validity"/>
+	  	<result property="elderPhone" column="elder_phone"/>
+	  	<result property="elderAdressForStay" column="elder_adress_for_stay"/>
+	  	<result property="elderAdressForPost" column="elder_adress_for_post"/>
+	  	<result property="elderRemarks" column="elder_remarks"/>
+	  	<result property="elderGroups" column="elder_groups"/>	
+	  	<result property="benefitMaxCost" column="benefit_max_cost"/>	  		  		  		  		  		  		  		  		  		  		  		  		  		  	
+    </resultMap>
+    
+     <resultMap type="com.cafe24.choiyooq1.domain.Visit" id="VisitMap">
+	  	<result property="visitCode" column="visit_code"/>
+	  	<result property="centerCode" column="center_code"/>
+	  	<result property="centerName" column="center_name"/>	  	
+	  	<result property="elderId" column="elder_id"/>	  	
+	  	<result property="elderName" column="elder_name"/>
+	  	<result property="employeeId" column="employee_id"/>
+	  	<result property="employeeName" column="employee_name"/>
+	  	<result property="visitPlanDate" column="visit_plan_date"/>
+	  	<result property="visitPlanTime" column="visit_plan_time"/>
+	  	<result property="visitServiceTime" column="visit_service_time"/>
+	  	<result property="familyRelation" column="family_relation"/>
+	  	<result property="visitServiceCategory" column="visit_service_category"/>
+	  	<result property="monthlyClaimGroupCode" column="monthly_claim_group_code"/>
+	  	<result property="backgroundColor" column="backgroundColor"/>
+	  	<result property="description" column="description"/>
+	  	<result property="yoyangBathNonBenefit" column="yoyang_bath_non_benefit"/>  
+	  	<result property="serviceCategoryDetail" column="service_category_detail"/> 	  		  		  		  		  		  		  		  		  		  	
+    </resultMap>
+    
+     <resultMap type="com.cafe24.choiyooq1.domain.Employee" id="EmployeeMap">
+	  	<result property="employeeId" column="employee_id"/>
+	  	<result property="centerCode" column="center_code"/>
+	  	<result property="centerName" column="center_name"/>	  	
+	  	<result property="employeeName" column="employee_name"/>	  	
+	  	<result property="employeePw" column="employee_pw"/>
+	  	<result property="employeeCategory" column="employee_category"/>
+	  	<result property="employeeGender" column="employee_gender"/>
+	  	<result property="employeePersonalNumber" column="employee_personal_number"/>
+	  	<result property="employeePhone" column="employee_phone"/>
+	  	<result property="employeeStartDate" column="employee_start_date"/>
+	  	<result property="employeeWorkingStatus" column="employee_working_status"/>
+	  	<result property="employeeWorkingType" column="employee_working_type"/>
+	  	<result property="employeePosition" column="employee_position"/>		  	
+	  	<result property="employeePayType" column="employee_pay_type"/>		
+	  	<result property="employeeHourlyPay" column="employee_hourly_pay"/>		
+	  	<result property="employeeAccount" column="employee_account"/>		
+	  	<result property="employeeAccountHolder" column="employee_account_holder"/>				  		  		  		  		  		  		  		  		  		  		  		  		  	
+    </resultMap>
+    
+    <!-- 수급자 정보 목록 -->
+  	<select id="elderAllList" parameterType="String" resultMap="ElderMap">
+	     SELECT e.elder_final_service_approval_level as elder_final_service_approval_level,
+	     	e.elder_id as elder_id, e.elder_name as elder_name, e.elder_disease as elder_disease, 
+	     	e.elder_final_service_status as elder_final_service_status,
+	    	 b.benefit_max_cost as benefit_max_cost
+	     FROM elder AS e INNER JOIN benefit_max AS b 
+	     	ON e.elder_final_service_approval_level = b.service_level 
+	     	AND benefit_max_year= date_format(NOW(), '%Y') 
+	     WHERE center_code= #{center_code}
+    </select>
+  
+  <!-- 수가  지급 총 비용 -->
+  	<select id="elderBenefitCost" parameterType="String" resultMap="VisitMap">
+		select visit_service_category, monthly_claim_group_code, sum(visit_service_time) AS visit_service_time, 
+			COUNT(visit_service_category) AS visit_plan_time
+		from visit WHERE elder_id=#{elder_id} 
+			AND monthly_claim_group_code=CONCAT(#{syear},'-',#{smoth})
+			GROUP BY visit_service_category
+  	</select>
+  	
+   <!-- 서비스 종류별 금액 -->
+   
+   <select id="serviceCost" parameterType="String" resultType="com.cafe24.choiyooq1.domain.BenefitCost">
+   
+	select * FROM benefit_cost WHERE benefit_cost_year = LEFT('2020-3', 4) 
+	AND service_time_and_type = 60 AND service_category = '방문요양'
+   </select>
+
+   <!-- 직업별 직원  -->
+  	<select id="empCategory" parameterType="String" resultMap="EmployeeMap">
+  		SELECT employee_id, employee_name FROM employee 
+  		WHERE center_code=#{center_code} AND employee_category LIKE CONCAT('%', #{empcategory}, '%')
+  	</select>
+  	
+  	
+  	<!-- 일정 등록 -->
+  	<insert id="visitInsert" parameterType="Visit">
+  	
+  	
+  	</insert>
+  </mapper>

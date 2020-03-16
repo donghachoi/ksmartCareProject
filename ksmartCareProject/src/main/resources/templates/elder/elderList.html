@@ -5,23 +5,23 @@
 
 <th:block layout:fragment="customTitle">
 	<title>index</title>
-<!-- Bootstrap -->
-       <link rel="stylesheet" href="assets/lib/bootstrap/css/bootstrap.css">
+		<!-- Bootstrap -->
+       <link rel="stylesheet" href="/assets/lib/bootstrap/css/bootstrap.css">
        
        <!-- Font Awesome -->
-       <link rel="stylesheet" href="assets/lib/font-awesome/css/font-awesome.css">
+       <link rel="stylesheet" href="/assets/lib/font-awesome/css/font-awesome.css">
        
        <!-- Metis core stylesheet -->
-       <link rel="stylesheet" href="assets/css/main.css">
+       <link rel="stylesheet" href="/assets/css/main.css">
        
        <!-- metisMenu stylesheet -->
-       <link rel="stylesheet" href="assets/lib/metismenu/metisMenu.css">
+       <link rel="stylesheet" href="/assets/lib/metismenu/metisMenu.css">
        
        <!-- onoffcanvas stylesheet -->
-       <link rel="stylesheet" href="assets/lib/onoffcanvas/onoffcanvas.css">
+       <link rel="stylesheet" href="/assets/lib/onoffcanvas/onoffcanvas.css">
        
        <!-- animate.css stylesheet -->
-       <link rel="stylesheet" href="assets/lib/animate.css/animate.css">
+       <link rel="stylesheet" href="/assets/lib/animate.css/animate.css">
       
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css">
 
@@ -38,322 +38,408 @@
 </th:block>
 <th:block layout:fragment="customContents">
 <body class="  ">
-       <div class="bg-dark dk" id="wrap">
-          <div id="top">
-            <header class="head">
-               <div class="main-bar">
-                  <h3><i class="fa fa-table"></i>&nbsp;수급자 리스트 </h3>
-               </div>
-                 <!-- /.main-bar -->
-            </header>
-            <!-- /.head -->
-         </div>
-         <!-- /#top -->
-      </div>
-<div id="content">
-<div class="outer">
-</div>
-	<div class="inner bg-light lter">
-		<div class="row">
-			<div class="col-lg-12 ui-sortable">
-					<div class="box ui-sortable-handle"
-						style="position: relative; left: 0px; top: 0px;">
-						<header>
-							<div class="icons">
-								<i class="fa fa-table"></i>
-							</div>
-							<h5>수급자 리스트</h5>
-						</header>
-						<!-- 테이블 Start -->
-						<div id="collapse4" class="body">
-								<div class="row">
-									<div class="col-sm-12">
-										<table id="dataTable" class="table table-bordered table-hover" style="font-size: 10px">
-											<thead>
-												<tr role="row">
-													<th>수급자코드</th>
-													<th>수급자이름</th>
-													<th>생년월일</th>
-													<th>성별</th>
-													<th>등급</th>
-													<th>계약일</th>
-													<th>인정만료일</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr role="row" class="odd">
-													<td class="sorting_1">수급자코드</td>
-													<td>수급자이름</td>
-													<td>생년월일</td>
-													<td>성별</td>
-													<td>등급</td>
-													<td>계약일</td>
-													<td>인정만료일</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-								<!-- 테이블 End -->
-								<!-- 수급자 상세정보 Start -->
-								<div class="col-lg-12 ui-sortable">
-									<div class="box ui-sortable-handle">
-										<header>
-											<div class="icons">
-												<i class="fa fa-table"></i>
-											</div>
-											<h5>수급자 상세 정보</h5>
-											<div class="toolbar">
-												<div class="btn-group">
-													<a href="#defaultTable" data-toggle="collapse"
-														class="btn btn-sm btn-default minimize-box"> 
-														<i class="fa fa-angle-up"></i>
-													</a>
-												</div>
-											</div>
-										</header>
-										<div id="defaultTable" class="body collapse in">
-											<table class="table responsive-table">
-												<tbody>
-													<tr>
-														<th>수급자명</th>
-														<td>나수급</td>
-														<th>성별</th>
-														<td>여 (만 86세)</td>
-														<th>생년월일</th>
-														<td>1933.04.13</td>
-													</tr>
-													<tr>
-														<th>최초입소일</th>
-														<td>2019.02.08</td>
-														<th>수급현황</th>
-														<td>수급 or 보류</td>
-														<th>생신일</th>
-														<td>1933.04.13(음력)</td>
-													</tr>
-													<tr>
-														<th>본인부담률</th>
-														<td>15%</td>
-														<th>급여한도</th>
-														<td>이번달 급여한도</td>
-														<td></td>
-														<td></td>
-													</tr>
-													<tr>
-														<th>인정등급/번호</th>
-														<td>3등급 / L0010162566</td>
-														<th>인정기간</th>
-														<td>2019.02.08 ~ 2022.02.07
-														<button type="button"  
-																data-toggle="modal" data-target="#myModal"
-																class="btn btn-default btn-sm btn-line"
-																>
-																<span class="ui-button-text">등급인정관리</span>
-															</button></td>
-														<th></th>
-														<th></th>
-													</tr>
-													<tr>
-														<th>휴대폰</th>
-														<td>010-8988-1384</td>
-														<th>전화번호</th>
-														<td>010-8988-1384</td>
-														<td></td>
-														<td></td>
-													</tr>
-													<tr>
-														<th>주소(거주)</th>
-														<td colspan="5">전주 덕진구 기린대로 406
-														</td>
-													</tr>
-													<tr>
-														<th>주소(우편)</th>
-														<td colspan="5">전주 덕진구 기린대로 406
-														</td>
-													</tr>
-													<tr>
-														<th>주요질환</th>
-														<td></td>
-														<th>비고</th>
-														<td colspan="3"></td>
-													</tr>
-												</tbody>
-											</table>
-											<!-- 수급자 상태 관리 최근내역 -->
-											<h3>수급자 상태 최근 관리내역</h3>
-											<table class="table responsive-table text-center">
-											<tr class="active">
-												<td><strong>낙상위험측정</strong></td>
-												<td><strong>욕창위험측정</strong></td>
-												<td><strong>인지기능검사</strong></td>
-												<td><strong>욕구사정</strong></td>
-												<td><strong>과거이력보기</strong></td>
-											</tr>
-											<tr>
-												<td>2019-03-01</td>
-												<td>2019-03-01</td>
-												<td>2019-03-01</td>
-												<td>2019-03-01</td>	
-												<td><button type="button"  
-																data-toggle="modal" data-target="#myModal2"
-																class="btn btn-default btn-sm btn-line">
-																<span class="ui-button-text">확인</span>
-													</button>
-												</td>
-											</tr>
-											</table>
-										</div>
-									</div>
-								</div>
-								<!-- 수급자 상세정보 End-->
+	<div class="bg-dark dk" id="wrap">
+		<div id="top">
+			<header class="head">
+				<div class="main-bar">
+				   <h3><i class="fa fa-table"></i>&nbsp;수급자 리스트 </h3>
+				</div>
+				<!-- /.main-bar -->
+			</header>
+		<!-- /.head -->
+		</div>
+	<!-- /#top -->
+	</div>
+	<div id="content">
+		<div class="outer">
+			<div class="inner bg-light lter">
+				<div class="row">
+					<div class="col-lg-12 ui-sortable">
+							<div class="box ui-sortable-handle"
+								style="position: relative; left: 0px; top: 0px;">
+				<header>
+					<div class="icons">
+						<i class="fa fa-table"></i>
+					</div>
+					<h5>수급자 리스트</h5>
+				</header>
+				<!-- 테이블 Start -->
+				<div id="collapse4" class="body">
+						<div class="row">
+							<div class="col-sm-12">
+								<table id="dataTable" class="table table-bordered table-hover" style="font-size: 10px">
+									<thead>
+										<tr role="row">
+											<th>수급자코드</th>
+											<th>수급자이름</th>
+											<th>생년월일</th>
+											<th>성별</th>
+											<th>등급</th>
+											<th>계약일</th>
+											<th>인정만료일</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr role="row" class="odd">
+											<td class="sorting_1">수급자코드</td>
+											<td>수급자이름</td>
+											<td>생년월일</td>
+											<td>성별</td>
+											<td>등급</td>
+											<td>계약일</td>
+											<td>인정만료일</td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</div>
-					<!-- 등급 및 인정기간 관리  Modal -->
-					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" style="position: absolute; padding-top: 200px">
-					  <div class="modal-dialog modal-lg">
-					    <div class="modal-content">
-					      <div class="modal-header">
-					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					        <h1 class="modal-title" id="myModalLabel">등급 및 인정기간 관리</h1>
-					      </div>
-					      <div class="modal-body">
-								<h3>인정기간 이력</h3>
-								<div class="row">
-									<div id="collapse4" class="col-sm-12">
-										<table id="dataTable"
-											class="table table-bordered table-condensed table-hover table-striped">
-											<thead>
-												<tr>
-													<th>등급</th>
-													<th>인정시작</th>
-													<th>인정종료</th>
-													<th>인정번호</th>
-													<th>비고</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr class="odd">
-													<td >등급</td>
-													<td>인정시작</td>
-													<td>인정종료</td>
-													<td>인정번호</td>
-													<td>비고</td>
-												</tr>
-											</tbody>
-										</table>
+				</div>
+				<!-- 테이블 End -->
+						<!-- 수급자 상세정보 Start -->
+						<div class="col-lg-12 ui-sortable">
+							<div class="box ui-sortable-handle">
+								<header>
+									<div class="icons">
+										<i class="fa fa-table"></i>
 									</div>
-								</div>
-								<h3>이력 등록/수정</h3>
-								<div class="row" >
-									<div class="col-sm-12" >
-										<!-- <form action="#" method="post" class="roundBox"> -->
-										<div class="form-group" style="background-color: #CCCCCC; border-radius: 2px; padding: 10px;" >
-											<label>등급
-												<select>
-													<option value="">=등급=</option>
-													<option value="01">1등급</option>
-													<option value="02">2등급</option>
-													<option value="03">3등급</option>
-													<option value="04">4등급</option>
-													<option value="05">5등급</option>
-													<option value="00">등급외</option>
-													<option value="12">인지지원</option>
-												</select>
-											</label>
-											<label>유효기간
-												<div style="margin:0px; display:inline; margin-left:50px;">
-										          <input type="radio" name="termYear" value="1" id="termYear1" checked="" class="ui-helper-hidden-accessible"><label for="termYear1" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" role="button" aria-pressed="true"><span class="ui-button-text">1년</span></label>
-										          <input type="radio" name="termYear" value="2" id="termYear2" class="ui-helper-hidden-accessible"><label for="termYear2" class="ui-button ui-widget ui-state-default ui-button-text-only" role="button" aria-pressed="false"><span class="ui-button-text">2년</span></label>
-										          <input type="radio" name="termYear" value="3" id="termYear3" class="ui-helper-hidden-accessible"><label for="termYear3" class="ui-button ui-widget ui-state-default ui-button-text-only" role="button" aria-pressed="false"><span class="ui-button-text">3년</span></label>
-										          <input type="radio" name="termYear" value="4" id="termYear4" class="ui-helper-hidden-accessible"><label for="termYear4" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" role="button" aria-pressed="false"><span class="ui-button-text">4년</span></label>
-										        </div>
-												<input type="date">~<input type="date"></label>
-												<label>장기요양인정번호
-												<input type="text" maxlength="11" placeholder="L0000000000">
-											</label>
-											<button class="btn btn-metis-5 btn-xs" style="margin: 0 auto;" >등록하기/수정하기</button>
+									<h5>수급자 상세 정보</h5>
+									<div class="toolbar">
+										<div class="btn-group">
+											<a href="#defaultTable" data-toggle="collapse"
+												class="btn btn-sm btn-default minimize-box"> 
+												<i class="fa fa-angle-up"></i>
+											</a>
 										</div>
-										<!-- </form> -->
 									</div>
-								</div>
-					      </div>
-					      <div class="modal-footer">
-				        	<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-					        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-					      </div>
-					    </div>
-					  </div>
-					</div>
-					<!-- 등급관리 model End -->
-					<!-- 상태변경 및 관리내역 기록 Modal -->
-					<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" style="position: absolute; padding-top: 200px">
-					  <div class="modal-dialog modal-lg">
-					    <div class="modal-content">
-					      <div class="modal-header">
-					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					        <h1 class="modal-title" id="myModalLabel">상태변경 및 관리내역 기록</h1>
-					      </div>
-					      <div class="modal-body">
-								<div class="row">
-									<div id="collapse4" class="col-sm-12">
-										<table id="dataTable"
-											class="table table-bordered table-condensed table-hover table-striped">
-											<thead>
-												<tr>
-													<th>번호</th>
-													<th>낙상위험측정</th>
-													<th>욕창위험측정</th>
-													<th>인지기능검사</th>
-													<th>욕구사정</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr class="odd">
-													<td >1</td>
-													<td>2020-03-01</td>
-													<td>2020-03-01</td>
-													<td>2020-03-01</td>
-													<td>2020-03-01</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-								<h3>이력 등록/수정</h3>
-								<div class="row" >
-									<div class="col-sm-12" >
-										<table class="table">
+								</header>
+								<div id="defaultTable" class="body collapse in">
+									<table class="table responsive-table">
+										<tbody>
 											<tr>
-												<th>관리일 체크</th>
-												<td>
-												<label style="margin-right:10px;"><input type="checkbox" value="낙상위험">낙상위험측정</label>
-												<label style="margin-right:10px;"><input type="checkbox" value="욕창위험측정">욕창위험측정</label>
-												<label style="margin-right:10px;"><input type="checkbox" value="인지기능검사">인지기능검사</label>
-												<label style="margin-right:10px;"><input type="checkbox" value="욕구사정">욕구사정</label>
-												</td>
+												<th>수급자명</th>
+												<td>나수급</td>
+												<th>성별</th>
+												<td>여 (만 86세)</td>
+												<th>생년월일</th>
+												<td>1933.04.13</td>
+											</tr>
+											<tr>
+												<th>최초입소일</th>
+												<td>2019.02.08</td>
+												<th>수급현황</th>
+												<td>수급 or 보류</td>
+												<th>생신일</th>
+												<td>1933.04.13(음력)</td>
+											</tr>
+											<tr>
+												<th>본인부담률</th>
+												<td>15%</td>
+												<th>급여한도</th>
+												<td>이번달 급여한도</td>
+												<td></td>
 												<td></td>
 											</tr>
 											<tr>
-												<th>날짜</th>
-												<td><input type="date"><button class="btn btn-metis-5 btn-xs" style="text-align: right; margin-left: 10px;" >등록하기/수정하기</button></td>
+												<th>인정등급/번호</th>
+												<td>3등급 / L0010162566</td>
+												<th>인정기간</th>
+												<td>2019.02.08 ~ 2022.02.07
+												<button type="button"  
+														data-toggle="modal" data-target="#myModal"
+														class="btn btn-primary btn-sm">
+														<span>등급인정관리</span>
+													</button></td>
+												<th></th>
+												<th></th>
 											</tr>
-										</table>
-											
-									</div>
+											<tr>
+												<th>계약만료일</th>
+												<td colspan="3">2022-03-12
+													<button type="button"  
+														data-toggle="modal" data-target="#myModal3"
+														class="btn btn-primary btn-sm">
+													<span>계약관리</span>
+													</button></td>
+												<th></th>
+												<th></th>
+											</tr>
+											<tr>
+												<th>휴대폰</th>
+												<td>010-8988-1384</td>
+												<th>전화번호</th>
+												<td>010-8988-1384</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<th>주소(거주)</th>
+												<td colspan="5">전주 덕진구 기린대로 406
+												</td>
+											</tr>
+											<tr>
+												<th>주소(우편)</th>
+												<td colspan="5">전주 덕진구 기린대로 406
+												</td>
+											</tr>
+											<tr>
+												<th>주요질환</th>
+												<td></td>
+												<th>비고</th>
+												<td colspan="3"></td>
+											</tr>
+										</tbody>
+									</table>
+									<!-- 수급자 상태 관리 최근내역 -->
+									<h3>수급자 상태 최근 관리내역</h3>
+									<table class="table responsive-table text-center">
+									<tr class="active">
+										<td><strong>낙상위험측정</strong></td>
+										<td><strong>욕창위험측정</strong></td>
+										<td><strong>인지기능검사</strong></td>
+										<td><strong>욕구사정</strong></td>
+										<td><strong>과거이력보기</strong></td>
+									</tr>
+									<tr>
+										<td>2019-03-01</td>
+										<td>2019-03-01</td>
+										<td>2019-03-01</td>
+										<td>2019-03-01</td>	
+										<td><button type="button"  
+														data-toggle="modal" data-target="#myModal2"
+														class="btn btn-primary btn-sm">
+														<span class="ui-button-text">확인</span>
+											</button>
+										</td>
+									</tr>
+									</table>
 								</div>
-					      </div>
-					      <div class="modal-footer">
-				        	<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-					        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-					      </div>
-					    </div>
-					  </div>
+							</div>
+						</div>
+						<!-- 수급자 상세정보 End-->
 					</div>
-					<!-- 등급관리 model End -->
 				</div>
+			</div>
+			<!-- 등급 및 인정기간 관리  Modal -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" style="position: absolute; padding-top: 200px">
+			  <div class="modal-dialog modal-lg">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h1 class="modal-title" id="myModalLabel">등급 및 인정기간 관리</h1>
+			      </div>
+			      <div class="modal-body">
+						<h3>인정기간 이력</h3>
+						<div class="row">
+							<div id="collapse4" class="col-sm-12">
+								<table class="table table-bordered table-condensed table-hover table-striped">
+									<thead>
+										<tr>
+											<th>등급</th>
+											<th>인정시작</th>
+											<th>인정종료</th>
+											<th>인정번호</th>
+											<th>비고</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="odd">
+											<td >등급</td>
+											<td>인정시작</td>
+											<td>인정종료</td>
+											<td>인정번호</td>
+											<td>비고</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<h3>이력 등록/수정</h3>
+						<div class="row" >
+							<div class="col-sm-12" >
+								<!-- <form action="#" method="post" class="roundBox"> -->
+								<div class="form-group" style="background-color: #CCCCCC; border-radius: 2px; padding: 10px;" >
+									<label>등급
+										<select>
+											<option value="">=등급=</option>
+											<option value="01">1등급</option>
+											<option value="02">2등급</option>
+											<option value="03">3등급</option>
+											<option value="04">4등급</option>
+											<option value="05">5등급</option>
+											<option value="00">등급외</option>
+											<option value="12">인지지원</option>
+										</select>
+									</label>
+									<div>
+										<label>장기요양인정번호
+											<input type="text" maxlength="11" placeholder="L0000000000">
+										</label>
+									</div>
+									<label>유효기간
+										<div style="margin:0px; display:inline; margin-left:50px;">
+								          <label><input type="radio" class="yearCheck" name="termYear" value="1" checked><span>1년</span></label>
+								          <label><input type="radio" class="yearCheck" name="termYear" value="2" ><span>2년</span></label>
+								          <label><input type="radio" class="yearCheck" name="termYear" value="3" ><span>3년</span></label>
+								          <label><input type="radio" class="yearCheck" name="termYear" value="4" ><span>4년</span></label>
+								        </div>
+								        <div>
+										<input type="date" name="startDate">~<input type="date" name="lastDate">
+										</div>
+									</label>
+									<button class="btn btn-metis-5 btn-xs" style="margin: 0 auto;" >등록하기/수정하기</button>
+								</div>
+								<!-- </form> -->
+							</div>
+						</div>
+			      </div>
+			      <div class="modal-footer">
+		        	<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+			        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			<!-- 등급관리 model End -->
+			<!-- 상태변경 및 관리내역 기록 Modal -->
+			<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" style="position: absolute; padding-top: 200px">
+			  <div class="modal-dialog modal-lg">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h1 class="modal-title" id="myModalLabel">상태변경 및 관리내역 기록</h1>
+			      </div>
+			      <div class="modal-body">
+						<div class="row">
+							<div id="collapse4" class="col-sm-12">
+								<table class="table table-bordered table-condensed table-hover table-striped">
+									<thead>
+										<tr>
+											<th>번호</th>
+											<th>낙상위험측정</th>
+											<th>욕창위험측정</th>
+											<th>인지기능검사</th>
+											<th>욕구사정</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="odd">
+											<td >1</td>
+											<td>2020-03-01</td>
+											<td>2020-03-01</td>
+											<td>2020-03-01</td>
+											<td>2020-03-01</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<h3>이력 등록/수정</h3>
+						<div class="row" >
+							<div class="col-sm-12" >
+								<table class="table">
+									<tr>
+										<th>관리일 체크</th>
+										<td>
+										<label style="margin-right:10px;"><input type="checkbox" value="낙상위험">낙상위험측정</label>
+										<label style="margin-right:10px;"><input type="checkbox" value="욕창위험측정">욕창위험측정</label>
+										<label style="margin-right:10px;"><input type="checkbox" value="인지기능검사">인지기능검사</label>
+										<label style="margin-right:10px;"><input type="checkbox" value="욕구사정">욕구사정</label>
+										</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th>날짜</th>
+										<td><input type="date"><button class="btn btn-metis-5 btn-xs" style="text-align: right; margin-left: 10px;" >등록하기/수정하기</button></td>
+									</tr>
+								</table>
+									
+							</div>
+						</div>
+			      </div>
+			      <div class="modal-footer">
+		        	<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+			        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			<!-- 등급관리 modal End -->
+			<!-- 계약관리 Modal start -->
+			<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" style="position: absolute; padding-top: 200px">
+			  <div class="modal-dialog modal-lg">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h1 class="modal-title" id="myModalLabel">계약관리</h1>
+			      </div>
+			      <div class="modal-body">
+			      	<h3>계약이력</h3>
+						<div class="row">
+							<div id="collapse4" class="col-sm-12">
+								<table class="table table-bordered table-condensed table-hover table-striped">
+									<thead>
+										<tr>
+											<th>급여구분</th>
+											<th>계약일</th>
+											<th>계약기간</th>
+											<th>비고</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="odd">
+											<td >요양,목욕,간호</td>
+											<td>2020-03-01</td>
+											<td>2020-03-01~2023-03-01</td>
+											<td></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<h3>계약 등록/계약이력 수정</h3>
+						<div class="row">
+							<div class="col-sm-12" >
+								<!-- <form action="#" method="post" class="roundBox"> -->
+								<div class="form-group" style="background-color: #CCCCCC; border-radius: 2px; padding: 10px;" >
+									<input type="checkbox" value="001" ><label><span>요양</span></label>
+									<input type="checkbox" value="002" ><label><span>목욕</span></label>
+									<input type="checkbox" value="003" ><label><span>간호</span></label>
+									<div>
+										<label>계약일
+											<div style="margin:0px; display:inline;">
+												<input type="date">
+											</div>
+										</label>
+									</div>
+									<label>유효기간
+										<div style="margin:0px; display:inline; margin-left:50px;">
+								          <label><input type="radio" name="termYear" value="1" checked><span>1년</span></label>
+								          <label><input type="radio" name="termYear" value="2" ><span>2년</span></label>
+								          <label><input type="radio" name="termYear" value="3" ><span>3년</span></label>
+								          <label><input type="radio" name="termYear" value="4" ><span>4년</span></label>
+								        </div>
+								        <div>
+										<input type="date" name="startDate">~<input type="date" name="lastDate">
+										</div>
+									</label>
+									<button class="btn btn-metis-5 btn-xs" style="margin: 0 auto;" >등록하기/수정하기</button>
+								</div>
+								<!-- </form> -->
+							</div>
+						</div>
+			      </div>
+			      <div class="modal-footer">
+		        	<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+			        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			<!-- 계약관리 modal End -->
+		</div>
+	</div>
+</body>
 </th:block>
 <th:block layout:fragment="customPlugin">
 
@@ -379,7 +465,7 @@
 		    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
 		    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
 		    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
-		    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+		    <script src="/assets/lib/jquery/jquery.ui.touch-punch.min.js"></script>
     <script>
       $(function() {
          $('#dataTable').DataTable({
@@ -396,6 +482,27 @@
                     }
             }           
          });
+      });
+      
+      
+      $(document).ready(function(){
+			var startDate = $('input[name="startDate"]');
+			var lastDate = $('input[name="lastDate"]');
+    	  $('#myModal').on('show.bs.modal', function (e) {
+    		  console.log('hi');
+    		  
+    		})
+    	  
+    	  
+    	  /* 체크박스 체크된 년도로 날짜 계산하기 */
+    	  $('input[name="termYear"]').change(function(){
+			var year = startDate.val().substring(0,4)
+			var monthToDay = startDate.val().substring(4)
+			var yearInt = parseInt(year)
+			var checkedInt = parseInt($(this).val())
+			lastDate.val((yearInt+checkedInt)+monthToDay)
+		});
+    	  
       });
    </script>
 </th:block>
