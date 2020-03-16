@@ -20,13 +20,21 @@ public class ElderController {
 	
 	/* 수급자 리스트 */
 	@GetMapping("/employee/elderList")
-	public String elderList(Model model) {
+	public String elderList() {
 		return "elder/elderList";
 	}
 	
 	/* 부트스트랩 확인용 */
 	@GetMapping("/table")
-	public String table() {
+	public String table(Model model) {
+		model.addAttribute("benefitcost", benefitMapper.getBenefitCost());
 		return "elder/table";
+	}
+	
+	/* 수가 리스트 */
+	@GetMapping("/benefitcost")
+	public String sugaList(Model model) {
+		model.addAttribute("benefitcost", benefitMapper.getBenefitCost());
+		return "benefit/benefitCostList";
 	}
 }
