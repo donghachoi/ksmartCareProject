@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
+<th:block> 
+	<head>
+	    
+	    <!-- Bootstrap -->
+	    <link rel="stylesheet" href="/assets/lib/bootstrap/css/bootstrap.css">
+	    
+	    <!-- Font Awesome -->
+	    <link rel="stylesheet" href="/assets/lib/font-awesome/css/font-awesome.css">
+	    
+	    <!-- Metis core stylesheet -->
+	    <link rel="stylesheet" href="/assets/css/main.css">
+	    
+	    <!-- metisMenu stylesheet -->
+	    <link rel="stylesheet" href="/assets/lib/metismenu/metisMenu.css">
+	    
+	    <!-- onoffcanvas stylesheet -->
+	    <link rel="stylesheet" href="/assets/lib/onoffcanvas/onoffcanvas.css">
+	    
+	    <!-- animate.css stylesheet -->
+	    <link rel="stylesheet" href="/assets/lib/animate.css/animate.css">
+		
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css">
+
+		
+	 	<script>
+	        less = {
+	            env: "development",
+	            relativeUrls: false,
+	            rootpath: "/assets/"
+	        };
+	    </script>
+	    <link rel="stylesheet" href="/assets/css/style-switcher.css">
+	    <link rel="stylesheet/less" type="text/css" href="/assets/less/theme.less">
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.js"></script>
+	</head>
+</th:block>
+<th:block layout:fragment="customTitle">
+	<title>index</title>
+</th:block>
+<!-- 페이지 안내  -->
+<th:block layout:fragment="customContents">
+	<body class="  ">
+	    <div class="bg-dark dk" id="wrap">
+	    	<div id="top">
+				<header class="head">
+					<div class="main-bar">
+						<h3><i class="fa fa-table"></i>&nbsp;태그비교 리스트 </h3>
+					</div>
+			        <!-- /.main-bar -->
+				</header>
+				<!-- /.head -->
+			</div>
+			<!-- /#top -->
+		</div>
+		<div id="content">
+			<div class="outer">
+				<div class="inner bg-light lter">
+					<!-- 태그 비교 리스트 테이블 시작  -->
+					<div class="row">
+						<div class="col-lg-12 ui-sortable">
+							<div class="box ui-sortable-handle">
+								<header>
+									<div class="icons"><i class="fa fa-table"></i>
+									</div>
+							        <h5>태그 비교 리스트 조회 및 검색</h5>
+							     </header>
+							     <div id="collapse4" class="body">
+									<div class="row">
+										<div class="col-sm-12">
+											<table id="dataTable" class="table table-bordered" style="font-size: 10px">
+												<thead>
+											
+													<tr role="row">
+														<tr>
+															<th rowspan="2">날짜 </th>
+													        <th rowspan="2">수급자코드</th>
+													        <th>수급자이름</th>
+													        <th>제공서비스</th>
+													        
+													        <th>방문시간</th>
+													        <th>종료시간</th>
+													        <th>제공시간</th>
+													        <th>급여제공자</th>
+													        <th>시간차</th>
+													        <th>제공자다름</th>
+												        
+												      	</tr>										                 
+													</tr>
+													<tr role="row">
+														
+												        
+												        <th>수급자이름</th>
+												        <th>제공서비스</th>
+												        
+												        <th>방문시간</th>
+												        <th>종료시간</th>
+												        <th>제공시간</th>
+												        <th>급여제공자</th>
+												        <th>시간차</th>
+												        <th>제공자다름</th>
+												        
+												      											                 
+													</tr>
+												</thead>
+												<tbody>
+													<tr role="row" class="odd">
+														<td>t_000001</td>
+											            <td class="sorting_1">3-41590-00001</td>
+											            <td>전주스마트재가센터</td>
+											            <td>e_000002</td>
+											            <td>나요보</td>
+											          
+											            <td>2020-02-21  12:00</td>
+											            <td>2020-02-21  15:00</td>
+											            <td>90</td>
+											            <td>요양</td>
+											            <td>해당없음</td>
+											      
+											        </tr><tr role="row" class="odd">
+											            <td>t_000002</td>
+											            <td class="sorting_1">3-41590-00001</td>
+											            <td>전주스마트재가센터</td>
+											            <td>e_000003</td>
+											            <td>나보호</td>
+											            <td>2020-02-22  12:00</td>
+											            <td>2020-02-22  15:00</td>
+											            <td>90</td>
+											            <td>요양</td>
+											            <td>해당없음</td>
+											        </tr><tr role="row" class="odd">
+											            <td>t_000003</td>
+											            <td class="sorting_1">3-41590-00001</td>
+											            <td>전주스마트재가센터</td>
+											            <td>e_000003</td>
+											            <td>나보호</td>
+											            <td>2020-02-22  16:00</td>
+											            <td>2020-02-22  18:00</td>
+											            <td>60</td>
+											            <td>요양</td>
+											            <td>해당없음</td>
+											        </tr><tr role="row" class="odd">
+											            <td>t_000004</td>
+											            <td class="sorting_1">3-41590-00001</td>
+											            <td>전주스마트재가센터</td>
+											            <td>e_000005</td>
+											            <td>나간호</td>
+											            <td>2020-02-22  12:00</td>
+											            <td>2020-02-22  15:00</td>
+											            <td>90</td>
+											            <td>간호</td>
+											            <td>해당없음</td>
+											        </tr><tr role="row" class="odd">
+											            <td>t_000005</td>
+											            <td class="sorting_1">3-41590-00002</td>
+											            <td>덕진효사랑재가센터</td>
+											            <td>e_000007</td>
+											            <td>가요보</td>
+											            <td>2020-02-22  16:00</td>
+											            <td>2020-02-22  18:00</td>
+											            <td>60</td>
+											            <td>요양</td>
+											            <td>해당없음</td>
+											        </tr><tr role="row" class="odd">
+											            <td>t_000006</td>
+											            <td class="sorting_1">3-41590-00002</td>
+											            <td>덕진효사랑재가센터</td>
+											            <td>e_000007</td>
+											            <td>가요보</td>
+											            <td>2020-02-25  16:00</td>
+											            <td>2020-02-25  18:00</td>
+											            <td>60</td>
+											            <td>목욕</td>
+											            <td>해당없음</td>
+											        </tr>
+												</tbody>
+											</table>								                	
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 태그 리스트 끝  -->
+
+				</div>
+				<!-- /.inner -->
+			</div>
+			<!-- /.outer -->
+		</div>
+		<!-- /#content -->           
+		<!-- /#wrap -->          
+	</body>
+</th:block>
+<th:block layout:fragment="customPlugin">
+ 	<!--jQuery -->
+    <script src="/assets/lib/jquery/jquery.js"></script>
+    Bootstrap
+	<script src="/assets/lib/bootstrap/js/bootstrap.js"></script>
+    MetisMenu
+    <script src="/assets/lib/metismenu/metisMenu.js"></script>
+    onoffcanvas
+    <script src="/assets/lib/onoffcanvas/onoffcanvas.js"></script>
+    Screenfull
+    <script src="/assets/lib/screenfull/screenfull.js"></script>
+    Metis core scripts
+    <script src="/assets/js/core.js"></script>
+    Metis demo scripts
+    <script src="/assets/js/app.js"></script>
+    <script src="/assets/js/style-switcher.js"></script> -->
+    
+    <!--jQuery -->
+    <script src="/assets/lib/jquery/jquery.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+
+	<!--Bootstrap -->
+	<script src="/assets/lib/bootstrap/js/bootstrap.js"></script>
+	
+	<!-- MetisMenu -->
+	<script src="/assets/lib/metismenu/metisMenu.js"></script>
+	
+	<!-- onoffcanvas -->
+	<script src="/assets/lib/onoffcanvas/onoffcanvas.js"></script>
+	
+	<!-- Screenfull -->
+	<script src="/assets/lib/screenfull/screenfull.js"></script>
+
+	<!-- Metis core scripts -->
+	<script src="/assets/js/core.js"></script>
+	
+	<!-- Metis demo scripts -->
+	<script src="/assets/js/app.js"></script>
+	<script>
+		$(function() {
+			$('#dataTable').DataTable({
+				"language": 
+					{
+					"sInfo": " 총_TOTAL_건의 자료 중  _START_번부터~_END_번까지 ",
+					"lengthMenu": "_MENU_ 개씩 보기",
+					"search":         "검색:",
+					"paginate": {
+					"first":      "First",
+					"last":       "Last",
+					"next":       "다음",
+					"previous":   "이전"
+                    }
+					
+				}    	    
+			});
+		});
+	</script>
+
+	<script src="/assets/js/style-switcher.js"></script>
+</th:block>
+</html>

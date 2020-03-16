@@ -5,6 +5,37 @@
 
 <th:block layout:fragment="customTitle">
 	<title>index</title>
+<!-- Bootstrap -->
+       <link rel="stylesheet" href="/assets/lib/bootstrap/css/bootstrap.css">
+       
+       <!-- Font Awesome -->
+       <link rel="stylesheet" href="/assets/lib/font-awesome/css/font-awesome.css">
+       
+       <!-- Metis core stylesheet -->
+       <link rel="stylesheet" href="/assets/css/main.css">
+       
+       <!-- metisMenu stylesheet -->
+       <link rel="stylesheet" href="/assets/lib/metismenu/metisMenu.css">
+       
+       <!-- onoffcanvas stylesheet -->
+       <link rel="stylesheet" href="/assets/lib/onoffcanvas/onoffcanvas.css">
+       
+       <!-- animate.css stylesheet -->
+       <link rel="stylesheet" href="/assets/lib/animate.css/animate.css">
+      
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css">
+
+       <script>
+           less = {
+               env: "development",
+               relativeUrls: false,
+               rootpath: "/assets/"
+           };
+       </script>
+       <link rel="stylesheet" href="/assets/css/style-switcher.css">
+       <link rel="stylesheet/less" type="text/css" href="/assets/less/theme.less">
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.js"></script>
+	
 </th:block>
 <!-- 페이지 안내  -->
 <th:block layout:fragment="customContents">
@@ -19,7 +50,7 @@
                             <div class="main-bar">
                             	<h3>
 					              <i class="fa fa-pencil"></i>&nbsp;
-					            		센터가입 페이지
+					            		보호자등록 페이지
 					          	</h3>
                             </div>
                             <!-- /.main-bar -->
@@ -30,15 +61,13 @@
                 <div id="content">
                     <div class="outer">
                         <div class="inner bg-light lter">
-
-<!--센터 상세정보 입력 시작  -->
 <!--BEGIN INPUT TEXT FIELDS-->
 <div class="row">
 	<div class="col-lg-12">
 	    <div class="box dark">
 	        <header>
 	            <div class="icons"><i class="fa fa-edit"></i></div>
-	            <h5>센터 상세 정보를 입력해주세요</h5>
+	            <h5>보호자 상세 정보를 입력해주세요</h5>
 	            
 	            <!-- .toolbar -->
 	            <div class="toolbar">
@@ -52,15 +81,7 @@
 	            <form class="form-horizontal">
 	
 	                <div class="form-group">
-	                    <label for="text2" class="control-label col-lg-4">장기요양기관번호</label>
-	
-	                    <div class="col-lg-3">
-	                        <input type="text" id="text2" placeholder="0-00000-00000" class="form-control">
-	                    </div>
-	                </div>
-	                <!-- /.form-group -->
-	                <div class="form-group">
-	                    <label for="text1" class="control-label col-lg-4">센터명</label>
+	                    <label for="text1" class="control-label col-lg-4">수급자코드</label>
 	
 	                    <div class="col-lg-3">
 	                        <input type="text" id="text1"  class="form-control">
@@ -68,15 +89,15 @@
 	                </div>
 	                <!-- /.form-group -->
 	                <div class="form-group">
-	                    <label for="text1" class="control-label col-lg-4">아이디</label>
+	                    <label for="text1" class="control-label col-lg-4">수급자이름</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text1"  class="form-control">
+	                        <input type="text" id="text1" class="form-control">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
 	                   <div class="form-group">
-	                    <label for="text1" class="control-label col-lg-4">센터담당자 이름</label>
+	                    <label for="text1" class="control-label col-lg-4">보호자이름</label>
 	
 	                    <div class="col-lg-3">
 	                        <input type="text" id="text1" class="form-control">
@@ -93,71 +114,61 @@
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
-	                	 <div class="form-group">
-	                    <label for="text2" class="control-label col-lg-4">센터담당자 연락처</label>
+					<div class="form-group">
+	                  		 <label class="control-label col-lg-4">성별</label>
+	                        <div class="col-lg-3">
+	                            <div class="checkbox">
+	                                <label>
+	                                    <input class="uniform" type="radio" name="직원성별선택" value="남" checked>남
+	                                </label>
+	                            </div>
+	                            <!-- /.checkbox -->
+	                            <div class="checkbox">
+	                                <label>
+	                                    <input class="uniform" type="radio" name="직원성별선택" value="여">여
+	                             
+	                                </label>
+	                            </div>
+	                    	</div>
+	                  </div>  
+	                  <!-- /.form-group -->
+	
+	                <div class="form-group">
+	                    <label for="text2" class="control-label col-lg-4">주민등록번호</label>
+	
+	                    <div class="col-lg-3">
+	                        <input type="text" id="text2" placeholder="123456-0000000" class="form-control">
+	                    </div>
+	                </div>
+	                <!-- /.form-group -->
+					 <div class="form-group">
+	                    <label for="text2" class="control-label col-lg-4">연락처</label>
 	
 	                    <div class="col-lg-3">
 	                        <input type="text" id="text2" placeholder="000-000-0000" class="form-control">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
-	                <div class="form-group">
-	                  	<label for="text2" class="control-label col-lg-4">센터 연락처</label>
-	
-	                    <div class="col-lg-3">
-	                        <input type="text" id="text2" placeholder="000-000-0000" class="form-control">
-	                    </div>
-	                </div>
-	                <!-- /.form-group -->
-	                <div class="form-group">
-				    <label class="control-label col-lg-4">센터 지역구분</label>
+					   
+	                
+					
+	                 <div class="form-group">
+				    <label class="control-label col-lg-4">수급자와의 관계</label>
 				
 					    <div class="col-lg-3">
 					        <select class="form-control">
-					            <option>서울</option>
-					            <option>부산</option>
-					            <option>대구</option>
-					            <option>인천</option>
-					            <option>광주</option>
-					            <option>대전</option>
-					            <option>울산</option>
-					            <option>세종</option>
-					            <option>경기</option>
-					            <option>강원</option>
-					            <option>충북</option>
-					            <option>충남</option>
-					            <option>전북</option>
-					            <option>전남</option>
-					            <option>경북</option>
-					            <option>경남</option>
-					            <option>제주</option>
+					            <option>자녀</option>
+					            <option>사위</option>
+					            <option>며느리</option>
+					            <option>손주</option>
+					            <option>친척</option>
+					            <option>기타</option>		   
 					        </select>
 					    </div>
 					</div>
 					<!-- /.form-group -->
-
-	
-	                <div class="form-group">
-	                    <label for="text2" class="control-label col-lg-4">센터 상세 주소</label>
-	
-	                    <div class="col-lg-3">
-	                        <input type="text" id="text2" placeholder="행복시 지금구 여기로1 1-1" class="form-control">
-	                    </div>
-	                </div>
-	                <!-- /.form-group -->
-	                
-	                <div class="form-group">
-	                    <label for="text2" class="control-label col-lg-4">사업자등록번호</label>
-	
-	                    <div class="col-lg-3">
-	                        <input type="text" id="text2" placeholder="1110001111" class="form-control">
-	                    </div>
-	                </div>
-	                <!-- /.form-group -->				
-
-
-	                <div class="form-group">
-	                    <label for="text1" class="control-label col-lg-4">등록번호상사업자이름</label>
+					<div class="form-group">
+	                    <label for="text1" class="control-label col-lg-4">주소(거주지)</label>
 	
 	                    <div class="col-lg-3">
 	                        <input type="text" id="text1"  class="form-control">
@@ -165,6 +176,33 @@
 	                </div>
 	                <!-- /.form-group -->
 	                <div class="form-group">
+	                    <label for="text1" class="control-label col-lg-4">주소(우편물)</label>
+	
+	                    <div class="col-lg-3">
+	                        <input type="text" id="text1"  class="form-control">
+	                    </div>
+	                </div>
+	                <!-- /.form-group -->
+	                
+					<div class="form-group">
+	                  		 <label class="control-label col-lg-4">수급자 동거여부</label>
+	                        <div class="col-lg-3">
+	                            <div class="checkbox">
+	                                <label>
+	                                    <input class="uniform" type="radio" name="직원성별선택" value="남" checked>동거
+	                                </label>
+	                            </div>
+	                            <!-- /.checkbox -->
+	                            <div class="checkbox">
+	                                <label>
+	                                    <input class="uniform" type="radio" name="직원성별선택" value="여">비동거
+	                             
+	                                </label>
+	                            </div>
+	                    	</div>
+	                  </div>  
+	                  <!-- /.form-group -->
+		             <div class="form-group">
 	                 <div class="form-actions">
 	                    <label for="text1" class="control-label col-lg-5"></label>
 	
@@ -175,8 +213,6 @@
 	                </div>
 	                </div>
 	                <!-- /.form-group -->
-
-	
 	                <!-- /.row -->
 
 	            </form>

@@ -6,22 +6,22 @@
 <th:block layout:fragment="customTitle">
 	<title>index</title>
 <!-- Bootstrap -->
-       <link rel="stylesheet" href="assets/lib/bootstrap/css/bootstrap.css">
+       <link rel="stylesheet" href="/assets/lib/bootstrap/css/bootstrap.css">
        
        <!-- Font Awesome -->
-       <link rel="stylesheet" href="assets/lib/font-awesome/css/font-awesome.css">
+       <link rel="stylesheet" href="/assets/lib/font-awesome/css/font-awesome.css">
        
        <!-- Metis core stylesheet -->
-       <link rel="stylesheet" href="assets/css/main.css">
+       <link rel="stylesheet" href="/assets/css/main.css">
        
        <!-- metisMenu stylesheet -->
-       <link rel="stylesheet" href="assets/lib/metismenu/metisMenu.css">
+       <link rel="stylesheet" href="/assets/lib/metismenu/metisMenu.css">
        
        <!-- onoffcanvas stylesheet -->
-       <link rel="stylesheet" href="assets/lib/onoffcanvas/onoffcanvas.css">
+       <link rel="stylesheet" href="/assets/lib/onoffcanvas/onoffcanvas.css">
        
        <!-- animate.css stylesheet -->
-       <link rel="stylesheet" href="assets/lib/animate.css/animate.css">
+       <link rel="stylesheet" href="/assets/lib/animate.css/animate.css">
       
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css">
 
@@ -42,7 +42,7 @@
 			<div id="top">
 				<header class="head">
 					<div class="main-bar">
-						<h3><i class="fa fa-table"></i>&nbsp;직원 리스트 </h3>
+						<h3><i class="fa fa-table"></i>&nbsp;보호자 리스트 </h3>
 					</div>
                  	<!-- /.main-bar -->
             	</header>
@@ -55,7 +55,7 @@
 	<div class="outer">
 
 	<div class="inner bg-light lter">
-		<!-- 직원리스트 테이블 Start -->
+		<!-- 보호자리스트 테이블 Start -->
 		<div class = "row">
 		<div class="box">
 			<div class="col-lg-4 ui-sortable">
@@ -65,105 +65,64 @@
 							<div class="icons">
 								<i class="fa fa-table"></i>
 							</div>
-							<h5>직원 리스트</h5>
+							<h5>보호자 리스트</h5>
 						</header>
 						
 						<div id="collapse4" class="body">
 							<div class="row">
-								<div class="col-sm-11">
+								<div class="col-sm-12">
 									<table id="dataTable" class="table table-bordered table-hover" style="font-size: 10px">
 										<thead>
 											<tr role="row">
-												<th>직원아이디</th>
-												<th>이름</th>
-												<th>직종</th>
-												<th>성별</th>
+												<th>보호자코드</th>
+												<th>수급자코드</th>
+												<th>수급자이름</th>
+												<th>보호자이름</th>
 												<th>연락처</th>
-												<th>상태</th>
-												<th>직급</th>
 											</tr>
 									</thead>
 										<tbody>
 											<tr role="row" class="odd">
-												<td class="sorting_1">e_000001</td>
-											    <td>이형열</td>
-											    <td>관리책임자</td>
-											    <td>남</td>
-											    <td>010-7788-1008</td>
-											    <td>재직</td>
-											    <td>과장</td>			        
-											</tr>
-											<tr role="row" class="odd">
-											    <td class="sorting_1">e_000002</td>
-											    <td>나요보</td>
-												<td>요양보호사</td>
-											    <td>여</td>
-											    <td>010-1234-1235</td>
-											    <td>휴직</td>
-											    <td>주임</td>
-											</tr>
-											<tr role="row" class="odd">
-												<td class="sorting_1">e_000003</td>
+												<td class="sorting_1">b_000001</td>
+											    <td>s_000001</td>
+											    <td>나수급</td>
 											    <td>나보호</td>
-											    <td>요양보호사</td>
-											    <td>남</td>
-											    <td>010-1212-1236</td>
-											    <td>재직</td>
-											    <td>사원</td>
+											    <td>010-1212-1236</td>      
 											</tr>
 											<tr role="row" class="odd">
-											    <td class="sorting_1">e_000004</td>
-											    <td>나사무</td>
-											    <td>사무원</td>
-											    <td>여</td>
-											    <td>010-1234-1237</td>
-											    <td>재직</td>
-											    <td>사원</td>
+											    <td class="sorting_1">b_000002</td>
+											    <td>s_000001</td>
+											    <td>나수급</td>
+											    <td>나가족</td>
+											    <td>010-1405-1254</td>
 											</tr>
 											<tr role="row" class="odd">
-											    <td class="sorting_1">e_000005</td>
-											    <td>나간호</td>
-											    <td>간호조무사</td>
-											    <td>남</td>
-											    <td>010-1234-1338</td>
-											    <td>재직</td>
-											    <td>사원</td>
+												<td class="sorting_1">b_000003</td>
+											    <td>s_000001</td>
+											    <td>나수급</td>
+											    <td>나보모</td>
+											    <td>010-4479-7531</td>
 											</tr>
 											<tr role="row" class="odd">
-											     <td class="sorting_1">e_000006</td>
-											     <td>가관리</td>
-											     <td>관리책임자</td>
-											     <td>남</td>
-											     <td>010-4568-1234</td>
-											     <td>퇴사</td>
-											     <td>사원</td>
+											    <td class="sorting_1">b_000004</td>
+											    <td>s_000003</td>
+											    <td>나아파</td>
+											    <td>나가가족</td>
+											    <td>010-1345-7220</td>
 											</tr>
 											<tr role="row" class="odd">
-												<td class="sorting_1">e_000007</td>
-												<td>가요보</td>
-												<td>사회복지사</td>
-												<td>여</td>
-												<td>010-4578-1238</td>
-												<td>재직</td>
-												<td>사원</td>
-											</tr>
-											<tr role="row" class="odd">
-												<td class="sorting_1">e_000008</td>
+											    <td class="sorting_1">b_000005</td>
+											    <td>s_000004</td>
+											    <td>가수급</td>
 											    <td>가보호</td>
-											    <td>사회복지사</td>
-											    <td>여</td>
 											    <td>010-6547-1346</td>
-											    <td>재직</td>
-											    <td>사원</td>
 											</tr>
 											<tr role="row" class="odd">
-												<td class="sorting_1">e_000009</td>
-											    <td>최은희</td>
-											    <td>관리책임자</td>
-											    <td>여</td>
-											    <td>010-3481-9428</td>
-											   <td>재직</td>
-											   <td>대표</td>
+											     <td class="sorting_1">b_000006</td>
+											     <td>s_000004</td>
+											     <td>가수급</td>
+											     <td>가가족</td>
+											     <td>010-1234-1237</td>
 											</tr>
 									</tbody>
 								</table>
@@ -173,14 +132,14 @@
 				</div>				
 			</div>
 				<!-- 테이블 End -->
-				<!-- 직원 상세정보 테이블 Start -->
+				<!-- 보호자 상세정보 테이블 Start -->
 								<div class="col-lg-8 ui-sortable">
 									<div class="box ui-sortable-handle">
 										<header>
 											<div class="icons">
 												<i class="fa fa-table"></i>
 											</div>
-											<h5>직원 상세 정보</h5>
+											<h5>보호자 상세 정보</h5>
 											<div class="toolbar">
 											
 												<div class="btn-group">
@@ -195,7 +154,7 @@
 																	data-toggle="modal" data-target="#myModal"
 																	class="btn btn-default btn-sm btn-line"
 																	>
-																	<span class="ui-button-text">직원삭제</span>
+																	<span class="ui-button-text">보호자삭제</span>
 													</button>
 													<!-- <a href="#defaultTable" data-toggle="collapse"
 														class="btn btn-sm btn-default minimize-box"> 
@@ -205,68 +164,50 @@
 											</div>
 										</header>
 										<div id="defaultTable" class="body collapse in">
+										
 											<table class="table responsive-table" >
 												<tbody>
 													<tr>
-														<th rowspan="2"><img src="assets/img/test_peng.png"></th>
+														<th rowspan="2"><img src="/assets/img/test_peng.png"></th>
 														
-														<th>직원아이디</th>
-														<td>e_000001</td>
-														<th>이름</th>
-														<td>이형열</td>
-														<th>직종</th>
-														<td>관리책임자</td>
+														<th>보호자코드</th>
+														<td>b_000001</td>
+														<th>수급자코드</th>
+														<td>s_000001</td>
+														<th>수급자이름</th>
+														<td>나수급</td>
 													</tr>
 													<tr>
-														<th>비밀번호</th>
-														<td>pw001</td>
-														<th>주민등록번호</th>
-														<td>731001-1111111</td>
+														<th>보호자이름</th>
+														<td>나보호</td>
+														<th>보호자비번</th>
+														<td>pw006</td>
 														<th>성별</th>
 														<td>남</td>
 													</tr>
 													<tr>
-														<th>근무시작일</th>
-														<td>2020-03-09</td>
-														<th>직무상태</th>
-														<td>재직</td>
-														<th>직급</th>
-														<td>과장</td>
-														<th>재직형태</th>
-														<td>전임</td>
-													</tr>
-													<tr>
-													
-														
+														<th>주민등록번호</th>
+														<td>771231-1111122</td>
 														<th>연락처</th>
-														<td>010-8988-1384</td>
-														<th>자격</th>
-														<td colspan="3">
-															<div>
-															
-															사회복지사 1급
-															<button type="button"  
-																data-toggle="modal" data-target="#myModal"
-																class="btn btn-primary btn-sm">
-																<span class="ui-button-text">자격증정보 및 관리</span>
-														
-															</button>
-															</div>
-														</td>	
+														<td>010-1212-1236</td>
+														<th>등록일</th>
+														<td>2020-03-01</td>
+														<th>수급자와의 관계</th>
+														<td>자녀</td>
 													</tr>
 													<tr>
-														<th>급여형태</th>
-														<td>월급제</td>
-														<th>근로계약시급</th>
-														<td>해당없음</td>
-														<th>급여계좌</th>
-														<td>70020588783</td>
-														<th>예금주</th>
-														<td>이형열</td>
+														<th>주소(거주지)</th>
+														<td>전주시 완산구 우림로 897-50 (용복동)</td>
+														<th>주소(우편물)</th>
+														<td>전주시 완산구 우림로 897-51 (용복동)</td>
+														<th>수급자 동거여부</th>
+														<td>비동거</td>
+														<th></th>
+														<td></td>	
 													</tr>
 													<tr>
 														<th>비고</th>
-														<td colspan="3"></td>
+														<td colspan="4"></td>
 													</tr>
 												</tbody>
 											</table>								
@@ -274,7 +215,7 @@
 									</div>
 								</div>
 								
-								<!-- 직원 상세정보 End-->
+								<!-- 보호자 상세정보 End-->
 							</div>
 						</div>
 					</div>
