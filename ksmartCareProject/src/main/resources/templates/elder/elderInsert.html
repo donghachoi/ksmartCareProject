@@ -162,20 +162,16 @@
 				                <!-- /.form-group -->
 				            	<div class="form-group">
 				              		<label class="control-label col-lg-4">장기요양인정유효기간</label>
-									
 									<div class="col-lg-3">
 											<div class="input-group input-append">
 											<input class="form-control date" type="text" placeholder="0000-00-00"> 
-											<span class="input-group-addon add-on">
-											<i class="fa fa-calendar"></i></span>
+											<span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>
 											</div>
 											~
 											<div class="input-group input-append">
-											<input class="form-control" type="text" placeholder="0000-00-00"> 
-											<span class="input-group-addon add-on">
-											<i class="fa fa-calendar"></i></span>
+											<input class="form-control date" type="text" placeholder="0000-00-00"> 
+											<span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>
 											</div>
-										
 									</div>
 								</div>
 				            <!-- /.form-group -->
@@ -263,7 +259,7 @@
             <script src="/assets/lib/screenfull/screenfull.js"></script>
             <!-- Metis core scripts -->
             <script src="/assets/js/core.js"></script>
-            <!-- Metis demo scripts -->
+            
             <!-- 날짜 입력때문에 추가한거. -->
 			<link rel="stylesheet" href="/assets/lib/jquery/jquery-ui.min.css" type="text/css" />  
 			<script src="/assets/lib/jquery/jquery.min.js"></script>  
@@ -271,20 +267,21 @@
 			<script src="/assets/lib/jquery/datepicker-ko.js"></script>
 			<!-- 날짜 입력때문에 추가한거. -->
 <script>
-$(document).ready(function(){
-	console.log('hi')
+
+	//date클래스에 datepicker 넣기
 	$(function() {
 	    $( ".date" ).datepicker({
-	    	buttonImage: "/images",
 	    	
-	    	buttonImageOnly: true,
-
-	        buttonText: "Select date"
-
 	    });
 	});
-})
-            
+	//달력 유효성검사.
+	$( ".date" ).change(function(){
+		if($('.date').eq(1).val() != "" && $('.date').eq(0).val() >= $('.date').eq(1).val()){
+				alert('유효기간 이 시간시간보다 짧거나 같을수 없습니다.');
+				$('.date').eq(1).val("")
+		    }
+	})
+	
 </script>
 </th:block>
 

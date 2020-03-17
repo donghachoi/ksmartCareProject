@@ -25,11 +25,14 @@ datepicker.regional.ko = {
 	dayNamesShort: [ "일","월","화","수","목","금","토" ],
 	dayNamesMin: [ "일","월","화","수","목","금","토" ],
 	weekHeader: "주",
-	dateFormat: "yy-m-d",
+	dateFormat: "yy-mm-dd",
 	firstDay: 0,
 	isRTL: false,
 	showMonthAfterYear: true,
-	yearSuffix: "년" };
+	yearSuffix: "년",
+	showButtonPanel: true,
+	numberOfMonths: [1,2]
+		};
 datepicker.setDefaults( datepicker.regional.ko );
 
 return datepicker.regional.ko;
