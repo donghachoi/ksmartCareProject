@@ -14,6 +14,7 @@ public class CenterService {
 	
 	public int centerInsert(Center center) {
 		return centerMapper.centerInsert(center);
+		
 	}
 
 }
