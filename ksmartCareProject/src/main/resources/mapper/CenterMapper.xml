@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.cafe24.choiyooq1.mapper.CenterMapper">
+
+ 	<!-- //id는 MemberMapper(인터페이스)안에 있는 메서드 이름 -->
+  
+   	<insert id="centerInsert" parameterType="com.cafe24.choiyooq1.domain.Center">
+ 		INSERT INTO center
+			(center_code
+			, center_name
+			, center_id
+			, center_pw
+			, center_manager_name
+			, conter_manager_phone
+			, center_phone
+			, center_local
+			, center_adress
+			, business_registration_number
+			, employer_name)
+		VALUES (#{centerCode}
+				,#{centerName}
+				,#{centerId}
+				,#{centerPw}
+				,#{centerManagerName}
+				,#{conterManagerPhone}
+				,#{centerPhone}
+				,#{centerLocal}
+				,#{centerAdress}
+				,#{businessRegistrationNumber}
+				,#{employerName});
+ 	</insert>
+  
+  </mapper>

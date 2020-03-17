@@ -67,114 +67,160 @@
 									<div class="icons"><i class="fa fa-table"></i>
 									</div>
 							        <h5>태그 비교 리스트 조회 및 검색</h5>
+							      
 							     </header>
 							     <div id="collapse4" class="body">
 									<div class="row">
 										<div class="col-sm-12">
 											<table id="dataTable" class="table table-bordered" style="font-size: 10px">
 												<thead>
+													<div class="toolbar">
+											
+														<div class="btn-group">
+													
+															<button type="button"  
+																			data-toggle="modal" data-target="#myModal"
+																			class="btn btn-default btn-sm btn-line"
+																			>
+																			<span class="ui-button-text">시간차 30분 이상</span>
+															</button>
+															<button type="button"  
+																			data-toggle="modal" data-target="#myModal"
+																			class="btn btn-default btn-sm btn-line"
+																			>
+																			<span class="ui-button-text">제공자 다름</span>
+															</button>
+															<!-- <a href="#defaultTable" data-toggle="collapse"
+																class="btn btn-sm btn-default minimize-box"> 
+																<i class="fa fa-angle-up"></i>
+															</a> -->
+														</div>
+													</div>
+												
 											
 													<tr role="row">
 														<tr>
 															<th rowspan="2">날짜 </th>
+															<th rowspan="2">태그코드 </th>
 													        <th rowspan="2">수급자코드</th>
-													        <th>수급자이름</th>
-													        <th>제공서비스</th>
-													        
-													        <th>방문시간</th>
-													        <th>종료시간</th>
-													        <th>제공시간</th>
-													        <th>급여제공자</th>
-													        <th>시간차</th>
-													        <th>제공자다름</th>
-												        
-												      	</tr>										                 
-													</tr>
-													<tr role="row">
-														
-												        
-												        <th>수급자이름</th>
-												        <th>제공서비스</th>
-												        
-												        <th>방문시간</th>
-												        <th>종료시간</th>
-												        <th>제공시간</th>
-												        <th>급여제공자</th>
-												        <th>시간차</th>
-												        <th>제공자다름</th>
-												        
-												      											                 
-													</tr>
-												</thead>
+													        <th rowspan="2">수급자이름</th>
+													        <th rowspan="2">제공서비스</th>
+													        <th colspan="2">방문시간</th>
+													        <th colspan="2">종료시간</th>
+													        <th colspan="2">제공시간</th>
+													        <th rowspan="2">시간차</th>
+													        <th colspan="2">급여제공자</th>
+													        <th rowspan="2">제공자다름</th>
+														</tr>	
+														<tr role="row">
+													        <th>태그</th>
+													        <th>계획</th>
+													        <th>태그</th>
+													        <th>계획</th>
+													        <th>태그</th>
+													        <th>계획</th>
+													        <th>태그</th>
+													        <th>계획</th>
+													    </tr>
+													</thead>
 												<tbody>
 													<tr role="row" class="odd">
+														<td>2020-02-21  </td>
 														<td>t_000001</td>
-											            <td class="sorting_1">3-41590-00001</td>
-											            <td>전주스마트재가센터</td>
-											            <td>e_000002</td>
-											            <td>나요보</td>
-											          
-											            <td>2020-02-21  12:00</td>
-											            <td>2020-02-21  15:00</td>
-											            <td>90</td>
+											            <td class="sorting_1">s_000001</td>
+											            <td>나수급</td>
 											            <td>요양</td>
-											            <td>해당없음</td>
+											            <td>12:00</td>
+											          	<td>12:00</td>
+											          	<td>15:00</td>
+											          	<td>15:00</td>
+											          	<td>90</td>
+											            <td>90</td>
+											            <td>0</td>
+											            <td>e_000002 나요보</td>
+											            <td>e_000002 나요보</td>
+											            <td></td>
 											      
 											        </tr><tr role="row" class="odd">
+											            <td>2020-02-22 </td>
 											            <td>t_000002</td>
-											            <td class="sorting_1">3-41590-00001</td>
-											            <td>전주스마트재가센터</td>
-											            <td>e_000003</td>
-											            <td>나보호</td>
-											            <td>2020-02-22  12:00</td>
-											            <td>2020-02-22  15:00</td>
-											            <td>90</td>
+											            <td class="sorting_1">s_000001</td>
+											            <td>나수급</td>
 											            <td>요양</td>
-											            <td>해당없음</td>
+											            <td>12:00</td>
+											            <td>12:00</td>
+											            <td>15:00</td>
+											            <td>15:00</td>
+											            <td>90</td>
+											            <td>90</td>
+											            <td>0</td>
+											            <td>e_000001 나보호</td>
+											            <td>e_000001 나보호</td>
+											            <td></td>
 											        </tr><tr role="row" class="odd">
+											            <td>2020-02-22 </td>
 											            <td>t_000003</td>
-											            <td class="sorting_1">3-41590-00001</td>
-											            <td>전주스마트재가센터</td>
-											            <td>e_000003</td>
-											            <td>나보호</td>
-											            <td>2020-02-22  16:00</td>
-											            <td>2020-02-22  18:00</td>
-											            <td>60</td>
+											            <td class="sorting_1">s_000002</td>
+											            <td>나평가</td>
 											            <td>요양</td>
-											            <td>해당없음</td>
+											            <td>16:00</td>
+											            <td>16:00</td>
+											            <td>18:00</td>
+											            <td>18:00</td>
+											            <td>60</td>
+											            <td>60</td>
+											            <td>0</td>
+											            <td>e_000001 나보호</td>
+											            <td>e_000001 나보호</td>
+											            <td></td>
 											        </tr><tr role="row" class="odd">
+											            <td>2020-02-22</td>
 											            <td>t_000004</td>
-											            <td class="sorting_1">3-41590-00001</td>
-											            <td>전주스마트재가센터</td>
-											            <td>e_000005</td>
-											            <td>나간호</td>
-											            <td>2020-02-22  12:00</td>
-											            <td>2020-02-22  15:00</td>
-											            <td>90</td>
+											            <td class="sorting_1">s_000003</td>
+											            <td>나아파</td>
 											            <td>간호</td>
-											            <td>해당없음</td>
+											            <td>13:55</td>
+											            <td>12:00</td>
+											            <td>15:00</td>
+											            <td>15:00</td>
+											            <td>65</td>
+											            <td>60</td>
+											            <td>5</td>
+											            <td>e_000005 나간호</td>
+											            <td>e_000005 나간호</td>
+											            <td></td>
 											        </tr><tr role="row" class="odd">
+											            <td>2020-02-22 </td>
 											            <td>t_000005</td>
-											            <td class="sorting_1">3-41590-00002</td>
-											            <td>덕진효사랑재가센터</td>
-											            <td>e_000007</td>
-											            <td>가요보</td>
-											            <td>2020-02-22  16:00</td>
-											            <td>2020-02-22  18:00</td>
-											            <td>60</td>
+											            <td class="sorting_1">s_000005</td>
+											            <td>가평가</td>
 											            <td>요양</td>
-											            <td>해당없음</td>
-											        </tr><tr role="row" class="odd">
-											            <td>t_000006</td>
-											            <td class="sorting_1">3-41590-00002</td>
-											            <td>덕진효사랑재가센터</td>
-											            <td>e_000007</td>
-											            <td>가요보</td>
-											            <td>2020-02-25  16:00</td>
-											            <td>2020-02-25  18:00</td>
+											            <td>16:00</td>
+											            <td>16:00</td>
+											            <td>18:10</td>
+											            <td>18:00</td>
 											            <td>60</td>
-											            <td>목욕</td>
-											            <td>해당없음</td>
+											            <td>70</td>
+											            <td>10</td>
+											            <td>e_000007 가요보</td>
+											            <td>e_000007 가요보</td>
+											            <td></td>
+											        </tr><tr role="row" class="odd">
+											            <td>2020-02-25 </td>
+											            <td>t_000006</td>
+											            <td class="sorting_1">s_000005</td>
+											            <td>가평가</td>
+											            <td>요양</td>
+											            <td>16:00</td>
+											            <td>16:00</td>
+											            <td>18:15</td>
+											            <td>18:00</td>
+											            <td>60</td>
+											            <td>75</td>
+											            <td>15</td>
+											            <td>e_000007 가요보</td>
+											            <td>e_000007 가요보</td>
+											            <td></td>
 											        </tr>
 												</tbody>
 											</table>								                	

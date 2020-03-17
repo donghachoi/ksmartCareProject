@@ -47,26 +47,26 @@
 <body class="login">
 	<!-- 로그인 폼 -->
     <div class="form-signin">
-    <div class="text-center">
-        <img src="assets/img/logo.png" alt="Metis Logo">
-    </div>
-    <hr>
+	    <div class="text-center">
+	        <img src="assets/img/logo.png" alt="Metis Logo">
+	    </div>
+    	<hr>
     <div class="tab-content">
         <div id="login" class="tab-pane active">
-            <form action="/">
+            <form action="/login" method="Post">
                 <p class="text-muted text-center">
                     	장기요양기관번호와 아이디, <br>
                     	비밀번호를 입력해주세요
                 </p>
-                <input type="text" placeholder="장기요양기관번호(예:3-41590-00000)" class="form-control top">
+                <input type="text" placeholder="장기요양기관번호(예:3-41590-00000)" class="form-control top" name="centerCode">
                 <br>
-                <input type="text" placeholder="아이디" class="form-control top">
-                <input type="password" placeholder="비밀번호" class="form-control bottom">
+                <input type="text" placeholder="아이디" class="form-control top" name="centerId">
+                <input type="password" placeholder="비밀번호" class="form-control bottom" name="centerPw">
                 <div class="checkbox">
-		  <label>
-		    <input type="checkbox"> 아이디 기억하기
-		  </label>
-		</div>
+				  <label>
+				    <input type="checkbox"> 아이디 기억하기
+				  </label>
+				</div>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
             </form>
         </div>
@@ -89,8 +89,7 @@
         </div>
     </div>
     <hr>
-  
-  <!--      아이디, 패스워드 찾기 밎 회원가입 연결 -->
+  	<!--      아이디, 패스워드 찾기 밎 회원가입 연결 -->
     <div class="text-center">
         <ul class="list-inline">
            <!--  <li><a class="text-muted" href="#login" data-toggle="tab">Login</a></li> -->
