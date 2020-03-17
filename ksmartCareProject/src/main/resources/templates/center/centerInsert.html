@@ -8,6 +8,8 @@
 </th:block>
 <!-- 페이지 안내  -->
 <th:block layout:fragment="customContents">
+	<form th:action="@{/center/centerInsert}" method="post">
+	
         <body class="  ">
             <div class="bg-dark dk" id="wrap">
                 <div id="top">
@@ -326,7 +328,7 @@
 
             <script src="/assets/js/style-switcher.js"></script>
         </body>
-	
+	</form>
 </th:block>
 <th:block layout:fragment="customPlugin">
 	<!--jQuery -->
