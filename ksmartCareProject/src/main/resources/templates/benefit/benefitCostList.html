@@ -60,43 +60,113 @@
 					<div class="col-lg-12 ui-sortable">
 						<div class="box ui-sortable-handle"
 							style="position: relative; left: 0px; right: 0px; top: 0px;">
-							<header>
-								<div class="icons">
-									<i class="fa fa-table"></i>
-								</div>
-								<h5>수가 리스트</h5>
-							</header>
+							
 							<div id="collapse4" class="body">
 								<div class="row">
-									<div class="col-sm-11">
-										<table id="dataTable" class="table table-bordered table-hover" style="font-size: 10px">
-												<thead>
-													<tr role="row">
-														<th>직원아이디</th>
-														<th>이름</th>
-														<th>직종</th>
-														<th>성별</th>
-														<th>연락처</th>
-														<th>비고</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr th:each="b : ${benefitcost}" role="row" class="odd">
-														<td th:text="${b.serviceCategory}" class="sorting_1"></td>
-													    <td th:text="${b.serviceTimeAndType}"></td>
-													    <td th:text="${b.benefitCostYear}"></td>
-													    <td th:text="${b.benefitCost}"></td>
-													    <td th:text="${b.nonBenefitCost}"></td>
-													    <td></td>
-													</tr>
-											</tbody>
-										</table>
+								<div role="tabpanel">
+									<!-- Nav tabs -->
+									<ul class="nav nav-tabs" role="tablist">
+									  <li role="presentation" class="active">
+									  	<a href="#home" aria-controls="home" role="tab" data-toggle="tab" id="tab1">수가리스트</a>
+									  </li>
+									  <li role="presentation">
+									  	<a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" id="tab2">수가한도액</a>
+									  </li>
+									</ul>
+									<!-- Tab panes -->
+									  <div class="tab-content">
+									    <div role="tabpanel" class="tab-pane active" id="home">
+											<!-- <header>
+												<div class="icons">
+													<i class="fa fa-table"></i>
+												</div>
+												<h5>수가 리스트</h5>
+											</header> -->
+											<div class="col-sm-11">
+												<table>
+													<tbody>
+													    <tr>
+													    	<td>년도 : </td>
+													        <td>
+													        	<select id="year" name="year">
+																	<option value="">=년도=</option>
+																	<option value="2018">2018</option>
+																	<option value="2019">2019</option>
+																	<option value="2020">2020</option>
+																</select>
+													        </td>
+													   	</tr>
+													</tbody>
+														<table id="dataTable" class="table table-bordered table-hover" style="font-size: 10px">
+																<thead>
+																	<tr role="row">
+																		<th>서비스종류</th>
+																		<th>시간/종류</th>
+																		<th>년도</th>
+																		<th>수가</th>
+																		<th>본인부담금</th>
+																		<th>비고</th>
+																	</tr>
+																</thead>
+																<tbody>
+																	<tr th:each="b : ${benefitcost}" role="row" class="odd">
+																		<td th:text="${b.serviceCategory}" class="sorting_1"></td>
+																	    <td th:text="${b.serviceTimeAndType}"></td>
+																	    <td th:text="${b.benefitCostYear}"></td>
+																	    <td th:text="${b.benefitCost}"></td>
+																	    <td th:text="${b.nonBenefitCost}"></td>
+																	    <td></td>
+																	</tr>
+															</tbody>
+														</table>
+													</table>
+												</div>
+										<!-- 테이블 End -->
+									    </div>
+									    <div role="tabpanel" class="tab-pane" id="profile">
+										    <div class="col-sm-11">
+													<table>
+														<tbody>
+														    <tr>
+														    	<td>년도 : </td>
+														        <td>
+														        	<select id="year1" name="year">
+																		<option value="">=년도=</option>
+																		<option value="2018">2018</option>
+																		<option value="2019">2019</option>
+																		<option value="2020">2020</option>
+																	</select>
+														        </td>
+														   	</tr>
+														</tbody>
+															<table id="dataTable1" class="table table-bordered table-hover" style="font-size: 10px">
+																	<thead>
+																		<tr role="row">
+																			<th>등급</th>
+																			<th>년도</th>
+																			<th>수가한도액</th>
+																			<th>비고</th>
+																		</tr>
+																	</thead>
+																	<tbody>
+																		<tr th:each="bm : ${benefitMax}" role="row" class="odd">
+																			<td th:text="${bm.serviceLevel}" class="sorting_1"></td>
+																		    <td th:text="${bm.benefitMaxYear}"></td>
+																		    <td th:text="${bm.benefitMaxCost}" class="benefitMaxCost"></td>
+																		    <td></td>
+																		</tr>
+																</tbody>
+															</table>
+														</table>
+													</div>
+											<!-- 테이블 End -->
+									    </div>
+									  </div>
 									</div>
 								</div>
 							</div>
 						</div>				
 					</div>
-		<!-- 테이블 End -->
 				</div>
 			</div>
 		</div>
@@ -130,23 +200,97 @@
 		    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
 		    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
     <script>
+
+    function numberFormat(inputNumber) {
+    	   return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    	}
+    //셀렉트 박스로 년도별 수가 검색
+   	  $.fn.dataTable.ext.search.push(
+   			    function( settings, data, dataIndex ) {
+   			        var choosYear = parseInt( $('#year').val(), 10 );
+   			        var year = parseFloat( data[2] ) || 0; // use data for the age column
+   			 
+   			        if ( isNaN( choosYear )  || ( choosYear == year ) )
+   			        {
+   			            return true;
+   			        }
+   			        return false;
+   			    }
+   			    
+   			);
+    
+ 	  $.fn.dataTable.ext.search.push(
+ 			 function( settings, data, dataIndex ) {
+			      var choosYear1 = parseInt( $('#year1').val(), 10 );
+				        var year1 = parseFloat( data[1] ) || 0; // use data for the age column
+				 
+				        if ( isNaN( choosYear1 )  || ( choosYear1 == year1 ) )
+				        {
+				            return true;
+				        }
+				        return false;
+		    }
+ 	  );
+   	  
       $(function() {
-         $('#dataTable').DataTable({
-            "language": 
-               {
-               "sInfo": " 총_TOTAL_건의 자료 중  _START_번부터~_END_번까지 ",
-               "lengthMenu": "_MENU_ 개씩 보기",
-               "search":         "검색:",
-               "paginate": {
-               "first":      "First",
-               "last":       "Last",
-               "next":       "다음",
-               "previous":   "이전"
-                    }
-            }
+    	  var table = $('#dataTable').DataTable({
+			"paging" : false,
+			
+			"language": 
+			   {
+			   "sInfo": " 총_TOTAL_건의 자료 중  _START_번부터~_END_번까지 ",
+			   "lengthMenu": "_MENU_ 개씩 보기",
+			   "search":         "검색:",
+			   "paginate": {
+			   "first":      "First",
+			   "last":       "Last",
+			   "next":       "다음",
+			   "previous":   "이전"
+			        }
+			}
          });
-         
+    	  var table1 = $('#dataTable1').DataTable({
+   			"paging" : false,
+			"language": 
+				
+			   {
+			   "sInfo": " 총_TOTAL_건의 자료 중  _START_번부터~_END_번까지 ",
+			   "lengthMenu": "_MENU_ 개씩 보기",
+			   "search":         "검색:",
+			   "paginate": {
+			   "first":      "First",
+			   "last":       "Last",
+			   "next":       "다음",
+			   "previous":   "이전"
+			   
+			        }
+			}
+         });
+        	  
+    	  $('#year').change( function() {
+    	        table.draw();
+	    		
+    	    } );
+    	  $('#year1').change( function() {
+  	        	table1.draw();
+  	    } );
+    	  $('#tab1').click(function(){
+    		  $("#year option:eq(0)").prop("selected", true);
+    	  });
+    	  $('#tab2').click(function(){
+    		  $("#year1 option:eq(0)").prop("selected", true);
+    	  });
+    	  
+    	    var benefitMaxCost = $('.benefitMaxCost');
+    	    	
+    	    for(var i=0; i<benefitMaxCost.length; i++){
+    	    	console.log(benefitMaxCost.index(i));
+    	    	/* numberFormat(benefitMaxCost.text()) */
+    	    	
+    	    }
       });
+      
+      
    </script>
 </th:block>
 </html>
