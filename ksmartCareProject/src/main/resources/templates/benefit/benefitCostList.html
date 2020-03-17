@@ -275,8 +275,8 @@
 			}
          });
     	  //테이블 정렬 
-        table.order([2,'asc']).draw();
-        table1.order([1,'asc']).draw();
+        table.order([2,'desc']).draw();
+        table1.order([1,'desc']).draw();
         
         //연도별 검색
     	  $('#year').change( function() {
@@ -285,10 +285,13 @@
     	  $('#year1').change( function() {
   	        	table1.draw();
   	    } );
+    	  //탭변경시 년도별 검색 초기화
     	  $('#tab1').click(function(){
     		  $("#year option:eq(0)").prop("selected", true);
+    		  $("#year1 option:eq(0)").prop("selected", true);
     	  });
     	  $('#tab2').click(function(){
+    		  $("#year option:eq(0)").prop("selected", true);
     		  $("#year1 option:eq(0)").prop("selected", true);
     	  });
     	  

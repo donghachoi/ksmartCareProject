@@ -15,6 +15,7 @@ public class Visit {
 	private String family_relation;
 	private String visit_service_category;
 	private String monthly_claim_group_code;
+	
 	public String getVisit_code() {
 		return visit_code;
 	}

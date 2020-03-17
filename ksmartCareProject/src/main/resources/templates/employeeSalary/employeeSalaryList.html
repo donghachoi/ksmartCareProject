@@ -35,6 +35,11 @@
        <link rel="stylesheet" href="/assets/css/style-switcher.css">
        <link rel="stylesheet/less" type="text/css" href="/assets/less/theme.less">
        <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.js"></script>
+       <style>
+       .payLayout{
+       	height: 270px
+       }
+       </style>
 </th:block>
 <th:block layout:fragment="customContents">
 <body class="">
@@ -71,7 +76,6 @@
 													<th>임금총액</th>
 													<th>추가수당</th>
 													<th>공제</th>
-													
 													<th>급여일</th>
 													<th>총급여</th>
 												</tr>
@@ -110,44 +114,153 @@
 										</div>
 									</header>
 									<div id="defaultTable" class="body collapse in">
-										<div  class="col-lg-3">
+										
+										<div  class="col-lg-3 payLayout">
 											<h4>산정임금</h4>
-											<dl class="dl-horizontal">
-											  <dt style="width: 50px;">기본급</dt>
-											  <dd style="margin-left: 55px;"><input type="text" readonly/></dd>
-											  <dt>주휴수당</dt>
-											  <dd><input type="text" readonly/></dd>
-											  <dt>연차수당</dt>
-											  <dd><input type="text" readonly/></dd>
-											  <dt>야간근로수당</dt>
-											  <dd><input type="text" readonly/></dd>
-											  <dt>휴일근로수당</dt>
-											  <dd><input type="text" readonly/></dd>
-											  <dt>연장근로수당</dt>
-											  <dd><input type="text" readonly/></dd>
-											</dl>
+											<table>
+												<tbody>
+													<tr>
+														<td>기본급</td>
+														<td><input type="text" readonly></td>
+													</tr>
+													<tr>
+														<td>주휴수당</td>
+														<td><input type="text" readonly></td>
+													</tr>
+													<tr>
+														<td>연차수당</td>
+														<td><input type="text" readonly></td>
+													</tr>
+													<tr>
+														<td>야간근로수당</td>
+														<td><input type="text" readonly></td>
+													</tr>
+													<tr>
+														<td>휴일근로수당</td>
+														<td><input type="text" readonly></td>
+													</tr>
+													<tr>
+														<td>연장근로수당</td>
+														<td><input type="text" readonly></td>
+													</tr>
+													<tr>
+														<td>식대</td>
+														<td><input type="text" readonly></td>
+													</tr>
+													<tr>
+														<td>보전수당</td>
+														<td><input type="text" readonly></td>
+													</tr>
+													
+												</tbody>
+											</table>
 										</div>
-										<div  class="col-lg-3" >
+										<div class="col-lg-3 payLayout" >
 											<h4>추가수당</h4>
-											<dl class="dl-horizontal" style="width: 10px;">
-											  <dt>기본급</dt>
-											  <dd><input type="text" readonly/></dd>
-											  <dt>주휴수당</dt>
-											  <dd><input type="text" readonly/></dd>
-											  <dt>연차수당</dt>
-											  <dd><input type="text" readonly/></dd>
-											  <dt>야간근로수당</dt>
-											  <dd><input type="text" readonly/></dd>
-											  <dt>휴일근로수당</dt>
-											  <dd><input type="text" readonly/></dd>
-											  <dt>연장근로수당</dt>
-											  <dd><input type="text" readonly/></dd>
-											</dl>
+											<table>
+												<tbody>
+													<tr>
+														<td>장기근속장려금</td>
+														<td><input type="text" readonly></td>
+													</tr>
+													<tr>
+														<td>인지활동수당</td>
+														<td><input type="text" readonly></td>
+													</tr>
+													<tr>
+														<td>기타제수당</td>
+														<td><input type="text" readonly></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										<div  class="col-lg-3 payLayout" >
+											<h4>공제</h4>
+											<table>
+												<tbody>
+													<tr>
+														<td>본인부담금</td>
+														<td><input type="text" readonly></td>
+													</tr>
+													<tr>
+														<td>배상보험</td>
+														<td><input type="text" readonly></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										<div  class="col-lg-3 payLayout" >
+											<h4>세액공제</h4>
+											<table>
+												<tbody>
+													<tr>
+														<td>근로소득세</td>
+														<td><input type="text" readonly></td>
+													</tr>
+													<tr>
+														<td>사업소득세</td>
+														<td><input type="text" readonly></td>
+													</tr>
+													<tr>
+														<td>지방소득세</td>
+														<td><input type="text" readonly></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										<div class="col-lg-3">
+											<table>
+												<tbody>
+													<tr>
+														<td>산정임금합계</td>
+														<td><input type="text" readonly></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										<div class="col-lg-3">
+											<table>
+												<tbody>
+													<tr>
+														<td>추가수당합계</td>
+														<td><input type="text" readonly></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										<div class="col-lg-3">
+											<table>
+												<tbody>
+													<tr>
+														<td>공제합계&nbsp;&nbsp;</td>
+														<td><input type="text" readonly></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										<div class="col-lg-3">
+											<table>
+												<tbody>
+													<tr>
+														<td>세액합계&nbsp;&nbsp;</td>
+														<td><input type="text" readonly></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										<div  class="col-lg-3 col-lg-offset-9" style="margin-bottom: 10px; margin-top: 10px">
+											<table>
+												<tbody>
+													<tr>
+														<td>총계&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+														<td><input type="text" readonly></td>
+													</tr>
+												</tbody>
+											</table>
 										</div>
 									</div>
 								</div>
 							</div>
-						<!-- 수급자 상세정보 End-->
 						</div>		
 					</div>				
 				</div>						
