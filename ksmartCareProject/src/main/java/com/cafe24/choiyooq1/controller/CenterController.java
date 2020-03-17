@@ -11,7 +11,8 @@ import com.cafe24.choiyooq1.service.CenterService;
 @Controller
 public class CenterController {
 	
-	@Autowired CenterService centerService;
+	@Autowired 
+	private CenterService centerService;
 	
 	//센터가입 폼 불러오기
 	@GetMapping("/center/centerInsert")	
@@ -22,6 +23,10 @@ public class CenterController {
 	@PostMapping("/center/centerInsert")
 	public String centerInsert(Center center) {
 		System.out.println(center.toString());
+		int result = centerService.centerInsert(center);
+		 if(result >0) {
+			 return "/center/centerInsert";
+		 }
 		return null;
 	}
 	
