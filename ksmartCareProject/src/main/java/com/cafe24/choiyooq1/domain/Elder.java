@@ -24,6 +24,7 @@ public class Elder {
 	private String elderRemarks;
 	private String elderGroups;
 	private int benefitMaxCost;
+	
 	public String getElderId() {
 		return elderId;
 	}

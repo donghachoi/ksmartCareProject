@@ -69,10 +69,7 @@
 						}
 				});
 			});
-			
 			//년도와 달로 수가값 가져옴
-			
-			
 			
 			//직원 분류해서 보여줌
 			$('.serviceMenu').on("click", function(){
@@ -129,8 +126,8 @@
 	</script>		
 </th:block>
 		
-<th:block layout:fragment="customContents">
-	 <header class="head">
+<th:block layout:fragment="customContents" >
+	 <header class="head" >
 		<div class="main-bar">
 			<h3>
 				<i class="fa fa-calendar">&nbsp; 방문일정등록</i>
@@ -320,7 +317,7 @@
 	
 			<!-- 일정 등록 폼 -->
 	        <!-- 일정 추가 MODAL -->
-	        <div class="modal fade" tabindex="-1" role="dialog" id="eventModal">
+	        <div class="modal fade" tabindex="-1" role="dialog" id="eventModal" >
 	            <div class="modal-dialog" role="document">
 	                <div class="modal-content">
 	                    <div class="modal-header">
@@ -399,6 +396,7 @@
 	        </div><!-- /.modal -->
 			<!-- /일정 등록 폼 -->
  		</div>
+ 		<!--
 	        <div class="panel panel-default">
 	
 	            <div class="panel-heading"  >
@@ -406,12 +404,12 @@
 	            </div>
 
 	        </div>
+	        -->
 	        <!-- /.filter panel -->
 	    </div>
 	    <!-- /.container -->
 
 		<!-- /방문등록  -->
-
 	<!-- /.outer -->
 </th:block>
 
@@ -454,9 +452,7 @@
 	<script src="/assets/js/core.js"></script>
 	<!-- Metis demo scripts -->
 	<script src="/assets/js/app.js"></script>
-	
 <!-- 	<script src="/assets/lib/metismenu/table_tab.js"></script> -->
-
 	<script>
 		$(function() {
 			//Metis.MetisCalendar();

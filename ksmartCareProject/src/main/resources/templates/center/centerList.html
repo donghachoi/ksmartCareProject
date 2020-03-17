@@ -59,112 +59,158 @@
 		<div id="content">
 			<div class="outer">
 				<div class="inner bg-light lter">
-					<!-- 센터 리스트 테이블 시작  -->
-					<div class="row">
-						<div class="col-lg-12 ui-sortable">
-							<div class="box ui-sortable-handle">
-								<header>
-									<div class="icons"><i class="fa fa-table"></i>
-									</div>
-							        <h5>Dynamic Table</h5>
-							     </header>
-							     <div id="collapse4" class="body">
-									<div class="row">
-										<div class="col-sm-12">
-											<table id="dataTable" class="table table-bordered" style="font-size: 10px">
-												<thead>
-													<tr role="row">
-														<th>번호</th>
-												        <th>장기요양기관번호</th>
-												        <th>센터명</th>
-												        <th>아이디</th>
-												        <th>비밀번호</th>
-												        <th>센터담당자<br>이름</th>
-												        <th>담당자<br> 전화번호</th>
-												        <th>센터<br> 전화번호</th>
-												        <th>센터 <br>지역구분</th>
-												        <th>센터 상세주소</th>
-												        <th>서비스 <br>시작일</th>
-												        <th>서비스<br> 종료일</th>
-												        <th>서비스 <br>이용상태</th>
-												        <th>사업자<br>등록번호</th>
-												        <th>등록번호상<br>사업자이름</th>												                 
-													</tr>
-												</thead>
-												<tbody>
-													<tr role="row" class="odd">
-														<td>1</td>
-											            <td class="sorting_1">3-41590-00001</td>
-											            <td>전주스마트재가센터</td>
-											            <td>jjsmart1008</td>
-											            <td>jjsmart1008pw</td>
-											            <td>이형열</td>
-											            <td>010-7788-1008</td>
-											            <td>063-717-1008</td>
-											            <td>전북</td>
-											            <td>전주시 덕진구 금암1동 기린대로 446</td>
-											            <td>2020-03-09</td>
-											            <td>2022-03-09</td>
-											            <td>이용중</td>
-											            <td>6458001066</td>
-											            <td>이형열</td>
-											        </tr><tr role="row" class="odd">
-											            <td>2</td>
-											            <td class="sorting_1">3-41590-00002</td>
-											            <td>덕진효사랑재가센터</td>
-											            <td>djnumber1</td>
-											            <td>djnumber1pw</td>
-											            <td>김초록</td>
-											            <td>010-8803-2789</td>
-											            <td>041-404-7889</td>
-											            <td>충남</td>
-											            <td>예산군 삽교읍 청사로 217 엔젤스타워1차 202-1호</td>
-											            <td>2018-07-15</td>
-											            <td>2019-12-31</td>
-											            <td>종료</td>
-											            <td>6458291099</td>
-											            <td>홍승윤</td>
-											        </tr><tr role="row" class="odd">
-											            <td>3</td>
-											            <td class="sorting_1">3-45677-00240</td>
-											            <td>금쪽같은부모님재가센터</td>
-											            <td>goldpa0808</td>
-											            <td>goldpw08</td>
-											            <td>최은희</td>
-											            <td>010-0309-1207</td>
-											            <td>063-221-7211</td>
-											            <td>전북</td>
-											            <td>전주시 덕진구 솔내2길 76 </td>
-											            <td>2019-02-08</td>
-											            <td>2021-02-08</td>
-											            <td>이용중</td>
-											            <td>6485001086</td>
-											            <td>최은희</td>
-											        </tr><tr role="row" class="odd">
-											            <td>4</td>
-											            <td class="sorting_1">3-41578-00153</td>
-											            <td>익산한마음재가복지센터</td>
-											            <td>onemindis</td>
-											            <td>onepw111</td>
-											            <td>정상규</td>
-											            <td>010-3099-0369</td>
-											            <td>063-852-3690</td>
-											            <td>전북</td>
-											            <td>익산시 동서로251 (남중동)</td>
-											            <td>2020-01-01</td>
-											            <td>2020-12-31</td>
-											            <td>이용중</td>
-											            <td>6487631083</td>
-											            <td>이용탁</td>
-											        </tr>
-												</tbody>
-											</table>								                	
-										</div>
-									</div>
-								</div>
+					<div class="col-lg-12 ui-sortable">
+							<div class="box ui-sortable-handle"
+								style="position: relative; left: 0px; top: 0px;">
+				<header>
+					<div class="icons">
+						<i class="fa fa-table"></i>
+					</div>
+					<h5>센터 리스트</h5>
+				</header>
+				<!-- 센터 개략 테이블 Start -->
+				<div id="collapse4" class="body">
+						<div class="row">
+							<div class="col-sm-12">
+								<table id="dataTable" class="table table-bordered table-hover" style="font-size: 10px">
+									<thead>
+										<tr role="row">
+											<th>번호</th>
+											<th>장기요양기관번호</th>
+											<th>센터명</th>
+											<th>아이디</th>
+											<th>센터담당자</th>
+											<th>센터전화번호</th>
+											<th>서비스이용상태</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr role="row" class="odd">
+											<td class="sorting_1">1</td>
+											<td>3-41590-00001</td>
+											<td>전주스마트재가센터</td>
+											<td>jjsmart1008</td>
+											<td>이형열</td>
+											<td>063-717-1008</td>
+											<td>이용중</td>
+										</tr>
+										<tr role="row" class="odd">
+											<td class="sorting_1">2</td>
+											<td>3-41590-00002</td>
+											<td>덕진효사랑재가센터</td>
+											<td>djnumber1</td>
+											<td>김초록</td>
+											<td>041-404-7889</td>
+											<td>종료</td>
+										</tr>
+										<tr role="row" class="odd">
+											<td class="sorting_1">3</td>
+											<td>3-45677-00240</td>
+											<td>금쪽같은부모님재가센터</td>
+											<td>goldpa0808</td>
+											<td>최은희</td>
+											<td>063-221-7211</td>
+											<td>이용중</td>
+										</tr>
+										<tr role="row" class="odd">
+											<td class="sorting_1">4</td>
+											<td>3-41578-00153</td>
+											<td>익산한마음재가복지센터</td>
+											<td>onemindis</td>
+											<td>정상규</td>
+											<td>063-852-3690</td>
+											<td>이용중</td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</div>
+				</div>
+			
+				<!-- 개략 테이블 End -->
+				<!-- 수급자 상세정보 Start -->
+						<div class="col-lg-13 ui-sortable">
+							<div class="box ui-sortable-handle">
+								<header>
+									<div class="icons">
+										<i class="fa fa-table"></i>
+									</div>
+									<h5>센터 상세 정보</h5>
+									<div class="toolbar">
+										<div class="btn-group">
+											<button type="button"  
+													data-toggle="modal" data-target="#myModal"
+													class="btn btn-default btn-sm btn-line"
+													>
+													<span class="ui-button-text">정보수정</span>
+											</button>
+											<button type="button"  
+													data-toggle="modal" data-target="#myModal"
+													class="btn btn-default btn-sm btn-line"
+													>
+																	<span class="ui-button-text">센터삭제</span>
+											</button>
+										<!-- 	<a href="#defaultTable" data-toggle="collapse"
+												class="btn btn-sm btn-default minimize-box"> 
+												<i class="fa fa-angle-up"></i>
+											</a> -->
+										</div>
+									</div>
+								</header>
+								<div id="defaultTable" class="body collapse in">
+									<table class="table responsive-table">
+										<tbody>
+											<tr>
+												<th>장기요양기관번호</th>
+												<td>3-41590-00001</td>
+												<th>센터명</th>
+												<td>전주스마트재가센터</td>
+												<th>아이디</th>
+												<td>jjsmart1008</td>
+											</tr>
+											<tr>
+												<th>비밀번호</th>
+												<td>jjsmart1008pw</td>
+												<th>담당자</th>
+												<td>이형열</td>
+												<th>담당자연락처</th>
+												<td>010-7788-1008</td>
+											</tr>
+											<tr>
+												<th>센터연락처</th>
+												<td>063-717-1008</td>
+												<th>지역구분</th>
+												<td>전북</td>
+												<th>상세주소</th>
+												<td>전주시 덕진구 금암1동 기린대로 446</td>
+											</tr>
+											<tr>
+												<th>서비스시작일</th>
+												<td>2020-03-09</td>
+												<th>서비스종료일</th>
+												<td>2022-03-09</td>
+												<th>서비스이용상태</th>
+												<th>이용중</th>
+											</tr>
+											<tr>
+												<th>사업자등록번호</th>
+												<td>6458001066</td>
+												<th>등록번호상 사업자이름</th>
+												<td>이형열</td>
+												<th>비고</th>
+												<td></td>
+											</tr>
+										</tbody>
+									</table>
+								
+								</div>
+							</div>
+						</div>
+						<!-- 수급자 상세정보 End-->
+					</div>
+				</div>
+			</div>
 					<!-- 센터 리스트 끝  -->
 
 				</div>
