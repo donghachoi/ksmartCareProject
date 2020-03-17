@@ -24,7 +24,8 @@
        <link rel="stylesheet" href="/assets/lib/animate.css/animate.css">
       
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css">
-
+       <!-- datePicker -->
+       <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/a549aa8780dbda16f6cff545aeabc3d71073911e/build/css/bootstrap-datetimepicker.css">
        <script>
            less = {
                env: "development",
@@ -32,6 +33,7 @@
                rootpath: "/assets/"
            };
        </script>
+
        <link rel="stylesheet" href="/assets/css/style-switcher.css">
        <link rel="stylesheet/less" type="text/css" href="/assets/less/theme.less">
        <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.js"></script>
@@ -67,7 +69,7 @@
 				<div id="collapse4" class="body">
 						<div class="row">
 							<div class="col-sm-12">
-								<table id="dataTable" class="table table-bordered table-hover" style="font-size: 10px">
+								<table id="dataTable" class="table table-bordered table-hover" style="font-size: 23px">
 									<thead>
 										<tr role="row">
 											<th>수급자코드</th>
@@ -113,7 +115,7 @@
 										</div>
 									</div>
 								</header>
-								<div id="defaultTable" class="body collapse in">
+								<div id="defaultTable" class="body collapse in" style="font-size: 20px">
 									<table class="table responsive-table">
 										<tbody>
 											<tr>
@@ -408,7 +410,7 @@
 									<div>
 										<label>계약일
 											<div style="margin:0px; display:inline;">
-												<input type="date">
+												<input class="date" type="text">
 											</div>
 										</label>
 									</div>
@@ -420,7 +422,7 @@
 								          <label><input type="radio" name="termYear" value="4" ><span>4년</span></label>
 								        </div>
 								        <div>
-										<input type="date" name="startDate">~<input type="date" name="lastDate">
+										<input class="date"  name="startDate">~<input class="date" name="lastDate">
 										</div>
 									</label>
 									<button class="btn btn-metis-5 btn-xs" style="margin: 0 auto;" >등록하기/수정하기</button>
@@ -459,39 +461,48 @@
             <!-- Metis demo scripts -->
             <script src="/assets/js/app.js"></script>
             <script src="/assets/js/style-switcher.js"></script>
-            
+            <!-- 날짜 입력때문에 추가한거. -->
+			<script src="/assets/lib/jquery/jquery.min.js"></script>
+			<script src="/assets/lib/jquery/jquery-ui.min.js"></script>
+			<!-- 날짜 입력때문에 추가한거. -->
             <!-- 테이블 js -->
 		   	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
 		    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
 		    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
 		    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
 		    <script src="/assets/lib/jquery/jquery.ui.touch-punch.min.js"></script>
+		    <!-- 테이블 js -->
+			<script src="/assets/lib/jquery/datepicker-ko.js"></script>
+		  
     <script>
-      $(function() {
-         $('#dataTable').DataTable({
-            "language": 
-               {
-               "sInfo": " 총_TOTAL_건의 자료 중  _START_번부터~_END_번까지 ",
-               "lengthMenu": "_MENU_ 개씩 보기",
-               "search":         "검색:",
-               "paginate": {
-               "first":      "First",
-               "last":       "Last",
-               "next":       "다음",
-               "previous":   "이전"
-                    }
-            }           
-         });
-      });
-      
-      
+        
       $(document).ready(function(){
+    	  //data table
+    	  $('#dataTable').DataTable({
+              "language": 
+                 {
+                 "sInfo": " 총_TOTAL_건의 자료 중  _START_번부터~_END_번까지 ",
+                 "lengthMenu": "_MENU_ 개씩 보기",
+                 "search":         "검색:",
+                 "paginate": {
+                 "first":      "First",
+                 "last":       "Last",
+                 "next":       "다음",
+                 "previous":   "이전"
+                      }
+              }           
+           });
+    	  
+    	//date클래스에 datepicker 넣기
 			var startDate = $('input[name="startDate"]');
 			var lastDate = $('input[name="lastDate"]');
+			
+			
     	  $('#myModal').on('show.bs.modal', function (e) {
-    		  console.log('hi');
-    		  
     		})
+    		  $( ".date" ).datepicker({
+    	    	});
+    			  console.log('hi'),
     	  
     	  
     	  /* 체크박스 체크된 년도로 날짜 계산하기 */

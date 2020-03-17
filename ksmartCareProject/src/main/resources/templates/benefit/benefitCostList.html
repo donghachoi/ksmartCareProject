@@ -59,9 +59,9 @@
 				<div class="box">
 					<div class="col-lg-12 ui-sortable">
 						<div class="box ui-sortable-handle"
-							style="position: relative; left: 0px; right: 0px; top: 0px;">
+							style="position: relative; left: 0px; right: 0px; top: 0px; font-size: 25px;">
 							
-							<div id="collapse4" class="body">
+							<div id="collapse4" class="body" >
 								<div class="row">
 								<div role="tabpanel">
 									<!-- Nav tabs -->
@@ -82,7 +82,7 @@
 												</div>
 												<h5>수가 리스트</h5>
 											</header> -->
-											<div class="col-sm-11">
+											<div class="col-sm-11" >
 												<table>
 													<tbody>
 													    <tr>
@@ -97,7 +97,7 @@
 													        </td>
 													   	</tr>
 													</tbody>
-														<table id="dataTable" class="table table-bordered table-hover" style="font-size: 10px">
+														<table id="dataTable" class="table table-bordered table-hover" style="font-size: 25px">
 																<thead>
 																	<tr role="row">
 																		<th>서비스종류</th>
@@ -111,10 +111,10 @@
 																<tbody>
 																	<tr th:each="b : ${benefitcost}" role="row" class="odd">
 																		<td th:text="${b.serviceCategory}" class="sorting_1"></td>
-																	    <td th:text="${b.serviceTimeAndType}"></td>
-																	    <td th:text="${b.benefitCostYear}"></td>
-																	    <td th:text="${b.benefitCost}"></td>
-																	    <td th:text="${b.nonBenefitCost}"></td>
+																	    <td th:text="${b.serviceTimeAndType}" style="text-align: right"></td>
+																	    <td th:text="${b.benefitCostYear}" style="text-align: right"></td>
+																	    <td th:text="${b.benefitCost}" class="price" style="text-align: right"></td>
+																	    <td th:text="${b.nonBenefitCost}" class="price" style="text-align: right"></td>
 																	    <td></td>
 																	</tr>
 															</tbody>
@@ -139,22 +139,22 @@
 														        </td>
 														   	</tr>
 														</tbody>
-															<table id="dataTable1" class="table table-bordered table-hover" style="font-size: 10px">
-																	<thead>
-																		<tr role="row">
-																			<th>등급</th>
-																			<th>년도</th>
-																			<th>수가한도액</th>
-																			<th>비고</th>
-																		</tr>
-																	</thead>
-																	<tbody>
-																		<tr th:each="bm : ${benefitMax}" role="row" class="odd">
-																			<td th:text="${bm.serviceLevel}" class="sorting_1"></td>
-																		    <td th:text="${bm.benefitMaxYear}"></td>
-																		    <td th:text="${bm.benefitMaxCost}" class="benefitMaxCost"></td>
-																		    <td></td>
-																		</tr>
+															<table id="dataTable1" class="table table-bordered table-hover" style="font-size: 25px">
+																<thead>
+																	<tr role="row">
+																		<th>등급</th>
+																		<th>년도</th>
+																		<th>수가한도액</th>
+																		<th>비고</th>
+																	</tr>
+																</thead>
+																<tbody>
+																	<tr th:each="bm : ${benefitMax}" role="row" class="odd" style="text-align: right">
+																		<td th:text="${bm.serviceLevel}" ></td>
+																	    <td th:text="${bm.benefitMaxYear}"></td>
+																	    <td th:text="${bm.benefitMaxCost}" class="price"></td>
+																	    <td></td>
+																	</tr>
 																</tbody>
 															</table>
 														</table>
@@ -200,10 +200,17 @@
 		    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
 		    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
     <script>
-
-    function numberFormat(inputNumber) {
-    	   return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    	}
+    
+    //숫자에 콤마넣기.
+    function numberFormat(str) {
+  	   return str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  	}
+    var price = $('.price');
+    for(var i=0;i<price.length;i++){
+    	var str = price.eq(i).text();
+    	price.eq(i).text(numberFormat(str))
+    }
+    
     //셀렉트 박스로 년도별 수가 검색
    	  $.fn.dataTable.ext.search.push(
    			    function( settings, data, dataIndex ) {
@@ -218,7 +225,7 @@
    			    }
    			    
    			);
-    
+    //셀렉박스로 년도별 검색
  	  $.fn.dataTable.ext.search.push(
  			 function( settings, data, dataIndex ) {
 			      var choosYear1 = parseInt( $('#year1').val(), 10 );
@@ -232,6 +239,7 @@
 		    }
  	  );
    	  
+    //테이블 기본 설정
       $(function() {
     	  var table = $('#dataTable').DataTable({
 			"paging" : false,
@@ -266,10 +274,13 @@
 			        }
 			}
          });
-        	  
+    	  //테이블 정렬 
+        table.order([2,'asc']).draw();
+        table1.order([1,'asc']).draw();
+        
+        //연도별 검색
     	  $('#year').change( function() {
     	        table.draw();
-	    		
     	    } );
     	  $('#year1').change( function() {
   	        	table1.draw();
@@ -281,16 +292,7 @@
     		  $("#year1 option:eq(0)").prop("selected", true);
     	  });
     	  
-    	    var benefitMaxCost = $('.benefitMaxCost');
-    	    	
-    	    for(var i=0; i<benefitMaxCost.length; i++){
-    	    	console.log(benefitMaxCost.index(i));
-    	    	/* numberFormat(benefitMaxCost.text()) */
-    	    	
-    	    }
       });
-      
-      
    </script>
 </th:block>
 </html>
