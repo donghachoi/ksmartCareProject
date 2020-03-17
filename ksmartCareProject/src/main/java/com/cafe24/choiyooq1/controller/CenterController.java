@@ -25,9 +25,13 @@ public class CenterController {
 		System.out.println(center.toString());
 		int result = centerService.centerInsert(center);
 		 if(result >0) {
-			 return "/center/centerInsert";
+			 return "/center/centerInsertOk";
 		 }
 		return null;
+	}
+	@GetMapping("/centerInsertok")	
+	public String centerInsertok() {
+		return "center/centerInsertOk";
 	}
 	
 	@GetMapping("/centerlist")
