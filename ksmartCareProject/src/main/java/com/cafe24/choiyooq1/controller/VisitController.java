@@ -86,4 +86,13 @@ public class VisitController {
 		
 		return "/df";
 	}
+    
+    
+    /**
+    @GetMapping("/employee/vemployeecategory")
+    public String vemplyeeCalenderList() {
+    	
+    	return "/visit/emplyeeCalenderList";
+    }
+     */
 }
