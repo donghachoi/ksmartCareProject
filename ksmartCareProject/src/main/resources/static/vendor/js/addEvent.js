@@ -14,7 +14,7 @@ var cname =  $('#cname');
  */
 
 var modalTitle = $('.modal-title');
-var cname =  $('#cname');
+var cname =  $('input[name=cname]');
 var yoyangBathNonBenefit = $('#yoyangBathNonBenefit');
 var employeeId = $('#employeeId');
 var editStart = $('#edit-start');
@@ -51,6 +51,7 @@ var newEvent = function (start, end, eventType) {
     $('#save-event').unbind();
     $('#save-event').on('click', function () {
 
+    	
         var eventData = {
         	visitServiceCategory : modalTitle.text(),
         	start: editStart.val(),

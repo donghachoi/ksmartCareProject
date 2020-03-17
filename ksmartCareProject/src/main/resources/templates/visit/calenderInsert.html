@@ -20,7 +20,7 @@
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css">
 		
-   <link rel="stylesheet" href="/assets/css/table_tab.css">			
+<!--    <link rel="stylesheet" href="/assets/css/table_tab.css">			 -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- <script src="/vendor/js/visit.js"></script> -->
 	<script th:inline="javascript">
@@ -77,7 +77,9 @@
 			//직원 분류해서 보여줌
 			$('.serviceMenu').on("click", function(){
 				
+				//요양, 목욕, 간호
 				var empcategory = $(this).attr('empcategory');
+				//인지 활동, 차안목욕 
 				var empservice = $(this).attr('empservice');
 				
 				$.ajax({
@@ -175,7 +177,6 @@
 					</div>
 				</div>
 				<!--/수급자 목록-->
-
 				<div class="col-lg-6">
 					<!--수급자 제공급여 요약-->
 					<div class="box">
@@ -372,11 +373,7 @@
 	                                    <option value="#9775fa" style="color:#9775fa;">보라색</option>
 	                                    <option value="#ffa94d" style="color:#ffa94d;">주황색</option>
 	                                    <option value="#74c0fc" style="color:#74c0fc;">파란색</option>
-	                                    <option value="#f06595" style="color:#f06595;">핑크색</option>
-	                                    <option value="#63e6be" style="color:#63e6be;">연두색</option>
 	                                    <option value="#a9e34b" style="color:#a9e34b;">초록색</option>
-	                                    <option value="#4d638c" style="color:#4d638c;">남색</option>
-	                                    <option value="#495057" style="color:#495057;">검정색</option>
 	                                </select>
 	                            </div>
 	                        </div>
@@ -458,13 +455,14 @@
 	<!-- Metis demo scripts -->
 	<script src="/assets/js/app.js"></script>
 	
-	<script src="/assets/lib/metismenu/table_tab.js"></script>
+<!-- 	<script src="/assets/lib/metismenu/table_tab.js"></script> -->
 
 	<script>
 		$(function() {
 			//Metis.MetisCalendar();
 			Metis.MetisTable();
 			//Metis.metisSortable();
+			
 		});
 	</script>
 	<script src="/assets/js/style-switcher.js"></script>
