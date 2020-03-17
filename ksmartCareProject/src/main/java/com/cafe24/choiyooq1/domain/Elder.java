@@ -24,6 +24,7 @@ public class Elder {
 	private String elderRemarks;
 	private String elderGroups;
 	private int benefitMaxCost;
+	
 	public String getElderId() {
 		return elderId;
 	}
@@ -149,6 +150,7 @@ public class Elder {
 	}
 	public void setElderGroups(String elderGroups) {
 		this.elderGroups = elderGroups;
+
 	}
 	public int getBenefitMaxCost() {
 		return benefitMaxCost;
@@ -156,6 +158,7 @@ public class Elder {
 	public void setBenefitMaxCost(int benefitMaxCost) {
 		this.benefitMaxCost = benefitMaxCost;
 	}
+
 	@Override
 	public String toString() {
 		return "Elder [elderId=" + elderId + ", elderName=" + elderName + ", centerCode=" + centerCode + ", centerName="

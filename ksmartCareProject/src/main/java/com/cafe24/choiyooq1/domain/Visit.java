@@ -40,12 +40,7 @@ public class Visit {
 	public void setServiceCategoryDetail(String serviceCategoryDetail) {
 		this.serviceCategoryDetail = serviceCategoryDetail;
 	}
-	public String getYoyang_bath_non_benefit() {
-		return yoyangBathNonBenefit;
-	}
-	public void setYoyang_bath_non_benefit(String yoyangBathNonBenefit) {
-		this.yoyangBathNonBenefit = yoyangBathNonBenefit;
-	}
+
 	public String getVisitCode() {
 		return visitCode;
 	}
