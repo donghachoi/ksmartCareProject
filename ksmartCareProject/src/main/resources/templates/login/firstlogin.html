@@ -53,21 +53,30 @@
     	<hr>
     <div class="tab-content">
         <div id="login" class="tab-pane active">
+        	<div class="form-group"> <h4>테스트용 아이디</h4>
+	        	<label><input type="radio" name="type" value="nomal">센터 사용중</label>
+	        	<label><input type="radio" name="type" value="ended">센터 종료</label>
+	        	<label><input type="radio" name="type" value="elder">수급자</label>
+	        	<label><input type="radio" name="type" value="guardian">보호자</label>
+        	</div>
             <form action="/login" method="Post">
                 <p class="text-muted text-center">
                     	장기요양기관번호와 아이디, <br>
                     	비밀번호를 입력해주세요
                 </p>
-                <input type="text" placeholder="장기요양기관번호(예:3-41590-00000)" class="form-control top" name="centerCode">
+                <input type="text" placeholder="장기요양기관번호(예:3-41590-00000)" class="form-control top" name="centerCode" id="centerCode">
                 <br>
-                <input type="text" placeholder="아이디" class="form-control top" name="centerId">
-                <input type="password" placeholder="비밀번호" class="form-control bottom" name="centerPw">
+                <input type="text" placeholder="아이디" class="form-control top" name="centerId" id="id" >
+                <input type="password" placeholder="비밀번호" class="form-control bottom" name="centerPw" id="pw">
                 <div class="checkbox">
+                <th:block>
+               	<label style="color: red;" id="wrong" th:text="${result ne null}? ${result}:''" ></label>
+                </th:block>
 				  <label>
-				    <input type="checkbox"> 아이디 기억하기
+				    <input type="checkbox" > 아이디 기억하기
 				  </label>
 				</div>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
+                <button id="loginBtn"class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
             </form>
         </div>
         <div id="forgot" class="tab-pane">
@@ -110,6 +119,7 @@
     <script type="text/javascript">
         (function($) {
             $(document).ready(function() {
+            	
                 $('.list-inline li > a').click(function() {
                     var activeForm = $(this).attr('href') + ' > form';
                     //console.log(activeForm);
@@ -119,6 +129,46 @@
                         $(activeForm).removeClass('animated fadeIn');
                     }, 1000);
                 });
+                
+                //공백 유효성 검사
+              	$('#loginBtn').click(function(){
+              		$('#wrong').text('')
+	                var centerCode = $('#centerCode').val()
+	                var id = $('#id').val()
+	                var pw = $('#pw').val()
+	                if(centerCode == null || centerCode == ""){
+	                	alert("센터코드를 입력해주세요");
+	                	$('#centerCode').focus();
+	                	return false;
+	                }else if(id == null || id == ""){
+	                	alert("아이디를 입력해주세요");
+	                	$('#id').focus();
+	                	return false;
+	                }else if(pw == null || pw == ""){
+	                	alert("비밀번호를 입력해주세요");
+	                	$('#pw').focus();
+	                	return false;
+	                }
+              	})
+              	
+              	//체크시 아이디 값 변경 
+                $('input[name=type]').change(function(){
+                	$('#centerCode').val('')
+                	$('#id').val('')
+                	$('#pw').val('')
+	              	var type = $('input[name=type]:checked').val();
+	              	if(type == 'nomal'){
+	              		$('#centerCode').val('3-41578-00153');
+	              		$('#id').val('onemindis');
+	              		$('#pw').val('onepw111');
+	              	}else if(type == 'ended'){
+	              		$('#centerCode').val('3-45677-00240');
+	              		$('#id').val('goldpa0808');
+	              		$('#pw').val('goldpw08');
+	              	}
+	              		
+                })
+              	
             });
         })(jQuery);
     </script>

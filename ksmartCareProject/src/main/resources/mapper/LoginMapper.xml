@@ -2,12 +2,9 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="com.cafe24.choiyooq1.mapper.CenterMapper">
+  <mapper namespace="com.cafe24.choiyooq1.mapper.LoginMapper">
 
- 	<!-- //id는 MemberMapper(인터페이스)안에 있는 메서드 이름 -->
-  
 	<resultMap type="com.cafe24.choiyooq1.domain.Center" id="centerMap">
-	  	<result property="centerListNumber" column="@rownum:=@rownum+1"/>
 	  	<result property="centerCode" column="center_code"/>
 	  	<result property="centerName" column="center_name"/>
 	  	<result property="centerId" column="center_id"/>
@@ -23,48 +20,22 @@
 	  	<result property="businessRegistrationNumber" column="business_registration_number"/>
 	  	<result property="employerName" column="employer_name"/>
 	</resultMap>
-	<select id="centerLoginCheck" resultType="java.util.List" resultMap="centerMap">
+	<select id="centerLoginCheck" parameterType="String" resultType="com.cafe24.choiyooq1.domain.Center" resultMap="centerMap">
 		<!-- 센터로그인을 위한 센터 번호와 아이디 비번 쳌 -->
 		SELECT 
 			center_code, 
+			center_name, 
 			center_id, 
 			center_pw, 
 			service_start_date, 
 			service_end_date, 
-			service_status
-		FROM 
+			service_status,
+			center_manager_name
+		FROM
 			center
+		where
+			center_code=#{centerCode}
+		
 	</select>
   
-   	<insert id="centerInsert" parameterType="com.cafe24.choiyooq1.domain.Center">
- 		INSERT INTO center
-			(center_code
-			, center_name
-			, center_id
-			, center_pw
-			, center_manager_name
-			, conter_manager_phone
-			, center_phone
-			, center_local
-			, center_adress
-			, business_registration_number
-			, employer_name)
-		VALUES (#{centerCode}
-				,#{centerName}
-				,#{centerId}
-				,#{centerPw}
-				,#{centerManagerName}
-				,#{conterManagerPhone}
-				,#{centerPhone}
-				,#{centerLocal}
-				,#{centerAdress}
-				,#{businessRegistrationNumber}
-				,#{employerName});
- 	</insert>
-  	<select id="getCenterList" resultType ="com.cafe24.choiyooq1.domain.Center" resultMap="centerMap">
-				SELECT 
-			@rownum:=@rownum+1
-			, center.*
-		FROM center, (SELECT@rownum:=0)TMP;
-	</select>
   </mapper>

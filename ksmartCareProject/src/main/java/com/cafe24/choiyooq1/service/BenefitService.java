@@ -22,7 +22,6 @@ public class BenefitService {
 	}
 	/* 수가 한도액 가져오기 */
 	public List<BenefitMax> getBenefitMax(){
-		
 		return benefitMapper.getBenefitMax();
 	}
 }

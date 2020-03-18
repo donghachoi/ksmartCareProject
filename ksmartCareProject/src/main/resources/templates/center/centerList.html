@@ -6,22 +6,22 @@
 	<head>
 	    
 	    <!-- Bootstrap -->
-	    <link rel="stylesheet" href="assets/lib/bootstrap/css/bootstrap.css">
+	    <link rel="stylesheet" href="/assets/lib/bootstrap/css/bootstrap.css">
 	    
 	    <!-- Font Awesome -->
-	    <link rel="stylesheet" href="assets/lib/font-awesome/css/font-awesome.css">
+	    <link rel="stylesheet" href="/assets/lib/font-awesome/css/font-awesome.css">
 	    
 	    <!-- Metis core stylesheet -->
-	    <link rel="stylesheet" href="assets/css/main.css">
+	    <link rel="stylesheet" href="/assets/css/main.css">
 	    
 	    <!-- metisMenu stylesheet -->
-	    <link rel="stylesheet" href="assets/lib/metismenu/metisMenu.css">
+	    <link rel="stylesheet" href="/assets/lib/metismenu/metisMenu.css">
 	    
 	    <!-- onoffcanvas stylesheet -->
-	    <link rel="stylesheet" href="assets/lib/onoffcanvas/onoffcanvas.css">
+	    <link rel="stylesheet" href="/assets/lib/onoffcanvas/onoffcanvas.css">
 	    
 	    <!-- animate.css stylesheet -->
-	    <link rel="stylesheet" href="assets/lib/animate.css/animate.css">
+	    <link rel="stylesheet" href="/assets/lib/animate.css/animate.css">
 		
 	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css">
 
@@ -33,8 +33,8 @@
 	            rootpath: "/assets/"
 	        };
 	    </script>
-	    <link rel="stylesheet" href="assets/css/style-switcher.css">
-	    <link rel="stylesheet/less" type="text/css" href="assets/less/theme.less">
+	    <link rel="stylesheet" href="/assets/css/style-switcher.css">
+	    <link rel="stylesheet/less" type="text/css" href="/assets/less/theme.less">
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.js"></script>
 	</head>
 </th:block>
@@ -72,57 +72,52 @@
 				<div id="collapse4" class="body">
 						<div class="row">
 							<div class="col-sm-12">
-								<table id="dataTable" class="table table-bordered table-hover" style="font-size: 10px">
-									<thead>
-										<tr role="row">
-											<th>번호</th>
-											<th>장기요양기관번호</th>
-											<th>센터명</th>
-											<th>아이디</th>
-											<th>센터담당자</th>
-											<th>센터전화번호</th>
-											<th>서비스이용상태</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr role="row" class="odd">
-											<td class="sorting_1">1</td>
-											<td>3-41590-00001</td>
-											<td>전주스마트재가센터</td>
-											<td>jjsmart1008</td>
-											<td>이형열</td>
-											<td>063-717-1008</td>
-											<td>이용중</td>
-										</tr>
-										<tr role="row" class="odd">
-											<td class="sorting_1">2</td>
-											<td>3-41590-00002</td>
-											<td>덕진효사랑재가센터</td>
-											<td>djnumber1</td>
-											<td>김초록</td>
-											<td>041-404-7889</td>
-											<td>종료</td>
-										</tr>
-										<tr role="row" class="odd">
-											<td class="sorting_1">3</td>
-											<td>3-45677-00240</td>
-											<td>금쪽같은부모님재가센터</td>
-											<td>goldpa0808</td>
-											<td>최은희</td>
-											<td>063-221-7211</td>
-											<td>이용중</td>
-										</tr>
-										<tr role="row" class="odd">
-											<td class="sorting_1">4</td>
-											<td>3-41578-00153</td>
-											<td>익산한마음재가복지센터</td>
-											<td>onemindis</td>
-											<td>정상규</td>
-											<td>063-852-3690</td>
-											<td>이용중</td>
-										</tr>
-									</tbody>
-								</table>
+								
+								<form th:action="@{/center/centerList}" method="post">
+																		
+									<table id="dataTable" class="table table-bordered table-hover" style="font-size: 10px">
+										<thead>
+											<tr role="row">
+												<th>번호</th>
+												<th>장기요양기관번호</th>
+												<th>센터명</th>
+												<th>아이디</th>
+												<th>센터담당자</th>
+												<th>센터전화번호</th>
+												<th>서비스이용상태</th>
+												<th style="display: none">비밀번호</th>
+												<th style="display: none">담당자전화번호</th>
+												<th style="display: none">센터지역구분</th>
+												<th style="display: none">센터 상세주소</th>
+												<th style="display: none">사업자등록번호</th>
+												<th style="display: none">등록번호상 사업자이름</th>
+												<th style="display: none">서비스시작일</th>
+												<th style="display: none">서비스종료일</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr role="row" class="odd" th:each="L:${centerList}" >
+												
+												<td class="sorting_1" th:text="${L.centerListNumber}" th:centerListNumber="${L.centerListNumber}" ><a th:href="@{/center/centerList(centerCode=${L.centerCode})}"></a></td>
+												<td th:text="${L.centerCode}" th:centerCode="${L.centerCode}"></td>
+												<td th:text="${L.centerName}" th:centerName="${L.centerName}"></td>
+												<td th:text="${L.centerId}" th:centerId="${L.centerId}"></td>
+												<td th:text="${L.centerManagerName}" th:centerManagerName="${L.centerManagerName}"></td>
+												<td th:text="${L.centerPhone}" th:centerPhone="${L.centerPhone}"></td>
+												<td th:text="${L.serviceStatus}" th:serviceStatus="${L.serviceStatus}"></td>
+												<td th:text="${L.centerPw}" th:centerPw="${L.centerPw}" style="display: none"></td>
+												<td th:text="${L.conterManagerPhone}" th:conterManagerPhone="${L.conterManagerPhone}" style="display: none"></td>
+												<td th:text="${L.centerLocal}" th:centerLocal="${L.centerLocal}" style="display: none"></td>
+												<td th:text="${L.centerAdress}" th:centerAdress="${L.centerAdress}" style="display: none"></td>
+												<td th:text="${L.businessRegistrationNumber}" th:businessRegistrationNumber="${L.businessRegistrationNumber}" style="display: none"></td>
+												<td th:text="${L.employerName}" th:employerName="${L.employerName}" style="display: none"></td>
+												<td th:text="${L.serviceStartDate}" th:serviceStartDate="${L.serviceStartDate}" style="display: none"></td>
+												<td th:text="${L.serviceEndDate}" th:serviceEndDate="${L.serviceEndDate}" style="display: none"></td>
+												
+											</tr>
+										</tbody>
+									</table>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -163,41 +158,41 @@
 										<tbody>
 											<tr>
 												<th>장기요양기관번호</th>
-												<td>3-41590-00001</td>
+												<td id="centerCode">3-41590-00001</td>
 												<th>센터명</th>
-												<td>전주스마트재가센터</td>
+												<td id="centerName">전주스마트재가센터</td>
 												<th>아이디</th>
-												<td>jjsmart1008</td>
+												<td id="centerId">jjsmart1008</td>
 											</tr>
 											<tr>
 												<th>비밀번호</th>
-												<td>jjsmart1008pw</td>
+												<td id="centerPw">jjsmart1008pw</td>
 												<th>담당자</th>
-												<td>이형열</td>
+												<td id="centerManagerName">이형열</td>
 												<th>담당자연락처</th>
-												<td>010-7788-1008</td>
+												<td id="conterManagerPhone">010-7788-1008</td>
 											</tr>
 											<tr>
 												<th>센터연락처</th>
-												<td>063-717-1008</td>
+												<td id="centerPhone">063-717-1008</td>
 												<th>지역구분</th>
-												<td>전북</td>
+												<td id="centerLocal">전북</td>
 												<th>상세주소</th>
-												<td>전주시 덕진구 금암1동 기린대로 446</td>
+												<td id="centerAdress">전주시 덕진구 금암1동 기린대로 446</td>
 											</tr>
 											<tr>
 												<th>서비스시작일</th>
-												<td>2020-03-09</td>
+												<td id="serviceStartDate">2020-03-09</td>
 												<th>서비스종료일</th>
-												<td>2022-03-09</td>
+												<td id="serviceEndDate">2022-03-09</td>
 												<th>서비스이용상태</th>
-												<th>이용중</th>
+												<td id="serviceStatus">이용중</td>
 											</tr>
 											<tr>
 												<th>사업자등록번호</th>
-												<td>6458001066</td>
+												<td id="businessRegistrationNumber">6458001066</td>
 												<th>등록번호상 사업자이름</th>
-												<td>이형열</td>
+												<td id="employerName">>이형열</td>
 												<th>비고</th>
 												<td></td>
 											</tr>
@@ -224,23 +219,23 @@
 </th:block>
 <th:block layout:fragment="customPlugin">
  	<!--jQuery -->
-    <script src="assets/lib/jquery/jquery.js"></script>
+    <script src="/assets/lib/jquery/jquery.js"></script>
     Bootstrap
-	<script src="assets/lib/bootstrap/js/bootstrap.js"></script>
+	<script src="/assets/lib/bootstrap/js/bootstrap.js"></script>
     MetisMenu
-    <script src="assets/lib/metismenu/metisMenu.js"></script>
+    <script src="/assets/lib/metismenu/metisMenu.js"></script>
     onoffcanvas
-    <script src="assets/lib/onoffcanvas/onoffcanvas.js"></script>
+    <script src="/assets/lib/onoffcanvas/onoffcanvas.js"></script>
     Screenfull
-    <script src="assets/lib/screenfull/screenfull.js"></script>
+    <script src="/assets/lib/screenfull/screenfull.js"></script>
     Metis core scripts
-    <script src="assets/js/core.js"></script>
+    <script src="/assets/js/core.js"></script>
     Metis demo scripts
-    <script src="assets/js/app.js"></script>
-    <script src="assets/js/style-switcher.js"></script> -->
+    <script src="/assets/js/app.js"></script>
+    <script src="/assets/js/style-switcher.js"></script> -->
     
     <!--jQuery -->
-    <script src="assets/lib/jquery/jquery.js"></script>
+    <script src="/assets/lib/jquery/jquery.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
@@ -248,22 +243,22 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 
 	<!--Bootstrap -->
-	<script src="assets/lib/bootstrap/js/bootstrap.js"></script>
+	<script src="/assets/lib/bootstrap/js/bootstrap.js"></script>
 	
 	<!-- MetisMenu -->
-	<script src="assets/lib/metismenu/metisMenu.js"></script>
+	<script src="/assets/lib/metismenu/metisMenu.js"></script>
 	
 	<!-- onoffcanvas -->
-	<script src="assets/lib/onoffcanvas/onoffcanvas.js"></script>
+	<script src="/assets/lib/onoffcanvas/onoffcanvas.js"></script>
 	
 	<!-- Screenfull -->
-	<script src="assets/lib/screenfull/screenfull.js"></script>
+	<script src="/assets/lib/screenfull/screenfull.js"></script>
 
 	<!-- Metis core scripts -->
-	<script src="assets/js/core.js"></script>
+	<script src="/assets/js/core.js"></script>
 	
 	<!-- Metis demo scripts -->
-	<script src="assets/js/app.js"></script>
+	<script src="/assets/js/app.js"></script>
 	<script>
 		$(function() {
 			$('#dataTable').DataTable({
@@ -281,9 +276,54 @@
 					
 				}    	    
 			});
+		
 		});
+		
 	</script>
+	
 
-	<script src="assets/js/style-switcher.js"></script>
+												
+	<script>
+	$("#dataTable tr").click(function() {
+
+		  var str = ""
+		
+		  // 현재 클릭된 Row(<tr>)		
+		  var centerListNumber = $(this).find('[centerListNumber]').attr('centerListNumber');
+		  var centerCode = $(this).find('[centerCode]').attr('centerCode');
+		  var centerName = $(this).find('[centerName]').attr('centerName');
+		  var centerId = $(this).find('[centerId]').attr('centerId');
+		  var centerManagerName = $(this).find('[centerManagerName]').attr('centerManagerName');
+		  var centerPhone = $(this).find('[centerPhone]').attr('centerPhone');
+		  var serviceStatus = $(this).find('[serviceStatus]').attr('serviceStatus');
+		  var centerPw = $(this).find('[centerPw]').attr('centerPw');
+		  var conterManagerPhone = $(this).find('[conterManagerPhone]').attr('conterManagerPhone');
+		  var centerLocal = $(this).find('[centerLocal]').attr('centerLocal');
+		  var centerAdress = $(this).find('[centerAdress]').attr('centerAdress');
+		  var businessRegistrationNumber = $(this).find('[businessRegistrationNumber]').attr('businessRegistrationNumber');
+		  var employerName = $(this).find('[employerName]').attr('employerName');
+		  var serviceStartDate = $(this).find('[serviceStartDate]').attr('serviceStartDate');
+		  var serviceEndDate = $(this).find('[serviceEndDate]').attr('serviceEndDate');
+		
+		  
+		  $('#centerCode').text(centerCode);
+		  $('#centerName').text(centerName);
+		  $('#centerId').text(centerId);
+		  $('#centerManagerName').text(centerManagerName);
+		  $('#centerPhone').text(centerPhone);
+		  $('#serviceStatus').text(serviceStatus);
+		  $('#centerPw').text(centerPw);
+		  $('#conterManagerPhone').text(conterManagerPhone);
+		  $('#centerLocal').text(centerLocal);
+		  $('#centerAdress').text(centerAdress);
+		  $('#employerName').text(employerName);
+		  $('#centerCode').text(centerCode); $('#businessRegistrationNumber').text(businessRegistrationNumber);
+		  $('#serviceStartDate').text(serviceStartDate);
+		  $('#serviceEndDate').text(serviceEndDate);
+
+		});
+	
+	</script>
+	<script src="/assets/js/style-switcher.js"></script>
 </th:block>
 </html>
