@@ -1,12 +1,18 @@
 package com.cafe24.choiyooq1.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cafe24.choiyooq1.domain.BenefitCost;
 import com.cafe24.choiyooq1.domain.Elder;
+import com.cafe24.choiyooq1.domain.Employee;
+import com.cafe24.choiyooq1.domain.Visit;
 import com.cafe24.choiyooq1.mapper.VisitMapper;
 
 @Service
@@ -16,8 +22,106 @@ public class VisitService {
 	@Autowired
 	private VisitMapper visitMapper;
 	
-	public List<Elder> elderAllList(String center_code){
-		List<Elder> list = visitMapper.elderAllList(center_code);
+	private int elderMaxCost =0;
+	
+	//수급자 목록 
+	public List<Elder> elderAllList(String centerCode){
+		List<Elder> list = visitMapper.elderAllList(centerCode);
 		return list;
 	}
+	
+	//수가 총 내용및 잔액 금액  
+	public Map<String, Integer> elderBenefitCost(String elder_id, String syear, String smoth, int maxcost){
+	//public List<BenefitCost> elderBenefitCost(String elder_id, String syear, String smoth){
+		
+		List<Visit> list = visitMapper.elderBenefitCost(elder_id, syear, smoth);
+		List<BenefitCost> setlist = new ArrayList<BenefitCost>();
+		int BenefitCost = 0;
+		int NonBenefitCost =0;
+	    int yoyang = 0;
+	    int bath =0;
+	    int nurse =0;
+	    int getYoyang =0;
+	    int getbath =0;
+	    int getnurse =0;
+	    int mgetYoyang =0;
+	    int mgetbath =0;
+	    int mgetnurse =0;
+	    
+		for(int i=0; i< list.size(); i++) {
+			Visit vit= list.get(i);
+			BenefitCost bcost =  visitMapper.serviceCost(syear, vit.getVisitServiceCategory(),  
+					vit.getVisitServiceTime());
+			
+			BenefitCost += bcost.getBenefitCost();
+			NonBenefitCost += bcost.getNonBenefitCost();
+			//setlist.add(bcost);
+			
+			if(bcost.getServiceCategory().contains("요양")) {
+				getYoyang = bcost.getBenefitCost();
+				mgetYoyang = bcost.getNonBenefitCost();
+				yoyang +=1;
+			}else if(bcost.getServiceCategory().contains("목욕")) {
+				getbath = bcost.getBenefitCost();
+				mgetbath = bcost.getNonBenefitCost();
+				bath += 1;
+			}else if(bcost.getServiceCategory().contains("간호")) {
+				getnurse = bcost.getBenefitCost();
+				mgetnurse = bcost.getNonBenefitCost();
+				nurse += 1;
+			}
+		}
+
+		int subCost = maxcost - BenefitCost;
+		getYoyang = getYoyang * yoyang;
+		getbath = getbath * bath;
+		getnurse = getnurse * nurse;
+		mgetYoyang = mgetYoyang *yoyang;
+		mgetbath = mgetbath * bath;
+		mgetnurse = mgetnurse * nurse;
+		int tolnum = yoyang+bath+nurse;
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("yoyang", yoyang);   //요양 총 횟수
+		map.put("bath", bath);       //목욕 총 횟수
+		map.put("nurse", nurse);     //간호 총 횟수
+		map.put("BenefitCost", BenefitCost); //총 급여 비용
+		map.put("NonBenefitCost", NonBenefitCost); //총 본인 부담비용
+		map.put("maxcost", maxcost);     //최대한도 수가 비용
+		map.put("subCost", subCost);     //잔액 
+		map.put("getYoyang", getYoyang);   //요양 수가
+		map.put("getbath", getbath);       //목욕 수가
+		map.put("getnurse", getnurse);     //간호 수가
+		map.put("mgetYoyang", mgetYoyang);  //요양 본인 부담금 
+		map.put("mgetbath", mgetbath);      //목욕 본인 부담금
+		map.put("mgetnurse", mgetnurse);	//간호 본인 부담금 
+		map.put("tolnum", tolnum);          //총 횟수
+		
+		System.out.println(getYoyang);	
+		return map;	
+	}
+	
+	//직원 종류 목록
+	public List<Employee> empCategory(String empcategory, String centercode){
+		
+		List<Employee> list = visitMapper.empCategory(empcategory, centercode);
+		return list;
+	}
+	
+	//일정 등록 
+	public List<Visit> visitInsert(Visit visit){
+		
+		visit.setVisitCode("dfsdfsdfsdf");
+		return null;
+	}
+	
+	
+   //직원 리스트 보여줌 
+	public List<Employee> emplyeeList(String centerCode) {
+		
+		List<Employee> list = visitMapper.emplyeeList(centerCode);
+		// TODO Auto-generated method stub
+		return list;
+	}
+
+
 }

@@ -24,6 +24,7 @@ public class Elder {
 	private String elderRemarks;
 	private String elderGroups;
 	private int benefitMaxCost;
+	
 	public String getElderId() {
 		return elderId;
 	}
@@ -149,6 +150,7 @@ public class Elder {
 	}
 	public void setElderGroups(String elderGroups) {
 		this.elderGroups = elderGroups;
+
 	}
 	public int getBenefitMaxCost() {
 		return benefitMaxCost;
@@ -157,5 +159,17 @@ public class Elder {
 		this.benefitMaxCost = benefitMaxCost;
 	}
 	
-	                 
+	@Override
+	public String toString() {
+		return "Elder [elderId=" + elderId + ", elderName=" + elderName + ", centerCode=" + centerCode + ", centerName="
+				+ centerName + ", elderBirthname=" + elderBirthname + ", elderGender=" + elderGender
+				+ ", elderFinalServiceApprovalLevel=" + elderFinalServiceApprovalLevel + ", elderFinalServiceStatus="
+				+ elderFinalServiceStatus + ", elderDisease=" + elderDisease + ", elderCoinsurance=" + elderCoinsurance
+				+ ", totalVisits=" + totalVisits + ", totalServiceTime=" + totalServiceTime
+				+ ", serviceLocalmanageCode=" + serviceLocalmanageCode + ", serviceLocalmanageName="
+				+ serviceLocalmanageName + ", longTermCareNumver=" + longTermCareNumver + ", longTermCareValidity="
+				+ longTermCareValidity + ", elderPhone=" + elderPhone + ", elderAdressForStay=" + elderAdressForStay
+				+ ", elderAdressForPost=" + elderAdressForPost + ", elderRemarks=" + elderRemarks + ", elderGroups="
+				+ elderGroups + ", benefitMaxCost=" + benefitMaxCost + "]";
+	}
 }

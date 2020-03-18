@@ -15,4 +15,7 @@ public interface CenterMapper {
 	
 	//센터 로그인 체크
 	public List<Center> centerLoginCheck();
+	
+	//센터 리스트 가져오기
+	public List<Center> getCenterList();
 }

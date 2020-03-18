@@ -2,105 +2,144 @@ package com.cafe24.choiyooq1.domain;
 
 public class Visit {
 
-	private String visit_code;
-	private String center_code;
-	private String center_name;
-	private String elder_id;
-	private String elder_name;
-	private String employee_id;
-	private String employee_name;
-	private String visit_plan_date;
-	private String visit_plan_time;
-	private int visit_service_time;
-	private String family_relation;
-	private String visit_service_category;
-	private String monthly_claim_group_code;
+	private String visitCode;
+	private String centerCode;
+	private String centerName;
+	private String elderId;
+	private String elderName;
+	private String employeeId;
+	private String employeeName;
+	private String visitPlanDate;
+	private String visitPlanTime;
+	private String visitServiceTime;
+	private String familyRelation;
+	private String visitServiceCategory;
+	private String monthlyClaimGroupCode;
+	private String backgroundColor;
+	private String description;
+	private String yoyangBathNonBenefit;
+	private String serviceCategoryDetail;
+	private int count;
 	
-	public String getVisit_code() {
-		return visit_code;
+	
+	public int getCount() {
+		return count;
 	}
-	public void setVisit_code(String visit_code) {
-		this.visit_code = visit_code;
+	public void setCount(int count) {
+		this.count = count;
 	}
-	public String getCenter_code() {
-		return center_code;
+	public String getYoyangBathNonBenefit() {
+		return yoyangBathNonBenefit;
 	}
-	public void setCenter_code(String center_code) {
-		this.center_code = center_code;
+	public void setYoyangBathNonBenefit(String yoyangBathNonBenefit) {
+		this.yoyangBathNonBenefit = yoyangBathNonBenefit;
 	}
-	public String getCenter_name() {
-		return center_name;
+	public String getServiceCategoryDetail() {
+		return serviceCategoryDetail;
 	}
-	public void setCenter_name(String center_name) {
-		this.center_name = center_name;
+	public void setServiceCategoryDetail(String serviceCategoryDetail) {
+		this.serviceCategoryDetail = serviceCategoryDetail;
 	}
-	public String getElder_id() {
-		return elder_id;
+
+	public String getVisitCode() {
+		return visitCode;
 	}
-	public void setElder_id(String elder_id) {
-		this.elder_id = elder_id;
+	public void setVisitCode(String visitCode) {
+		this.visitCode = visitCode;
 	}
-	public String getElder_name() {
-		return elder_name;
+	public String getCenterCode() {
+		return centerCode;
 	}
-	public void setElder_name(String elder_name) {
-		this.elder_name = elder_name;
+	public void setCenterCode(String centerCode) {
+		this.centerCode = centerCode;
 	}
-	public String getEmployee_id() {
-		return employee_id;
+	public String getCenterName() {
+		return centerName;
 	}
-	public void setEmployee_id(String employee_id) {
-		this.employee_id = employee_id;
+	public void setCenterName(String centerName) {
+		this.centerName = centerName;
 	}
-	public String getEmployee_name() {
-		return employee_name;
+	public String getElderId() {
+		return elderId;
 	}
-	public void setEmployee_name(String employee_name) {
-		this.employee_name = employee_name;
+	public void setElderId(String elderId) {
+		this.elderId = elderId;
 	}
-	public String getVisit_plan_date() {
-		return visit_plan_date;
+	public String getElderName() {
+		return elderName;
 	}
-	public void setVisit_plan_date(String visit_plan_date) {
-		this.visit_plan_date = visit_plan_date;
+	public void setElderName(String elderName) {
+		this.elderName = elderName;
 	}
-	public String getVisit_plan_time() {
-		return visit_plan_time;
+	public String getEmployeeId() {
+		return employeeId;
 	}
-	public void setVisit_plan_time(String visit_plan_time) {
-		this.visit_plan_time = visit_plan_time;
+	public void setEmployeeId(String employeeId) {
+		this.employeeId = employeeId;
 	}
-	public int getVisit_service_time() {
-		return visit_service_time;
+	public String getEmployeeName() {
+		return employeeName;
 	}
-	public void setVisit_service_time(int visit_service_time) {
-		this.visit_service_time = visit_service_time;
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
 	}
-	public String getFamily_relation() {
-		return family_relation;
+	public String getVisitPlanDate() {
+		return visitPlanDate;
 	}
-	public void setFamily_relation(String family_relation) {
-		this.family_relation = family_relation;
+	public void setVisitPlanDate(String visitPlanDate) {
+		this.visitPlanDate = visitPlanDate;
 	}
-	public String getVisit_service_category() {
-		return visit_service_category;
+	public String getVisitPlanTime() {
+		return visitPlanTime;
 	}
-	public void setVisit_service_category(String visit_service_category) {
-		this.visit_service_category = visit_service_category;
+	public void setVisitPlanTime(String visitPlanTime) {
+		this.visitPlanTime = visitPlanTime;
 	}
-	public String getMonthly_claim_group_code() {
-		return monthly_claim_group_code;
+	public String getVisitServiceTime() {
+		return visitServiceTime;
 	}
-	public void setMonthly_claim_group_code(String monthly_claim_group_code) {
-		this.monthly_claim_group_code = monthly_claim_group_code;
+	public void setVisitServiceTime(String visitServiceTime) {
+		this.visitServiceTime = visitServiceTime;
+	}
+	public String getFamilyRelation() {
+		return familyRelation;
+	}
+	public void setFamilyRelation(String familyRelation) {
+		this.familyRelation = familyRelation;
+	}
+	public String getVisitServiceCategory() {
+		return visitServiceCategory;
+	}
+	public void setVisitServiceCategory(String visitServiceCategory) {
+		this.visitServiceCategory = visitServiceCategory;
+	}
+	public String getMonthlyClaimGroupCode() {
+		return monthlyClaimGroupCode;
+	}
+	public void setMonthlyClaimGroupCode(String monthlyClaimGroupCode) {
+		this.monthlyClaimGroupCode = monthlyClaimGroupCode;
+	}
+	
+	public String getBackgroundColor() {
+		return backgroundColor;
+	}
+	public void setBackgroundColor(String backgroundColor) {
+		this.backgroundColor = backgroundColor;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	@Override
 	public String toString() {
-		return "Visit [visit_code=" + visit_code + ", center_code=" + center_code + ", center_name=" + center_name
-				+ ", elder_id=" + elder_id + ", elder_name=" + elder_name + ", employee_id=" + employee_id
-				+ ", employee_name=" + employee_name + ", visit_plan_date=" + visit_plan_date + ", visit_plan_time="
-				+ visit_plan_time + ", visit_service_time=" + visit_service_time + ", family_relation="
-				+ family_relation + ", visit_service_category=" + visit_service_category + ", monthly_claim_group_code="
-				+ monthly_claim_group_code + "]";
-	}      
+		return "Visit [visitCode=" + visitCode + ", centerCode=" + centerCode + ", centerName=" + centerName
+				+ ", elderId=" + elderId + ", elderName=" + elderName + ", employeeId=" + employeeId + ", employeeName="
+				+ employeeName + ", visitPlanDate=" + visitPlanDate + ", visitPlanTime=" + visitPlanTime
+				+ ", visitServiceTime=" + visitServiceTime + ", familyRelation=" + familyRelation
+				+ ", visitServiceCategory=" + visitServiceCategory + ", monthlyClaimGroupCode=" + monthlyClaimGroupCode
+				+ ", backgroundColor=" + backgroundColor + ", description=" + description + ", yoyangBathNonBenefit="
+				+ yoyangBathNonBenefit + "]";
+	}
 }

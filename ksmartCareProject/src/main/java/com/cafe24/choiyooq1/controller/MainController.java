@@ -80,14 +80,11 @@ public class MainController {
 		return "index";
 	}
 	
-	//로그인
 	@GetMapping("/login")
 	public String firstlogin(@RequestParam(value="result", required = false) String result
 			, Model model) {
 		model.addAttribute("result", result);
 		return "login/firstlogin";
 	}
-	
-	
 
 }

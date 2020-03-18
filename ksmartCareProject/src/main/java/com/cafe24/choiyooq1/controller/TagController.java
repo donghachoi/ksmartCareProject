@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class TagController {
 	@GetMapping("/center/tagList")
 	public String tagList() {
-		return "/tag/tagList";
+		return "tag/tagList";
 	}
 	@GetMapping("/center/tagCompareList")
 	public String tagCompareList() {
-		return "/tag/tagCompareList";
+		return "tag/tagCompareList";
 	}
 }
