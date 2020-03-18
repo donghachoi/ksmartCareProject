@@ -1,6 +1,7 @@
 package com.cafe24.choiyooq1.domain;
 
 public class Center {
+	private int centerListNumber;
 	private String centerCode;
 	private String centerName;
 	private String centerId;
@@ -16,6 +17,13 @@ public class Center {
 	private String businessRegistrationNumber;
 	private String employerName;
 	
+	
+	public int getCenterListNumber() {
+		return centerListNumber;
+	}
+	public void setCenterListNumber(int centerListNumber) {
+		this.centerListNumber = centerListNumber;
+	}
 	public String getCenterCode() {
 		return centerCode;
 	}
@@ -102,13 +110,14 @@ public class Center {
 	}
 	@Override
 	public String toString() {
-		return "Center [centerCode=" + centerCode + ", centerName=" + centerName + ", centerId=" + centerId
-				+ ", centerPw=" + centerPw + ", centerManagerName=" + centerManagerName + ", conterManagerPhone="
-				+ conterManagerPhone + ", centerPhone=" + centerPhone + ", centerLocal=" + centerLocal
-				+ ", centerAdress=" + centerAdress + ", serviceStartDate=" + serviceStartDate + ", serviceEndDate="
-				+ serviceEndDate + ", serviceStatus=" + serviceStatus + ", businessRegistrationNumber="
-				+ businessRegistrationNumber + ", employerName=" + employerName + "]";
+		return "Center [centerListNumber=" + centerListNumber + ", centerCode=" + centerCode + ", centerName="
+				+ centerName + ", centerId=" + centerId + ", centerPw=" + centerPw + ", centerManagerName="
+				+ centerManagerName + ", conterManagerPhone=" + conterManagerPhone + ", centerPhone=" + centerPhone
+				+ ", centerLocal=" + centerLocal + ", centerAdress=" + centerAdress + ", serviceStartDate="
+				+ serviceStartDate + ", serviceEndDate=" + serviceEndDate + ", serviceStatus=" + serviceStatus
+				+ ", businessRegistrationNumber=" + businessRegistrationNumber + ", employerName=" + employerName + "]";
 	}
+	
 	
 	
 	

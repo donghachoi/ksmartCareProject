@@ -7,6 +7,7 @@
  	<!-- //id는 MemberMapper(인터페이스)안에 있는 메서드 이름 -->
   
 	<resultMap type="com.cafe24.choiyooq1.domain.Center" id="centerMap">
+	  	<result property="centerListNumber" column="@rownum:=@rownum+1"/>
 	  	<result property="centerCode" column="center_code"/>
 	  	<result property="centerName" column="center_name"/>
 	  	<result property="centerId" column="center_id"/>
@@ -60,5 +61,10 @@
 				,#{businessRegistrationNumber}
 				,#{employerName});
  	</insert>
-  
+  	<select id="getCenterList" resultType ="com.cafe24.choiyooq1.domain.Center" resultMap="centerMap">
+				SELECT 
+			@rownum:=@rownum+1
+			, center.*
+		FROM center, (SELECT@rownum:=0)TMP;
+	</select>
   </mapper>
