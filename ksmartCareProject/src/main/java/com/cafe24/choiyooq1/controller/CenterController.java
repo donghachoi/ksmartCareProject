@@ -2,6 +2,7 @@ package com.cafe24.choiyooq1.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -29,13 +30,17 @@ public class CenterController {
 		 }
 		return null;
 	}
+
+	//센터가입 정상 진행시 보여질 페이지로 이동
 	@GetMapping("/centerInsertok")	
 	public String centerInsertok() {
 		return "center/centerInsertOk";
 	}
 	
-	@GetMapping("/centerlist")
-	public String centerList() {
+	@GetMapping("/center/centerList")
+	public String centerList(Model model) {
+		model.addAttribute("centerList", centerService.getCenterList());
+		//System.out.println(centerService.getCenterList().toString());
 		return "center/centerList";
 	}
 
