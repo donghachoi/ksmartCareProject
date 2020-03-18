@@ -58,16 +58,16 @@
                     	장기요양기관번호와 아이디, <br>
                     	비밀번호를 입력해주세요
                 </p>
-                <input type="text" placeholder="장기요양기관번호(예:3-41590-00000)" class="form-control top" name="centerCode">
+                <input type="text" placeholder="장기요양기관번호(예:3-41590-00000)" class="form-control top" name="centerCode" id="centerCode" value="3-41578-00153">
                 <br>
-                <input type="text" placeholder="아이디" class="form-control top" name="centerId">
-                <input type="password" placeholder="비밀번호" class="form-control bottom" name="centerPw">
+                <input type="text" placeholder="아이디" class="form-control top" name="centerId" id="centerId" value="onemindis">
+                <input type="password" placeholder="비밀번호" class="form-control bottom" name="centerPw" id="centerPw" value="onepw111">
                 <div class="checkbox">
 				  <label>
 				    <input type="checkbox"> 아이디 기억하기
 				  </label>
 				</div>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
+                <button id="loginBtn"class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
             </form>
         </div>
         <div id="forgot" class="tab-pane">
@@ -119,6 +119,25 @@
                         $(activeForm).removeClass('animated fadeIn');
                     }, 1000);
                 });
+                
+                
+                //공백 유효성 검사
+              	$('#loginBtn').click(function(){
+	                var centerCode = $('#centerCode').val()
+	                var centerId = $('#centerId').val()
+	                var centerPw = $('#centerPw').val()
+	                if(centerCode == null || centerCode == ""){
+	                	alert("센터코드를 입력해주세요");
+	                	$('#centerCode').focus();
+	                }else if(centerId == null || centerId == ""){
+	                	alert("아이디를 입력해주세요");
+	                	$('#centerId').focus();
+	                }else if(centerPw == null || centerPw == ""){
+	                	alert("비밀번호를 입력해주세요");
+	                	$('#centerPw').focus();
+	                }
+              	})
+              	
             });
         })(jQuery);
     </script>

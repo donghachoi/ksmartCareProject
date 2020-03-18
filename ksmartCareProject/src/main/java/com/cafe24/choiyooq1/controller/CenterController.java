@@ -29,6 +29,7 @@ public class CenterController {
 		 }
 		return null;
 	}
+	
 	@GetMapping("/centerInsertok")	
 	public String centerInsertok() {
 		return "center/centerInsertOk";

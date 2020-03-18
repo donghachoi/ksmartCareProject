@@ -71,6 +71,7 @@
                                 <ul class="nav navbar-nav">
                                     <li><a href="#">#Dashboard</a></li>
                                     <li><a href="#">#Tables</a></li>
+                                    
                                     <li class='dropdown '>
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                             #Form Elements <b class="caret"></b>
@@ -82,6 +83,10 @@
                                             <li><a href="#">#Wizard &amp; File Upload</a></li>
                                         </ul>
                                     </li>
+                                    <th:block>
+	                                    <!-- <li><a th:text="${SMANAGERNAME}+님이 로그인중"></a></li> -->
+	                                    <li><a th:text="${SCENTERNAME}+ 에 +${SMANAGERNAME}+님로그인중"></a></li>
+                                    </th:block>
                                 </ul>
                                 <!-- /.nav -->
                             </div>
