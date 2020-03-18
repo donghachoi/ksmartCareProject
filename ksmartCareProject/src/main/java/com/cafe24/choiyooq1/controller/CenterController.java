@@ -30,6 +30,7 @@ public class CenterController {
 		 }
 		return null;
 	}
+
 	//센터가입 정상 진행시 보여질 페이지로 이동
 	@GetMapping("/centerInsertok")	
 	public String centerInsertok() {
