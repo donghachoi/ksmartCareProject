@@ -25,8 +25,8 @@ public class VisitService {
 	private int elderMaxCost =0;
 	
 	//수급자 목록 
-	public List<Elder> elderAllList(String center_code){
-		List<Elder> list = visitMapper.elderAllList(center_code);
+	public List<Elder> elderAllList(String centerCode){
+		List<Elder> list = visitMapper.elderAllList(centerCode);
 		return list;
 	}
 	
@@ -97,12 +97,7 @@ public class VisitService {
 		map.put("tolnum", tolnum);          //총 횟수
 		
 		System.out.println(getYoyang);	
-		return map;
-		
-		//System.out.println(BenefitCost);
-		//System.out.println(NonBenefitCost);
-		//System.out.println(setlist);
-		//return setlist;
+		return map;	
 	}
 	
 	//직원 종류 목록
@@ -118,4 +113,15 @@ public class VisitService {
 		visit.setVisitCode("dfsdfsdfsdf");
 		return null;
 	}
+	
+	
+   //직원 리스트 보여줌 
+	public List<Employee> emplyeeList(String centerCode) {
+		
+		List<Employee> list = visitMapper.emplyeeList(centerCode);
+		// TODO Auto-generated method stub
+		return list;
+	}
+
+
 }

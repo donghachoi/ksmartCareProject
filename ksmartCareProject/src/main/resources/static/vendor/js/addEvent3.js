@@ -26,9 +26,9 @@ var description = $('#editDesc');
 
 var addBtnContainer = $('.modalBtnContainer-addEvent');
 var modifyBtnContainer = $('.modalBtnContainer-modifyEvent');
+var monthlyClaimGroupCode = editStart.substr(0, 7);
 
-//var monthlyClaimGroupCode = editStart.substr(0,7);
-var totelTime = editTime1 +" ~ " +editTime2;
+
 /* ****************
  *  새로운 일정 생성
  * ************** */
@@ -38,9 +38,9 @@ var newEvent = function (start, end, eventType) {
 
     modalTitle.html('');
     editStart.val(start);
-    //editEnd.val(start);
+    editEnd.val(start);
     //editEnd.val(end);
-    serviceCategoryDetail.val(eventType).prop("selected", true);
+    //serviceCategoryDetail.val(eventType).prop("selected", true);
 
     addBtnContainer.show();
     modifyBtnContainer.hide();
@@ -55,40 +55,36 @@ var newEvent = function (start, end, eventType) {
     $('#save-event').on('click', function () {
 
         var eventData = {
-        		
-        _id: employeeId,
-    	//cname: modalTitle.text(),
-        title: editTitle.val(),
-        start: editStart.val(),
-        end: totelTime,
-        description: description.val(),
-        type: editType.val(),
-        username: cname.text() ,
-        backgroundColor: backgroundColor.val(),
-        textColor: '#ffffff',
-        allDay: false
-        
-        /**
         	visitServiceCategory : modalTitle.text(),   //서비스 종류
         	visitPlanDate: editStart.val(),                     //날짜
         	employeeId: employeeId.val(),              //직원아이디
         	employeeName: employeeId.text(),            //직원 이름
-        	editTime1: editTime1.val(),                 //시간
-        	editTime2: editTime1.val(),
+        	editTime1: editTime1.val(),                 //시작시간
+        	editTime2: editTime1.val(),                 //끝 시간 
         	elderName : cname.val(),                    //수급자 이름
         	description : description.val(),            //설명
-        	serviceCategoryDetail : serviceCategoryDetail.val(),  //인지활동 등 상세 서비스
-        	backgroundColor : backgroundColor.val(),      //배경색 
-        	textColor: '#ffffff',
-        	monthlyClaimGroupCode: monthlyClaimGroupCode;    //날짜별 그룹 
-        	type: serviceCategoryDetail.val(),
+        	serviceCategoryDetail : serviceCategoryDetail.val(),  //서비스 디테일
+        	backgroundColor : backgroundColor.val(),      //색깔
+        	monthlyClaimGroupCode: monthlyClaimGroupCode   //날짜그룹
+        	textColor: '#ffffff',                                  
         	allDay : false
-        	
+        	/**
+            //_id: eventId.val(),
+        	cname: modalTitle.text(),
+            title: editTitle.val(),
+            start: editStart.val(),
+            end: editEnd.val(),
+            description: editDesc.val(),
+            type: editType.val(),
+            username: cname.text() ,
+            backgroundColor: editColor.val(),
+            textColor: '#ffffff',
+            allDay: false
             */	
         };
 
         if (eventData.editTime1 > eventData.editTime2) {
-            alert('끝나는 시간이 앞설 수 없습니다.');
+            alert('끝나는 시간보다 앞설 수  없습니다.');
             return false;
         }
 

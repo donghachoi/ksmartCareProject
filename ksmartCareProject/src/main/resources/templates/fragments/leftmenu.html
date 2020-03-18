@@ -85,11 +85,7 @@
 		<a href="javascript:;"> 
 			<i class="fa fa-building"></i>
 
-			<span class="link-title">#보호자관리 3</span> 
-
-
 			<span class="link-title">!보호자관리 3 .박</span> 
-
 
 			<span class="fa arrow"></span>
 		</a>
@@ -98,9 +94,7 @@
 				<a href="/center/guardianInsert"> 
 				<i class="fa fa-angle-right"></i>
 
-				&nbsp;#보호자등록 3-1
-
-				&nbsp;!보호자등록 3-1
+				<span class="link-title">&nbsp;!보호자등록 3-1</span> 
 
 				</a>
 			</li>
@@ -109,9 +103,7 @@
 				<a href="/center/guardianList"> 
 				<i class="fa fa-angle-right"></i>
 
-				&nbsp;#보호자검색 3-2
-
-				&nbsp;!보호자목록 및 관리 3-2
+				<span class="link-title">&nbsp;!보호자목록 및 관리 3-2</span>
 
 				</a>
 			</li>
@@ -122,8 +114,6 @@
 	<li class="">
 		<a href="javascript:;"> 
 			<i class="fa fa-building"></i>
-
-			<span class="link-title">!수급자관리 4</span> 
 
 			<span class="link-title">!수급자관리 4 .최</span> 
 
@@ -154,32 +144,29 @@
 		<li class="">
 		<a href="javascript:;"> 
 			<i class="fa fa-building"></i>
-
-			<span class="link-title">!방문일정관리 9</span> 
-
-			<span class="link-title">#방문일정관리 5 .김</span> 
+			<span class="link-title">!방문일정관리 5 .김</span> 
 
 			<span class="fa arrow"></span>
 		</a>
 			<ul class="collapse">
 
-				<li><a th:href="@{/employee/velderList(center_code=3-41590-00001)}">
+				<li><a th:href="@{/employee/velderList(centerCode=3-41590-00001)}">
 
-				<i class="fa fa-angle-right"></i>&nbsp;!방문일정등록(수급자) 9-1
-
-				<li><a href="@{/employee/vemployeecategory}"> <i
-						class="fa fa-angle-right"></i>&nbsp;#방문일정등록(수급자) 5-1
-
+				<i class="fa fa-angle-right"></i>&nbsp;!방문일정등록(수급자) 5-1
 				</a></li>
-				<li><a href="#"> <i
-						class="fa fa-angle-right"></i>&nbsp;#방문일정검색 수급자별 5-2
+				
+				<li><a th:href="@{/employee/elderCalenderSearch}"> <i
+						class="fa fa-angle-right"></i>&nbsp;!방문일정검색 수급자별 5-2
 				</a></li>
+		
+				<li><a th:href="@{/employee/emplyeeCalenderSearch}"> 
+				<i class="fa fa-angle-right"></i>&nbsp;!방문일정검색 요양보호사별 5-3
+				</a></li>
+				<!--  	
 				<li><a href="#"> <i
-						class="fa fa-angle-right"></i>&nbsp;#방문일정검색 요양보호사별 5-3
+						class="fa fa-angle-right"></i>&nbsp;#방문일정검색 기간별 5-3
 				</a></li>	
-				<li><a href="#"> <i
-						class="fa fa-angle-right"></i>&nbsp;#방문일정검색 기간별 5-4
-				</a></li>								
+			    -->							
 			</ul>
 		</li>	
 	
@@ -214,14 +201,14 @@
 		<li class="">
 			<a href="javascript:;"> 
 				<i class="fa fa-building"></i> 
-				<span class="link-title">&nbsp;#방문일정 &nbsp;대비 &nbsp;예상청구비용 &nbsp; 7 . 김</span>
+				<span class="link-title">&nbsp;!방문일정 &nbsp;대비 &nbsp;예상청구비용 &nbsp; 7 . 김</span>
 				<span class="fa arrow"></span>
 			</a>
 			<ul class="collapse">
 				<li>
-					<a href="#"> 
+					<a th:href="@{/employee/estimatedExpenses}"> 
 						<i class="fa fa-angle-right"></i>
-						&nbsp;#방문일정 대비 예상청구비용 관리 7-1
+						&nbsp;!방문일정 대비 예상청구비용 관리 7-1
 					</a>
 				</li>
 				<li>
@@ -233,7 +220,7 @@
 			</ul>
 		</li>		
 	
-		<!--  태그 결과값 대비 공단 청구액 -->
+		<!--  태그 결과값 대비 공단 청구액 
 		<li class="">
 			<a href="javascript:;"> 
 				<i class="fa fa-building"></i> 
@@ -255,25 +242,25 @@
 				</li>
 			</ul>
 		</li>	
-		
-		<!--  태그 결과값 대비 수급자 청구액 -->
+		-->
+		<!--  태그 결과값 수급자 청구액 -->
 		<li class="">
 			<a href="javascript:;"> 
 				<i class="fa fa-building"></i> 
-				<span class="link-title">#태그 결과값 대비 수급자 청구액  9 .김</span>
+				<span class="link-title">#태그 결과값 대비 수급자 청구액  8 .김</span>
 				<span class="fa arrow"></span>
 			</a>
 			<ul class="collapse">
 				<li>
 					<a href="#"> 
 						<i class="fa fa-angle-right"></i>
-						&nbsp;#태그 결과값 대비 수급자 청구액 관리 9-1
+						&nbsp;#태그 결과값 대비 수급자 청구액 관리 8-1
 					</a>
 				</li>
 				<li>
 					<a href="#"> 
 						<i class="fa fa-angle-right"></i>
-						&nbsp;#태그 결과값 대비 수급자 청구액 검색 9-2
+						&nbsp;#태그 결과값 대비 수급자 청구액 검색 8-2
 					</a>
 				</li>
 			</ul>
@@ -283,20 +270,20 @@
 		<li class="">
 			<a href="javascript:;"> 
 				<i class="fa fa-building"></i> 
-				<span class="link-title">!공단 및 수급자 수금 및 미납금 10 .최</span>
+				<span class="link-title">!공단 및 수급자 수금 및 미납금9 .최</span>
 				<span class="fa arrow"></span>
 			</a>
 			<ul class="collapse">
 				<li>
 					<a href="#"> 
 						<i class="fa fa-angle-right"></i>
-						&nbsp;#공단 및 수급자 수금 및 미납금 관리 10-1
+						&nbsp;#공단 및 수급자 수금 및 미납금 관리 9-1
 					</a>
 				</li>
 				<li>
 					<a href="/center/unpaidList"> 
 						<i class="fa fa-angle-right"></i>
-						&nbsp;!공단 및 수급자 수금 및 미납금 검색 10-2
+						&nbsp;!공단 및 수급자 수금 및 미납금 검색 9-2
 					</a>
 				</li>
 			</ul>
@@ -306,9 +293,7 @@
 			<a href="javascript:;"> 
 				<i class="fa fa-building"></i> 
 
-				<span class="link-title">!직원 급여 관리 15</span>
-
-				<span class="link-title">!직원 급여 관리 11 .최</span>
+				<span class="link-title">!직원 급여 관리 10 .최</span>
 
 				<span class="fa arrow"></span>
 			</a>
@@ -317,22 +302,20 @@
 					<a href="/employee/employeeSalary"> 
 						<i class="fa fa-angle-right"></i>
 
-						&nbsp;!직원 급여  관리 15-1
-
-						&nbsp;!직원 급여  관리 11-1
+						&nbsp;!직원 급여  관리 10-1
 
 					</a>
 				</li>
 				<li>
 					<a href="#"> 
 						<i class="fa fa-angle-right"></i>
-						&nbsp;#직원 급여  확정(등록) 11-2
+						&nbsp;#직원 급여  확정(등록) 10-2
 					</a>
 				</li>
 				<li>
 					<a href="#"> 
 						<i class="fa fa-angle-right"></i>
-						&nbsp;#직원 급여  검색 11-3
+						&nbsp;#직원 급여  검색 10-3
 					</a>
 				</li>				
 			</ul>
@@ -340,7 +323,7 @@
         <li class="">
 			<a href="/benefitcostAndMax">
 	       		<i class="fa fa-building"></i>
-	       		<span class="link-title">&nbsp;!수급 현황 및 리스트12 . 최</span>
+	       		<span class="link-title">&nbsp;!수급 현황 및 리스트11 . 최</span>
 	        </a>
         </li>
 	</ul>

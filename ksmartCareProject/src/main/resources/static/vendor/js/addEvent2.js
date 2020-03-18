@@ -14,21 +14,19 @@ var cname =  $('#cname');
  */
 
 var modalTitle = $('.modal-title');
-var cname =  $('#ycname');
+var cname =  $('input[name=cname]');
 var yoyangBathNonBenefit = $('#yoyangBathNonBenefit');
 var employeeId = $('#employeeId');
-var editStart = $('#visitPlanDate');
-var editTime1 = $('#editTime1');
-var editTime2 = $('#editTime2');
+var editStart = $('#edit-start');
+var editEnd = $('#edit-end');
 var serviceCategoryDetail = $('#serviceCategoryDetail');
-var backgroundColor = $('#backgroundColor');
-var description = $('#editDesc');
+var backgroundColor = $('#edit-color');
+var description = $('#edit-desc');
 
 var addBtnContainer = $('.modalBtnContainer-addEvent');
 var modifyBtnContainer = $('.modalBtnContainer-modifyEvent');
 
-//var monthlyClaimGroupCode = editStart.substr(0,7);
-var totelTime = editTime1 +" ~ " +editTime2;
+
 /* ****************
  *  새로운 일정 생성
  * ************** */
@@ -36,10 +34,9 @@ var newEvent = function (start, end, eventType) {
 
     $("#contextMenu").hide(); //메뉴 숨김
 
-    modalTitle.html('');
+    modalTitle.html('방문일정');
     editStart.val(start);
-    //editEnd.val(start);
-    //editEnd.val(end);
+    editEnd.val(end);
     serviceCategoryDetail.val(eventType).prop("selected", true);
 
     addBtnContainer.show();
@@ -54,41 +51,35 @@ var newEvent = function (start, end, eventType) {
     $('#save-event').unbind();
     $('#save-event').on('click', function () {
 
+    	
         var eventData = {
-        		
-        _id: employeeId,
-    	//cname: modalTitle.text(),
-        title: editTitle.val(),
-        start: editStart.val(),
-        end: totelTime,
-        description: description.val(),
-        type: editType.val(),
-        username: cname.text() ,
-        backgroundColor: backgroundColor.val(),
-        textColor: '#ffffff',
-        allDay: false
-        
-        /**
-        	visitServiceCategory : modalTitle.text(),   //서비스 종류
-        	visitPlanDate: editStart.val(),                     //날짜
-        	employeeId: employeeId.val(),              //직원아이디
-        	employeeName: employeeId.text(),            //직원 이름
-        	editTime1: editTime1.val(),                 //시간
-        	editTime2: editTime1.val(),
-        	elderName : cname.val(),                    //수급자 이름
-        	description : description.val(),            //설명
-        	serviceCategoryDetail : serviceCategoryDetail.val(),  //인지활동 등 상세 서비스
-        	backgroundColor : backgroundColor.val(),      //배경색 
+        	visitServiceCategory : modalTitle.text(),
+        	start: editStart.val(),
+        	end: editEnd.val(),
+        	elderName : cname.val(),
+        	description : description.val(),
+        	serviceCategoryDetail : serviceCategoryDetail.val(),
+        	backgroundColor : backgroundColor.val(),
         	textColor: '#ffffff',
-        	monthlyClaimGroupCode: monthlyClaimGroupCode;    //날짜별 그룹 
         	type: serviceCategoryDetail.val(),
         	allDay : false
-        	
+        	/**
+            //_id: eventId.val(),
+        	cname: modalTitle.text(),
+            title: editTitle.val(),
+            start: editStart.val(),
+            end: editEnd.val(),
+            description: editDesc.val(),
+            type: editType.val(),
+            username: cname.text() ,
+            backgroundColor: editColor.val(),
+            textColor: '#ffffff',
+            allDay: false
             */	
         };
 
-        if (eventData.editTime1 > eventData.editTime2) {
-            alert('끝나는 시간이 앞설 수 없습니다.');
+        if (eventData.start > eventData.end) {
+            alert('끝나는 날짜가 앞설 수 없습니다.');
             return false;
         }
 

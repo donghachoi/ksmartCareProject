@@ -158,7 +158,7 @@ public class Elder {
 	public void setBenefitMaxCost(int benefitMaxCost) {
 		this.benefitMaxCost = benefitMaxCost;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Elder [elderId=" + elderId + ", elderName=" + elderName + ", centerCode=" + centerCode + ", centerName="

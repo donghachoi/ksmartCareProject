@@ -90,7 +90,7 @@
 	     FROM elder AS e INNER JOIN benefit_max AS b 
 	     	ON e.elder_final_service_approval_level = b.service_level 
 	     	AND benefit_max_year= date_format(NOW(), '%Y') 
-	     WHERE center_code= #{center_code}
+	     WHERE center_code= #{centerCode}
     </select>
   
   <!-- 수급자 서비스 내용 -->
@@ -110,10 +110,17 @@
    <!-- 직업별 직원  -->
   	<select id="empCategory" parameterType="String" resultMap="EmployeeMap">
   		SELECT employee_id, employee_name FROM employee 
-  		WHERE center_code=#{center_code} AND employee_category LIKE CONCAT('%', #{empcategory}, '%')
+  		WHERE center_code=#{centerCode} AND employee_category LIKE CONCAT('%', #{empcategory}, '%')
   	</select>
   	
+  	<!-- 직원 목록  -->
   	
+  	<select id="emplyeeList" parameterType="String" resultMap="EmployeeMap">
+  	
+	SELECT  employee_id, employee_name, employee_category, employee_phone, employee_working_status 
+	FROM employee WHERE center_code = #{centerCode}
+		AND employee_category LIKE '%간호%' or employee_category like '%요양%'  	
+  	</select>
   	<!-- 일정 등록 -->
   	<insert id="visitInsert" parameterType="Visit">
   	

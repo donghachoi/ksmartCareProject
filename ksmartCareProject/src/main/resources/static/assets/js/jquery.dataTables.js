@@ -11364,7 +11364,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sEmptyTable": "No data available in table",
+			"sEmptyTable": "결과 값이 없습니다",  //"sEmptyTable": "No data available in table", 
 	
 	
 			/**

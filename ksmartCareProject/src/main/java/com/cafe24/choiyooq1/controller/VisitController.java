@@ -26,11 +26,12 @@ public class VisitController {
 	private VisitService visitservice;
 	
 	//임의에 세션값 
-	private String center_code= "3-41590-00001";
+	private String centerCode= "3-41590-00001";
+	private String canterName ="전주스마트재가센터";
 	
 	//수급자 목록
 	@GetMapping("/employee/velderList")
-	public String velderList(@RequestParam(value="center_code", required = false) String center_code, Model model) {
+	public String velderList(@RequestParam(value="centerCode", required = false) String center_code, Model model) {
 		List<Elder> list = visitservice.elderAllList(center_code);
 		
 		model.addAttribute("list", list);
@@ -74,7 +75,7 @@ public class VisitController {
 	@GetMapping("/employee/vemployeecategory")
 	public @ResponseBody List<Employee> vempCategory(@RequestParam(value="empcategory") String empcategory){
 		
-		List<Employee> list = visitservice.empCategory(center_code, empcategory);
+		List<Employee> list = visitservice.empCategory(centerCode, empcategory);
 		System.out.println(list);
 		return list;
 	}
@@ -83,16 +84,31 @@ public class VisitController {
     @PostMapping(value="/employee/visitInsert", produces = "application/json")
 	public String visitInsert(Visit visit){
 		System.out.println(visit.toString());
+		visitservice.visitInsert(visit);
 		
 		return "/df";
 	}
     
     
-    /**
-    @GetMapping("/employee/vemployeecategory")
-    public String vemplyeeCalenderList() {
+    //방문일정검색(직원별)
+    @GetMapping("/employee/emplyeeCalenderSearch")
+    public String vemplyeeCalenderSearch(Model model) {
     	
-    	return "/visit/emplyeeCalenderList";
+    	List<Employee> list = visitservice.emplyeeList(centerCode);
+    	model.addAttribute("list", list);
+    	
+    	return "visit/emplyeeCalenderSearch";
     }
-     */
+    
+    //방문일정검색(수급자별)
+    @GetMapping("/employee/elderCalenderSearch")
+    public String velderCalenderSearch(Model model) {
+    	
+    	List<Elder> list = visitservice.elderAllList(centerCode);
+    	model.addAttribute("list", list);
+    	
+    	return "visit/elderCalenderSearch";
+    }    
+   
+
 }

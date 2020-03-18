@@ -226,29 +226,28 @@
 	                    <div class="modal-body"> 
 	                        <div class="row">
 	                            <div class="col-xs-12">
-	                                <label class="col-xs-4">비급여 체크</label>
+	                                <label class="col-xs-4" for="edit-allDay">비급여 체크</label>
 	                                <input class='allDayNewEvent' id="yoyangBathNonBenefit" type="checkbox" name="yoyangBathNonBenefit" />
 	                            </div>
 	                        </div>
 	
 	                        <div class="row">
 	                            <div class="col-xs-12">
-	                                <label class="col-xs-4">요양사 선택</label>
+	                                <label class="col-xs-4" for="edit-title">요양사 선택</label>
 	                                <select class="inputModal" name="employeeId" id="employeeId"></select>
 
 	                            </div>
 	                        </div>
 	                        <div class="row">
 	                            <div class="col-xs-12">
-	                                <label class="col-xs-4">날짜</label>
-	                                <input class="inputModal" type="text" name="visitPlanDate" id="visitPlanDate" />
+	                                <label class="col-xs-4" for="edit-start">시작</label>
+	                                <input class="inputModal" type="text" name="visitPlanDate" id="edit-start" />
 	                            </div>
 	                        </div>
 	                        <div class="row">
 	                            <div class="col-xs-12">
-	                                <label class="col-xs-4" for="edit-end">시간</label>
-	                                <input class="inputModal" type="text" name="visitPlanTime" id="editTime1"  style="width:178px;"/> -
-	                                <input class="inputModal" type="text" name="visitPlanTime" id="editTime2" style="width:178px;"/>
+	                                <label class="col-xs-4" for="edit-end">끝</label>
+	                                <input class="inputModal" type="text" name="visitPlanTime" id="edit-end" />
 	                            </div>
 	                        </div>
 	                        <div class="row">
@@ -261,7 +260,7 @@
 	                        <div class="row">
 	                            <div class="col-xs-12">
 	                                <label class="col-xs-4" for="edit-color">색상</label>
-	                                <select class="inputModal" name="backgroundColor" id="backgroundColor">
+	                                <select class="inputModal" name="backgroundColor" id="edit_color">
 	                                    <option value="#D25565" style="color:#D25565;">빨간색</option>
 	                                    <option value="#9775fa" style="color:#9775fa;">보라색</option>
 	                                    <option value="#ffa94d" style="color:#ffa94d;">주황색</option>
@@ -273,8 +272,8 @@
 	                        <div class="row">
 	                            <div class="col-xs-12">
 	                                <label class="col-xs-4" for="description">비고</label>
-	                                <textarea rows="4" cols="50" class="inputModal" name="editDesc"
-	                                    id="editDesc"></textarea>
+	                                <textarea rows="4" cols="50" class="inputModal" name="edit-desc"
+	                                    id="edit-desc"></textarea>
 	                            </div>
 	                        </div>
 	                    </div>
@@ -359,6 +358,12 @@
 			//Metis.MetisCalendar();
 			Metis.MetisTable();
 			//Metis.metisSortable();
+			
+			$('#edit-start').datetimepicker({
+            viewMode: "years',
+            format: 'MM/YYYY'
+			});
+			
 		});
 	</script>
 	<script src="/assets/js/style-switcher.js"></script>
