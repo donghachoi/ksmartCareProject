@@ -46,8 +46,12 @@
                                 </div>
                                 <div class="btn-group">
                                     <a href="/login" data-toggle="tooltip" data-original-title="Login" data-placement="bottom"
-                                       class="btn btn-metis-1 btn-sm">
+                                       class="btn btn-primary btn-sm">
                                         <i class="glyphicon glyphicon-log-in"></i>
+                                    </a>
+                                    <a href="/logout" data-toggle="tooltip" data-original-title="Logout" data-placement="bottom"
+                                       class="btn btn-metis-1 btn-sm">
+                                        <i class="fa fa-power-off"></i>
                                     </a>
                                 </div>
                                 <div class="btn-group">
@@ -84,8 +88,7 @@
                                         </ul>
                                     </li>
                                     <th:block>
-	                                    <!-- <li><a th:text="${SMANAGERNAME}+님이 로그인중"></a></li> -->
-	                                    <li><a th:text="${SCENTERNAME}+ 에 +${SMANAGERNAME}+님로그인중"></a></li>
+	                                    <li><a th:text="${SCENTERNAME}+ '에  '+${SMANAGERNAME}+' 님 '+${SID}+'아이디로 로그인중 '"></a></li>
                                     </th:block>
                                 </ul>
                                 <!-- /.nav -->
