@@ -37,36 +37,9 @@ public class LoginService {
 		return 1;
 	}
 	
-	public Center checkLoginCenter(String centerCode, String centerId, String centerPw) {
+	public Center checkLoginCenter(String centerCode) {
 		
 		center = loginMapper.centerLoginCheck(centerCode);
-		
-		//센터 코드,아이디,비번 체크
-		if(center!=null) {
-			System.out.println("센터코드 일치");
-				if(centerId.equals(center.getCenterId())) {
-					int result = checkDate(centerCode);
-					if(result == 1) {
-					}else {
-						return null;
-					}
-					System.out.println("센터 아이디일치");
-					if(centerPw.equals(center.getCenterPw())) {
-						System.out.println("센터 비번일치 로그인 성공");
-						
-						return center;
-					}else {
-						System.out.println("센터비번 불 일치");
-						return null;
-					}
-				}else {
-					System.out.println("센터아이디 불 일치");
-					return null;
-				}
-			}else {
-				System.out.println("없는 센터코드");
-				return null;
-		}
-		
+		return center;
 	}
 }
