@@ -65,7 +65,7 @@ $(document).ready(function(){
 				    $('#maxCost').text(data.maxcost);
 				    $('#mixCost').text(data.subCost);
 				    $('#ycname').html("<b>"+cname+"</b>");
-				    $('input[name=elder_id]').val(id);
+				    $('input[name=elderId]').val(id);
 				    $('input[name=maxcost]').val(cost);
 
 				    $("#yoyangInt").text(data.yoyang);
@@ -96,6 +96,7 @@ $(document).ready(function(){
 	//직원 분류해서 보여줌
 	$('.serviceMenu').on("click", function(){
 		
+		var elderId = $('input[name=elderId]').val();
 		var cname = $('#ycname').text();
 		
 		if( !cname ){
@@ -140,9 +141,9 @@ $(document).ready(function(){
 				if(empservice == '간호'){
 					$('#serviceCategoryDetail').parent().hide();
 				}				
-				$('input[name=visitServiceCategory]').val(empservice);
-				$('input[name=elderId]').val($('#ycname').text());
-				$('input[name=cname]').val($('#ycname').text());
+//				$('input[name=visitServiceCategory]').val(empservice);
+//				$('input[name=elderId]').val(elderId);
+//				$('input[name=cname]').val($('#ycname').text());
 			},
             error:function(){
                 alert("ajax통신 실패!!!");

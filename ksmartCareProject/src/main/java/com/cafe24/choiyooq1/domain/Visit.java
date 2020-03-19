@@ -140,6 +140,6 @@ public class Visit {
 				+ ", visitServiceTime=" + visitServiceTime + ", familyRelation=" + familyRelation
 				+ ", visitServiceCategory=" + visitServiceCategory + ", monthlyClaimGroupCode=" + monthlyClaimGroupCode
 				+ ", backgroundColor=" + backgroundColor + ", description=" + description + ", yoyangBathNonBenefit="
-				+ yoyangBathNonBenefit + "]";
+				+ yoyangBathNonBenefit + ", serviceCategoryDetail=" + serviceCategoryDetail + ", count=" + count + "]";
 	}
 }

@@ -14,7 +14,7 @@ $("#type_filter").select2({
 });
 
 //datetimepicker
-$("#edit-start").datetimepicker({
+$("#visitPlanDate").datetimepicker({
      format: 'YYYY-MM-DD'     
 });
 

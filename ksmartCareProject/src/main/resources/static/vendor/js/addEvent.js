@@ -1,22 +1,19 @@
 var eventModal = $('#eventModal');
 
-/**
 var modalTitle = $('.modal-title');
-var editAllDay = $('#yoyangBathNonBenefit');
-var editTitle = $('#employeeId');
-var editStart = $('#edit-start');
+var editAllDay = $('#edit-allDay');
+var editTitle = $('#edit-title');
+//var editStart = $('#edit-start');
 var editEnd = $('#edit-end');
-var editType = $('#serviceCategoryDetail');
+var editType = $('#edit-type');
 var editColor = $('#edit-color');
 var editDesc = $('#edit-desc');
-var cname =  $('#cname');
 
- */
+var addBtnContainer = $('.modalBtnContainer-addEvent');
+var modifyBtnContainer = $('.modalBtnContainer-modifyEvent');
 
-var modalTitle = $('.modal-title');
 var cname =  $('#ycname');
 var yoyangBathNonBenefit = $('#yoyangBathNonBenefit');
-var employeeId = $('#employeeId');
 var editStart = $('#visitPlanDate');
 var editTime1 = $('#editTime1');
 var editTime2 = $('#editTime2');
@@ -27,27 +24,33 @@ var description = $('#editDesc');
 var addBtnContainer = $('.modalBtnContainer-addEvent');
 var modifyBtnContainer = $('.modalBtnContainer-modifyEvent');
 
-//var monthlyClaimGroupCode = editStart.substr(0,7);
-var totelTime = editTime1 +" ~ " +editTime2;
+
+
+
+
 /* ****************
  *  새로운 일정 생성
  * ************** */
 var newEvent = function (start, end, eventType) {
-
+	
+	var employeeId = $('#employeeId');
+	var monthlyClaimGroupCode = (editStart.val()).substring(0, 7);
+	var elerId = $('input[name=elderId]').val();
+	var visitPlanTime = (editTime1.val()).concat( " ~ ", editTime2.val());
+	
     $("#contextMenu").hide(); //메뉴 숨김
 
-    modalTitle.html('');
+    //modalTitle.html('');
     editStart.val(start);
-    //editEnd.val(start);
-    //editEnd.val(end);
-    serviceCategoryDetail.val(eventType).prop("selected", true);
+    editEnd.val(end);
+    editType.val(eventType).prop("selected", true);
 
     addBtnContainer.show();
     modifyBtnContainer.hide();
     eventModal.modal('show');
 
     /******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
-    //var eventId = 1 + Math.floor(Math.random() * 1000);
+    var eventId = 1 + Math.floor(Math.random() * 1000);
     /******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
 
     //새로운 일정 저장버튼 클릭
@@ -55,52 +58,43 @@ var newEvent = function (start, end, eventType) {
     $('#save-event').on('click', function () {
 
         var eventData = {
-        		
-        _id: employeeId,
-    	//cname: modalTitle.text(),
-        title: editTitle.val(),
-        start: editStart.val(),
-        end: totelTime,
-        description: description.val(),
-        type: editType.val(),
-        username: cname.text() ,
-        backgroundColor: backgroundColor.val(),
-        textColor: '#ffffff',
-        allDay: false
-        
-        /**
-        	visitServiceCategory : modalTitle.text(),   //서비스 종류
-        	visitPlanDate: editStart.val(),                     //날짜
-        	employeeId: employeeId.val(),              //직원아이디
-        	employeeName: employeeId.text(),            //직원 이름
-        	editTime1: editTime1.val(),                 //시간
-        	editTime2: editTime1.val(),
-        	elderName : cname.val(),                    //수급자 이름
-        	description : description.val(),            //설명
-        	serviceCategoryDetail : serviceCategoryDetail.val(),  //인지활동 등 상세 서비스
-        	backgroundColor : backgroundColor.val(),      //배경색 
-        	textColor: '#ffffff',
-        	monthlyClaimGroupCode: monthlyClaimGroupCode;    //날짜별 그룹 
-        	type: serviceCategoryDetail.val(),
-        	allDay : false
-        	
-            */	
+            _id: eventId,
+            title: editTitle.val(),
+            start: editStart.val(),
+            end: editEnd.val(),
+            //description: editDesc.val(),
+            type: editType.val(),
+            //username: '사나',
+            //backgroundColor: editColor.val(),
+            textColor: '#ffffff',
+			visitServiceCategory : modalTitle.text(),   //서비스 종류
+			visitPlanDate: editStart.val(),                     //날짜
+			employeeId: employeeId.val(),              //직원아이디
+			employeeName: $('#employeeId option:checked').text(),          //직원 이름
+			visitPlanTime : visitPlanTime ,                 //시간
+			elderName : cname.text(),                    //수급자 이름
+			elderId : elerId,
+			description : description.val(),            //설명
+			serviceCategoryDetail : serviceCategoryDetail.val(),  //인지활동 등 상세 서비스
+			backgroundColor : backgroundColor.val(),      //배경색 
+			monthlyClaimGroupCode: monthlyClaimGroupCode ,  //날짜별 그룹            
+            allDay: false
+            
         };
 
-        if (eventData.editTime1 > eventData.editTime2) {
-            alert('끝나는 시간이 앞설 수 없습니다.');
+        if (eventData.start > eventData.end) {
+            alert('끝나는 날짜가 앞설 수 없습니다.');
             return false;
         }
 
-        if (eventData.visitServiceCategory === '') {
+        if (eventData.title === '') {
             alert('일정명은 필수입니다.');
             return false;
         }
 
         var realEndDay;
 
-        /***
-        if (yoyangBathNonBenefit.is(':checked')) {
+        if (editAllDay.is(':checked')) {
             eventData.start = moment(eventData.start).format('YYYY-MM-DD');
             //render시 날짜표기수정
             eventData.end = moment(eventData.end).add(1, 'days').format('YYYY-MM-DD');
@@ -109,23 +103,21 @@ var newEvent = function (start, end, eventType) {
 
             eventData.allDay = true;
         }
-        */
 
         $("#calendar").fullCalendar('renderEvent', eventData, true);
         eventModal.find('input, textarea').val('');
-        yoyangBathNonBenefit.prop('checked', false);
+        editAllDay.prop('checked', false);
         eventModal.modal('hide');
 
-        //새로운 일정 저장
+    //새로운 일정 저장
         $.ajax({
             type: 'post',
             url: '/employee/visitInsert',
-            data: eventData,
-            dataType: 'json',
+            data:  eventData,
             success: function (response) {
                 //DB연동시 중복이벤트 방지를 위한
-                $('#calendar').fullCalendar('removeEvents');
-                $('#calendar').fullCalendar('refetchEvents');
+                //$('#calendar').fullCalendar('removeEvents');
+                //$('#calendar').fullCalendar('refetchEvents');
             }
         });
     });

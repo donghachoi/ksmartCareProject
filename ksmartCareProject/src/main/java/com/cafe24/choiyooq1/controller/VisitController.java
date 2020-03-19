@@ -4,11 +4,14 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -29,6 +32,7 @@ public class VisitController {
 	private String centerCode= "3-41590-00001";
 	private String canterName ="전주스마트재가센터";
 	
+
 	//수급자 목록
 	@GetMapping("/employee/velderList")
 	public String velderList(@RequestParam(value="centerCode", required = false) String center_code, Model model) {
@@ -81,9 +85,11 @@ public class VisitController {
 	}
 
 	//일정등록 
-    @PostMapping(value="/employee/visitInsert", produces = "application/json")
+    @PostMapping("/employee/visitInsert")
 	public String visitInsert(Visit visit){
+    	System.out.println("1111111111111");
 		System.out.println(visit.toString());
+		System.out.println("222222222222");
 		visitservice.visitInsert(visit);
 		
 		return "/df";
