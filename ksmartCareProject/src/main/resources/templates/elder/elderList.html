@@ -117,24 +117,25 @@
 									<table class="table responsive-table">
 										<tbody>
 											<tr>
+												<th>수급자아이디</th>
+												<td id="elderId"></td>
 												<th>수급자명</th>
-												<td>나수급</td>
+												<td id="elderName">나수급</td>
 												<th>성별</th>
-												<td>여 (만 86세)</td>
-												<th>생년월일</th>
-												<td>1933.04.13</td>
+												<td id="elderGender">여</td>
+												
 											</tr>
 											<tr>
 												<th>최초입소일</th>
-												<td>2019.02.08</td>
+												<td>2019.02.08--- 추가해야함.</td>
 												<th>수급현황</th>
-												<td>수급 or 보류</td>
-												<th>생신일</th>
-												<td>1933.04.13(음력)</td>
+												<td id="elderFinalServiceStatus">수급 or 보류</td>
+												<th>생년월일</th>
+												<td id="elderBirthDate">1933.04.13</td>
 											</tr>
 											<tr>
 												<th>본인부담률</th>
-												<td>15%</td>
+												<td id="elderCoinsurance">15%</td>
 												<th>급여한도</th>
 												<td>이번달 급여한도</td>
 												<td></td>
@@ -142,7 +143,7 @@
 											</tr>
 											<tr>
 												<th>인정등급/번호</th>
-												<td>3등급 / L0010162566</td>
+												<td id="elderLevel">3등급 / L0010162566</td>
 												<th>인정기간</th>
 												<td>2019.02.08 ~ 2022.02.07
 												<button type="button"  
@@ -489,7 +490,33 @@
 				data	:	JSON.stringify(map),
 				contentType	:	'application/json',
 				success	:	function(data){
-					console.log(data)
+					
+					var elderId = data.elderId
+					var elderName = data.elderName
+					var elderBirthDate = data.elderBirthDate
+					var elderGender = data.elderGender
+					var elderFinalServiceApprovalLevel = data.elderFinalServiceApprovalLevel
+					var elderFinalServiceStatus = data.elderFinalServiceStatus
+					var elderDisease = data.elderDisease
+					var elderCoinsurance = data.elderCoinsurance
+					var totalVisits = data.totalVisits
+					var totalServiceTime = data.totalServiceTime
+					var serviceLocalmanageCode = data.serviceLocalmanageCode
+					var serviceLocalmanageName = data.serviceLocalmanageName
+					var longTermCareNumver = data.longTermCareNumver
+					var longTermCareValidity = data.longTermCareValidity
+					var elderPhone = data.elderPhone
+					var elderAdressForStay = data.elderAdressForStay
+					var elderAdressForPost = data.elderAdressForPost
+					var elderRemarks = data.elderRemarks
+					var elderGroups = data.elderGroups
+					$('#elderId').text(elderId);
+					$('#elderName').text(elderName);
+					$('#elderGender').text(elderGender);
+					$('#elderFinalServiceStatus').text(elderFinalServiceStatus);
+					$('#elderBirthDate').text(elderBirthDate);
+					
+					
 					
 				},
 				error	:	function(error){

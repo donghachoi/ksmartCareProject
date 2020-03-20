@@ -21,5 +21,5 @@ public interface ElderMapper {
 	public List<Elder> getElderList();
 	
 	/* 수급자 한명의 리스트 */
-	public List<Elder> getOneElderList(String elderId);
+	public Elder getOneElderList(String elderId);
 }

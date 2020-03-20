@@ -1,7 +1,8 @@
 package com.cafe24.choiyooq1.service;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -36,10 +37,10 @@ public class ElderService {
 	}
 	
 	/* 수급자 상세리스트 메서드 */
-	public List<Elder> getOneElderList(String elderId){
-		List<Elder> list = elderMapper.getOneElderList(elderId);
-		
-		return list;
+	public Elder getOneElderList(String elderId){
+		System.out.println(elderId+"<<<<<<<<<<<<<<<<------------------------ elderId");
+		System.out.println("??????????????"+elderMapper.getOneElderList(elderId).toString());
+		return elderMapper.getOneElderList(elderId);
 	}
 	
 	/* 수급자 리스트 메서드 */

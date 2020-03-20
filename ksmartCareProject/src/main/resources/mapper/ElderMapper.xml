@@ -31,8 +31,8 @@
   
   <!-- 수급자 한명의 리스트 -->  
   <select id="getOneElderList" parameterType="String" resultMap="ElderMap">
-  	SELECT 
-  		elder_id, elder_name, center_code, center_name, elder_birthdate, elder_gender, elder_final_service_approval_level, elder_final_service_status, elder_disease, elder_coinsurance, total_visits, total_service_time, service_localmanage_code, service_localmanage_name, long_term_care_numver, long_term_care_validity, elder_phone, elder_adress_for_stay, elder_adress_for_post, elder_remarks, elder_groups
+	SELECT 
+		elder_id, elder_name, center_code, center_name, elder_birthdate, elder_gender, elder_final_service_approval_level, elder_final_service_status, elder_disease, elder_coinsurance, total_visits, total_service_time, service_localmanage_code, service_localmanage_name, long_term_care_numver, long_term_care_validity, elder_phone, elder_adress_for_stay, elder_adress_for_post, elder_remarks, elder_groups
 	FROM 
 		elder
 	WHERE 
