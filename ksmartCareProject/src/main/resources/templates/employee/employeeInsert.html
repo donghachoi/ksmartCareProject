@@ -43,8 +43,7 @@
 </th:block>
 <!-- 페이지 안내  -->
 <th:block layout:fragment="customContents">
-	
-    <body class="  ">
+        <body class="  ">
             <div class="bg-dark dk" id="wrap">
                 <div id="top">
 
@@ -55,7 +54,7 @@
                             <div class="main-bar">
                             	<h3>
 					              <i class="fa fa-pencil"></i>&nbsp;
-					            		센터가입 페이지
+					            		직원등록 페이지
 					          	</h3>
                             </div>
                             <!-- /.main-bar -->
@@ -66,15 +65,13 @@
                 <div id="content">
                     <div class="outer">
                         <div class="inner bg-light lter">
-
-<!--센터 상세정보 입력 시작  -->
 <!--BEGIN INPUT TEXT FIELDS-->
 <div class="row">
 	<div class="col-lg-12">
 	    <div class="box dark">
 	        <header>
 	            <div class="icons"><i class="fa fa-edit"></i></div>
-	            <h5>센터 상세 정보를 입력해주세요</h5>
+	            <h5>직원 상세 정보를 입력해주세요</h5>
 	            
 	            <!-- .toolbar -->
 	            <div class="toolbar">
@@ -82,128 +79,174 @@
 	
 	                  
 	              </nav>
-	            </div>
-	            <!-- /.toolbar -->
+	            </div>            <!-- /.toolbar -->
 	        </header>
 	        <div id="div-4" class="body">
-		
-	            <form class="form-horizontal" th:action="@{/center/centerInsert}" method="post">
+	            <form class="form-horizontal">
 	
-	                <div class="form-group">
-	                    <label for="text2" class="control-label col-lg-4">장기요양기관번호</label>
-	
-	                    <div class="col-lg-3">
-	                        <input type="text" id="text2" placeholder="0-00000-00000" class="form-control" name="centerCode">
-	                    </div>
-	                </div>
-	                <!-- /.form-group -->
-	                <div class="form-group">
-	                    <label for="text1" class="control-label col-lg-4">센터명</label>
-	
-	                    <div class="col-lg-3">
-	                        <input type="text" id="text1"  class="form-control" name="centerName">
-	                    </div>
-	                </div>
-	                <!-- /.form-group -->
 	                <div class="form-group">
 	                    <label for="text1" class="control-label col-lg-4">아이디</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text1"  class="form-control"  name="centerId">
+	                        <input type="text" id="text1"  class="form-control">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
 	                   <div class="form-group">
-	                    <label for="text1" class="control-label col-lg-4">센터담당자 이름</label>
+	                    <label for="text1" class="control-label col-lg-4">이름</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text1" class="form-control" name="centerManagerName">
+	                        <input type="text" id="text1" class="form-control">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
 	
 	                <div class="form-group">
-	                    <label for="pass1" class="control-label col-lg-4" >비밀번호</label>
+	                    <label for="pass1" class="control-label col-lg-4">비밀번호</label>
 	
 	                    <div class="col-lg-3">
 	                        <input class="form-control" type="password" id="pass1"
-	                               data-original-title="Please use your secure password" data-placement="top" name="centerPw" />
-	                    </div>
-	                </div>
-	                <!-- /.form-group -->
-	                	 <div class="form-group">
-	                    <label for="text2" class="control-label col-lg-4" >센터담당자 연락처</label>
-	
-	                    <div class="col-lg-3">
-	                        <input type="text" id="text2" placeholder="000-000-0000" class="form-control" name="conterManagerPhone">
+	                               data-original-title="Please use your secure password" data-placement="top"/>
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
 	                <div class="form-group">
-	                  	<label for="text2" class="control-label col-lg-4" >센터 연락처</label>
-	
-	                    <div class="col-lg-3">
-	                        <input type="text" id="text2" placeholder="000-000-0000" class="form-control" name="centerPhone">
-	                    </div>
-	                </div>
-	                <!-- /.form-group -->
-	                <div class="form-group">
-				    <label class="control-label col-lg-4">센터 지역구분</label>
+				    <label class="control-label col-lg-4">직종선택</label>
 				
 					    <div class="col-lg-3">
-					        <select class="form-control" name="centerLocal" >
-					            <option>::지역선택::</option>
-					            <option value="서울">서울</option>
-					            <option value="부산">부산</option>
-					            <option value="대구">대구</option>
-					            <option value="인천">인천</option>
-					            <option value="광주">광주</option>
-					            <option value="대전">대전</option>
-					            <option value="울산">울산</option>
-					            <option value="세종">세종</option>
-					            <option value="경기">경기</option>
-					            <option value="강원">강원</option>
-					            <option value="충북">충북</option>
-					            <option value="충남">충남</option>
-					            <option value="전북">전북</option>
-					            <option value="전남">전남</option>
-					            <option value="경북">경북</option>
-					            <option value="경남">경남</option>
-					            <option value="제주">제주</option>
+					        <select class="form-control">
+					            <option>요양보호사</option>
+					            <option>사회복지사</option>
+					            <option>간호조무사</option>
+					            <option>사무원</option>
+					            <option>현장지원</option>
+					            <option>책임관리자</option>
+					            <option>기타</option>
 					        </select>
 					    </div>
 					</div>
 					<!-- /.form-group -->
-
+					<div class="form-group">
+	                  		 <label class="control-label col-lg-4">성별</label>
+	                        <div class="col-lg-3">
+	                            <div class="checkbox">
+	                                <label>
+	                                    <input class="uniform" type="radio" name="직원성별선택" value="남" checked>남
+	                                </label>
+	                            </div>
+	                            <!-- /.checkbox -->
+	                            <div class="checkbox">
+	                                <label>
+	                                    <input class="uniform" type="radio" name="직원성별선택" value="여">여
+	                             
+	                                </label>
+	                            </div>
+	                    	</div>
+	                  </div>  
+	                  <!-- /.form-group -->
 	
 	                <div class="form-group">
-	                    <label for="text2" class="control-label col-lg-4">센터 상세 주소</label>
+	                    <label for="text2" class="control-label col-lg-4">주민등록번호</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text2" placeholder="행복시 지금구 여기로1 1-1" class="form-control" name="centerAdress" >
+	                        <input type="text" id="text2" placeholder="123456-0000000" class="form-control">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
-	                
-	                <div class="form-group">
-	                    <label for="text2" class="control-label col-lg-4">사업자등록번호</label>
+					 <div class="form-group">
+	                    <label for="text2" class="control-label col-lg-4">연락처</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text2" placeholder="1110001111" class="form-control" name="businessRegistrationNumber">
+	                        <input type="text" id="text2" placeholder="000-000-0000" class="form-control">
 	                    </div>
 	                </div>
-	                <!-- /.form-group -->				
-
-
+	                <!-- /.form-group -->
+					<!-- BEGIN DATE PICKER -->
+		
+		
+		            
+	                    <div class="form-group">
+	                        <label class="control-label col-lg-4" for="dp3">근무시작일</label>
+	
+	                        <div class="col-lg-3">
+	                            <div class="input-group input-append date" id="dp3" data-date="2020-03-01"
+	                                 data-date-format="yyyy-mm-dd">
+	                                <input class="form-control" type="text" value="2020-03-01" readonly>
+	                                <span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>
+	                            </div>
+	                        </div>
+	                    </div>
+	
+					
+					<!-- END DATE PICKER -->                
 	                <div class="form-group">
-	                    <label for="text1" class="control-label col-lg-4">등록번호상사업자이름</label>
+				    <label class="control-label col-lg-4">근무(재직)상태</label>
+				
+					    <div class="col-lg-3">
+					        <select class="form-control">
+					            <option>재직</option>
+					            <option>휴직</option>
+					            <option>퇴사</option>		   
+					        </select>
+					    </div>
+					</div>
+					<!-- /.form-group -->
+	                 <div class="form-group">
+				    <label class="control-label col-lg-4">근무 형태</label>
+				
+					    <div class="col-lg-3">
+					        <select class="form-control">
+					            <option>전임</option>
+					            <option>계약직</option>
+					            <option>시간제</option>		   
+					        </select>
+					    </div>
+					</div>
+					<!-- /.form-group -->
+					<div class="form-group">
+	                    <label for="text1" class="control-label col-lg-4">직급</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text1"  class="form-control" name="employerName">
+	                        <input type="text" id="text1"  class="form-control">
+	                    </div>
+	                </div>
+	                <!-- /.form-group -->
+					<div class="form-group">
+						<label class="control-label col-lg-4">급여산정방식</label>
+				
+					    <div class="col-lg-3">
+					        <select class="form-control">
+					            <option>월급제</option>
+					            <option>시급제</option>	   
+					        </select>
+					    </div>
+					</div>
+					<!-- /.form-group -->
+	                <div class="form-group">
+	                    <label for="text1" class="control-label col-lg-4">근로계약시급</label>
+	
+	                    <div class="col-lg-3">
+	                        <input type="text" id="text1"  class="form-control">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
 	                <div class="form-group">
+	                    <label for="text1" class="control-label col-lg-4">급여계좌</label>
+	
+	                    <div class="col-lg-3">
+	                        <input type="text" id="text1"  class="form-control">
+	                    </div>
+	                </div>
+	                <!-- /.form-group -->
+	                <div class="form-group">
+	                    <label for="text1" class="control-label col-lg-4">예금주</label>
+	
+	                    <div class="col-lg-3">
+	                        <input type="text" id="text1"  class="form-control">
+	                    </div>
+	                </div>
+	                <!-- /.form-group -->
+		             <div class="form-group">
 	                 <div class="form-actions">
 	                    <label for="text1" class="control-label col-lg-5"></label>
 	
@@ -214,10 +257,9 @@
 	                </div>
 	                </div>
 	                <!-- /.form-group -->
-
-	
 	                <!-- /.row -->
 
+	            </form>
 	        </div>
 	    </div>
 	</div>
@@ -232,8 +274,6 @@
                     </div>
                     <!-- /.outer -->
                 </div>
-                
-	            </form>
                 <!-- /#content -->
 
                     <div id="right" class="onoffcanvas is-right is-fixed bg-light" aria-expanded=false>
@@ -326,12 +366,7 @@
             </div>
             <!-- /.modal -->
             <!-- /#helpModal -->
-
-        </body>
-	
-</th:block>
-<th:block layout:fragment="customPlugin">
-	      <!--jQuery -->
+            <!--jQuery -->
             <script src="/assets/lib/jquery/jquery.js"></script>
 
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
@@ -370,6 +405,10 @@
                 </script>
 
             <script src="/assets/js/style-switcher.js"></script>
+        </body>
+	
+</th:block>
+<th:block layout:fragment="customPlugin">
 	<!--jQuery -->
             <script src="/assets/lib/jquery/jquery.js"></script>
 
