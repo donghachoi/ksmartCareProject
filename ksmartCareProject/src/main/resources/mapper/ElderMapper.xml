@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.cafe24.choiyooq1.mapper.ElderMapper"> <!-- namespace="mapper 인터페이스 경로!!!!" -->
+  
+  <!-- 수급자 resultMap --> 
+  <resultMap type="com.cafe24.choiyooq1.domain.Elder" id="ElderMap">
+  	<result property="elderId" column="elder_id"/>
+  	<result property="elderName" column="elder_name"/>
+  	<result property="centerCode" column="center_code"/>
+  	<result property="centerName" column="center_name"/>
+  	<result property="elderBirthDate" column="elder_birthdate"/>
+  	<result property="elderGender" column="elder_gender"/>
+  	<result property="elderFinalServiceApprovalLevel" column="elder_final_service_approval_level"/>
+  	<result property="elderFinalServiceStatus" column="elder_final_service_status"/>
+  	<result property="elderDisease" column="elder_disease"/>
+  	<result property="elderCoinsurance" column="elder_coinsurance"/>
+  	<result property="totalVisits" column="total_visits"/>
+  	<result property="totalServiceTime" column="total_service_time"/>
+  	<result property="serviceLocalmanageCode" column="service_localmanage_code"/>
+  	<result property="serviceLocalmanageName" column="service_localmanage_name"/>
+  	<result property="longTermCareNumver" column="long_term_care_numver"/>
+  	<result property="longTermCareValidity" column="long_term_care_validity"/>
+  	<result property="elderPhone" column="elder_phone"/>
+  	<result property="elderAdressForStay" column="elder_adress_for_stay"/>
+  	<result property="elderAdressForPost" column="elder_adress_for_post"/>
+  	<result property="elderRemarks" column="elder_remarks"/>
+  	<result property="elderGroups" column="elder_groups"/>
+  </resultMap>
+  
+  <!-- 수급자 한명의 리스트 -->  
+  <select id="getOneElderList" parameterType="String" resultMap="ElderMap">
+  	SELECT 
+  		elder_id, elder_name, center_code, center_name, elder_birthdate, elder_gender, elder_final_service_approval_level, elder_final_service_status, elder_disease, elder_coinsurance, total_visits, total_service_time, service_localmanage_code, service_localmanage_name, long_term_care_numver, long_term_care_validity, elder_phone, elder_adress_for_stay, elder_adress_for_post, elder_remarks, elder_groups
+	FROM 
+		elder
+	WHERE 
+		elder_id = #{elderId};
+  </select>
+  
+  <!-- 수급자 리스트 -->
+  <select id="getElderList" resultMap="ElderMap">
+  	SELECT 
+		elder_id, 
+		elder_name, 
+		elder_birthdate, 
+		elder_gender, 
+		elder_final_service_approval_level, 
+		long_term_care_numver, 
+		long_term_care_validity
+	FROM elder;
+  
+  </select>
+  
+  
+  <!-- 수급자 아이디 체크 --> 
+  <select id="checkElderId" resultMap="ElderMap">
+   SELECT 
+		elder_id
+	FROM 
+		elder;
+  </select>
+  
+  <!-- 수급자 입력 -->
+  <insert id="insertElder" parameterType="Elder">
+  	INSERT INTO elder
+	(elder_id, elder_name, center_code, center_name, elder_birthdate, elder_gender, elder_final_service_approval_level, elder_final_service_status, elder_disease, elder_coinsurance, total_visits, total_service_time, service_localmanage_code, service_localmanage_name, long_term_care_numver, long_term_care_validity, elder_phone, elder_adress_for_stay, elder_adress_for_post, elder_remarks, elder_groups)
+	VALUES (#{elderId},
+			#{elderName}, 
+			#{centerCode}, 
+			#{centerName}, 
+			#{elderBirthDate},
+			#{elderGender}, 
+			#{elderFinalServiceApprovalLevel}, 
+			#{elderFinalServiceStatus}, 
+			#{elderDisease},
+			#{elderCoinsurance}, 
+			#{totalVisits}, 
+			#{totalServiceTime}, 
+			#{serviceLocalmanageCode}, 
+			#{serviceLocalmanageName}, 
+			#{longTermCareNumver}, 
+			#{longTermCareValidity}, 
+			#{elderPhone}, 
+			#{elderAdressForStay}, 
+			#{elderAdressForPost}, 
+			#{elderRemarks}, 
+			#{elderGroups});
+  </insert>
+
+
+  </mapper>

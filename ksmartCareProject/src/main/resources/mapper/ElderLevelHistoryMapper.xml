@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.cafe24.choiyooq1.mapper.ElderMapper"> <!-- namespace="mapper 인터페이스 경로!!!!" -->
+  
+  <!-- 수급자 resultMap --> 
+  <resultMap type="com.cafe24.choiyooq1.domain.ElderLevelHistory" id="ElderLevelHistoryMap">
+  	<result property="elderLevelHistoryCode" column="elder_level_history_code"/>
+  	<result property="elderId" column="elder_id"/>
+  	<result property="elderNmae" column="elder_name"/>
+  	<result property="centerCode" column="center_code"/>
+  	<result property="centerName" column="center_name"/>
+  	<result property="elderServiceApprovalLevel" column="elder_service_approval_level"/>
+  	<result property="elderServiceApprovalCategory" column="elder_service_approval_category"/>
+  	<result property="elderServiceApprovalCategory2" column="elder_service_approval_category2"/>
+  	<result property="elderSercviceApplyDate" column="elder_sercvice_apply_date"/>
+  	<result property="elderServiceApprovalStartDate" column="elder_service_approval_start_date"/>
+  	<result property="elderServiceApprovalEndDate" column="elder_service_approval_end_date"/>
+  	<result property="elderServiceApprovalNumber" column="elder_service_approval_number"/>
+  </resultMap>
+  
+  <!-- 등급변동이력 최초 등록(수급자 등록시) -->
+  <!-- <insert id="insertElder" parameterType="Elder">
+  	INSERT INTO elder
+	(elder_id, elder_name, center_code, center_name, elder_birthdate, elder_gender, elder_final_service_approval_level, elder_final_service_status, elder_disease, elder_coinsurance, total_visits, total_service_time, service_localmanage_code, service_localmanage_name, long_term_care_numver, long_term_care_validity, elder_phone, elder_adress_for_stay, elder_adress_for_post, elder_remarks, elder_groups)
+	VALUES (#{elderId},
+			#{elderName}, 
+			#{centerCode}, 
+			#{centerName}, 
+			#{elderBirthDate},
+			#{elderGender}, 
+			#{elderFinalServiceApprovalLevel}, 
+			#{elderFinalServiceStatus}, 
+			#{elderDisease},
+			#{elderCoinsurance}, 
+			#{totalVisits}, 
+			#{totalServiceTime}, 
+			#{serviceLocalmanageCode}, 
+			#{serviceLocalmanageName}, 
+			#{longTermCareNumver}, 
+			#{longTermCareValidity}, 
+			#{elderPhone}, 
+			#{elderAdressForStay}, 
+			#{elderAdressForPost}, 
+			#{elderRemarks}, 
+			#{elderGroups})
+  </insert> -->
+  </mapper>
