@@ -1,5 +1,12 @@
 package com.cafe24.choiyooq1.controller;
 
+<<<<<<< HEAD
+=======
+
+import java.util.HashMap;
+import java.util.Map;
+
+>>>>>>> refs/heads/master
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -20,7 +27,7 @@ public class MainController {
 	
 	 @Autowired private LoginService loginService;
 	 Center center = new Center();
-	  
+	 Map<String, Object> map = new HashMap<String, Object>();
 	 
 	 //로그아웃 
 	 @GetMapping("/logout")
@@ -37,12 +44,22 @@ public class MainController {
 						 ,HttpServletRequest request
 						 ,RedirectAttributes redirectA
 						 ,Model model) {
+<<<<<<< HEAD
 		 
 		 center = loginService.checkLoginCenter(centerCode);
+=======
+		 map = loginService.checkLoginCenter(centerCode, centerId, centerPw);
+>>>>>>> refs/heads/master
 		 HttpSession session = request.getSession();
+<<<<<<< HEAD
 		 
 		 
+=======
+		 String result = (String) map.get("str");
+		 center = (Center) map.get("center");
+>>>>>>> refs/heads/master
 		 if(center!=null) {
+<<<<<<< HEAD
 			 System.out.println("센터 확인");
 			 if(center.getCenterId().equals(centerId)) {
 				 System.out.println("아이디 확인");
@@ -61,8 +78,22 @@ public class MainController {
 					return "redirect:/login";
 				 }
 			 
+=======
+			 session.setAttribute("SID", center.getCenterId());
+			 session.setAttribute("SCENTERCODE", center.getCenterCode());
+			 session.setAttribute("SCENTERNAME", center.getCenterName());
+			 session.setAttribute("SMANAGERNAME", center.getCenterManagerName());
+			 System.out.println(session.getAttribute("SID"));
+			 System.out.println(session.getAttribute("SCENTERCODE"));
+			 return "index1"; 
+
+>>>>>>> refs/heads/master
 		 }else {
+<<<<<<< HEAD
 			 redirectA.addAttribute("result", "등록된 센터가아닙니다.");	
+=======
+			redirectA.addAttribute("result", result);	
+>>>>>>> refs/heads/master
 			return "redirect:/login";
 		 }
 		 return "index1";

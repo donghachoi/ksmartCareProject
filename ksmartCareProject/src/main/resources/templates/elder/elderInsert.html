@@ -35,87 +35,73 @@
 				            </div>
 				        </header>
 				        <div id="div-1" class="body">
-<!-- form -->
-				            <form class="form-horizontal">
+				            <form class="form-horizontal" action="/employee/elderInsert" method="post">
 				                <div class="form-group">
-				                    <label for="text1" class="control-label col-lg-4">아이디</label>
+				                    <label for="elderId" class="control-label col-lg-4">아이디</label>
 				                    <div class="col-lg-3">
-				                        <input type="text" class="form-control">
+				                        <input type="text" class="form-control" name="elderId" id="elderId">
 				                    </div>
+				                    <button class="btn btn-primary btn-sm" type="button" id="idCheck">아이디 중복</button>
 				                </div>
-				                <!-- /.form-group -->
-				                   <div class="form-group">
-				                    <label for="text1" class="control-label col-lg-4">이름</label>
-				
-				                    <div class="col-lg-3">
-				                        <input type="text" class="form-control">
-				                    </div>
-				                </div>
-				                <!-- /.form-group -->
-				
-				                <div class="form-group">
-				                    <label for="pass1" class="control-label col-lg-4">비밀번호</label>
-				
-				                    <div class="col-lg-3">
-				                        <input class="form-control" type="password" 
-				                               data-original-title="Please use your secure password" data-placement="top"/>
-				                    </div>
+			                   <div class="form-group">
+			                    <label for="elderName" class="control-label col-lg-4">이름</label>
+			
+			                    <div class="col-lg-3">
+			                        <input type="text" class="form-control" name="elderName" id="elderName">
+			                    </div>
 				                </div>
 				                <!-- /.form-group -->
 				                <div class="form-group">
-				             <label class="control-label col-lg-4">등급선택</label>
-				                <div class="col-lg-3">
-				                    <select class="form-control">
-				                        <option value="">등급</option>
-				                        <option value="1">1등급</option>
-				                        <option value="2">2등급</option>
-				                        <option value="3">3등급</option>
-				                        <option value="4">4등급</option>
-				                        <option value="5">5등급</option>
-				                        <option value="등급외">등급외</option>
-				                        <option value="인지지원">인지지원</option>
-				                    </select>
-				                </div>
-				            </div>
+				             		<label for="elderLevel" class="control-label col-lg-4">등급선택</label>
+					                <div class="col-lg-3">
+					                    <select class="form-control" name="elderFinalServiceApprovalLevel" id="elderLevel">
+					                        <option value="">등급</option>
+					                        <option value="1">1등급</option>
+					                        <option value="2">2등급</option>
+					                        <option value="3">3등급</option>
+					                        <option value="4">4등급</option>
+					                        <option value="5">5등급</option>
+					                        <option value="등급외">등급외</option>
+					                        <option value="인지지원">인지지원</option>
+					                    </select>
+					                </div>
+				           		</div>
 				            <!-- /.form-group -->
 				            <div class="form-group">
-				                         <label class="control-label col-lg-4">성별</label>
-				                        <div class="col-lg-3">
-				                            <div class="checkbox">
-				                                <label>
-				                                    <input class="uniform" type="radio" name="수급자성별선택" value="남" checked>남
-				                                </label>
-				                            </div>
-				                            <!-- /.checkbox -->
-				                            <div class="checkbox">
-				                                <label>
-				                                    <input class="uniform" type="radio" name="수급자성별선택" value="여">여
-				                                </label>
-				                            </div>
-				                       </div>
-				                  </div>  
-				                  <!-- /.form-group -->
-				
-				                <div class="form-group">
-				                    <label for="text2" class="control-label col-lg-4">주민등록번호</label>
-				
-				                    <div class="col-lg-3">
-				                        <input type="text" placeholder="000000-0000000" class="form-control">
-				                    </div>
-				                </div>
-				                <!-- /.form-group -->
+				            	<label class="control-label col-lg-4">성별</label>
+				            		<div class="col-lg-3">
+			                            <div class="checkbox">
+			                                <label>
+			                                    <input class="uniform" type="radio" name="elderGender" value="남">남
+			                                </label>
+			                                <label>
+			                                    <input class="uniform" type="radio" name="elderGender" value="여">여
+			                                </label>
+			                            </div>
+			                       </div>
+			                  </div>  
+
+				               <div class="form-group">
+				              		<label for="elderBirthDate" class="control-label col-lg-4">생일</label>
+									<div class="col-lg-3">
+											<div class="input-group input-append">
+											<input class="form-control date" type="text" placeholder="0000-00-00" name="elderBirthDate" id="elderBirthDate" autocomplete="off"> 
+											<span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>
+											</div>
+											
+									</div>
+								</div>
 				             <div class="form-group">
-				                    <label for="text2" class="control-label col-lg-4">연락처(수급자)</label>
-				
+				                    <label for="elderPhone" class="control-label col-lg-4">연락처(수급자)</label>
 				                    <div class="col-lg-3">
-				                        <input type="text" placeholder="000-000-0000" class="form-control">
+				                        <input type="text" placeholder="000-000-0000" class="form-control" name="elderPhone" id="elderPhone">
 				                    </div>
-				                </div>
+			                 </div>
 				                <!-- /.form-group -->
-				                <div class="form-group">
-				             <label class="control-label col-lg-4">질병구분</label>
+			                <div class="form-group">
+				             <label class="control-label col-lg-4" for="elderDisease">질병구분</label>
 				                <div class="col-lg-3">
-				                    <select class="form-control">
+				                    <select class="form-control" name="elderDisease" id="elderDisease">
 				                        <option value="">==선택==</option>
 				                        <option value="치매">치매</option>
 				                        <option value="중풍">중풍</option>
@@ -124,16 +110,14 @@
 				                    </select>
 				                </div>
 				            </div>
-				            <!-- /.form-group -->
-				             <!-- /.form-group -->
-				                <div class="form-group">
-				             <label class="control-label col-lg-4">본인부담률</label>
+			                <div class="form-group">
+				             <label class="control-label col-lg-4" for="elderCoinsurance">본인부담률</label>
 				                <div class="col-lg-3">
-				                    <select class="form-control">
+				                    <select class="form-control" name="elderCoinsurance" id="elderCoinsurance">
 				                        <option value="">==본인부담==</option>
 				                        <option value="15">일반(15%)</option>
 				                        <option value="7.5">의료(7.5%)</option>
-				                        <option value="">기초(0%)</option>
+				                        <option value="0">기초(0%)</option>
 				                        <option value="7.5">감경(7.5%)</option>
 				                        <option value="6">감경60%(6%)</option>
 				                        <option value="9">감경40%(7.5%)</option>
@@ -142,58 +126,76 @@
 				                </div>
 				            </div>
 				            <!-- /.form-group -->
-				                 <div class="form-group">
-				            <label for="text2" class="control-label col-lg-4">보장기관</label>
+			                <div class="form-group">
+				            <label for="serviceLocalmanageCode" class="control-label col-lg-4">보장기관 번호</label>
 				                    <div class="col-lg-3">
-				                        <input type="text" class="form-control">
+				                        <input type="text" class="form-control" name="serviceLocalmanageCode" id="serviceLocalmanageCode" readonly="readonly">
+				                        
 				                    </div>
 										<button type="button" data-toggle="modal"
-											data-target="#myModal" class="btn btn-default btn-defualt btn-line">
+											data-target="#myModal" class="btn btn-primary btn-sm">
 											<span class="ui-button-text">보장기관 검색</span>
 										</button>
-								</div>
+							</div>
+			                <div class="form-group">
+				            <label for="serviceLocalmanageName" class="control-label col-lg-4">보장기관 이름</label>
+				                    <div class="col-lg-3">
+										<input type="text" class="form-control" name="serviceLocalmanageName" id="serviceLocalmanageName" readonly="readonly">
+				                    </div>
+							</div>
 				            <!-- /.form-group -->
 				            <div class="form-group">
-				                    <label for="text1" class="control-label col-lg-4">장기요양인정번호</label>
-				                    <div class="col-lg-3">
-				                        <input type="text" class="form-control">
-				                    </div>
-				                </div>
+			                    <label for="longTermCareNumver" class="control-label col-lg-4">장기요양인정번호</label>
+			                    <div class="col-lg-3">
+			                        <input type="text" class="form-control" name="longTermCareNumver" id="longTermCareNumver">
+			                    </div>
+			                </div>
 				                <!-- /.form-group -->
-				            	<div class="form-group">
-				              		<label class="control-label col-lg-4">장기요양인정유효기간</label>
-									<div class="col-lg-3">
-											<div class="input-group input-append">
-											<input class="form-control date" type="text" placeholder="0000-00-00"> 
-											<span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>
-											</div>
-											~
-											<div class="input-group input-append">
-											<input class="form-control date" type="text" placeholder="0000-00-00"> 
-											<span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>
-											</div>
-									</div>
+			            	<div class="form-group">
+			              		<label for="elderServiceApprovalStartDate" class="control-label col-lg-4">장기요양인정유효기간</label>
+								<div class="col-lg-3">
+										<div class="input-group input-append">
+										<input class="form-control date" type="text" placeholder="0000-00-00" name="elderServiceApprovalStartDate" id="elderServiceApprovalStartDate" autocomplete="off"> 
+										<span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>
+										</div>
+										~
+										<div class="input-group input-append">
+										<input class="form-control date" type="text" placeholder="0000-00-00" name="elderServiceApprovalEndDate" id="elderServiceApprovalEndDate" autocomplete="off"> 
+										<span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>
+										</div>
 								</div>
+							</div>
+							<div class="form-group">
+				                    <label for="elderAdressForStay" class="control-label col-lg-4">주소(거주지)</label>
+				                    <div class="col-lg-3">
+				                        <input type="text" class="form-control" name="elderAdressForStay" id="elderAdressForStay">
+				                    </div>
+			                 </div>
+							<div class="form-group">
+				                    <label for="elderAdressForPost" class="control-label col-lg-4">주소(우편물)</label>
+				                    <div class="col-lg-3">
+				                        <input type="text" class="form-control" name="elderAdressForPost" id="elderAdressForPost">
+				                    </div>
+			                 </div>
 				            <!-- /.form-group -->
 				                <div class="form-group">
-				                    <label for="limiter" class="control-label col-lg-4">기타정보</label>
+				                    <label for="elderRemarks" class="control-label col-lg-4">기타정보</label>
 				
 				                    <div class="col-lg-3">
-				                        <textarea class="form-control"></textarea>
+				                        <textarea class="form-control" name="elderRemarks" id="elderRemarks" wrap="hard"></textarea>
 				                    </div>
 				                </div>
 				                <!-- /.row -->
 								<div class="form-group">
 									<div class="form-actions">
 										<label for="text1" class="control-label col-lg-5"></label>
-
 										<div class="col-lg-3">
-											<input type="submit" value="등록하기" class="btn btn-primary">
+											<input type="submit" value="등록하기" class="btn btn-primary" id="btn">
 										</div>
 									</div>
 								</div>
 								<!-- /.form-group -->
-					<!-- 등급 및 인정기간 관리  Modal -->
+					<!-- 보장기관 검색  Modal -->
 					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" style="text-align: center; margin-top: 150px" >
 					  <div class="modal-dialog modal-lg">
 					    <div class="modal-content">
@@ -202,26 +204,26 @@
 					        <h2 class="modal-title" id="myModalLabel">보장기관 검색</h2>
 					      </div>
 					      <div class="modal-body text-right">
-					      <input class="input-sm" type="text" placeholder="검색"/>
-					      <button class="btn btn-primary btn-sm" type="button" >검색</button>
 								<div class="row">
 									<div id="collapse4" class="col-sm-12">
 										<table id="dataTable"
 											class="table table-bordered table-condensed table-hover table-striped" style="text-align: center;">
 											<thead>
 												<tr>
-													<th>지역</th>
 													<th>보장기관 번호</th>
 													<th>기관명</th>
 													<th>전화번호</th>
+													<th>지역</th>
+													<th>우편번호</th>
 												</tr>
 											</thead>
 											<tbody>
-												<tr class="odd">
-													<td>강원</td>
-													<td>4200000</td>
-													<td>강릉시청</td>
-													<td>640-2320</td>
+												<tr class="odd" th:each="G:${guaranteeingAgency}">
+													<td th:text="${G.guaranteeingAgencyNember}"></td>
+													<td th:text="${G.guaranteeingAgencyName}"></td>
+													<td th:text="${G.guaranteeingAgencyConnectnumber}"></td>
+													<td th:text="${G.guaranteeingAgencyAddress}"></td>
+													<td th:text="${G.guaranteeingAgencyPost}"></td>
 												</tr>
 											</tbody>
 										</table>
@@ -262,26 +264,161 @@
             
             <!-- 날짜 입력때문에 추가한거. -->
 			<link rel="stylesheet" href="/assets/lib/jquery/jquery-ui.min.css" type="text/css" />  
-			<script src="/assets/lib/jquery/jquery.min.js"></script>  
 			<script src="/assets/lib/jquery/jquery-ui.min.js"></script>
 			<script src="/assets/lib/jquery/datepicker-ko.js"></script>
 			<!-- 날짜 입력때문에 추가한거. -->
-<script>
+	        <!-- 테이블 js -->
+		    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+		    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
+		    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
+		    <script src="/assets/lib/jquery/jquery.ui.touch-punch.min.js"></script>
+		    <!-- 테이블 js -->
+			
+			
+<script type="text/javascript">
 
-	//date클래스에 datepicker 넣기
 	$(function() {
+		
+		$("#dataTable tbody tr").click(function(){
+			$("#serviceLocalmanageCode").val($(this).find('td:eq(0)').text())
+			$("#serviceLocalmanageName").val($(this).find('td:eq(1)').text())
+			 
+			 $('#myModal').modal('hide')
+			
+		})
+		
+		/* 아이디 중복체크 */
+		$('#idCheck').click(function(){
+			var map = {};
+			if($('#elderId').val()==""){
+				alert('아이디를 입력해주세요.')
+				$('#elderId').focus();
+			}else{
+				map.Id = $('#elderId').val();
+				 $.ajax({
+					type 	: 	'POST',
+					url		:	'/employee/idCheck',
+					async	:	'true',
+					data	:	JSON.stringify(map),
+					contentType	:	'application/json',
+					success	:	function(data){
+						alert(data)
+						$('#elderId').focus();
+					},
+					error	:	function(error){
+						console.log("error", error)
+					}
+				})  
+			}
+		})
+		
+		function DayCheck(Obj)
+		{
+		    var strValue = Obj.val();
+		    var chk1 = /[0-9]{4}-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])/
+		    /* var chk2 = /^(19|20)\d{2}\/([0][1-9]|1[012])\/(0[1-9]|[12][0-9]|3[01])$/; */
+		    //var chk2 = /^(19|20)\d{2}-([0][1-9]|1[012])-([012][1-9]|3[01])$/;
+		    console.log(strValue);
+		    if (strValue == "")
+		    { // 공백이면 무시
+		        return false;
+		    }
+		    //-------------------------------------------------------------------------------
+		    // 유효성 검사- 입력형식에 맞게 들왔는지 // 예) 2000-1-1, 2000-01-01 2가지 형태 지원
+		    //-------------------------------------------------------------------------------
+		    if (chk1.test(strValue) == false)
+		    { // 유효성 검사에 둘다 성공하지 못했다면
+		    	
+		       return false;
+		    }
+			return true;
+		}
+		
+		
+		
+		//유효성검사
+		$("#btn").click(function(){
+			var day =$('.date');
+			
+			if($("#elderId").val()==null || $("#elderId").val()==""){
+				alert('아이디를 입력해주세요.')
+				$("#elderId").focus();
+				return false;
+			}
+			if($("#elderName").val()==null || $("#elderName").val()==""){
+				alert('이름 입력해주세요.')
+				$("#elderName").focus();
+				return false;
+			}if($('input[name="elderGender"]:checked').val() == undefined){
+				alert('성별을 선택해주세요.')
+				$("input[name='elderGender']").focus();
+				return false;
+			}
+			if($('#elderBirthDate').val()==null || $('#elderBirthDate').val()==""){
+				alert('생일 입력해주세요.')
+				$('#elderBirthDate').focus();
+				return false;
+			}if($('#elderCoinsurance').val()==""){
+				alert('본인부담률을 선택해주세요.')
+				$('#elderCoinsurance').focus();
+				return false;
+			}if($('#serviceLocalmanageCode').val()=="" || $('#serviceLocalmanageName').val()==""){
+				alert('보장기관을 선택해주세요.')
+				$('#myModal').modal('show');
+				return false;
+			}
+			if($('#elderServiceApprovalStartDate').val()==""){
+				alert('장기요양인정유효기간을 선택해주세요.')
+				$('#elderServiceApprovalStartDate').focus();
+				return false;
+			}if($('#elderServiceApprovalEndDate').val()==""){
+				alert('장기요양인정유효기간을 선택해주세요.')
+				$('#elderServiceApprovalEndDate').focus();
+				return false;
+			}
+			
+			if(DayCheck(day)){
+				console.log('성공')
+			}else{
+				alert('yyyy-mm-dd 형식으로 써주세요.')
+				return false;
+				
+			} 
+			
+		})		
+
+		
 	    $( ".date" ).datepicker({
 	    	
 	    });
+		$( "#elderBirthDate" ).datepicker({
+	    	
+	    });
+		//달력 유효성검사.
+		$( ".date" ).change(function(){
+			if($('.date').eq(1).val() != "" && $('.date').eq(0).val() >= $('.date').eq(1).val()){
+					alert('유효기간 이 시간시간보다 짧거나 같을수 없습니다.');
+					$('.date').eq(1).val("")
+			    }
+		})
+		
+		$('#dataTable').DataTable({
+			
+            "language": 
+               {
+               "sInfo": " 총_TOTAL_건의 자료 중  _START_번부터~_END_번까지 ",
+               "lengthMenu": "_MENU_ 개씩 보기",
+               "search":         "검색:",
+               "paginate": {
+               "first":      "First",
+               "last":       "Last",
+               "next":       "다음",
+               "previous":   "이전"
+                    }
+            }           
+         });
+		
 	});
-	//달력 유효성검사.
-	$( ".date" ).change(function(){
-		if($('.date').eq(1).val() != "" && $('.date').eq(0).val() >= $('.date').eq(1).val()){
-				alert('유효기간 이 시간시간보다 짧거나 같을수 없습니다.');
-				$('.date').eq(1).val("")
-		    }
-	})
-	
 </script>
 </th:block>
 

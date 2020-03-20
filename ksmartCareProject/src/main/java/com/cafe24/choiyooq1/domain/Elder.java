@@ -6,14 +6,14 @@ public class Elder {
 	private String elderName;
 	private String centerCode;
 	private String centerName;
-	private String elderBirthname;
+	private String elderBirthDate;
 	private String elderGender;
 	private String elderFinalServiceApprovalLevel;
 	private String elderFinalServiceStatus;
 	private String elderDisease;
-	private String elderCoinsurance;
-	private String totalVisits;
-	private String totalServiceTime;
+	private double elderCoinsurance;
+	private int totalVisits;
+	private int totalServiceTime;
 	private String serviceLocalmanageCode;
 	private String serviceLocalmanageName;
 	private String longTermCareNumver;
@@ -24,7 +24,6 @@ public class Elder {
 	private String elderRemarks;
 	private String elderGroups;
 	private int benefitMaxCost;
-	
 	public String getElderId() {
 		return elderId;
 	}
@@ -49,11 +48,11 @@ public class Elder {
 	public void setCenterName(String centerName) {
 		this.centerName = centerName;
 	}
-	public String getElderBirthname() {
-		return elderBirthname;
+	public String getElderBirthDate() {
+		return elderBirthDate;
 	}
-	public void setElderBirthname(String elderBirthname) {
-		this.elderBirthname = elderBirthname;
+	public void setElderBirthDate(String elderBirthDate) {
+		this.elderBirthDate = elderBirthDate;
 	}
 	public String getElderGender() {
 		return elderGender;
@@ -79,22 +78,22 @@ public class Elder {
 	public void setElderDisease(String elderDisease) {
 		this.elderDisease = elderDisease;
 	}
-	public String getElderCoinsurance() {
+	public double getElderCoinsurance() {
 		return elderCoinsurance;
 	}
-	public void setElderCoinsurance(String elderCoinsurance) {
+	public void setElderCoinsurance(double elderCoinsurance) {
 		this.elderCoinsurance = elderCoinsurance;
 	}
-	public String getTotalVisits() {
+	public int getTotalVisits() {
 		return totalVisits;
 	}
-	public void setTotalVisits(String totalVisits) {
+	public void setTotalVisits(int totalVisits) {
 		this.totalVisits = totalVisits;
 	}
-	public String getTotalServiceTime() {
+	public int getTotalServiceTime() {
 		return totalServiceTime;
 	}
-	public void setTotalServiceTime(String totalServiceTime) {
+	public void setTotalServiceTime(int totalServiceTime) {
 		this.totalServiceTime = totalServiceTime;
 	}
 	public String getServiceLocalmanageCode() {
@@ -150,7 +149,6 @@ public class Elder {
 	}
 	public void setElderGroups(String elderGroups) {
 		this.elderGroups = elderGroups;
-
 	}
 	public int getBenefitMaxCost() {
 		return benefitMaxCost;
@@ -158,11 +156,10 @@ public class Elder {
 	public void setBenefitMaxCost(int benefitMaxCost) {
 		this.benefitMaxCost = benefitMaxCost;
 	}
-	
 	@Override
 	public String toString() {
 		return "Elder [elderId=" + elderId + ", elderName=" + elderName + ", centerCode=" + centerCode + ", centerName="
-				+ centerName + ", elderBirthname=" + elderBirthname + ", elderGender=" + elderGender
+				+ centerName + ", elderBirthDate=" + elderBirthDate + ", elderGender=" + elderGender
 				+ ", elderFinalServiceApprovalLevel=" + elderFinalServiceApprovalLevel + ", elderFinalServiceStatus="
 				+ elderFinalServiceStatus + ", elderDisease=" + elderDisease + ", elderCoinsurance=" + elderCoinsurance
 				+ ", totalVisits=" + totalVisits + ", totalServiceTime=" + totalServiceTime
@@ -172,4 +169,6 @@ public class Elder {
 				+ ", elderAdressForPost=" + elderAdressForPost + ", elderRemarks=" + elderRemarks + ", elderGroups="
 				+ elderGroups + ", benefitMaxCost=" + benefitMaxCost + "]";
 	}
+	
+	
 }
