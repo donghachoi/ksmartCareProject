@@ -67,4 +67,34 @@
 			, center.*
 		FROM center, (SELECT@rownum:=0)TMP;
 	</select>
+		<select id="centerSelectForUpdate" parameterType="String" resultMap="centerMap">
+		<!-- 센터로그인을 위한 센터 번호와 아이디 비번 쳌 -->
+		SELECT 
+			* 
+		FROM 
+			center 
+		WHERE 
+			center_code=#{centerCode};
+	</select>
+	
+	<update id="centerUpdate" parameterType="Center">
+		UPDATE center
+		SET
+			center_code=#{centerCode},
+			center_name=#{centerName},
+			center_id=#{centerId},
+			center_pw=#{centerPw},
+			center_manager_name=#{centerManagerName},
+			conter_manager_phone=#{conterManagerPhone},
+			center_phone=#{centerPhone},
+			center_local=#{centerLocal},
+			center_adress=#{centerAdress},
+			service_start_date=#{serviceStartDate},
+			service_end_date=#{serviceEndDate},
+			service_status=#{serviceStatus},
+			business_registration_number=#{businessRegistrationNumber},
+			employer_name=#{employerName}
+		WHERE center_code=#{centerCode} 
+	</update>
+	
   </mapper>

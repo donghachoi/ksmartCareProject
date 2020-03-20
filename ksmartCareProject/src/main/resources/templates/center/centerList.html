@@ -99,7 +99,7 @@
 											<tr role="row" class="odd" th:each="L:${centerList}" >
 												
 												<td class="sorting_1" th:text="${L.centerListNumber}" th:centerListNumber="${L.centerListNumber}" ><a th:href="@{/center/centerList(centerCode=${L.centerCode})}"></a></td>
-												<td th:text="${L.centerCode}" th:centerCode="${L.centerCode}"></td>
+												<td th:text="${L.centerCode}" th:centerCode="${L.centerCode}" id="centerCode1"></td>
 												<td th:text="${L.centerName}" th:centerName="${L.centerName}"></td>
 												<td th:text="${L.centerId}" th:centerId="${L.centerId}"></td>
 												<td th:text="${L.centerManagerName}" th:centerManagerName="${L.centerManagerName}"></td>
@@ -126,6 +126,7 @@
 				<!-- 개략 테이블 End -->
 				<!-- 수급자 상세정보 Start -->
 						<div class="col-lg-13 ui-sortable">
+							<form class="form-horizontal" >
 							<div class="box ui-sortable-handle">
 								<header>
 									<div class="icons">
@@ -137,16 +138,19 @@
 											<button type="button"  
 													data-toggle="modal" data-target="#myModal"
 													class="btn btn-default btn-sm btn-line"
-													onClick="location.href='/center/centerUpdate'"
+													id="btnCenterCodeForUpdate"
 													>
 													<span class="ui-button-text" >
-													정보수정</span>
+													정보수정
+													</span>
 											</button>
+											</form>
 											<button type="button"  
 													data-toggle="modal" data-target="#myModal"
 													class="btn btn-default btn-sm btn-line"
+													id="btnCenterCodeForDelete"
 													>
-																	<span class="ui-button-text">센터삭제</span>
+													<span class="ui-button-text">센터삭제</span>
 											</button>
 										<!-- 	<a href="#defaultTable" data-toggle="collapse"
 												class="btn btn-sm btn-default minimize-box"> 
@@ -202,17 +206,19 @@
 									</table>
 								
 								</div>
+								</form>
+								</div>
 							</div>
 						</div>
 						<!-- 수급자 상세정보 End-->
 					</div>
 				</div>
-			</div>
+			
 					<!-- 센터 리스트 끝  -->
 
-				</div>
+			
 				<!-- /.inner -->
-			</div>
+	
 			<!-- /.outer -->
 		</div>
 		<!-- /#content -->           
@@ -282,9 +288,7 @@
 		});
 		
 	</script>
-	
-
-												
+											
 	<script>
 	$("#dataTable tr").click(function() {
 
@@ -323,11 +327,34 @@
 		  $('#serviceStartDate').text(serviceStartDate);
 		  $('#serviceEndDate').text(serviceEndDate);
 		  
-		  $('#centerCodeforUpdate').val(centerCode);
-
+		 $('#btnCenterCodeForUpdate').attr('centerCode', centerCode);
+		 $('#btnCenterCodeForDelete').attr('centerCode', centerCode);
+		 $('#btnCenterCodeForDelete').attr('centerName', centerName);	
 		});
 	
+		$('#btnCenterCodeForUpdate').click(function(){
+			var centerCode = $(this).attr('centerCode');
+			if(centerCode == undefined){
+				alert('기관을 선택해주세요');
+			}else{				
+				location.href="/center/centerUpdate?centerCode="+centerCode;
+			}
+		});
+		
+		$('#btnCenterCodeForDelete').click(function(){
+			var centerCode = $(this).attr('centerCode');
+			var centerName = $(this).attr('centerName');
+			if(centerCode == undefined){
+				alert('기관을 선택해주세요');
+			}else{				
+			 confirm('!!!!확인요청!!!!\n\n장기요양기관번호:'+centerCode+'\n센터명:'+centerName+'\n\n을(를)정말 삭제하시겠습니까?\n\n삭제 후에는 되돌릴 수 없습니다')
+			 
+				
+			}
+			
+		});
 	</script>
+	
 	<script src="/assets/js/style-switcher.js"></script>
 </th:block>
 </html>

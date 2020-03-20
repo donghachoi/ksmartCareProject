@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafe24.choiyooq1.domain.Center;
 import com.cafe24.choiyooq1.service.CenterService;
@@ -45,12 +46,20 @@ public class CenterController {
 		return "center/centerList";
 	}
 	
-	//센터 정보 수정
+	//센터 정보 수정을 위한 불러오기
 	@GetMapping("/center/centerUpdate")
-	public String centerUpdate(Center center) {
-		System.out.println(center.toString());
-		return null;
+	public String centerUpdate(@RequestParam(value = "centerCode") String centerCode, Model model) {
+		model.addAttribute("Center", centerService.centerSelectForUpdate(centerCode));
+		return "center/centerUpdate";
 		
 	}
+	@PostMapping("/center/centerUpdate")
+	public String centerUpdate(Center center) {
+		int result = centerService.centerUpdate(center);
+		if(result>0) {
+			return "redirect:/center/centerList";
+			}return "redirect:/center/centerList";
+		}
+	
 
 }
