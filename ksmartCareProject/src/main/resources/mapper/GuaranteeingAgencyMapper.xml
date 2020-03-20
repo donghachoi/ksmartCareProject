@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.cafe24.choiyooq1.mapper.GuaranteeingAgencyMapper"> <!-- namespace="mapper 인터페이스 경로!!!!" -->
+  
+  <!-- 수급자 resultMap --> 
+  <resultMap type="com.cafe24.choiyooq1.domain.GuaranteeingAgency" id="GuaranteeingAgencyMap">
+  	<result property="guaranteeingAgencyNember" column="guaranteeing_agency_nember"/>
+  	<result property="guaranteeingAgencyName" column="guaranteeing_agency_name"/>
+  	<result property="guaranteeingAgencyPost" column="guaranteeing_agency_post"/>
+  	<result property="guaranteeingAgencyAddress" column="guaranteeing_agency_address"/>
+  	<result property="guaranteeingAgencyConnectnumber" column="guaranteeing_agency_connectnumber"/>
+  </resultMap>
+  
+  <select id="getGuaranteeingAgencyList" resultType="java.util.List" resultMap="GuaranteeingAgencyMap">
+  <!-- 보장기관 전체 가져오기. -->
+  	SELECT 
+		guaranteeing_agency_nember, guaranteeing_agency_name, guaranteeing_agency_post, guaranteeing_agency_address, guaranteeing_agency_connectnumber
+	FROM 
+		guaranteeing_agency
+  </select>
+  
+  </mapper>

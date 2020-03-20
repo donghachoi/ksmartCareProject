@@ -85,7 +85,7 @@
 				              		<label for="elderBirthDate" class="control-label col-lg-4">생일</label>
 									<div class="col-lg-3">
 											<div class="input-group input-append">
-											<input class="form-control" type="text" placeholder="0000-00-00" name="elderBirthDate" id="elderBirthDate" autocomplete="off"> 
+											<input class="form-control date" type="text" placeholder="0000-00-00" name="elderBirthDate" id="elderBirthDate" autocomplete="off"> 
 											<span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>
 											</div>
 											
@@ -127,14 +127,21 @@
 				            </div>
 				            <!-- /.form-group -->
 			                <div class="form-group">
-				            <label for="serviceLocalmanageName" class="control-label col-lg-4">보장기관</label>
+				            <label for="serviceLocalmanageCode" class="control-label col-lg-4">보장기관 번호</label>
 				                    <div class="col-lg-3">
-				                        <input type="text" class="form-control" name="serviceLocalmanageName" id="serviceLocalmanageName">
+				                        <input type="text" class="form-control" name="serviceLocalmanageCode" id="serviceLocalmanageCode" readonly="readonly">
+				                        
 				                    </div>
 										<button type="button" data-toggle="modal"
 											data-target="#myModal" class="btn btn-primary btn-sm">
 											<span class="ui-button-text">보장기관 검색</span>
 										</button>
+							</div>
+			                <div class="form-group">
+				            <label for="serviceLocalmanageName" class="control-label col-lg-4">보장기관 이름</label>
+				                    <div class="col-lg-3">
+										<input type="text" class="form-control" name="serviceLocalmanageName" id="serviceLocalmanageName" readonly="readonly">
+				                    </div>
 							</div>
 				            <!-- /.form-group -->
 				            <div class="form-group">
@@ -182,14 +189,13 @@
 								<div class="form-group">
 									<div class="form-actions">
 										<label for="text1" class="control-label col-lg-5"></label>
-
 										<div class="col-lg-3">
 											<input type="submit" value="등록하기" class="btn btn-primary" id="btn">
 										</div>
 									</div>
 								</div>
 								<!-- /.form-group -->
-					<!-- 등급 및 인정기간 관리  Modal -->
+					<!-- 보장기관 검색  Modal -->
 					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" style="text-align: center; margin-top: 150px" >
 					  <div class="modal-dialog modal-lg">
 					    <div class="modal-content">
@@ -198,26 +204,26 @@
 					        <h2 class="modal-title" id="myModalLabel">보장기관 검색</h2>
 					      </div>
 					      <div class="modal-body text-right">
-					      <input class="input-sm" type="text" placeholder="검색"/>
-					      <button class="btn btn-primary btn-sm" type="button" >검색</button>
 								<div class="row">
 									<div id="collapse4" class="col-sm-12">
 										<table id="dataTable"
 											class="table table-bordered table-condensed table-hover table-striped" style="text-align: center;">
 											<thead>
 												<tr>
-													<th>지역</th>
 													<th>보장기관 번호</th>
 													<th>기관명</th>
 													<th>전화번호</th>
+													<th>지역</th>
+													<th>우편번호</th>
 												</tr>
 											</thead>
 											<tbody>
-												<tr class="odd">
-													<td>강원</td>
-													<td>4200000</td>
-													<td>강릉시청</td>
-													<td>640-2320</td>
+												<tr class="odd" th:each="G:${guaranteeingAgency}">
+													<td th:text="${G.guaranteeingAgencyNember}"></td>
+													<td th:text="${G.guaranteeingAgencyName}"></td>
+													<td th:text="${G.guaranteeingAgencyConnectnumber}"></td>
+													<td th:text="${G.guaranteeingAgencyAddress}"></td>
+													<td th:text="${G.guaranteeingAgencyPost}"></td>
 												</tr>
 											</tbody>
 										</table>
@@ -258,16 +264,32 @@
             
             <!-- 날짜 입력때문에 추가한거. -->
 			<link rel="stylesheet" href="/assets/lib/jquery/jquery-ui.min.css" type="text/css" />  
-			<script src="/assets/lib/jquery/jquery.min.js"></script>  
 			<script src="/assets/lib/jquery/jquery-ui.min.js"></script>
 			<script src="/assets/lib/jquery/datepicker-ko.js"></script>
 			<!-- 날짜 입력때문에 추가한거. -->
-<script>
+	        <!-- 테이블 js -->
+		    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+		    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
+		    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
+		    <script src="/assets/lib/jquery/jquery.ui.touch-punch.min.js"></script>
+		    <!-- 테이블 js -->
+			
+			
+<script type="text/javascript">
 
 	$(function() {
-		var map = {};
+		
+		$("#dataTable tbody tr").click(function(){
+			$("#serviceLocalmanageCode").val($(this).find('td:eq(0)').text())
+			$("#serviceLocalmanageName").val($(this).find('td:eq(1)').text())
+			 
+			 $('#myModal').modal('hide')
+			
+		})
+		
 		/* 아이디 중복체크 */
 		$('#idCheck').click(function(){
+			var map = {};
 			if($('#elderId').val()==""){
 				alert('아이디를 입력해주세요.')
 				$('#elderId').focus();
@@ -280,16 +302,13 @@
 					data	:	JSON.stringify(map),
 					contentType	:	'application/json',
 					success	:	function(data){
-						
 						alert(data)
 						$('#elderId').focus();
-						
 					},
 					error	:	function(error){
 						console.log("error", error)
 					}
 				})  
-				
 			}
 		})
 		
@@ -317,29 +336,48 @@
 		
 		
 		
-		//아이디 이름 입력
+		//유효성검사
 		$("#btn").click(function(){
-			var birthDay =$('#elderBirthDate');
+			var day =$('.date');
 			
-			if($("#elderId").val()==null||$("#elderId").val()==""){
+			if($("#elderId").val()==null || $("#elderId").val()==""){
 				alert('아이디를 입력해주세요.')
 				$("#elderId").focus();
 				return false;
 			}
-			if($("#elderName").val()==null||$("#elderName").val()==""){
+			if($("#elderName").val()==null || $("#elderName").val()==""){
 				alert('이름 입력해주세요.')
 				$("#elderName").focus();
 				return false;
-			}if(birthDay.val()==null||birthDay.val()==""){
+			}if($('input[name="elderGender"]:checked').val() == undefined){
+				alert('성별을 선택해주세요.')
+				$("input[name='elderGender']").focus();
+				return false;
+			}
+			if($('#elderBirthDate').val()==null || $('#elderBirthDate').val()==""){
 				alert('생일 입력해주세요.')
-				birthDay.focus();
+				$('#elderBirthDate').focus();
 				return false;
 			}if($('#elderCoinsurance').val()==""){
 				alert('본인부담률을 선택해주세요.')
 				$('#elderCoinsurance').focus();
 				return false;
+			}if($('#serviceLocalmanageCode').val()=="" || $('#serviceLocalmanageName').val()==""){
+				alert('보장기관을 선택해주세요.')
+				$('#myModal').modal('show');
+				return false;
 			}
-			if(DayCheck(birthDay)){
+			if($('#elderServiceApprovalStartDate').val()==""){
+				alert('장기요양인정유효기간을 선택해주세요.')
+				$('#elderServiceApprovalStartDate').focus();
+				return false;
+			}if($('#elderServiceApprovalEndDate').val()==""){
+				alert('장기요양인정유효기간을 선택해주세요.')
+				$('#elderServiceApprovalEndDate').focus();
+				return false;
+			}
+			
+			if(DayCheck(day)){
 				console.log('성공')
 			}else{
 				alert('yyyy-mm-dd 형식으로 써주세요.')
@@ -363,6 +401,22 @@
 					$('.date').eq(1).val("")
 			    }
 		})
+		
+		$('#dataTable').DataTable({
+			
+            "language": 
+               {
+               "sInfo": " 총_TOTAL_건의 자료 중  _START_번부터~_END_번까지 ",
+               "lengthMenu": "_MENU_ 개씩 보기",
+               "search":         "검색:",
+               "paginate": {
+               "first":      "First",
+               "last":       "Last",
+               "next":       "다음",
+               "previous":   "이전"
+                    }
+            }           
+         });
 		
 	});
 </script>

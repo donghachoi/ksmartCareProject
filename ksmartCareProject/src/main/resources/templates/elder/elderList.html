@@ -72,24 +72,22 @@
 								<table id="dataTable" class="table table-bordered table-hover" style="font-size: 15px">
 									<thead>
 										<tr role="row">
-											<th>수급자코드</th>
+											<th>수급자아이디</th>
 											<th>수급자이름</th>
 											<th>생년월일</th>
 											<th>성별</th>
 											<th>등급</th>
-											<th>계약일</th>
 											<th>인정만료일</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr role="row" class="odd">
-											<td class="sorting_1">수급자코드</td>
-											<td>수급자이름</td>
-											<td>생년월일</td>
-											<td>성별</td>
-											<td>등급</td>
-											<td>계약일</td>
-											<td>인정만료일</td>
+									<tbody id="elderRow">
+										<tr role="row" class="odd" th:each="E:${elderList}">
+											<td class="sorting_1" th:text="${E.elderId}"></td>
+											<td th:text="${E.elderName}"></td>
+											<td th:text="${E.elderBirthDate}"></td>
+											<td th:text="${E.elderGender}"></td>
+											<td th:text="${E.elderFinalServiceApprovalLevel}"></td>
+											<td th:text="${E.longTermCareValidity}"></td>
 										</tr>
 									</tbody>
 								</table>
@@ -477,6 +475,30 @@
     <script>
         
       $(document).ready(function(){
+    	  
+    	/* 수급자 상세정보 가져오기 */
+		$('#elderRow tr').click(function(){
+			var map = {};
+			var Id = $(this).find('td:eq(0)').text()
+			map.elderId = Id;
+			
+			 $.ajax({
+				type 	: 	'POST',
+				url		:	'/elderDetailList',
+				async	:	'true',
+				data	:	JSON.stringify(map),
+				contentType	:	'application/json',
+				success	:	function(data){
+					console.log(data)
+					
+				},
+				error	:	function(error){
+					console.log("error", error)
+				}
+			})   
+		})
+    	  
+    	  
     	  //data table
     	  $('#dataTable').DataTable({
               "language": 

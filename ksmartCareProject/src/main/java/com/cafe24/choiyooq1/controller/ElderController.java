@@ -1,6 +1,7 @@
 package com.cafe24.choiyooq1.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cafe24.choiyooq1.domain.Elder;
 import com.cafe24.choiyooq1.domain.ElderLevelHistory;
+import com.cafe24.choiyooq1.domain.GuaranteeingAgency;
 import com.cafe24.choiyooq1.service.BenefitService;
 import com.cafe24.choiyooq1.service.ElderService;
 
@@ -24,7 +26,6 @@ public class ElderController {
 	@Autowired BenefitService benefitService;
 	@Autowired ElderService elderService; 
 	
-	
 	/* 수급자 등록 */
 	@PostMapping("/employee/elderInsert")
 	public String elderInsert(Elder elder
@@ -32,10 +33,12 @@ public class ElderController {
 							,HttpSession session) {
 		
 		
-		
+		//수급자 입력
 		elderService.insertElder(elder, elderLevelHistory,session);
 		return "elder/elderInsert";
 	}
+	
+	
 	
 	/* 수급자 아이디 체크 ajax*/
 	@PostMapping("/employee/idCheck")
@@ -44,16 +47,36 @@ public class ElderController {
 		return elderService.checkElderId(elderId);
 	}
 	
+	/* 보장기관 검색 ajax */
+	@PostMapping("/employee/searchAgency")
+	public @ResponseBody List<GuaranteeingAgency> searchAgency(@RequestBody Map<String,Object> map){
+		String keyword =(String) map.get("keyword");
+		System.out.println(keyword);
+		
+		return null;
+	}
+	
 	/* 수급자 등록 화면으로 */
 	@GetMapping("/employee/elderInsert")
-	public String elderInsert() {
+	public String elderInsert(Model model) {
+		model.addAttribute("guaranteeingAgency", elderService.getGuaranteeingAgencyList());
 		return "elder/elderInsert";
 	}
 	
 	/* 수급자 리스트 */
 	@GetMapping("/employee/elderList")
-	public String elderList() {
+	public String elderList(Model model) {
+		model.addAttribute("elderList", elderService.getElderList());
 		return "elder/elderList";
+	}
+	
+	/* 수급자 상세 리스트 */
+	@PostMapping("/elderDetailList")
+	public Map<String,Object> getElderDetailList(@RequestBody Map<String,Object> map){
+		String elderId = (String) map.get("elderId");
+		Map<String,Object> mapResult = new HashMap<String,Object>();
+		System.out.println(elderService.getOneElderList(elderId).toString());
+		return null;
 	}
 	
 	/* 부트스트랩 확인용 */

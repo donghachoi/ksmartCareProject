@@ -1,5 +1,6 @@
 package com.cafe24.choiyooq1.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,12 +12,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cafe24.choiyooq1.domain.Elder;
 import com.cafe24.choiyooq1.domain.ElderLevelHistory;
 import com.cafe24.choiyooq1.mapper.ElderMapper;
+import com.cafe24.choiyooq1.mapper.GuaranteeingAgencyMapper;
 
 @Transactional
 @Service
 public class ElderService {
 	
 	@Autowired ElderMapper elderMapper;
+	@Autowired GuaranteeingAgencyMapper guaranteeingAgency;
 	
 	
 	/* 수급자 입력 메서드 */
@@ -31,6 +34,28 @@ public class ElderService {
 		elderMapper.insertElder(elder);
 		
 	}
+	
+	/* 수급자 상세리스트 메서드 */
+	public List<Elder> getOneElderList(String elderId){
+		List<Elder> list = elderMapper.getOneElderList(elderId);
+		
+		return list;
+	}
+	
+	/* 수급자 리스트 메서드 */
+	public List<Elder> getElderList(){
+		List<Elder> list = elderMapper.getElderList();
+		return list;
+	}
+	
+	/* 보장기관 리스트 가져오기 */
+	public List<GuaranteeingAgencyMapper> getGuaranteeingAgencyList(){
+		List<GuaranteeingAgencyMapper> list = guaranteeingAgency.getGuaranteeingAgencyList();
+		
+		return list;
+	}
+	
+	
 	/* 수급자 아이디 체크 */
 	public String checkElderId(String elderId) {
 		System.out.println(elderId);
