@@ -74,7 +74,7 @@
 	    <div class="box dark">
 	        <header>
 	            <div class="icons"><i class="fa fa-edit"></i></div>
-	            <h5>센터 정보를 입력해주세요</h5>
+	            <h5>센터 정보를 수정해주세요</h5>
 	            
 	            <!-- .toolbar -->
 	            <div class="toolbar">
@@ -87,14 +87,14 @@
 	        </header>
 	        <div id="div-4" class="body">
 		
-	            <form class="form-horizontal" th:action="@{/center/centerInsert}" method="post">
+	            <form class="form-horizontal" th:action="@{/center/centerUpdate}" method="post">
 	
 	                <div class="form-group">
 	                    <label for="text2" class="control-label col-lg-4" >장기요양기관번호
 	                    </label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text2" readonly class="form-control" name="centerCode">
+	                        <input type="text" id="text2" readonly class="form-control" name="centerCode" th:value="${Center.centerCode}" >
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -102,7 +102,7 @@
 	                    <label for="text1" class="control-label col-lg-4">센터명</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text1"  class="form-control" name="centerName">
+	                        <input type="text" id="text1"  class="form-control" name="centerName" th:value="${Center.centerName}" >
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -110,7 +110,7 @@
 	                    <label for="text1" class="control-label col-lg-4">아이디</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text1"  class="form-control"  name="centerId">
+	                        <input type="text" id="text1"  class="form-control"  name="centerId" th:value="${Center.centerId}" >
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -118,7 +118,7 @@
 	                    <label for="text1" class="control-label col-lg-4">센터담당자 이름</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text1" class="form-control" name="centerManagerName">
+	                        <input type="text" id="text1" class="form-control" name="centerManagerName" th:value="${Center.centerManagerName}" >
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -128,7 +128,7 @@
 	
 	                    <div class="col-lg-3">
 	                        <input class="form-control" type="password" id="pass1"
-	                               data-original-title="Please use your secure password" data-placement="top" name="centerPw" />
+	                               data-original-title="Please use your secure password" data-placement="top" name="centerPw" th:value="${Center.centerPw}"  />
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -136,7 +136,7 @@
 	                    <label for="text2" class="control-label col-lg-4" >센터담당자 연락처</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text2" placeholder="000-000-0000" class="form-control" name="conterManagerPhone">
+	                        <input type="text" id="text2" placeholder="000-000-0000" class="form-control" name="conterManagerPhone" th:value="${Center.conterManagerPhone}" >
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -144,7 +144,7 @@
 	                  	<label for="text2" class="control-label col-lg-4" >센터 연락처</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text2" placeholder="000-000-0000" class="form-control" name="centerPhone">
+	                        <input type="text" id="text2" placeholder="000-000-0000" class="form-control" name="centerPhone" th:value="${Center.centerPhone}" >
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -152,7 +152,7 @@
 				    <label class="control-label col-lg-4">센터 지역구분</label>
 				
 					    <div class="col-lg-3">
-					        <select class="form-control" name="centerLocal" >
+					        <select class="form-control" name="centerLocal" th:value="${Center.centerLocal}" >
 					            <option>::지역선택::</option>
 					            <option value="서울">서울</option>
 					            <option value="부산">부산</option>
@@ -181,16 +181,46 @@
 	                    <label for="text2" class="control-label col-lg-4">센터 상세 주소</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text2" placeholder="행복시 지금구 여기로1 1-1" class="form-control" name="centerAdress" >
+	                        <input type="text" id="text2" placeholder="행복시 지금구 여기로1 1-1" class="form-control" name="centerAdress" th:value="${Center.centerAdress}" >
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
+	                <div class="form-group">
+	                    <label for="text1" class="control-label col-lg-4">서비스시작일</label>
+	
+	                    <div class="col-lg-3">
+	                        <input type="text" id="text1"  class="form-control"  name="serviceStartDate" th:value="${Center.serviceStartDate}" >
+	                    </div>
+	                </div>
+	                <!-- /.form-group -->
+	                <div class="form-group">
+	                    <label for="text1" class="control-label col-lg-4">서비스종료일</label>
+	
+	                    <div class="col-lg-3">
+	                        <input type="text" id="text1"  class="form-control"  name="serviceEndDate" th:value="${Center.serviceEndDate}" >
+	                    </div>
+	                </div>
+	                <!-- /.form-group -->
+	                <div class="form-group">
+				    <label class="control-label col-lg-4">서비스 이용상태</label>
+				
+					    <div class="col-lg-3">
+					        <select class="form-control" name="serviceStatus" th:value="${Center.serviceStatus}">
+					            <option>::서비스상태선택::</option>
+					            <option value="이용중">이용중</option>
+					            <option value="종료">종료</option>
+					            <option value="보류">보류</option>
+					            <option value="기타">기타</option>
+					        </select>
+					    </div>
+					</div>
+					<!-- /.form-group -->
 	                
 	                <div class="form-group">
 	                    <label for="text2" class="control-label col-lg-4">사업자등록번호</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text2" placeholder="1110001111" class="form-control" name="businessRegistrationNumber">
+	                        <input type="text" id="text2" placeholder="1110001111" class="form-control" name="businessRegistrationNumber" th:value="${Center.businessRegistrationNumber}" >
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->				
@@ -200,7 +230,7 @@
 	                    <label for="text1" class="control-label col-lg-4">등록번호상사업자이름</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text1"  class="form-control" name="employerName">
+	                        <input type="text" id="text1"  class="form-control" name="employerName" th:value="${Center.employerName}" >
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -209,7 +239,7 @@
 	                    <label for="text1" class="control-label col-lg-5"></label>
 	
 						<div class="col-lg-3">
-						<input type="submit" value="등록하기" class="btn btn-primary">
+						<input type="submit" value="수정하기" class="btn btn-primary">
 						</div>
 	                 
 	                </div>
@@ -219,10 +249,13 @@
 	
 	                <!-- /.row -->
 
-	            </form>
+	           
+                 </form>
 	        </div>
 	    </div>
+	
 	</div>
+	
 
 <!--END TEXT INPUT FIELD-->
 
@@ -234,7 +267,6 @@
                     </div>
                     <!-- /.outer -->
                 </div>
-                
                 <!-- /#content -->
 
                     <div id="right" class="onoffcanvas is-right is-fixed bg-light" aria-expanded=false>
@@ -297,9 +329,10 @@
                         </div>
                     </div>
                     <!-- /#right -->
-            </div>
+            
             <!-- /#wrap -->
- 
+ 	
+
             <!-- #helpModal -->
             <div id="helpModal" class="modal fade">
                 <div class="modal-dialog">
@@ -328,8 +361,8 @@
             <!-- /.modal -->
             <!-- /#helpModal -->
 
+
         </body>
-	
 </th:block>
 <th:block layout:fragment="customPlugin">
 	      <!--jQuery -->
@@ -387,5 +420,6 @@
             <!-- Metis demo scripts -->
             <script src="/assets/js/app.js"></script>
             <script src="/assets/js/style-switcher.js"></script>
+            
 </th:block>
 </html>
