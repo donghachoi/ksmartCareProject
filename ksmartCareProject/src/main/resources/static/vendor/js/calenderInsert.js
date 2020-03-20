@@ -127,7 +127,7 @@ $(document).ready(function(){
 				if(empservice =='요양'){
 					var test = "<option value=\'인지활동\'>인지활동</option>";
 					test += "<option value=\'가족케어\'>가족케어</option>";
-					test += "<option value=\'치매가족휴가\'>치매가족휴가(0회)</option>";
+					test += "<option value=\'치매가족휴가\'>치매가족휴가</option>";
 					
 					$('#serviceCategoryDetail').append(test);
 				}

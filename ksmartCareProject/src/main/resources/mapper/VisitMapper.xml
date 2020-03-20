@@ -101,7 +101,6 @@
   	</select>
   	
    <!-- 서비스 종류별 금액 -->
-   
    <select id="serviceCost" parameterType="String" resultMap="BenefitCostMap">
 	select * FROM benefit_cost WHERE benefit_cost_year = ${syear}
 	AND service_time_and_type = #{stype} AND service_category LIKE CONCAT('%', #{scategory})
@@ -114,13 +113,19 @@
   	</select>
   	
   	<!-- 직원 목록  -->
-  	
   	<select id="emplyeeList" parameterType="String" resultMap="EmployeeMap">
   	
 	SELECT  employee_id, employee_name, employee_category, employee_phone, employee_working_status 
 	FROM employee WHERE center_code = #{centerCode}
 		AND employee_category LIKE '%간호%' or employee_category like '%요양%'  	
   	</select>
+  	
+  	<!-- 날짜, 시간으로 직원 검색 0-->
+  	<select id="emplyeeDayCheck" parameterType="String" resultType="int">
+  		
+  	</select>
+  	
+  	
   	<!-- 일정 등록 -->
   	<insert id="visitInsert" parameterType="Visit">
   	

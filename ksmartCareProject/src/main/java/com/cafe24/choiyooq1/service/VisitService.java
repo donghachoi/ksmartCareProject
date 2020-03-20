@@ -23,6 +23,7 @@ public class VisitService {
 	private VisitMapper visitMapper;
 	
 	private int elderMaxCost =0;
+	private int subCost = 0;
 	
 	//수급자 목록 
 	public List<Elder> elderAllList(String centerCode){
@@ -50,6 +51,10 @@ public class VisitService {
 	    
 		for(int i=0; i< list.size(); i++) {
 			Visit vit= list.get(i);
+			//수정한 부분
+			if(vit.getVisitServiceCategory().contains("요양")) {
+				vit.setVisitPlanTime((vit.getVisitServiceTime()).substring(0,2));	
+			}
 			BenefitCost bcost =  visitMapper.serviceCost(syear, vit.getVisitServiceCategory(),  
 					vit.getVisitServiceTime());
 			
@@ -72,7 +77,7 @@ public class VisitService {
 			}
 		}
 
-		int subCost = maxcost - BenefitCost;
+		subCost = maxcost - BenefitCost;  //잔액 전역 변수 선언
 		getYoyang = getYoyang * yoyang;
 		getbath = getbath * bath;
 		getnurse = getnurse * nurse;
@@ -107,9 +112,20 @@ public class VisitService {
 		return list;
 	}
 	
+	
+	
 	//일정 등록 
 	public List<Visit> visitInsert(Visit visit){
 		
+//		if(visit.getVisitServiceCategory().contains("요양")) {
+//			visit.setVisitPlanTime((visit.getVisitServiceTime()).substring(0,2));	
+//		}
+//		BenefitCost bcost =  visitMapper.serviceCost(syear, vit.getVisitServiceCategory(),  
+//				vit.getVisitServiceTime());
+//		
+//		
+//		
+//		visitMapper.serviceCost(visit.getElderId(), visihlyClaimGroupCode())t.getMont;
 		visit.setVisitCode("dfsdfsdfsdf");
 		return null;
 	}
@@ -121,6 +137,15 @@ public class VisitService {
 		List<Employee> list = visitMapper.emplyeeList(centerCode);
 		// TODO Auto-generated method stub
 		return list;
+	}
+
+	//직원 같은날짜, 시간 중복 체크
+	public void vemplyeeDayCheck(String employeeId, String visitPlanDate, String visitPlanTime) {
+		String[] visitPlanTime1 = visitPlanTime.split("~");
+		
+		visitMapper.emplyeeDayCheck(employeeId, visitPlanDate,visitPlanTime1[0], visitPlanTime1[1]);
+		// TODO Auto-generated method stub
+		
 	}
 
 

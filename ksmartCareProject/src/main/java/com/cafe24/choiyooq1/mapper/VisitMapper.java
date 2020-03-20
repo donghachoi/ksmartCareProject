@@ -21,7 +21,7 @@ public interface VisitMapper {
 	
 	//서비스 종류별 금액 
 	public BenefitCost serviceCost(String syear, String scategory, String stype);
-	
+
 	//직원별 목록
 	public List<Employee> empCategory(String centerCode, String empcategory);
 	
@@ -31,6 +31,7 @@ public interface VisitMapper {
 	//직원 목록 
 	public List<Employee> emplyeeList(String centerCode);
 
-	
+	//직원 같은날짜, 시간 중복 체크
+	public Visit emplyeeDayCheck(String emplyeeId, String date, String strattime, String endtime);
 	
 }
