@@ -36,11 +36,20 @@ public class CenterController {
 		return "center/centerInsertOk";
 	}
 	
+	//센터 리스트
 	@GetMapping("/center/centerList")
 	public String centerList(Model model) {
 		model.addAttribute("centerList", centerService.getCenterList());
 		//System.out.println(centerService.getCenterList().toString());
 		return "center/centerList";
+	}
+	
+	//센터 정보 수정
+	@GetMapping("/center/centerUpdate")
+	public String centerUpdate(Center center) {
+		System.out.println(center.toString());
+		return null;
+		
 	}
 
 }

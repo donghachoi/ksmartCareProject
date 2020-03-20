@@ -75,7 +75,7 @@
 								
 								<form th:action="@{/center/centerList}" method="post">
 																		
-									<table id="dataTable" class="table table-bordered table-hover" style="font-size: 10px">
+									<table id="dataTable" class="table table-bordered table-hover" style="font-size: 15px">
 										<thead>
 											<tr role="row">
 												<th>번호</th>
@@ -137,8 +137,10 @@
 											<button type="button"  
 													data-toggle="modal" data-target="#myModal"
 													class="btn btn-default btn-sm btn-line"
+													onClick="location.href='/center/centerUpdate'"
 													>
-													<span class="ui-button-text">정보수정</span>
+													<span class="ui-button-text" >
+													정보수정</span>
 											</button>
 											<button type="button"  
 													data-toggle="modal" data-target="#myModal"
@@ -158,41 +160,41 @@
 										<tbody>
 											<tr>
 												<th>장기요양기관번호</th>
-												<td id="centerCode">3-41590-00001</td>
+												<td id="centerCode"></td>
 												<th>센터명</th>
-												<td id="centerName">전주스마트재가센터</td>
+												<td id="centerName"></td>
 												<th>아이디</th>
-												<td id="centerId">jjsmart1008</td>
+												<td id="centerId"></td>
 											</tr>
 											<tr>
 												<th>비밀번호</th>
-												<td id="centerPw">jjsmart1008pw</td>
+												<td id="centerPw"></td>
 												<th>담당자</th>
-												<td id="centerManagerName">이형열</td>
+												<td id="centerManagerName"></td>
 												<th>담당자연락처</th>
-												<td id="conterManagerPhone">010-7788-1008</td>
+												<td id="conterManagerPhone"></td>
 											</tr>
 											<tr>
 												<th>센터연락처</th>
-												<td id="centerPhone">063-717-1008</td>
+												<td id="centerPhone"></td>
 												<th>지역구분</th>
-												<td id="centerLocal">전북</td>
+												<td id="centerLocal"></td>
 												<th>상세주소</th>
-												<td id="centerAdress">전주시 덕진구 금암1동 기린대로 446</td>
+												<td id="centerAdress"></td>
 											</tr>
 											<tr>
 												<th>서비스시작일</th>
-												<td id="serviceStartDate">2020-03-09</td>
+												<td id="serviceStartDate"></td>
 												<th>서비스종료일</th>
-												<td id="serviceEndDate">2022-03-09</td>
+												<td id="serviceEndDate"></td>
 												<th>서비스이용상태</th>
-												<td id="serviceStatus">이용중</td>
+												<td id="serviceStatus"></td>
 											</tr>
 											<tr>
 												<th>사업자등록번호</th>
-												<td id="businessRegistrationNumber">6458001066</td>
+												<td id="businessRegistrationNumber"></td>
 												<th>등록번호상 사업자이름</th>
-												<td id="employerName">>이형열</td>
+												<td id="employerName"></td>
 												<th>비고</th>
 												<td></td>
 											</tr>
@@ -320,6 +322,8 @@
 		  $('#centerCode').text(centerCode); $('#businessRegistrationNumber').text(businessRegistrationNumber);
 		  $('#serviceStartDate').text(serviceStartDate);
 		  $('#serviceEndDate').text(serviceEndDate);
+		  
+		  $('#centerCodeforUpdate').val(centerCode);
 
 		});
 	
