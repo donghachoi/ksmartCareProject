@@ -15,7 +15,30 @@
   	<result property="serviceStartDate" column="service_start_date"/>
   	<result property="serviceEndDate" column="service_end_date"/>
   </resultMap>
+  <insert id="insertStatus">
+  	
+  	INSERT INTO 
+		elder_status
+		
+		(service_status_code, 
+		center_code, 
+		center_name, 
+		elder_id, 
+		elder_name, 
+		service_status, 
+		service_start_date, 
+		service_end_date)
+	VALUES 
+		(#{serviceStatusCode}, #{centerCode}, #{centerName}, #{elderId}, #{elderName}, #{serviceStatus}, NOW(), #{serviceEndDate})
+  </insert>
   
+  
+  <select id="getElderStatusMaxNum" resultType="int">
+  	SELECT 
+		COUNT(service_status_code)
+	FROM 
+		elder_status
+  </select>
   
   <select id="getElderFirtsStatusDate" resultMap="ElderStatusMap">
   	SELECT 

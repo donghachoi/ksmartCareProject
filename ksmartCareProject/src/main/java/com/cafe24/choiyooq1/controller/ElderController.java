@@ -32,13 +32,11 @@ public class ElderController {
 							,ElderLevelHistory elderLevelHistory
 							,HttpSession session) {
 		
-		
 		//수급자 입력
 		elderService.insertElder(elder, elderLevelHistory,session);
 		return "elder/elderInsert";
+		
 	}
-	
-	
 	
 	/* 수급자 아이디 체크 ajax*/
 	@PostMapping("/employee/idCheck")
@@ -46,7 +44,6 @@ public class ElderController {
 		String elderId =(String) map.get("Id");
 		return elderService.checkElderId(elderId);
 	}
-	
 	
 	/* 수급자 등록 화면으로 */
 	@GetMapping("/employee/elderInsert")
@@ -85,8 +82,5 @@ public class ElderController {
 		
 		return "benefit/benefitCostList";
 	}
-	
-	
-	
 	
 }

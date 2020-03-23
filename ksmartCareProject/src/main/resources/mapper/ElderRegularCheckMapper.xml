@@ -18,6 +18,32 @@
   	<result property="elderRegularCheckRegistrationDate" column="elder_regular_check_registration_date"/>
   </resultMap>
   
+	<insert id="insertRegularCheck">
+  	INSERT INTO 
+  		elder_regular_check
+	(elder_regular_check_code, 
+	center_code, 
+	center_name, 
+	elder_id, 
+	elder_name, 
+	employee_id,
+	employee_name, 
+	elder_regular_check_category, 
+	elder_regular_check_plan_date, 
+	elder_regular_check_doing_date, 
+	elder_regular_check_registration_date)
+		VALUES 
+	(#{elderRegularCheckCode},
+	#{centerCode}, #{centerName}, #{elderId}, #{elderName}, #{employeeId}, #{employeeName}, #{elderRegularCheckCategory}, 
+	#{elderRegularCheckPlanDate}, #{elderRegularCheckDoingDate}, #{elderRegularCheckRegistrationDate})
+	</insert>
+  <select id="getMaxNum" resultType="int">
+  	SELECT 
+	count(elder_regular_check_code)
+	FROM
+	elder_regular_check
+  </select>
+  
   
   <select id="getLastElderRegularHistory" resultType="java.util.List" resultMap="ElderRegularCheck">
 SELECT 

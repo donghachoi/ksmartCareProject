@@ -12,6 +12,20 @@ import com.cafe24.choiyooq1.domain.ElderStatus;
 @Mapper
 public interface ElderMapper {
 
+	
+	
+	/* 수급자 상태 맥스코드 가져오기 */
+	public int getElderStatusMaxNum();
+	
+	/* 수급자 초기입력시 검사 등록 */
+	public void insertRegularCheck(ElderRegularCheck elderCheck);
+	
+	/* 수급자 초기입력시 상태 등록 */
+	public void insertStatus(ElderStatus elderstatus);
+	
+	/* 수급자 체크 맥스 코드 가져오기 */
+	public int getMaxNum();
+	
 	/* 수급자 최근 검사 일 가져오기. */
 	public List<ElderRegularCheck> getLastElderRegularHistory(String elderId);
 	
@@ -29,6 +43,9 @@ public interface ElderMapper {
 	
 	/* 수급자 입력메서드 */
 	public void insertElder(Elder elder);
+	
+	/* 수급자 초기 입력때 검사 입력 */
+	public void insertElderCheck(ElderRegularCheck eldrCheck);
 	
 	/* 수급자 리스트 */
 	public List<Elder> getElderList();
