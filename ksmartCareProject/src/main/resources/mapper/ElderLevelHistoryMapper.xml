@@ -8,7 +8,7 @@
   <resultMap type="com.cafe24.choiyooq1.domain.ElderLevelHistory" id="ElderLevelHistoryMap">
   	<result property="elderLevelHistoryCode" column="elder_level_history_code"/>
   	<result property="elderId" column="elder_id"/>
-  	<result property="elderNmae" column="elder_name"/>
+  	<result property="elderName" column="elder_name"/>
   	<result property="centerCode" column="center_code"/>
   	<result property="centerName" column="center_name"/>
   	<result property="elderServiceApprovalLevel" column="elder_service_approval_level"/>
@@ -20,30 +20,24 @@
   	<result property="elderServiceApprovalNumber" column="elder_service_approval_number"/>
   </resultMap>
   
-  <!-- 등급변동이력 최초 등록(수급자 등록시) -->
-  <!-- <insert id="insertElder" parameterType="Elder">
-  	INSERT INTO elder
-	(elder_id, elder_name, center_code, center_name, elder_birthdate, elder_gender, elder_final_service_approval_level, elder_final_service_status, elder_disease, elder_coinsurance, total_visits, total_service_time, service_localmanage_code, service_localmanage_name, long_term_care_numver, long_term_care_validity, elder_phone, elder_adress_for_stay, elder_adress_for_post, elder_remarks, elder_groups)
-	VALUES (#{elderId},
-			#{elderName}, 
-			#{centerCode}, 
-			#{centerName}, 
-			#{elderBirthDate},
-			#{elderGender}, 
-			#{elderFinalServiceApprovalLevel}, 
-			#{elderFinalServiceStatus}, 
-			#{elderDisease},
-			#{elderCoinsurance}, 
-			#{totalVisits}, 
-			#{totalServiceTime}, 
-			#{serviceLocalmanageCode}, 
-			#{serviceLocalmanageName}, 
-			#{longTermCareNumver}, 
-			#{longTermCareValidity}, 
-			#{elderPhone}, 
-			#{elderAdressForStay}, 
-			#{elderAdressForPost}, 
-			#{elderRemarks}, 
-			#{elderGroups})
-  </insert> -->
+  <select id="getElderLastLevelHistory" resultMap="ElderLevelHistoryMap">
+  	SELECT 
+		elder_level_history_code, 
+		elder_id, 
+		elder_name, 
+		center_code, 
+		center_name, 
+		elder_service_approval_level, 
+		elder_service_approval_category, 
+		elder_service_approval_category2, 
+		elder_sercvice_apply_date, 
+		elder_service_approval_start_date, 
+		elder_service_approval_number,
+		MAX(elder_service_approval_end_date) AS elder_service_approval_end_date
+	FROM 
+		elder_level_history
+	WHERE 
+		elder_id=#{elderId};
+  
+  </select>
   </mapper>

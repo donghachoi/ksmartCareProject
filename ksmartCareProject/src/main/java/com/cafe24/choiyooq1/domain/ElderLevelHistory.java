@@ -1,18 +1,18 @@
 package com.cafe24.choiyooq1.domain;
 
 public class ElderLevelHistory {
-	public String elderLevelHistoryCode;
-	public String elderId;
-	public String elderName;
-	public String centerCode;
-	public String centerName;
-	public String elderServiceApprovalLevel;
-	public String elderServiceApprovalCategory;
-	public String elderServiceApprovalCategory2;
-	public String elderSercviceApplyDate;
-	public String elderServiceApprovalStartDate;
-	public String elderServiceApprovalEndDate;
-	public String elderServiceApprovalNumber;
+	private String elderLevelHistoryCode;
+	private String elderId;
+	private String elderName;
+	private String centerCode;
+	private String centerName;
+	private String elderServiceApprovalLevel;
+	private String elderServiceApprovalCategory;
+	private String elderServiceApprovalCategory2;
+	private String elderSercviceApplyDate;
+	private String elderServiceApprovalStartDate;
+	private String elderServiceApprovalEndDate;
+	private String elderServiceApprovalNumber;
 	
 	public String getElderLevelHistoryCode() {
 		return elderLevelHistoryCode;
