@@ -23,6 +23,7 @@
 	  	<result property="businessRegistrationNumber" column="business_registration_number"/>
 	  	<result property="employerName" column="employer_name"/>
 	</resultMap>
+	
 	<select id="centerLoginCheck" resultType="java.util.List" resultMap="centerMap">
 		<!-- 센터로그인을 위한 센터 번호와 아이디 비번 쳌 -->
 		SELECT 
@@ -35,7 +36,8 @@
 		FROM 
 			center
 	</select>
-  
+  	
+  	<!-- 센터입력 메서드 -->
    	<insert id="centerInsert" parameterType="com.cafe24.choiyooq1.domain.Center">
  		INSERT INTO center
 			(center_code
@@ -67,8 +69,9 @@
 			, center.*
 		FROM center, (SELECT@rownum:=0)TMP;
 	</select>
-		<select id="centerSelectForUpdate" parameterType="String" resultMap="centerMap">
-		<!-- 센터로그인을 위한 센터 번호와 아이디 비번 쳌 -->
+		
+	<!-- 센터업데이트를 위한 해당 센터정보 불러오기 -->
+	<select id="centerSelectForUpdate" parameterType="String" resultMap="centerMap">
 		SELECT 
 			* 
 		FROM 
@@ -77,6 +80,7 @@
 			center_code=#{centerCode};
 	</select>
 	
+	<!-- 센터업데이트 메서드 -->
 	<update id="centerUpdate" parameterType="Center">
 		UPDATE center
 		SET
@@ -97,4 +101,13 @@
 		WHERE center_code=#{centerCode} 
 	</update>
 	
+	<!-- 센터삭제 메서드-->
+	<delete id="centerDelete">
+		DELETE 
+		FROM 
+			center 
+		WHERE 
+			center_code=#{centerCode};
+	
+	</delete>
   </mapper>

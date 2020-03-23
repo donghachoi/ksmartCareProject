@@ -32,8 +32,10 @@ public class CenterService {
 		return centerMapper.centerUpdate(center);
 	}
 	
-	
-	
+	//센터 정보 삭제
+		public int centerDelete(String centerCode) {
+			return centerMapper.centerDelete(centerCode);
+		}
 	
 
 }

@@ -126,7 +126,8 @@
 				<!-- 개략 테이블 End -->
 				<!-- 수급자 상세정보 Start -->
 						<div class="col-lg-13 ui-sortable">
-							<form class="form-horizontal" >
+							<form class="form-horizontal" method="get">
+							
 							<div class="box ui-sortable-handle">
 								<header>
 									<div class="icons">
@@ -141,23 +142,27 @@
 													id="btnCenterCodeForUpdate"
 													>
 													<span class="ui-button-text" >
-													정보수정
+														정보수정
 													</span>
 											</button>
-											</form>
+											
 											<button type="button"  
 													data-toggle="modal" data-target="#myModal"
 													class="btn btn-default btn-sm btn-line"
 													id="btnCenterCodeForDelete"
 													>
-													<span class="ui-button-text">센터삭제</span>
+													<span class="ui-button-text">
+														센터삭제
+													</span>
 											</button>
+											</form>
 										<!-- 	<a href="#defaultTable" data-toggle="collapse"
 												class="btn btn-sm btn-default minimize-box"> 
 												<i class="fa fa-angle-up"></i>
 											</a> -->
 										</div>
 									</div>
+									
 								</header>
 								<div id="defaultTable" class="body collapse in">
 									<table class="table responsive-table">
@@ -206,13 +211,12 @@
 									</table>
 								
 								</div>
-								</form>
+								
 								</div>
 							</div>
 						</div>
 						<!-- 수급자 상세정보 End-->
-					</div>
-				</div>
+					
 			
 					<!-- 센터 리스트 끝  -->
 
@@ -335,8 +339,10 @@
 		$('#btnCenterCodeForUpdate').click(function(){
 			var centerCode = $(this).attr('centerCode');
 			if(centerCode == undefined){
+				//수정할 기관이 선택되지 않은 경우 알림창
 				alert('기관을 선택해주세요');
-			}else{				
+			}else{	
+				//선택한 기관의 수정페이지로 이동
 				location.href="/center/centerUpdate?centerCode="+centerCode;
 			}
 		});
@@ -345,9 +351,19 @@
 			var centerCode = $(this).attr('centerCode');
 			var centerName = $(this).attr('centerName');
 			if(centerCode == undefined){
+				//삭제할 기관이 선택되지 않은 경우 알림창
 				alert('기관을 선택해주세요');
 			}else{				
-			 confirm('!!!!확인요청!!!!\n\n장기요양기관번호:'+centerCode+'\n센터명:'+centerName+'\n\n을(를)정말 삭제하시겠습니까?\n\n삭제 후에는 되돌릴 수 없습니다')
+				 //삭제 확인창	
+				 var confirmresult = confirm('!!!!확인요청!!!!\n\n장기요양기관번호:'+centerCode+'\n센터명:'+centerName+'\n\n을(를)정말 삭제하시겠습니까?\n\n삭제 후에는 되돌릴 수 없습니다');
+				 if(confirmresult){
+					//삭제 확인버튼
+					location.href="/master/centerDelete?centerCode="+centerCode;
+				}else{
+					//삭제 취소버튼
+					return;
+				}	 	 
+			 
 			 
 				
 			}
