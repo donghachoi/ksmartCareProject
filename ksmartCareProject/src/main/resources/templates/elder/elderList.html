@@ -324,7 +324,10 @@
 									<tbody>
 										<tr class="odd">
 											<td >1</td>
-											<td>2020-03-01</td>
+											<td id="fallDownCheckDate">2020-03-01</td>
+											<td id="bedsoreCheckDate">2020-03-01</td>
+											<td id="functionCheckDate">2020-03-01</td>
+											<td id="needsCheckDate">2020-03-01</td>
 											<td>2020-03-01</td>
 											<td>2020-03-01</td>
 											<td>2020-03-01</td>
@@ -489,6 +492,20 @@
 				contentType	:	'application/json',
 				success	:	function(data){
 					
+					console.log(data.fallDownCheck);
+					console.log(data.bedsoreCheck);
+					console.log(data.functionCheck);
+					console.log(data.needsCheck);
+					//수급자 정규검사 
+					var fallDownCheckDate = data.fallDownCheck.elderRegularCheckDoingDate
+					var bedsoreCheckDate = data.bedsoreCheck.elderRegularCheckDoingDate
+					var functionCheckDate = data.functionCheck.elderRegularCheckDoingDate
+					var needsCheckDate = data.needsCheck.elderRegularCheckDoingDate
+					
+					console.log(fallDownCheckDate);
+					console.log(bedsoreCheckDate);
+					console.log(functionCheckDate);
+					console.log(needsCheckDate);
 					
 					//수급자 수급 인정기간 
 					var serviceEndDate = data.elderLastStatus.serviceEndDate;
@@ -532,7 +549,10 @@
 					$('#elderAdressForPost').text(elderAdressForPost);
 					$('#elderDisease').text(elderDisease);
 					$('#elderRemarks').text(elderRemarks);
-					
+					$('#fallDownCheckDate').text(fallDownCheckDate);
+					$('#bedsoreCheckDate').text(bedsoreCheckDate);
+					$('#functionCheckDate').text(functionCheckDate);
+					$('#needsCheckDate').text(needsCheckDate);
 				},
 				error	:	function(error){
 					console.log("error", error)

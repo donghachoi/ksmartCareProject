@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cafe24.choiyooq1.domain.Elder;
 import com.cafe24.choiyooq1.domain.ElderLevelHistory;
+import com.cafe24.choiyooq1.domain.ElderRegularCheck;
 import com.cafe24.choiyooq1.mapper.ElderMapper;
 import com.cafe24.choiyooq1.mapper.GuaranteeingAgencyMapper;
 
@@ -29,8 +30,19 @@ public class ElderService {
 			elderMapper.getElderLastStatus(elderId).setServiceEndDate("1");
 		}
 		
-		elderMapper.getLastElderLevelHistory(elderId).toString();
-		
+		List<ElderRegularCheck> list = elderMapper.getLastElderRegularHistory(elderId);
+		for(int i = 0; i< list.size();i++) {
+			String category = list.get(i).getElderRegularCheckCategory();
+			if(category.equals("낙상위험 측정")) {
+				map.put("fallDownCheck", list.get(i));
+			}if(category.equals("욕창위험 측정")) {
+				map.put("bedsoreCheck", list.get(i));
+			}if(category.equals("인지기능 검사")) {
+				map.put("functionCheck", list.get(i));
+			}if(category.equals("욕구사정")) {
+				map.put("needsCheck", list.get(i));
+			}
+		}
 		map.put("elderOenList", elderMapper.getOneElderList(elderId));
 		map.put("elderLastLevel", elderMapper.getElderLastLevelHistory(elderId));
 		map.put("elderLastStatus", elderMapper.getElderLastStatus(elderId));

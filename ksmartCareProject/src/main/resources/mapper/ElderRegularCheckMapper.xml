@@ -19,7 +19,7 @@
   </resultMap>
   
   
-  <select id="getLastElderLevelHistory" resultType="java.util.List" resultMap="ElderRegularCheck">
+  <select id="getLastElderRegularHistory" resultType="java.util.List" resultMap="ElderRegularCheck">
 SELECT 
 	elder_regular_check_code, 
 	center_code, center_name, 
@@ -29,10 +29,10 @@ SELECT
 	employee_name, 
 	elder_regular_check_category, 
 	elder_regular_check_registration_date,
-	MAX(elder_regular_check_doing_date) ,
-	MAX(elder_regular_check_plan_date)
+	MAX(elder_regular_check_doing_date) as elder_regular_check_doing_date,
+	MAX(elder_regular_check_plan_date)  as elder_regular_check_plan_date
 FROM elder_regular_check
-	WHERE elder_id = 's_000001' 
+	WHERE elder_id = #{elderId} 
 	GROUP BY elder_regular_check_category
   
   </select>
