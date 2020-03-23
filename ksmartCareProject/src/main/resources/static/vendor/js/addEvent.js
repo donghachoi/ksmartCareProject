@@ -23,15 +23,16 @@ var description = $('#editDesc');
 var serviceTitle = $('.serviceMenu');
 var employeeId = $('#employeeId');
 
-var addBtnContainer = $('.modalBtnContainer-addEvent');
-var modifyBtnContainer = $('.modalBtnContainer-modifyEvent');
 
 /* ****************
  *  새로운 일정 생성
  * ************** */
 var newEvent = function (start, end, eventType) {
 
+	var employeeId = $('#employeeId');
 	
+	var monthlyClaimGroupCode = editStart.val();                       //날짜그룹
+	monthlyClaimGroupCode = monthlyClaimGroupCode.substring(0, 7);  
 	
 	var elerId = $('input[name=elderId]').val();
 	
@@ -58,10 +59,14 @@ var newEvent = function (start, end, eventType) {
     var test1 = (editTime1.val()).split(':');
     var test2 = (editTime2.val()).split(':');
     var hour = (test2[0] - test1[0])*60;
-    var minutes = test2[1] - test1[1];
-    var total = hour+ minutes;
+
+    var minutes = (test2[1] - test1[1]);
+    console.log(hour);
+    console.log(minutes);
+    var total = hour + minutes;
+    console.log(total);
     //moment(editTime1.val()).format('HH:mm');
-//   var test2 = moment(editTime2.val()).format('HH:mm');
+    //var test2 = moment(editTime2.val()).format('HH:mm');
     	var eventData = {
             _id: eventId,
             title: serviceTitle.attr('empservice'),
@@ -89,22 +94,20 @@ var newEvent = function (start, end, eventType) {
 			visitServiceTime : total,
 
 			//.diff(moment(editTime1.val()).format('HH:mm')), 'minutes'),
-				
 			//moment.duration(test2.diff(test1)).asMinutes(),
 			//moment.duration(t2.diff(t1)).asMinutes());
 			//visitServiceTime :  moment.duration((editTime2.val()) - (editTime1.val())).asMinutes(),
 			//visitServiceTime : moment.duration(editTime2.val() - editTime1.val()).asMinutes(),
 			
-            allDay: false
-            
+            allDay: false    
         };
     	
-    	//직원 날짜 시간 중복 체크 하는 부분 잘 모르겟음
+    	//직원 날짜 시간 중복 체크 하는 부분 쿼리문이 문제 
 //    	$(employeeId).change(function(){
 //    		
 //    		$.ajax({
 //    			type: 'post',
-//    			url : '/employee/emplyeeDayCheck'
+//    			url : '/employee/emplyeeDayCheck',
 //    		    data: {employeeId : eventData.employeeId, visitPlanDate : visitPlanDate, visitPlanTime : visitPlanTime},
 //    		    dataType :'json',
 //    		    success : function(data){
@@ -114,7 +117,6 @@ var newEvent = function (start, end, eventType) {
 //    		    	console.log("error", error);
 //    		    }
 //    		})
-//    		
 //    	});
 
         if (eventData.start > eventData.end) {
@@ -122,39 +124,70 @@ var newEvent = function (start, end, eventType) {
             return false;
         }
 
-      
         if (eventData.title === '') {
             alert('일정명은 필수입니다.');
             return false;
         }
-
+        
+        if (!editTime1.val() || !editTime2.val()) {
+            alert('시간 입력은 필수 입니다');
+            return false;
+        }
+        
+        //시간 계산
+        if( eventData.visitServiceTime <= 59){
+        	eventData.visitServiceTime = 30;
+        }else if(60 <= eventData.visitServiceTime &&  eventData.visitServiceTime <=89 ){
+        	eventData.visitServiceTime = 60;
+        }else if(90 <= eventData.visitServiceTime && eventData.visitServiceTime  <=119 || eventData.serviceCategoryDetail == '가족케어'){
+        	eventData.visitServiceTime = 90;
+        }else if(120 <= eventData.visitServiceTime && eventData.visitServiceTime <=149){
+        	eventData.visitServiceTime = 120;
+        }else if(150 <= eventData.visitServiceTime && eventData.visitServiceTime <=209){
+        	eventData.visitServiceTime = 150;
+        }else if(210 <= eventData.visitServiceTime && eventData.visitServiceTime  <=239){
+        	eventData.visitServiceTime = 210;
+        }else if(240 <= eventData.visitServiceTime){
+        	eventData.visitServiceTime = 240;
+        }
+   
+        if(eventData.visitServiceCategory == '요양'){
+        	eventData.visitServiceTime = eventData.visitServiceTime + serviceCategoryDetail.val();
+        }
+        
+        console.log(eventData.visitServiceTime);
         if(eventData.visitServiceCategory == '간호' && 60<eventData.visitServiceTime){
         	alert("60분이 최고 시간입니다");
         	eventData.visitServiceTime = 60;
             return false;
         }
         
-        
-        //시간 계산
-        if( eventData.visitServiceTime <60){
-        	eventData.visitServiceTime = 30;
-        }else if(60 <= eventData.visitServiceTime <90 ){
-        	eventData.visitServiceTime = 60;
-        }else if(90 <= eventData.visitServiceTime <120 || serviceCategoryDetail == '가족케어'){
-        	eventData.visitServiceTime = 90;
-        }else if(120 <= eventData.visitServiceTime <150){
-        	eventData.visitServiceTime = 120;
-        }else if(150 <= eventData.visitServiceTime <210){
-        	eventData.visitServiceTime = 150;
-        }else if(210 <= eventData.visitServiceTime < 240){
-        	eventData.visitServiceTime = 210;
-        }else if(240 <= eventData.visitServiceTime){
-        	eventData.visitServiceTime = 240;
+        if(eventData.visitServiceCategory == '목욕' ){
+        	eventData.visitServiceTime = serviceCategoryDetail.val();
         }
+    
+
+            $('#editTime2').datepicker().on('changeDate', function() {
+            	$('#editTime3').val('11111');
+                    });
         
-        if(eventData.visitServiceCategory == '요양'){
-        	eventData.visitServiceTime = eventData.visitServiceTime + serviceCategoryDetail.val();
-        }
+//        $("#editTime2").datetimepicker({
+//            format: 'HH:mm'     
+//        }).on('change', function() {
+//            
+//       //현재 변경된 데이터 셋팅
+//     	$('#editTime3').val('11111');
+//   	alert('1111');
+//       }).trigger('change');  
+//        	
+//       // $('#editTime2').on('change', function() {
+            
+            // 현재 변경된 데이터 셋팅
+       // 	$('#editTime3').val('11111');
+        //	alert('1111');
+      //   });    
+        
+
         var realEndDay;
 
         if (editAllDay.is(':checked')) {
@@ -167,7 +200,6 @@ var newEvent = function (start, end, eventType) {
             eventData.allDay = true;
         }
         
-
         $("#calendar").fullCalendar('renderEvent', eventData, true);
         eventModal.find('input, textarea').val('');
         editAllDay.prop('checked', false);
@@ -182,6 +214,7 @@ var newEvent = function (start, end, eventType) {
                 //DB연동시 중복이벤트 방지를 위한
                 $('#calendar').fullCalendar('removeEvents');
                 $('#calendar').fullCalendar('refetchEvents');
+                alert(response);
             }
         });
     });

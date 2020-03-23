@@ -52,8 +52,8 @@ public class VisitService {
 		for(int i=0; i< list.size(); i++) {
 			Visit vit= list.get(i);
 			//수정한 부분
-			if(vit.getVisitServiceCategory().contains("요양")) {
-				vit.setVisitPlanTime((vit.getVisitServiceTime()).substring(0,2));	
+			if((vit.getVisitServiceCategory()).equals("요양")) {
+				vit.setVisitServiceTime((vit.getVisitServiceTime()).replaceAll("[^0-9]",""));	
 			}
 			BenefitCost bcost =  visitMapper.serviceCost(syear, vit.getVisitServiceCategory(),  
 					vit.getVisitServiceTime());
@@ -115,19 +115,26 @@ public class VisitService {
 	
 	
 	//일정 등록 
-	public List<Visit> visitInsert(Visit visit){
+	public String visitInsert(Visit visit){
+//	public List<Visit> visitInsert(Visit visit){
+		String str = null;
 		
-//		if(visit.getVisitServiceCategory().contains("요양")) {
-//			visit.setVisitPlanTime((visit.getVisitServiceTime()).substring(0,2));	
-//		}
-//		BenefitCost bcost =  visitMapper.serviceCost(syear, vit.getVisitServiceCategory(),  
-//				vit.getVisitServiceTime());
-//		
-//		
-//		
-//		visitMapper.serviceCost(visit.getElderId(), visihlyClaimGroupCode())t.getMont;
-		visit.setVisitCode("dfsdfsdfsdf");
-		return null;
+		if((visit.getVisitServiceCategory()).equals("요양")) {
+			 visit.setVisitServiceTime((visit.getVisitServiceTime()).replaceAll("[^0-9]",""));	
+		}
+		
+		BenefitCost bcost =  visitMapper.serviceCost((visit.getMonthlyClaimGroupCode()).substring(0,4), visit.getVisitServiceCategory(),  
+				visit.getVisitServiceTime());
+		
+		if(subCost- bcost.getBenefitCost()<0) {
+			str ="한도를 초과하였습니다. 비급여를 선택해 주세요";
+		}else {
+			visitMapper.visitInsert(visit);
+			str ="정상 입력 되었습니다";
+		}
+		
+		//
+		return str;
 	}
 	
 	
@@ -139,14 +146,22 @@ public class VisitService {
 		return list;
 	}
 
-	//직원 같은날짜, 시간 중복 체크
-	public void vemplyeeDayCheck(String employeeId, String visitPlanDate, String visitPlanTime) {
-		String[] visitPlanTime1 = visitPlanTime.split("~");
-		
-		visitMapper.emplyeeDayCheck(employeeId, visitPlanDate,visitPlanTime1[0], visitPlanTime1[1]);
-		// TODO Auto-generated method stub
-		
+	//일정 등록 후 캘린더 리스트 보여주기
+	public List<Visit> vCalenderList(String elderId, String monthGroup){
+		List<Visit> list = visitMapper.vCalenderList(elderId, monthGroup);
+		return list;
 	}
+	
+//	//직원 같은날짜, 시간 중복 체크
+//	public void vemplyeeDayCheck(String employeeId, String visitPlanDate, String visitPlanTime) {
+//		//String[] visitPlanTime1 = visitPlanTime.split("~");
+//		
+//		
+//		visitMapper.emplyeeDayCheck(employeeId, visitPlanDate, visitPlanTime.replace("[^0-9]", ""));
+//		//visitMapper.emplyeeDayCheck(employeeId, visitPlanDate,visitPlanTime1[0], visitPlanTime1[1]);
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 
 }

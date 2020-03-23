@@ -56,6 +56,10 @@ public class VisitController {
 			smonth = Integer.toString(today.get(Calendar.MONTH) + 1);
 		}
 		
+		if(smonth.length()>0) {
+			smonth ="0"+smonth;
+		}
+		
 		Map<String, Integer>  list = visitservice.elderBenefitCost(elder_id, syear, smonth, maxcost);
 		list.put("syear", Integer.parseInt(syear));
 		list.put("smonth", Integer.parseInt(smonth));
@@ -85,31 +89,43 @@ public class VisitController {
 	}
 
 	//직원 같은날짜, 시간 중복 체크
-	@PostMapping("/employee/emplyeeDayCheck")
-	public String vemplyeeDayCheck(@RequestParam(value="employeeId") String employeeId, 
-			@RequestParam(value="visitPlanDate") String visitPlanDate,
-			@RequestParam(value="visitPlanTime") String visitPlanTime) {
-		   
-		visitservice.vemplyeeDayCheck(employeeId, visitPlanDate, visitPlanTime);
-		           
-		
-				return visitPlanTime;
-	}
-	
+//	@PostMapping("/employee/emplyeeDayCheck")
+//	public String vemplyeeDayCheck(@RequestParam(value="employeeId") String employeeId, 
+//			@RequestParam(value="visitPlanDate") String visitPlanDate,
+//			@RequestParam(value="visitPlanTime") String visitPlanTime) {
+//		   
+//		visitservice.vemplyeeDayCheck(employeeId, visitPlanDate, visitPlanTime);
+//		           
+//		
+//				return visitPlanTime;
+//	}
+//	
 	
 	//일정등록 
     @PostMapping("/employee/visitInsert")
-	public String visitInsert(Visit visit){
-		System.out.println(visit.toString());
+	public @ResponseBody String visitInsert(Visit visit){
+		
+		
 		visit.setCenterCode(centerCode);
 		visit.setCenterName(canterName);
-		visitservice.visitInsert(visit);
 		
-		return "/df";
+		String str = visitservice.visitInsert(visit);
+		
+		return str;
 	}
     
  
-    
+    //일정등록 캘린더 보여주기 
+    @PostMapping("/employee/vcalenderList")
+    public @ResponseBody List<Visit> vCalenderList(@RequestParam(value="elderId") String elderId ,
+    		@RequestParam(value="monthGroup") String monthGroup){
+    	
+    	visitservice.vCalenderList(elderId, monthGroup);
+    	
+    	
+		return null;
+    }
+   
     //방문일정검색(직원별)
     @GetMapping("/employee/emplyeeCalenderSearch")
     public String vemplyeeCalenderSearch(Model model) {

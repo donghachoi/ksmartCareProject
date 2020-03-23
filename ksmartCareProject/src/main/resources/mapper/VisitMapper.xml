@@ -122,13 +122,35 @@
   	
   	<!-- 날짜, 시간으로 직원 검색 0-->
   	<select id="emplyeeDayCheck" parameterType="String" resultType="int">
+  	
   		
   	</select>
   	
   	
-  	<!-- 일정 등록 -->
+<!--  일정등록 -->
   	<insert id="visitInsert" parameterType="Visit">
+	     <selectKey resultType="String" keyProperty="visitCode" order="BEFORE">
+	          SELECT CONCAT('a', '_', (SELECT LPAD(COUNT(*)+1,7,'0') as visit_code FROM visit)) 
+	     </selectKey>
+       		
+		 INSERT INTO visit (visit_code, center_code, center_name, elder_id, elder_name, 
+				employee_id, employee_name, visit_plan_date, 
+				visit_plan_time, visit_service_time, family_relation, 
+				visit_service_category, monthly_claim_group_code, background_color, 
+				description, yoyang_bath_nonBenefit) 
+			VALUE (#{visitCode},
+				#{centerCode}, #{centerName}, #{elderId}, #{elderName}, #{employeeId}, #{employeeName},
+				#{visitPlanDate}, #{visitPlanTime}, #{visitServiceTime}, #{familyRelation},
+				#{visitServiceCategory}, #{monthlyClaimGroupCode}, #{backgroundColor}, #{description}, #{yoyangBathNonBenefit})
+  	</insert>  	
   	
+<!--   	일정등록 후 캘린더에 보여주기 -->
+  	<select id="vCalenderList" parameterType="String" resultMap="VisitMap">
+	SELECT elder_id, elder_name, employee_name, visit_plan_date, visit_plan_time, 
+		visit_service_time, visit_service_category, background_color
+	from visit WHERE elder_id=#{elderId}
+		AND monthly_claim_group_code=#{monthGroup}
+  	</select>  	
   	
-  	</insert>
+
   </mapper>
