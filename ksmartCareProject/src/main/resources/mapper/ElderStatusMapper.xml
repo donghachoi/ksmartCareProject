@@ -16,6 +16,16 @@
   	<result property="serviceEndDate" column="service_end_date"/>
   </resultMap>
   
+  
+  <select id="getElderFirtsStatusDate" resultMap="ElderStatusMap">
+  	SELECT 
+		MIN(service_start_date) as service_start_date
+	FROM 
+		elder_status
+	WHERE 
+		elder_id=#{elderId};
+  
+  </select>
   <select id="getElderLastStatus" resultMap="ElderStatusMap">
 	SELECT 
 		service_status_code, 

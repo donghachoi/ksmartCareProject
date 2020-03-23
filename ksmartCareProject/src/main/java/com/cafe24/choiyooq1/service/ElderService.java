@@ -22,6 +22,22 @@ public class ElderService {
 	@Autowired ElderMapper elderMapper;
 	@Autowired GuaranteeingAgencyMapper guaranteeingAgency;
 	
+	/* 수급자 상세리스트 메서드 */
+	public Map<String,Object> getOneElderList(String elderId){
+		Map<String,Object> map = new HashMap<String,Object>();
+		if(elderMapper.getElderLastStatus(elderId).getServiceEndDate()==null) {
+			elderMapper.getElderLastStatus(elderId).setServiceEndDate("1");
+		}
+		
+		elderMapper.getLastElderLevelHistory(elderId).toString();
+		
+		map.put("elderOenList", elderMapper.getOneElderList(elderId));
+		map.put("elderLastLevel", elderMapper.getElderLastLevelHistory(elderId));
+		map.put("elderLastStatus", elderMapper.getElderLastStatus(elderId));
+		map.put("elderFirstStatusDate", elderMapper.getElderFirtsStatusDate(elderId));
+		map.put("elderLastLevelHistory", elderMapper.getElderLastLevelHistory(elderId));
+		return map;
+	}
 	
 	/* 수급자 입력 메서드 */
 	public void insertElder(Elder elder,ElderLevelHistory elderLevelHistory ,HttpSession session) {
@@ -36,14 +52,6 @@ public class ElderService {
 		
 	}
 	
-	/* 수급자 상세리스트 메서드 */
-	public Map<String,Object> getOneElderList(String elderId){
-		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("elderOenList", elderMapper.getOneElderList(elderId));
-		map.put("elderLastLevel", elderMapper.getElderLastLevelHistory(elderId));
-		map.put("elderLastStatus", elderMapper.getElderLastStatus(elderId));
-		return map;
-	}
 	
 	/* 수급자 리스트 메서드 */
 	public List<Elder> getElderList(){

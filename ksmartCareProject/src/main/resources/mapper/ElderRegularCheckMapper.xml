@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.cafe24.choiyooq1.mapper.ElderMapper"> <!-- namespace="mapper 인터페이스 경로!!!!" -->
+  
+  <resultMap type="com.cafe24.choiyooq1.domain.ElderRegularCheck" id="ElderRegularCheck">
+  	<result property="elderRegularCheckCode" column="elder_regular_check_code"/>
+  	<result property="elderId" column="elder_id"/>
+  	<result property="elderName" column="elder_name"/>
+  	<result property="centerCode" column="center_code"/>
+  	<result property="centerName" column="center_name"/>
+  	<result property="employeeId" column="employee_id"/>
+  	<result property="employeeName" column="employee_name"/>
+  	<result property="elderRegularCheckCategory" column="elder_regular_check_category"/>
+  	<result property="elderRegularCheckPlanDate" column="elder_regular_check_plan_date"/>
+  	<result property="elderRegularCheckDoingDate" column="elder_regular_check_doing_date"/>
+  	<result property="elderRegularCheckRegistrationDate" column="elder_regular_check_registration_date"/>
+  </resultMap>
+  
+  
+  <select id="getLastElderLevelHistory" resultType="java.util.List" resultMap="ElderRegularCheck">
+SELECT 
+	elder_regular_check_code, 
+	center_code, center_name, 
+	elder_id, 
+	elder_name, 
+	employee_id, 
+	employee_name, 
+	elder_regular_check_category, 
+	elder_regular_check_registration_date,
+	MAX(elder_regular_check_doing_date) ,
+	MAX(elder_regular_check_plan_date)
+FROM elder_regular_check
+	WHERE elder_id = 's_000001' 
+	GROUP BY elder_regular_check_category
+  
+  </select>
+
+  </mapper>
