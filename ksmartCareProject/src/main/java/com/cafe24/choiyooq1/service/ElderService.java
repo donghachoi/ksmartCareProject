@@ -37,10 +37,12 @@ public class ElderService {
 	}
 	
 	/* 수급자 상세리스트 메서드 */
-	public Elder getOneElderList(String elderId){
-		System.out.println(elderId+"<<<<<<<<<<<<<<<<------------------------ elderId");
-		System.out.println("??????????????"+elderMapper.getOneElderList(elderId).toString());
-		return elderMapper.getOneElderList(elderId);
+	public Map<String,Object> getOneElderList(String elderId){
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("elderOenList", elderMapper.getOneElderList(elderId));
+		map.put("elderLastLevel", elderMapper.getElderLastLevelHistory(elderId));
+		map.put("elderLastStatus", elderMapper.getElderLastStatus(elderId));
+		return map;
 	}
 	
 	/* 수급자 리스트 메서드 */

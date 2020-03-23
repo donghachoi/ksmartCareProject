@@ -64,9 +64,8 @@ public class ElderController {
 	
 	/* 수급자 상세 리스트 */
 	@PostMapping("/elderDetailList")
-	public @ResponseBody Elder getElderDetailList(@RequestBody Map<String,Object> map){
+	public @ResponseBody Map<String,Object> getElderDetailList(@RequestBody Map<String,Object> map){
 		String elderId = (String) map.get("elderId");
-		System.out.println(elderService.getOneElderList(elderId).getBenefitMaxCost());
 		return elderService.getOneElderList(elderId);
 	}
 	

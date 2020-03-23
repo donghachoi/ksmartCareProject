@@ -120,22 +120,22 @@
 												<th>수급자아이디</th>
 												<td id="elderId"></td>
 												<th>수급자명</th>
-												<td id="elderName">나수급</td>
+												<td id="elderName"></td>
 												<th>성별</th>
-												<td id="elderGender">여</td>
+												<td id="elderGender"></td>
 												
 											</tr>
 											<tr>
 												<th>최초입소일</th>
 												<td>2019.02.08--- 추가해야함.</td>
 												<th>수급현황</th>
-												<td id="elderFinalServiceStatus">수급 or 보류</td>
+												<td id="elderFinalServiceStatus"></td>
 												<th>생년월일</th>
-												<td id="elderBirthDate">1933.04.13</td>
+												<td id="elderBirthDate"></td>
 											</tr>
 											<tr>
 												<th>본인부담률</th>
-												<td id="elderCoinsurance">15%</td>
+												<td id="elderCoinsurance"></td>
 												<th>급여한도</th>
 												<td>이번달 급여한도</td>
 												<td></td>
@@ -143,26 +143,26 @@
 											</tr>
 											<tr>
 												<th>인정등급/번호</th>
-												<td id="elderLevel">3등급 / L0010162566</td>
+												<td id="elderLevel"></td>
 												<th>인정기간</th>
-												<td>2019.02.08 ~ 2022.02.07
-												<button type="button"  
+												<td id="elderServiceApprovalDate">
+												</td>
+												<th><button type="button"  
 														data-toggle="modal" data-target="#myModal"
 														class="btn btn-primary btn-sm">
 														<span>등급인정관리</span>
-													</button></td>
-												<th></th>
+													</button></th>
 												<th></th>
 											</tr>
 											<tr>
 												<th>계약만료일</th>
-												<td colspan="3">2022-03-12
-													<button type="button"  
+												<td id="serviceEndDate">
+													</td>
+												<th><button type="button"  
 														data-toggle="modal" data-target="#myModal3"
 														class="btn btn-primary btn-sm">
 													<span>계약관리</span>
-													</button></td>
-												<th></th>
+													</button></th>
 												<th></th>
 											</tr>
 											<tr>
@@ -407,11 +407,11 @@
 									<input type="checkbox" value="002" ><label><span>목욕</span></label>
 									<input type="checkbox" value="003" ><label><span>간호</span></label>
 									<div>
-										<label>계약일
 											<div style="margin:0px; display:inline;">
-												<input class="date" type="text">
+												<label>계약일
+													<input class="date" type="text"/>
+												</label>
 											</div>
-										</label>
 									</div>
 									<label>유효기간
 										<div style="margin:0px; display:inline; margin-left:50px;">
@@ -490,33 +490,43 @@
 				data	:	JSON.stringify(map),
 				contentType	:	'application/json',
 				success	:	function(data){
+					//수급자 수급 상태 
+					var serviceEndDate = data.elderLastStatus.serviceEndDate;
 					
-					var elderId = data.elderId
-					var elderName = data.elderName
-					var elderBirthDate = data.elderBirthDate
-					var elderGender = data.elderGender
-					var elderFinalServiceApprovalLevel = data.elderFinalServiceApprovalLevel
-					var elderFinalServiceStatus = data.elderFinalServiceStatus
-					var elderDisease = data.elderDisease
-					var elderCoinsurance = data.elderCoinsurance
-					var totalVisits = data.totalVisits
-					var totalServiceTime = data.totalServiceTime
-					var serviceLocalmanageCode = data.serviceLocalmanageCode
-					var serviceLocalmanageName = data.serviceLocalmanageName
-					var longTermCareNumver = data.longTermCareNumver
-					var longTermCareValidity = data.longTermCareValidity
-					var elderPhone = data.elderPhone
-					var elderAdressForStay = data.elderAdressForStay
-					var elderAdressForPost = data.elderAdressForPost
-					var elderRemarks = data.elderRemarks
-					var elderGroups = data.elderGroups
+					
+					//수급자 등급 히스토리
+					var elderServiceApprovalLevel = data.elderLastLevel.elderServiceApprovalLevel;
+					var elderServiceApprovalEndDate = data.elderLastLevel.elderServiceApprovalEndDate;
+					var elderServiceApprovalStartDate = data.elderLastLevel.elderServiceApprovalStartDate;
+					var elderServiceApprovalNumber = data.elderLastLevel.elderServiceApprovalNumber;
+					//수급자 기본 테이블에서 나온것들.
+					var elderId = data.elderOenList.elderId
+					var elderName = data.elderOenList.elderName
+					var elderBirthDate = data.elderOenList.elderBirthDate
+					var elderGender = data.elderOenList.elderGender
+					var elderFinalServiceApprovalLevel = data.elderOenList.elderFinalServiceApprovalLevel
+					var elderFinalServiceStatus = data.elderOenList.elderFinalServiceStatus
+					var elderDisease = data.elderOenList.elderDisease
+					var elderCoinsurance = data.elderOenList.elderCoinsurance
+					var totalVisits = data.elderOenList.totalVisits
+					var totalServiceTime = data.elderOenList.totalServiceTime
+					var serviceLocalmanageCode = data.elderOenList.serviceLocalmanageCode
+					var serviceLocalmanageName = data.elderOenList.serviceLocalmanageName
+					var longTermCareNumver = data.elderOenList.longTermCareNumver
+					var longTermCareValidity = data.elderOenList.longTermCareValidity
+					var elderPhone = data.elderOenList.elderPhone
+					var elderAdressForStay = data.elderOenList.elderAdressForStay
+					var elderAdressForPost = data.elderOenList.elderAdressForPost
+					var elderRemarks = data.elderOenList.elderRemarks
+					var elderGroups = data.elderOenList.elderGroups
 					$('#elderId').text(elderId);
 					$('#elderName').text(elderName);
 					$('#elderGender').text(elderGender);
 					$('#elderFinalServiceStatus').text(elderFinalServiceStatus);
 					$('#elderBirthDate').text(elderBirthDate);
-					
-					
+					$('#elderLevel').text(elderServiceApprovalLevel+'등급 / '+elderServiceApprovalNumber);
+					$('#elderServiceApprovalDate').text(elderServiceApprovalStartDate+" ~ "+elderServiceApprovalEndDate);
+					$('#serviceEndDate').text(serviceEndDate);
 					
 				},
 				error	:	function(error){
