@@ -47,14 +47,6 @@ public class ElderController {
 		return elderService.checkElderId(elderId);
 	}
 	
-	/* 보장기관 검색 ajax */
-	@PostMapping("/employee/searchAgency")
-	public @ResponseBody List<GuaranteeingAgency> searchAgency(@RequestBody Map<String,Object> map){
-		String keyword =(String) map.get("keyword");
-		System.out.println(keyword);
-		
-		return null;
-	}
 	
 	/* 수급자 등록 화면으로 */
 	@GetMapping("/employee/elderInsert")
@@ -72,11 +64,9 @@ public class ElderController {
 	
 	/* 수급자 상세 리스트 */
 	@PostMapping("/elderDetailList")
-	public Map<String,Object> getElderDetailList(@RequestBody Map<String,Object> map){
+	public @ResponseBody Map<String,Object> getElderDetailList(@RequestBody Map<String,Object> map){
 		String elderId = (String) map.get("elderId");
-		Map<String,Object> mapResult = new HashMap<String,Object>();
-		System.out.println(elderService.getOneElderList(elderId).toString());
-		return null;
+		return elderService.getOneElderList(elderId);
 	}
 	
 	/* 부트스트랩 확인용 */

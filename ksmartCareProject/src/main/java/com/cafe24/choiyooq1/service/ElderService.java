@@ -1,7 +1,8 @@
 package com.cafe24.choiyooq1.service;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cafe24.choiyooq1.domain.Elder;
 import com.cafe24.choiyooq1.domain.ElderLevelHistory;
+import com.cafe24.choiyooq1.domain.ElderRegularCheck;
 import com.cafe24.choiyooq1.mapper.ElderMapper;
 import com.cafe24.choiyooq1.mapper.GuaranteeingAgencyMapper;
 
@@ -21,6 +23,33 @@ public class ElderService {
 	@Autowired ElderMapper elderMapper;
 	@Autowired GuaranteeingAgencyMapper guaranteeingAgency;
 	
+	/* 수급자 상세리스트 메서드 */
+	public Map<String,Object> getOneElderList(String elderId){
+		Map<String,Object> map = new HashMap<String,Object>();
+		if(elderMapper.getElderLastStatus(elderId).getServiceEndDate()==null) {
+			elderMapper.getElderLastStatus(elderId).setServiceEndDate("1");
+		}
+		
+		List<ElderRegularCheck> list = elderMapper.getLastElderRegularHistory(elderId);
+		for(int i = 0; i< list.size();i++) {
+			String category = list.get(i).getElderRegularCheckCategory();
+			if(category.equals("낙상위험 측정")) {
+				map.put("fallDownCheck", list.get(i));
+			}if(category.equals("욕창위험 측정")) {
+				map.put("bedsoreCheck", list.get(i));
+			}if(category.equals("인지기능 검사")) {
+				map.put("functionCheck", list.get(i));
+			}if(category.equals("욕구사정")) {
+				map.put("needsCheck", list.get(i));
+			}
+		}
+		map.put("elderOenList", elderMapper.getOneElderList(elderId));
+		map.put("elderLastLevel", elderMapper.getElderLastLevelHistory(elderId));
+		map.put("elderLastStatus", elderMapper.getElderLastStatus(elderId));
+		map.put("elderFirstStatusDate", elderMapper.getElderFirtsStatusDate(elderId));
+		map.put("elderLastLevelHistory", elderMapper.getElderLastLevelHistory(elderId));
+		return map;
+	}
 	
 	/* 수급자 입력 메서드 */
 	public void insertElder(Elder elder,ElderLevelHistory elderLevelHistory ,HttpSession session) {
@@ -35,12 +64,6 @@ public class ElderService {
 		
 	}
 	
-	/* 수급자 상세리스트 메서드 */
-	public List<Elder> getOneElderList(String elderId){
-		List<Elder> list = elderMapper.getOneElderList(elderId);
-		
-		return list;
-	}
 	
 	/* 수급자 리스트 메서드 */
 	public List<Elder> getElderList(){

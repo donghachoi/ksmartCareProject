@@ -312,6 +312,7 @@
 			}
 		})
 		
+		/* 날짜 포맷 메서드 */
 		function DayCheck(Obj)
 		{
 		    var strValue = Obj.val();
@@ -394,11 +395,12 @@
 		$( "#elderBirthDate" ).datepicker({
 	    	
 	    });
+		
 		//달력 유효성검사.
 		$( ".date" ).change(function(){
-			if($('.date').eq(1).val() != "" && $('.date').eq(0).val() >= $('.date').eq(1).val()){
+			if($('.date').eq(2).val() != "" && $('.date').eq(1).val() >= $('.date').eq(2).val()){
 					alert('유효기간 이 시간시간보다 짧거나 같을수 없습니다.');
-					$('.date').eq(1).val("")
+					$('.date').eq(2).val("")
 			    }
 		})
 		
