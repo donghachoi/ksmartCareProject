@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.cafe24.choiyooq1.mapper.EmployeeMapper">
+  	<!-- //id는 MemberMapper(인터페이스)안에 있는 메서드 이름 -->
+  	<resultMap type="com.cafe24.choiyooq1.domain.Employee" id="EmployeeMap">
+  		<result property="employeeListNumber" column="@rownum:=@rownum+1"/>
+  		<result property="employeeId" column="employee_id"/>
+  		<result property="centerCode" column="center_code"/>
+  		<result property="centerName" column="center_name"/>
+  		<result property="employeeName" column="employee_name"/>
+  		<result property="employeePw" column="employee_pw"/>
+  		<result property="employeeCategory" column="employee_category"/>
+  		<result property="employeeGender" column="employee_gender"/>
+  		<result property="employeePersonalNumber" column="employee_personal_number"/>
+  		<result property="employeePhone" column="employee_phone"/>
+  		<result property="employeeStartDate" column="employee_start_date"/>
+  		<result property="employeeWorkingStatus" column="employee_working_status"/>
+  		<result property="employeeWorkingType" column="employee_working_type"/>
+  		<result property="employeePosition" column="employee_position"/>
+  		<result property="employeePayType" column="employee_pay_type"/>
+  		<result property="employeeHourlyPay" column="employee_hourly_pay"/>
+  		<result property="employeeAccount" column="employee_account"/>
+  		<result property="employeeAccountHolder" column="employee_account_holder"/>	
+  	</resultMap>
+  	
+  	<!-- 직원등록 메서드 -->
+  	<insert id="employeeInsert" parameterType="com.cafe24.choiyooq1.domain.Employee">
+  		INSERT INTO employee
+			(employee_id
+			, center_code
+			, center_name
+			, employee_name
+			, employee_pw
+			, employee_category
+			, employee_gender
+			, employee_personal_number
+			, employee_phone
+			, employee_start_date
+			, employee_working_status
+			, employee_working_type
+			, employee_position
+			, employee_pay_type
+			, employee_hourly_pay
+			, employee_account
+			, employee_account_holder)
+		VALUES (#{employeeId}
+				,#{centerCode}
+				,#{centerName}
+				,#{employeeName}
+				,#{employeePw}
+				,#{employeeCategory}
+				,#{employeeGender}
+				,#{employeePersonalNumber}
+				,#{employeePhone}
+				,#{employeeStartDate}
+				,#{employeeWorkingStatus}
+				,#{employeeWorkingType}
+				,#{employeePosition}
+				,#{employeePayType}
+				,#{employeeHourlyPay}
+				,#{employeeAccount}
+				,#{employeeAccountHolder});
+	</insert>
+  	
+  
+  
+  </mapper>
