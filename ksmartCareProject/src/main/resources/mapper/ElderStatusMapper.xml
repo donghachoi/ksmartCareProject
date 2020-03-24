@@ -34,9 +34,9 @@
   
   
   <select id="getElderStatusMaxNum" resultType="int">
-  	SELECT 
-		COUNT(service_status_code)
-	FROM 
+	SELECT 
+		MAX(substring(service_status_code,14)) 
+	from 
 		elder_status
   </select>
   

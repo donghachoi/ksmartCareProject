@@ -33,7 +33,7 @@
                rootpath: "/assets/"
            };
        </script>
-
+		
        <link rel="stylesheet" href="/assets/css/style-switcher.css">
        <link rel="stylesheet/less" type="text/css" href="/assets/less/theme.less">
        <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.js"></script>
@@ -200,10 +200,10 @@
 										<td><strong>과거이력보기</strong></td>
 									</tr>
 									<tr>
-										<td>2019-03-01</td>
-										<td>2019-03-01</td>
-										<td>2019-03-01</td>
-										<td>2019-03-01</td>	
+										<td id="fallDownCheckDate"></td>
+										<td id="bedsoreCheckDate"></td>
+										<td id="functionCheckDate"></td>
+										<td id="needsCheckDate"></td>	
 										<td><button type="button"  
 														data-toggle="modal" data-target="#myModal2"
 														class="btn btn-primary btn-sm">
@@ -221,7 +221,7 @@
 			</div>
 			<!-- 등급 및 인정기간 관리  Modal -->
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" style="position: absolute; padding-top: 200px">
-			  <div class="modal-dialog modal-lg">
+			  <div class="modal-dialog modal-lg" style="position: absolute; margin-top: 300px; margin-left: 300px;">
 			    <div class="modal-content">
 			      <div class="modal-header">
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -231,24 +231,20 @@
 						<h3>인정기간 이력</h3>
 						<div class="row">
 							<div id="collapse4" class="col-sm-12">
-								<table class="table table-bordered table-condensed table-hover table-striped">
+								<table class="table table-bordered table-condensed table-hover table-striped modal-able">
 									<thead>
 										<tr>
 											<th>등급</th>
 											<th>인정시작</th>
 											<th>인정종료</th>
 											<th>인정번호</th>
+											<th>진행결과</th>
+											<th>진행상태</th>
 											<th>비고</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr class="odd">
-											<td >등급</td>
-											<td>인정시작</td>
-											<td>인정종료</td>
-											<td>인정번호</td>
-											<td>비고</td>
-										</tr>
+									<tbody id="elderServiceLevel">
+										
 									</tbody>
 								</table>
 							</div>
@@ -259,34 +255,61 @@
 								<!-- <form action="#" method="post" class="roundBox"> -->
 								<div class="form-group" style="background-color: #CCCCCC; border-radius: 2px; padding: 10px;" >
 									<label>등급
-										<select>
+										<select id="levelGrade" name="elderServiceApprovalLevel">
 											<option value="">=등급=</option>
-											<option value="01">1등급</option>
-											<option value="02">2등급</option>
-											<option value="03">3등급</option>
-											<option value="04">4등급</option>
-											<option value="05">5등급</option>
-											<option value="00">등급외</option>
+											<option value="1">1등급</option>
+											<option value="2">2등급</option>
+											<option value="3">3등급</option>
+											<option value="4">4등급</option>
+											<option value="5">5등급</option>
+											<option value="0">등급외</option>
 											<option value="12">인지지원</option>
 										</select>
 									</label>
 									<div>
 										<label>장기요양인정번호
-											<input type="text" maxlength="11" placeholder="L0000000000">
+											<input type="text" id="approvalNumber" maxlength="11" placeholder="L0000000000" name="elderServiceApprovalNumber">
 										</label>
 									</div>
-									<label>유효기간
-										<div style="margin:0px; display:inline; margin-left:50px;">
-								          <label><input type="radio" class="yearCheck" name="termYear" value="1" checked><span>1년</span></label>
-								          <label><input type="radio" class="yearCheck" name="termYear" value="2" ><span>2년</span></label>
-								          <label><input type="radio" class="yearCheck" name="termYear" value="3" ><span>3년</span></label>
-								          <label><input type="radio" class="yearCheck" name="termYear" value="4" ><span>4년</span></label>
-								        </div>
-								        <div>
-										<input type="date" name="startDate">~<input type="date" name="lastDate">
-										</div>
-									</label>
-									<button class="btn btn-metis-5 btn-xs" style="margin: 0 auto;" >등록하기/수정하기</button>
+									<div>
+									<div>
+										<label>진행상태
+											<select>
+												<option selected>진행상태 선택</option> 
+												<option>1최초신청(진행중)</option> 
+												<option>2재신청(진행중)</option>
+												<option>3최초처리완료(결과완료)</option>
+												<option>4재신청처리완료(결과완료)</option>
+											</select>
+										</label>
+										<label>진행결과
+											<select>
+												<option selected>진행결과 선택</option> 
+												<option>1최초신청(진행중)</option> 
+												<option>2재신청(진행중)</option> 
+												<option>3_1최초등급승인</option>
+												<option>3_2최초등급미승인</option>
+												<option>4_1재신청등급승인</option>
+												<option>4_2재신청등급미승인</option>
+											</select>
+										</label>
+									</div>
+										<label>유효기간
+											<div style="margin:0px; display:inline; margin-left:50px;">
+									          <label><input type="radio" class="yearCheck" name="termYear" value="1" checked/><span>1년</span></label>
+									          <label><input type="radio" class="yearCheck" name="termYear" value="2" /><span>2년</span></label>
+									          <label><input type="radio" class="yearCheck" name="termYear" value="3" /><span>3년</span></label>
+									          <label><input type="radio" class="yearCheck" name="termYear" value="4" /><span>4년</span></label>
+									        </div>
+											
+									        <div>
+											<input class="date" name="elderServiceApprovalStartDate" id="elderLevelApprovalStartDate">~<input class="date" name="elderServiceApprovalEndDate" id="elderLevelApprovalEndDate">
+											</div>
+										</label>
+									<button class="btn btn-primary btn-xs" style="margin: 0 auto;" id="levelInsert" >등록하기</button>
+									<button class="btn btn-metis-3 btn-xs" type="button" style="display: none" id="levelUpdate">수정하기</button>
+									<button class="btn btn-metis-1 btn-xs" type="button" style="display: none" id="cancel">취소</button>
+									</div>
 								</div>
 								<!-- </form> -->
 							</div>
@@ -301,8 +324,8 @@
 			</div>
 			<!-- 등급관리 model End -->
 			<!-- 상태변경 및 관리내역 기록 Modal -->
-			<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" style="position: absolute; padding-top: 200px">
-			  <div class="modal-dialog modal-lg">
+			<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" >
+			  <div class="modal-dialog modal-lg" style="position: absolute; margin-top: 200px; margin-left: 300px;" >
 			    <div class="modal-content">
 			      <div class="modal-header">
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -311,7 +334,7 @@
 			      <div class="modal-body">
 						<div class="row">
 							<div id="collapse4" class="col-sm-12">
-								<table class="table table-bordered table-condensed table-hover table-striped">
+								<table class="table table-bordered table-condensed table-hover table-striped modal-able">
 									<thead>
 										<tr>
 											<th>번호</th>
@@ -323,11 +346,8 @@
 									</thead>
 									<tbody>
 										<tr class="odd">
-											<td >1</td>
-											<td id="fallDownCheckDate">2020-03-01</td>
-											<td id="bedsoreCheckDate">2020-03-01</td>
-											<td id="functionCheckDate">2020-03-01</td>
-											<td id="needsCheckDate">2020-03-01</td>
+											<td>1</td>
+											<td>2020-03-01</td>
 											<td>2020-03-01</td>
 											<td>2020-03-01</td>
 											<td>2020-03-01</td>
@@ -352,7 +372,7 @@
 									</tr>
 									<tr>
 										<th>날짜</th>
-										<td><input type="date"><button class="btn btn-metis-5 btn-xs" style="text-align: right; margin-left: 10px;" >등록하기/수정하기</button></td>
+										<td><input class="date"><button class="btn btn-metis-5 btn-xs" style="text-align: right; margin-left: 10px;" >등록하기/수정하기</button></td>
 									</tr>
 								</table>
 									
@@ -369,7 +389,7 @@
 			<!-- 등급관리 modal End -->
 			<!-- 계약관리 Modal start -->
 			<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" style="position: absolute; padding-top: 200px">
-			  <div class="modal-dialog modal-lg">
+			  <div class="modal-dialog modal-lg" style="position: absolute; margin-top: 300px; margin-left: 300px;">
 			    <div class="modal-content">
 			      <div class="modal-header">
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -379,7 +399,7 @@
 			      	<h3>계약이력</h3>
 						<div class="row">
 							<div id="collapse4" class="col-sm-12">
-								<table class="table table-bordered table-condensed table-hover table-striped">
+								<table class="table table-bordered table-condensed table-hover table-striped modal-able">
 									<thead>
 										<tr>
 											<th>급여구분</th>
@@ -422,7 +442,7 @@
 								          <label><input type="radio" name="termYear" value="4" ><span>4년</span></label>
 								        </div>
 								        <div>
-										<input class="date"  name="startDate">~<input class="date" name="lastDate">
+										<input class="date" name="startDate">~<input class="date" name="lastDate">
 										</div>
 									</label>
 									<button class="btn btn-metis-5 btn-xs" style="margin: 0 auto;" >등록하기/수정하기</button>
@@ -447,7 +467,6 @@
 
             <!-- jQuery 기본 js파일 -->
             <script src="/assets/lib/jquery/jquery.js"></script>
-
             <!--Bootstrap -->
             <script src="/assets/lib/bootstrap/js/bootstrap.js"></script>
             <!-- MetisMenu -->
@@ -458,17 +477,13 @@
             <script src="/assets/lib/screenfull/screenfull.js"></script>
             <!-- Metis core scripts -->
             <script src="/assets/js/core.js"></script>
-            <!-- Metis demo scripts -->
-            <script src="/assets/js/app.js"></script>
-            <script src="/assets/js/style-switcher.js"></script>
             <!-- 날짜 입력때문에 추가한거. -->
+            <link rel="stylesheet" href="/assets/lib/jquery/jquery-ui.min.css" type="text/css" />
 			<script src="/assets/lib/jquery/jquery.min.js"></script>
 			<script src="/assets/lib/jquery/jquery-ui.min.js"></script>
 			<!-- 날짜 입력때문에 추가한거. -->
             <!-- 테이블 js -->
-		   	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
 		    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
-		    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
 		    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
 		    <script src="/assets/lib/jquery/jquery.ui.touch-punch.min.js"></script>
 		    <!-- 테이블 js -->
@@ -478,7 +493,12 @@
         
       $(document).ready(function(){
     	  
-    	/* 수급자 상세정보 가져오기 */
+    	  
+    	  
+    	
+    	  
+    	  
+		  	/* 수급자 상세정보 가져오기 */
 		$('#elderRow tr').click(function(){
 			var map = {};
 			var Id = $(this).find('td:eq(0)').text()
@@ -492,11 +512,59 @@
 				contentType	:	'application/json',
 				success	:	function(data){
 					
-					console.log(data.fallDownCheck);
-					console.log(data.bedsoreCheck);
-					console.log(data.functionCheck);
-					console.log(data.needsCheck);
-					//수급자 정규검사 
+				
+					
+					//등급인정 모달에 리스트 뿌리기.
+					$('#elderServiceLevel').empty();
+					for(var i = 0;i<data.elderOneLevelHistory.length;i++){
+						var elderLevelHistoryCode = data.elderOneLevelHistory[i].elderLevelHistoryCode;
+						var elderServiceApprovalLevel = data.elderOneLevelHistory[i].elderServiceApprovalLevel;
+						var elderServiceApprovalStartDate = data.elderOneLevelHistory[i].elderServiceApprovalStartDate;
+						var elderServiceApprovalEndDate = data.elderOneLevelHistory[i].elderServiceApprovalEndDate;
+						var elderServiceApprovalNumber = data.elderOneLevelHistory[i].elderServiceApprovalNumber;
+						var elderServiceApprovalCategory = data.elderOneLevelHistory[i].elderServiceApprovalCategory;
+						var elderServiceApprovalCategory2 = data.elderOneLevelHistory[i].elderServiceApprovalCategory2;
+						$('#elderServiceLevel').append("<tr class=\"elderLevelRow\"><input type=\"hidden\" name=\"levelCode\" value=\""+elderLevelHistoryCode+"\"><td>"+elderServiceApprovalLevel+"</td><td>"+elderServiceApprovalStartDate+"</td><td>"+elderServiceApprovalEndDate+"</td><td>"+elderServiceApprovalNumber+"</td><td>"+elderServiceApprovalCategory+"</td><td>"+elderServiceApprovalCategory2+"</td>"
+							+"<td style=\"align :center;\"><a href=\"#\" data-toggle=\"tooltip\" data-original-title=\"삭제\" data-placement=\"bottom\" class=\"btn btn-metis-1 btn-sm btn-circle\">삭제</a></td></tr>");
+						
+                        
+                    
+					}
+					
+					/* 수급자 등급 및 인정기관 입력 및 수정 */
+			   		$('.elderLevelRow').click(function(){
+			   			var levelCode = $(this).find('input[name=levelCode]').val();
+			   			
+			   			var elderServiceApprovalLevelDetail = $(this).find('td:eq(0)').text();
+			   			var elderServiceApprovalStartDateDetail = $(this).find('td:eq(1)').text();
+			   			var elderServiceApprovalEndDateDetail = $(this).find('td:eq(2)').text();
+			   			var elderServiceApprovalNumber = $(this).find('td:eq(3)').text();
+			   			var elderServiceApprovalCategoryDetail = $(this).find('td:eq(4)').text();
+			   			var elderServiceApprovalCategory2Detail = $(this).find('td:eq(5)').text();
+			   			
+			   			$('#levelGrade').val(elderServiceApprovalLevelDetail);
+			   			$('#approvalNumber').val(elderServiceApprovalNumber)
+			   			$('#elderLevelApprovalStartDate').val(elderServiceApprovalStartDateDetail);
+			   			$('#elderLevelApprovalEndDate').val(elderServiceApprovalEndDateDetail);
+			   			
+			   			$('#levelUpdate').show();
+			   			$('#levelInsert').hide();
+			   			$('#cancel').show();
+			   			$('#cancel').click(function(){
+			   				$('#levelInsert').show();
+				   			$('#levelUpdate').hide();
+				   			$('#cancel').hide();
+				   			$('#levelGrade').val('');
+				   			$('#approvalNumber').val('')
+				   			$('#elderLevelApprovalStartDate').val('');
+				   			$('#elderLevelApprovalEndDate').val('');
+			   			})
+					})
+					$('.elderLevelRow').find('td:eq(6)').mouseover(function(){
+						
+					})
+
+					//수급자 정규검사
 					var	fallDownCheckDate = data.fallDownCheck.elderRegularCheckDoingDate;
 					var bedsoreCheckDate = data.bedsoreCheck.elderRegularCheckDoingDate
 					var functionCheckDate = data.functionCheck.elderRegularCheckDoingDate
@@ -509,7 +577,7 @@
 					//수급자 등급 히스토리
 					var elderServiceApprovalEndDate = data.elderLastLevel.elderServiceApprovalEndDate;
 					var elderServiceApprovalStartDate = data.elderLastLevel.elderServiceApprovalStartDate;
-					//수급자 기본 테이블에서 나온것들.
+					//수급자 상세정보 (모달 밖에).
 					var elderId = data.elderOenList.elderId
 					var elderName = data.elderOenList.elderName
 					var elderBirthDate = data.elderOenList.elderBirthDate
@@ -544,11 +612,11 @@
 					$('#elderAdressForPost').text(elderAdressForPost);
 					$('#elderDisease').text(elderDisease);
 					$('#elderRemarks').text(elderRemarks);
-					
 					$('#fallDownCheckDate').text(fallDownCheckDate);
 					$('#bedsoreCheckDate').text(bedsoreCheckDate);
 					$('#functionCheckDate').text(functionCheckDate);
 					$('#needsCheckDate').text(needsCheckDate);
+					
 					
 				},
 				error	:	function(error){
@@ -574,25 +642,40 @@
               }           
            });
     	  
-    	//date클래스에 datepicker 넣기
-			var startDate = $('input[name="startDate"]');
-			var lastDate = $('input[name="lastDate"]');
-			
-			
-    	  $('#myModal').on('show.bs.modal', function (e) {
-    		})
-    		  $( ".date" ).datepicker({
-    	    	});
-    			  console.log('hi'),
+		  	
+		  	
+		  	
+			$('#myModal').draggable();
+		  	$('#myModal').on('hidden', function () {
+		  	    // something
+		  	    console.log('hihi')
+		  	})
+		  	
+		  	
+		 $( ".date" ).datepicker({
+		  	});
     	  
     	  
     	  /* 체크박스 체크된 년도로 날짜 계산하기 */
+			var startDate = $('input[name="startDate"]');
+			var lastDate = $('input[name="lastDate"]');
     	  $('input[name="termYear"]').change(function(){
 			var year = startDate.val().substring(0,4)
 			var monthToDay = startDate.val().substring(4)
 			var yearInt = parseInt(year)
 			var checkedInt = parseInt($(this).val())
 			lastDate.val((yearInt+checkedInt)+monthToDay)
+		});
+    	  
+    	  
+			var levelStartDate = $('input[name="elderServiceApprovalStartDate"]');
+			var levelLastDate = $('input[name="elderServiceApprovalEndDate"]');
+    	  $('input[name="termYear"]').change(function(){
+			var year = levelStartDate.val().substring(0,4)
+			var monthToDay = levelStartDate.val().substring(4)
+			var yearInt = parseInt(year)
+			var checkedInt = parseInt($(this).val())
+			levelLastDate.val((yearInt+checkedInt)+monthToDay)
 		});
     	  
       });

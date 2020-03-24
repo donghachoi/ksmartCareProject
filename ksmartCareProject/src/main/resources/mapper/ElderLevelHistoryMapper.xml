@@ -20,24 +20,51 @@
   	<result property="elderServiceApprovalNumber" column="elder_service_approval_number"/>
   </resultMap>
   
-  <select id="getElderLastLevelHistory" resultMap="ElderLevelHistoryMap">
-  	SELECT 
-		elder_level_history_code, 
-		elder_id, 
-		elder_name, 
-		center_code, 
-		center_name, 
-		elder_service_approval_level, 
-		elder_service_approval_category, 
-		elder_service_approval_category2, 
-		elder_sercvice_apply_date, 
-		elder_service_approval_start_date, 
-		elder_service_approval_number,
-		MAX(elder_service_approval_end_date) AS elder_service_approval_end_date
+	<select id="getOneElderLevelHistoryList" resultMap="ElderLevelHistoryMap">
+	SELECT
+		elder_level_history_code, elder_id, elder_name, center_code, center_name, elder_service_approval_level, elder_service_approval_category, elder_service_approval_category2, elder_sercvice_apply_date, elder_service_approval_start_date, elder_service_approval_end_date, elder_service_approval_number
 	FROM 
 		elder_level_history
 	WHERE 
-		elder_id=#{elderId};
+		elder_id = #{elderId}
+	ORDER BY 
+		elder_sercvice_apply_date DESC;
+	</select>
+  <insert id="insertFirstLevel">
+	INSERT INTO 
+	elder_level_history
+	(elder_level_history_code, 
+	elder_id,
+	elder_name,
+	center_code, 
+	center_name, elder_service_approval_level,	elder_service_approval_category, 
+	elder_service_approval_category2, 
+	elder_sercvice_apply_date, 
+	elder_service_approval_start_date, 
+	elder_service_approval_end_date, 
+	elder_service_approval_number)
+	VALUES (#{elderLevelHistoryCode}, #{elderId}, #{elderName}, #{centerCode}, #{centerName}, 
+	#{elderServiceApprovalLevel}, #{elderServiceApprovalCategory}, #{elderServiceApprovalCategory2}, #{elderSercviceApplyDate}, #{elderServiceApprovalStartDate}, #{elderServiceApprovalEndDate}, #{elderServiceApprovalNumber})  
+  </insert>
+  <select id="getElderLevelMaxNum" resultType="int">
+	SELECT 
+		MAX(substring(elder_level_history_code,17)) 
+	from 
+		elder_level_history
+  </select>
   
+  <select id="getElderLastLevelHistory" resultMap="ElderLevelHistoryMap">
+SELECT 
+	*
+FROM 
+	elder_level_history
+WHERE elder_service_approval_end_date = 
+		(select 
+			MAX(elder_service_approval_end_date)
+		FROM 
+			elder_level_history
+		WHERE 
+			elder_id = #{elderId})
+AND elder_id = #{elderId};
   </select>
   </mapper>

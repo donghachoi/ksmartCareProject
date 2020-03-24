@@ -24,53 +24,53 @@ public class ElderService {
 	@Autowired ElderMapper elderMapper;
 	@Autowired GuaranteeingAgencyMapper guaranteeingAgency;
 	
+	
 	/* 수급자 상세리스트 메서드 */
 	public Map<String,Object> getOneElderList(String elderId){
 		
 		Map<String,Object> map = new HashMap<String,Object>();
-
+		
 		List<ElderRegularCheck> list = elderMapper.getLastElderRegularHistory(elderId);
-		/*
-		 * for(int y=0;y<list.size();y++) {
-		 * System.out.println(list.get(y).getElderRegularCheckDoingDate()); }
-		 */
 		for(int i = 0; i< list.size();i++) {
 			String category = list.get(i).getElderRegularCheckCategory();
 			if(category.equals("낙상위험 측정")) {
 				map.put("fallDownCheck", list.get(i));
-			}
-			if(category.equals("욕창위험 측정")) {
+			}if(category.equals("욕창위험 측정")) {
 				map.put("bedsoreCheck", list.get(i));
 			}if(category.equals("인지기능 검사")) {
 				map.put("functionCheck", list.get(i));
 			}if(category.equals("욕구사정")) {
 				map.put("needsCheck", list.get(i));
 			}
+			
 			System.out.println(list.get(i).getElderRegularCheckDoingDate());
 		}
+		
 		map.put("elderOenList", elderMapper.getOneElderList(elderId));
 		map.put("elderLastLevel", elderMapper.getElderLastLevelHistory(elderId));
 		map.put("elderLastStatus", elderMapper.getElderLastStatus(elderId));
 		map.put("elderFirstStatusDate", elderMapper.getElderFirtsStatusDate(elderId));
 		map.put("elderLastLevelHistory", elderMapper.getElderLastLevelHistory(elderId));
+		map.put("elderOneLevelHistory", elderMapper.getOneElderLevelHistoryList(elderId));
 		return map;
 	}
 	
 	/* 수급자 초기 입력 메서드 */
 	public void insertElder(Elder elder,ElderLevelHistory elderLevelHistory ,HttpSession session) {
+		
 		ElderRegularCheck elderCheck = new ElderRegularCheck(); 
 		String centerName= (String) session.getAttribute("SCENTERNAME");
 		String centerCode= (String) session.getAttribute("SCENTERCODE");
 		elder.setCenterName(centerName);
 		elder.setCenterCode(centerCode);
 		elder.setLongTermCareValidity(elderLevelHistory.getElderServiceApprovalEndDate());
+		elder.setElderFinalServiceStatus("수급중");
 		elderMapper.insertElder(elder);
 		
 		//수급자 초기 체크리스트 입력
 		String[] list = {"낙상위험 측정","욕창위험 측정","인지기능 검사","욕구사정" };
 		for(int i=0;i<list.length;i++) {
-			String checkCode = "check_"+(elderMapper.getMaxNum()+1);
-			elderCheck.setElderRegularCheckCode(checkCode);
+			elderCheck.setElderRegularCheckCode("check_"+(elderMapper.getMaxNum()+1));
 			elderCheck.setCenterCode(centerCode);
 			elderCheck.setCenterName(centerName);
 			elderCheck.setElderId(elder.getElderId());
@@ -80,10 +80,9 @@ public class ElderService {
 			elderMapper.insertRegularCheck(elderCheck);
 		}
 		
-		//수급자 수급상테 초기 등록 
+		//수급자 수급상태 초기 등록 
 		ElderStatus elderstatus = new ElderStatus();
-		String currentCode = "s_current_cd_"+(elderMapper.getElderStatusMaxNum()+1);
-		elderstatus.setServiceStatusCode(currentCode);
+		elderstatus.setServiceStatusCode("s_current_cd_"+(elderMapper.getElderStatusMaxNum()+1));
 		elderstatus.setCenterCode(centerCode);
 		elderstatus.setCenterName(centerName);
 		elderstatus.setElderId(elder.getElderId());
@@ -92,8 +91,19 @@ public class ElderService {
 		elderstatus.setServiceEndDate("0000-00-00");
 		elderMapper.insertStatus(elderstatus);
 		
+		//수급자 등급 상태 초기등록
+		System.out.println(elderMapper.getElderLevelMaxNum());
+		elderLevelHistory.setElderLevelHistoryCode("s_level_history_"+(elderMapper.getElderLevelMaxNum()+1));
+		elderLevelHistory.setElderId(elder.getElderId());
+		elderLevelHistory.setElderName(elder.getElderName());
+		elderLevelHistory.setCenterCode(centerCode);
+		elderLevelHistory.setCenterName(centerName);
+		elderLevelHistory.setElderServiceApprovalLevel(elder.getElderFinalServiceApprovalLevel());
+		elderLevelHistory.setElderServiceApprovalCategory("3최초처리완료(결과완료)");
+		elderLevelHistory.setElderServiceApprovalCategory("3_1최초등급승인");
+		elderLevelHistory.setElderServiceApprovalNumber(elder.getLongTermCareNumver());
+		elderMapper.insertFirstLevel(elderLevelHistory);
 	}
-	
 	
 	/* 수급자 리스트 메서드 */
 	public List<Elder> getElderList(){

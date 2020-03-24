@@ -38,10 +38,10 @@
 	#{elderRegularCheckPlanDate}, #{elderRegularCheckDoingDate}, #{elderRegularCheckRegistrationDate})
 	</insert>
   <select id="getMaxNum" resultType="int">
-  	SELECT 
-	count(elder_regular_check_code)
-	FROM
-	elder_regular_check
+	SELECT 
+		MAX(substring(elder_regular_check_code,7)) 
+	from 
+		elder_regular_check
   </select>
   
   

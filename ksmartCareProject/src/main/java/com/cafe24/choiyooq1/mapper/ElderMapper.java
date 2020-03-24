@@ -11,8 +11,15 @@ import com.cafe24.choiyooq1.domain.ElderStatus;
 
 @Mapper
 public interface ElderMapper {
-
 	
+	/* 수급자 등급인정 관리 리스트 */
+	public List<ElderLevelHistory> getOneElderLevelHistoryList(String elderId);
+	
+	/* 수급자 초기 레벨 등록 */
+	public void insertFirstLevel(ElderLevelHistory elderLevelHistory);
+
+	/* 수급자 등급 맥크코드 가져오기 */
+	public int getElderLevelMaxNum();
 	
 	/* 수급자 상태 맥스코드 가져오기 */
 	public int getElderStatusMaxNum();
@@ -35,7 +42,7 @@ public interface ElderMapper {
 	/* 수급자 최근 계약상태 가져오기 */
 	public ElderStatus getElderLastStatus(String elderId);
 	
-	/* 수급자 등급인정관리 리스트 */
+	/* 수급자 등급인정관리 최근 리스트 */
 	public ElderLevelHistory getElderLastLevelHistory(String elderId);
 	
 	/* 수급자 아이디 체크위한 모든 id가져오기 */
