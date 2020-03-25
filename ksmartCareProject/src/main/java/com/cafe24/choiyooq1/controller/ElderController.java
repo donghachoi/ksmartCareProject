@@ -1,6 +1,5 @@
 package com.cafe24.choiyooq1.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cafe24.choiyooq1.domain.Elder;
 import com.cafe24.choiyooq1.domain.ElderLevelHistory;
-import com.cafe24.choiyooq1.domain.GuaranteeingAgency;
 import com.cafe24.choiyooq1.service.BenefitService;
 import com.cafe24.choiyooq1.service.ElderService;
 
@@ -25,6 +23,23 @@ public class ElderController {
 	
 	@Autowired BenefitService benefitService;
 	@Autowired ElderService elderService; 
+	
+	/* 수급자 등급 입력 */
+	@PostMapping("/employee/levelInsert")
+	public @ResponseBody void levelInsert(ElderLevelHistory elderLevelHistory
+											,HttpSession session){
+		System.out.println("hi");
+		System.out.println(elderLevelHistory.getElderServiceApprovalLevel());
+		System.out.println(elderLevelHistory.getElderServiceApprovalNumber());
+		System.out.println(elderLevelHistory.getElderServiceApprovalStartDate());
+		System.out.println(elderLevelHistory.getElderServiceApprovalEndDate());
+		System.out.println(elderLevelHistory.getElderServiceApprovalCategory());
+		System.out.println(elderLevelHistory.getElderServiceApprovalCategory2());
+		System.out.println(elderLevelHistory.getElderId());
+		
+		
+	}
+	
 	
 	/* 수급자 등록 */
 	@PostMapping("/employee/elderInsert")

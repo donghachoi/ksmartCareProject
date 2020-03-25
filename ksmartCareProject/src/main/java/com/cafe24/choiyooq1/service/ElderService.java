@@ -24,6 +24,15 @@ public class ElderService {
 	@Autowired ElderMapper elderMapper;
 	@Autowired GuaranteeingAgencyMapper guaranteeingAgency;
 	
+	/* 수급자 등급 및 인정 기간 입력 메서드 */
+	public void insertElderLevel(ElderLevelHistory elderLevelHistory ,HttpSession session) {
+		elderLevelHistory.setElderLevelHistoryCode("s_level_history_"+(elderMapper.getElderLevelMaxNum()+1));
+		String centerName= (String) session.getAttribute("SCENTERNAME");
+		String centerCode= (String) session.getAttribute("SCENTERCODE");
+		elderLevelHistory.setCenterCode(centerCode);
+		elderLevelHistory.setCenterName(centerName);
+	}
+	
 	
 	/* 수급자 상세리스트 메서드 */
 	public Map<String,Object> getOneElderList(String elderId){
