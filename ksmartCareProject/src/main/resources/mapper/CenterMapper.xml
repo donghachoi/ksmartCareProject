@@ -63,6 +63,7 @@
 				,#{businessRegistrationNumber}
 				,#{employerName});
  	</insert>
+ 	<!-- 센터리스트 불러오기 -->
   	<select id="getCenterList" resultType ="com.cafe24.choiyooq1.domain.Center" resultMap="centerMap">
 				SELECT 
 			@rownum:=@rownum+1

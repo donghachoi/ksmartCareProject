@@ -54,7 +54,8 @@ public class CenterController {
 		return "center/centerUpdate";
 
 	}
-
+	
+	// 센터 정보수정 처리 
 	@PostMapping("/center/centerUpdate")
 	public String centerUpdate(Center center) {
 		int result = centerService.centerUpdate(center);
@@ -64,6 +65,7 @@ public class CenterController {
 		return "redirect:/center/centerList";
 	}
 
+	// 센터 삭제
 	@GetMapping("/master/centerDelete")
 	public String centerDelete(@RequestParam(value = "centerCode") String centerCode, Model model) {
 		model.addAttribute("Center", centerService.centerDelete(centerCode));

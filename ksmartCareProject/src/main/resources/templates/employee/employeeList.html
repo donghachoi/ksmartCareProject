@@ -51,14 +51,14 @@
    			 <!-- /#top -->
 		</div>
 		<!-- /#wrap -->
-		<div id="content">
+<div id="content">
 	<div class="outer">
 
-	<div class="inner bg-light lter">
-		<!-- 직원리스트 테이블 Start -->
+		<div class="inner bg-light lter">
+			<!-- 직원리스트 테이블 Start -->
 		
-		<div class="box">
-			<div class="col-lg-12 ui-sortable">
+			<div class="box">
+				<div class="col-lg-12 ui-sortable">
 					<div class="box ui-sortable-handle"
 						style="position: relative; left: 0px; right: 0px; top: 0px;">
 						<header>
@@ -71,7 +71,7 @@
 						<div id="collapse4" class="body">
 							<div class="row">
 								<div class="col-sm-12">
-									<table id="dataTable" class="table table-bordered table-hover" style="font-size: 10px">
+									<table id="dataTable" class="table table-bordered table-hover" style="font-size: 15px">
 										<thead>
 											<tr role="row">
 												<th>번호</th>
@@ -83,106 +83,44 @@
 												<th>상태</th>
 												<th>직급</th>
 												<th style="display: none">비밀번호</th>
-												<th style="display: none">비밀번호</th>
-												<th style="display: none">비밀번호</th>
-												<th style="display: none">비밀번호</th>
-												<th style="display: none">비밀번호</th>
-												<th style="display: none">비밀번호</th>
-												<th style="display: none">비밀번호</th>
+												<th style="display: none">주민등록번호</th>
+												<th style="display: none">근무시작일</th>
+												<th style="display: none">근무형태</th>
+												<th style="display: none">급여산정방식</th>
+												<th style="display: none">근로계약시급</th>
+												<th style="display: none">급여계좌</th>
+												<th style="display: none">예금주</th>
 											</tr>
 									</thead>
 										<tbody>
-											<tr role="row" class="odd">
-												<td class="sorting_1">e_000001</td>
-											    <td>이형열</td>
-											    <td>관리책임자</td>
-											    <td>남</td>
-											    <td>010-7788-1008</td>
-											    <td>재직</td>
-											    <td>과장</td>			        
+											<tr role="row" class="odd" th:each="E:${employeeList}" >
+												<td class="sorting_1" th:text="${E.employeeListNumber}" th:employeeListNumber="${E.employeeListNumber}"><a th:href="@{/center/employeeList(employeeId=${E.employeeId})}"></a></td>
+											    <td th:text="${E.employeeId}" th:employeeId="${E.employeeId}" id="employeeId1"></td>
+											    <td th:text="${E.employeeName}" th:employeeName="${E.employeeName}" ></td>
+											    <td th:text="${E.employeeCategory}" th:employeeCategory="${E.employeeCategory}" ></td>
+											    <td th:text="${E.employeeGender}" th:employeeGender="${E.employeeGender}" ></td>
+											    <td th:text="${E.employeePhone}" th:employeePhone="${E.employeePhone}" ></td>  
+											    <td th:text="${E.employeeWorkingStatus}" th:employeeWorkingStatus="${E.employeeWorkingStatus}" ></td>
+											    <td th:text="${E.employeePosition}" th:employeePosition="${E.employeePosition}" ></td>
+											    <td th:text="${E.employeePw}" th:employeePw="${E.employeePw}"  style="display: none"></td>
+											    <td th:text="${E.employeePersonalNumber}" th:employeePersonalNumber="${E.employeePersonalNumber}" style="display: none"></td>
+												<td th:text="${E.employeeStartDate}" th:employeeStartDate="${E.employeeStartDate}" style="display: none"></td>
+												<td th:text="${E.employeeWorkingType}" th:employeeWorkingType="${E.employeeWorkingType}" style="display: none"></td>
+												<td th:text="${E.employeePayType}" th:employeePayType="${E.employeePayType}" style="display: none"></td>
+												<td th:text="${E.employeeHourlyPay}" th:employeeHourlyPay="${E.employeeHourlyPay}" style="display: none"></td>
+												<td th:text="${E.employeeAccount}" th:employeeAccount="${E.employeeAccount}" style="display: none"></td>
+												<td th:text="${E.employeeAccountHolder}" th:employeeAccountHolder="${E.employeeAccountHolder}" style="display: none">서비스종료일</td>      
 											</tr>
-											<tr role="row" class="odd">
-											    <td class="sorting_1">e_000002</td>
-											    <td>나요보</td>
-												<td>요양보호사</td>
-											    <td>여</td>
-											    <td>010-1234-1235</td>
-											    <td>휴직</td>
-											    <td>주임</td>
-											</tr>
-											<tr role="row" class="odd">
-												<td class="sorting_1">e_000003</td>
-											    <td>나보호</td>
-											    <td>요양보호사</td>
-											    <td>남</td>
-											    <td>010-1212-1236</td>
-											    <td>재직</td>
-											    <td>사원</td>
-											</tr>
-											<tr role="row" class="odd">
-											    <td class="sorting_1">e_000004</td>
-											    <td>나사무</td>
-											    <td>사무원</td>
-											    <td>여</td>
-											    <td>010-1234-1237</td>
-											    <td>재직</td>
-											    <td>사원</td>
-											</tr>
-											<tr role="row" class="odd">
-											    <td class="sorting_1">e_000005</td>
-											    <td>나간호</td>
-											    <td>간호조무사</td>
-											    <td>남</td>
-											    <td>010-1234-1338</td>
-											    <td>재직</td>
-											    <td>사원</td>
-											</tr>
-											<tr role="row" class="odd">
-											     <td class="sorting_1">e_000006</td>
-											     <td>가관리</td>
-											     <td>관리책임자</td>
-											     <td>남</td>
-											     <td>010-4568-1234</td>
-											     <td>퇴사</td>
-											     <td>사원</td>
-											</tr>
-											<tr role="row" class="odd">
-												<td class="sorting_1">e_000007</td>
-												<td>가요보</td>
-												<td>사회복지사</td>
-												<td>여</td>
-												<td>010-4578-1238</td>
-												<td>재직</td>
-												<td>사원</td>
-											</tr>
-											<tr role="row" class="odd">
-												<td class="sorting_1">e_000008</td>
-											    <td>가보호</td>
-											    <td>사회복지사</td>
-											    <td>여</td>
-											    <td>010-6547-1346</td>
-											    <td>재직</td>
-											    <td>사원</td>
-											</tr>
-											<tr role="row" class="odd">
-												<td class="sorting_1">e_000009</td>
-											    <td>최은희</td>
-											    <td>관리책임자</td>
-											    <td>여</td>
-											    <td>010-3481-9428</td>
-											   <td>재직</td>
-											   <td>대표</td>
-											</tr>
-									</tbody>
+									</tbody>	
 								</table>
 							</div>
 						</div>
-					</div>
-				</div>				
+					</div>			
 			</div>
-				<!-- 테이블 End -->
+				<!--직원정보 개략 테이블 End -->
 				<!-- 직원 상세정보 테이블 Start -->
 								<div class="col-lg-12 ui-sortable">
+									<form class="form-horizontal" method="get">
 									<div class="box ui-sortable-handle">
 										<header>
 											<div class="icons">
@@ -193,18 +131,19 @@
 											
 												<div class="btn-group">
 											
-													<button type="button"  
-																	data-toggle="modal" data-target="#myModal"
-																	class="btn btn-default btn-sm btn-line"
-																	>
-																	<span class="ui-button-text">정보수정</span>
+													<button type="button" class="btn btn-default btn-sm btn-line"
+															id="btnEmployeeIdForUpdate">
+															<span class="ui-button-text">
+															정보수정
+															</span>
 													</button>
-													<button type="button"  
-																	data-toggle="modal" data-target="#myModal"
-																	class="btn btn-default btn-sm btn-line"
-																	>
-																	<span class="ui-button-text">직원삭제</span>
+													<button type="button" class="btn btn-default btn-sm btn-line"
+															id="btnEmployeeIdForDelete">
+															<span class="ui-button-text">
+															직원삭제
+															</span>
 													</button>
+													</form>
 													<!-- <a href="#defaultTable" data-toggle="collapse"
 														class="btn btn-sm btn-default minimize-box"> 
 														<i class="fa fa-angle-up"></i>
@@ -216,38 +155,39 @@
 											<table class="table responsive-table" >
 												<tbody>
 													<tr>
-														<th rowspan="2"><img src="assets/img/test_peng.png"></th>
-														
+														<th>직원사진</th>
+															<td>
+																<input type="file" id="gdsImg" name="file" />
+ 																<div class="select_img"><img src="" /></div>
+															</td>
 														<th>직원아이디</th>
-														<td>e_000001</td>
+														<td id="employeeId">e_000001</td>
 														<th>이름</th>
-														<td>이형열</td>
+														<td id="employeeName">이형열</td>
 														<th>직종</th>
-														<td>관리책임자</td>
+														<td id="employeeCategory">관리책임자</td>
 													</tr>
 													<tr>
 														<th>비밀번호</th>
-														<td>pw001</td>
+														<td id="employeePw">pw001</td>
 														<th>주민등록번호</th>
-														<td>731001-1111111</td>
+														<td id="employeePersonalNumber">731001-1111111</td>
 														<th>성별</th>
-														<td>남</td>
+														<td id="employeeGender">남</td>
 													</tr>
 													<tr>
 														<th>근무시작일</th>
-														<td>2020-03-09</td>
+														<td id="employeeStartDate">2020-03-09</td>
 														<th>직무상태</th>
-														<td>재직</td>
+														<td id="employeeWorkingStatus">재직</td>
 														<th>직급</th>
-														<td>과장</td>
+														<td id="employeePosition">과장</td>
 														<th>재직형태</th>
-														<td>전임</td>
+														<td id="employeeWorkingType">전임</td>
 													</tr>
 													<tr>
-													
-														
 														<th>연락처</th>
-														<td>010-8988-1384</td>
+														<td id="employeePhone">010-8988-1384</td>
 														<th>자격</th>
 														<td colspan="3">
 															<div>
@@ -264,13 +204,13 @@
 													</tr>
 													<tr>
 														<th>급여형태</th>
-														<td>월급제</td>
+														<td id="employeePayType">월급제</td>
 														<th>근로계약시급</th>
-														<td>해당없음</td>
+														<td id="employeeHourlyPay">해당없음</td>
 														<th>급여계좌</th>
-														<td>70020588783</td>
+														<td id="employeeAccount">70020588783</td>
 														<th>예금주</th>
-														<td>이형열</td>
+														<td id="employeeAccountHolder">이형열</td>
 													</tr>
 													<tr>
 														<th>비고</th>
@@ -284,8 +224,8 @@
 							</div>
 								<!-- 직원 상세정보 End-->
 						</div>
-						
-					</div>
+						</div>
+					
 					<!-- 자격증 정보 및  관리  Modal -->
 					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" style="position: absolute; padding-top: 200px">
 					  <div class="modal-dialog modal-lg">
@@ -448,53 +388,154 @@
 					    </div>
 					  </div>
 					</div>
-					<!-- 등급관리 model End -->
-				
-		</div>
+					<!-- 등급관리 model End -->						
 	</body>
 </th:block>
 <th:block layout:fragment="customPlugin">
+  
+    <!--jQuery -->
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
-            <!-- jQuery 기본 js파일 -->
-            <script src="/assets/lib/jquery/jquery.js"></script>
-
-            <!--Bootstrap -->
-            <script src="/assets/lib/bootstrap/js/bootstrap.js"></script>
-            <!-- MetisMenu -->
-            <script src="/assets/lib/metismenu/metisMenu.js"></script>
-            <!-- onoffcanvas -->
-            <script src="/assets/lib/onoffcanvas/onoffcanvas.js"></script>
-            <!-- Screenfull -->
-            <script src="/assets/lib/screenfull/screenfull.js"></script>
-            <!-- Metis core scripts -->
-            <script src="/assets/js/core.js"></script>
-            <!-- Metis demo scripts -->
-            <script src="/assets/js/app.js"></script>
-            <script src="/assets/js/style-switcher.js"></script>
-            
-            <!-- 테이블 js -->
-		   	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
-		    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
-		    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
-		    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
-		    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
-    <script>
-      $(function() {
-         $('#dataTable').DataTable({
-            "language": 
-               {
-               "sInfo": " 총_TOTAL_건의 자료 중  _START_번부터~_END_번까지 ",
-               "lengthMenu": "_MENU_ 개씩 보기",
-               "search":         "검색:",
-               "paginate": {
-               "first":      "First",
-               "last":       "Last",
-               "next":       "다음",
-               "previous":   "이전"
+    <script src="/assets/lib/jquery/jquery.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+	
+    Bootstrap
+	<script src="/assets/lib/bootstrap/js/bootstrap.js"></script>
+    MetisMenu
+    <script src="/assets/lib/metismenu/metisMenu.js"></script>
+    onoffcanvas
+    <script src="/assets/lib/onoffcanvas/onoffcanvas.js"></script>
+    Screenfull
+    <script src="/assets/lib/screenfull/screenfull.js"></script>
+    Metis core scripts
+    <script src="/assets/js/core.js"></script>
+    Metis demo scripts
+    <script src="/assets/js/app.js"></script>
+    <script src="/assets/js/style-switcher.js"></script> -->
+	<script>
+		$(function() {
+			$('#dataTable').DataTable({
+				"language": 
+					{
+					"sInfo": " 총_TOTAL_건의 자료 중  _START_번부터~_END_번까지 ",
+					"lengthMenu": "_MENU_ 개씩 보기",
+					"search":         "검색:",
+					"paginate": {
+					"first":      "First",
+					"last":       "Last",
+					"next":       "다음",
+					"previous":   "이전"
                     }
-            }           
-         });
-      });
-   </script>
+					
+				}    	    
+			});
+		
+		});
+		
+	</script>
+											
+	<script>
+	$("#dataTable tr").click(function() {
+
+		  var str = ""
+		
+		  // 현재 클릭된 Row(<tr>)		
+		  var employeeId = $(this).find('[employeeId]').attr('employeeId');
+		  var employeeName = $(this).find('[employeeName]').attr('employeeName');
+		  var employeePw = $(this).find('[employeePw]').attr('employeePw');
+		  var employeeCategory = $(this).find('[employeeCategory]').attr('employeeCategory');
+		  var employeeGender = $(this).find('[employeeGender]').attr('employeeGender');
+		  var employeePersonalNumber = $(this).find('[employeePersonalNumber]').attr('employeePersonalNumber');
+		  var employeePhone = $(this).find('[employeePhone]').attr('employeePhone');
+		  var employeeStartDate = $(this).find('[employeeStartDate]').attr('employeeStartDate');
+		  var employeeWorkingStatus = $(this).find('[employeeWorkingStatus]').attr('employeeWorkingStatus');
+		  var employeeWorkingType = $(this).find('[employeeWorkingType]').attr('employeeWorkingType');
+		  var employeePosition = $(this).find('[employeePosition]').attr('employeePosition');
+		  var employeePayType = $(this).find('[employeePayType]').attr('employeePayType');
+		  var employeeHourlyPay = $(this).find('[employeeHourlyPay]').attr('employeeHourlyPay');
+		  var employeeAccount = $(this).find('[employeeAccount]').attr('employeeAccount');
+		  var employeeAccountHolder = $(this).find('[employeeAccountHolder]').attr('employeeAccountHolder');
+		
+		  
+		  $('#employeeId').text(employeeId);
+		  $('#employeeName').text(employeeName);
+		  $('#employeePw').text(employeePw);
+		  $('#employeeCategory').text(employeeCategory);
+		  $('#employeeGender').text(employeeGender);
+		  $('#employeePersonalNumber').text(employeePersonalNumber);
+		  $('#employeePhone').text(employeePhone);
+		  $('#employeeStartDate').text(employeeStartDate);
+		  $('#employeeWorkingStatus').text(employeeWorkingStatus);
+		  $('#employeeWorkingType').text(employeeWorkingType);
+		  $('#employeePosition').text(employeePosition);
+		  $('#employeePayType').text(employeePayType); 
+		  $('#employeeHourlyPay').text(employeeHourlyPay);
+		  $('#employeeAccount').text(employeeAccount);
+		  $('#employeeAccountHolder').text(employeeAccountHolder);
+		  
+		 $('#btnEmployeeIdForUpdate').attr('employeeId', employeeId);
+		 $('#btnEmployeeIdForDelete').attr('employeeId', employeeId);
+		 $('#btnEmployeeIdForDelete').attr('employeeName', employeeName);	
+		});
+	
+		$('#btnEmployeeIdForUpdate').click(function(){
+			var employeeId = $(this).attr('employeeId');
+			if(employeeId == undefined){
+				//수정할 직원이 선택되지 않은 경우 알림창
+				alert('직원을 선택해주세요');
+			}else{	
+				//선택한 직원의 수정페이지로 이동
+				location.href="/center/employeeUpdate?employeeId="+employeeId;
+					
+			}
+		});
+		
+		$('#btnEmployeeIdForDelete').click(function(){
+			var employeeId = $(this).attr('employeeId');
+			var employeeName = $(this).attr('employeeName');
+			if(employeeId == undefined){
+				//삭제할 직원이 선택되지 않은 경우 알림창
+				alert('직원을 선택해주세요');
+			}else{				
+				 //삭제 확인창	
+				 var confirmresult = confirm('!!!!확인요청!!!!\n\n직원아이디:'+employeeId+'\n직원명:'+employeeName+'\n\n을(를)정말 삭제하시겠습니까?\n\n삭제 후에는 되돌릴 수 없습니다');
+				 if(confirmresult){
+					//삭제 확인버튼
+					location.href="/center/employeeDelete?employeeId="+employeeId;
+				}else{
+					//삭제 취소버튼
+					return;
+				}	 	 
+			 
+			 
+				
+			}
+			
+		});
+		
+		
+	</script>
+	<script>
+
+	
+	  $("#gdsImg").change(function(){
+	   if(this.files && this.files[0]) {
+	    var reader = new FileReader;
+	    reader.onload = function(data) {
+	     $(".select_img img").attr("src", data.target.result).width(500);        
+	    }
+	    reader.readAsDataURL(this.files[0]);
+	   }
+	  });
+	
+
+
+	
+	</script>
+	
 </th:block>
 </html>

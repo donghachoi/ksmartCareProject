@@ -63,7 +63,52 @@
 				,#{employeeAccount}
 				,#{employeeAccountHolder});
 	</insert>
+	
+  	<!-- 직원 리스트 메서드 -->
+  	<select id="getEmployeeList" resultType ="com.cafe24.choiyooq1.domain.Employee" resultMap="EmployeeMap">
+		SELECT 
+			@rownum:=@rownum+1
+			, employee.*
+		FROM employee, (SELECT@rownum:=0)TMP;
+	</select>
+	
+  	<!-- 직원정보 업데이트를 위한 해당 센터정보 불러오기 -->
+	<select id="employeeSelectForUpdate" parameterType="String" resultMap="EmployeeMap">
+		SELECT 
+			* 
+		FROM 
+			employee 
+		WHERE 
+			employee_id=#{employeeId};
+	</select>
+  
+  	<!-- 직원정보 업데이트 메서드 -->
+  	<update id="employeeUpdate" parameterType="Employee">
+  	UPDATE employee
+	SET
+		employee_id=#{employeeId},
+		employee_name=#{employeeName},
+		employee_pw=#{employeePw},
+		employee_category=#{employeeCategory},
+		employee_gender=#{employeeGender},
+		employee_personal_number=#{employeePersonalNumber},
+		employee_phone=#{employeePhone},
+		employee_start_date=#{employeeStartDate},
+		employee_working_status=#{employeeWorkingStatus},
+		employee_working_type=#{employeeWorkingType},
+		employee_position=#{employeePosition},
+		employee_pay_type=#{employeePayType},
+		employee_hourly_pay=#{employeeHourlyPay},
+		employee_account=#{employeeAccount},
+		employee_account_holder=#{employeeAccountHolder}
+	WHERE employee_id=#{employeeId};
+  </update>
+  <delete id="employeeDelete">
+  		DELETE 
+		FROM 
+			employee 
+		WHERE 
+			employee_id=#{employeeId};
+  </delete>	
   	
-  
-  
   </mapper>
