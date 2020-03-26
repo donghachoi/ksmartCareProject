@@ -15,7 +15,7 @@
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
                                 </button>
-                                <a href="/" class="navbar-brand"><img src="/assets/img/logo.png" alt=""></a>
+                                <a href="/" class="navbar-brand"><img src="/assets/img/korea_smart_system_logo_pbr_20200320.png" alt=""></a>
                     
                             </header>
                     
@@ -88,7 +88,8 @@
                                         </ul>
                                     </li>
                                     <th:block>
-	                                    <li><a th:text="${SCENTERNAME}+ '에  '+${SMANAGERNAME}+' 님 '+${SID}+'아이디로 로그인중 '"></a></li>
+	                                    <li><a th:if="${session.SCENTERNAME ne null}" th:text="${session.SCENTERNAME}+ '에  '+${session.SMANAGERNAME}+' 님 '+${session.SID}+'아이디로 로그인중 '"></a></li>
+	                                    <li><a th:unless="${session.SCENTERNAME ne null}">마스터 로그인</a></li>
                                     </th:block>
                                 </ul>
                                 <!-- /.nav -->
@@ -101,7 +102,7 @@
                                 <div class="search-bar">
                                     <form class="main-search" action="">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Live Search ...">
+                                            <input type="text" class="form-control" placeholder="검색..">
                                             <span class="input-group-btn">
                                                 <button class="btn btn-primary btn-sm text-muted" type="button">
                                                     <i class="fa fa-search"></i>
@@ -114,7 +115,7 @@
                             <div class="main-bar">
                                 <h3>
               <i class="fa fa-home"></i>&nbsp;
-            Metis
+            	한국스마트케어시스템
           </h3>
                             </div>
                             <!-- /.main-bar -->

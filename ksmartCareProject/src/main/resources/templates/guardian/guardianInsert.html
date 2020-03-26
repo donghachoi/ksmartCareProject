@@ -78,13 +78,21 @@
 	            </div>            <!-- /.toolbar -->
 	        </header>
 	        <div id="div-4" class="body">
-	            <form class="form-horizontal">
+	            <form class="form-horizontal" th:action="@{/center/guardianInsert}" method="post">
 	
+	                <div class="form-group">
+	                    <label for="text1" class="control-label col-lg-4">보호자코드</label>
+	
+	                    <div class="col-lg-3">
+	                        <input type="text" id="text1" class="form-control" name="guardianId">
+	                    </div>
+	                </div>
+	                <!-- /.form-group -->
 	                <div class="form-group">
 	                    <label for="text1" class="control-label col-lg-4">수급자코드</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text1"  class="form-control">
+	                        <input type="text" id="text1"  class="form-control" name="elderId">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -92,7 +100,7 @@
 	                    <label for="text1" class="control-label col-lg-4">수급자이름</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text1" class="form-control">
+	                        <input type="text" id="text1" class="form-control" name="elderName">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -100,7 +108,7 @@
 	                    <label for="text1" class="control-label col-lg-4">보호자이름</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text1" class="form-control">
+	                        <input type="text" id="text1" class="form-control" name="guardianName">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -110,7 +118,7 @@
 	
 	                    <div class="col-lg-3">
 	                        <input class="form-control" type="password" id="pass1"
-	                               data-original-title="Please use your secure password" data-placement="top"/>
+	                               data-original-title="Please use your secure password" data-placement="top" name="guardianPw"/>
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -119,13 +127,13 @@
 	                        <div class="col-lg-3">
 	                            <div class="checkbox">
 	                                <label>
-	                                    <input class="uniform" type="radio" name="직원성별선택" value="남" checked>남
+	                                    <input class="uniform" type="radio" name="guardianGender" value="남" checked>남
 	                                </label>
 	                            </div>
 	                            <!-- /.checkbox -->
 	                            <div class="checkbox">
 	                                <label>
-	                                    <input class="uniform" type="radio" name="직원성별선택" value="여">여
+	                                    <input class="uniform" type="radio" name="guardianGender" value="여">여
 	                             
 	                                </label>
 	                            </div>
@@ -137,7 +145,7 @@
 	                    <label for="text2" class="control-label col-lg-4">주민등록번호</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text2" placeholder="123456-0000000" class="form-control">
+	                        <input type="text" id="text2" placeholder="123456-0000000" class="form-control" name="guardianPersonalNumber">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -145,18 +153,27 @@
 	                    <label for="text2" class="control-label col-lg-4">연락처</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text2" placeholder="000-000-0000" class="form-control">
+	                        <input type="text" id="text2" placeholder="000-000-0000" class="form-control" name="guardianPhone">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
-					   
+					 <div class="form-group">
+	                    <label  for="employeeStartDate" class="control-label col-lg-4">보호자등록일</label>
+							<div class="col-lg-3">
+	                            <div class="input-group input-append">
+	                                <input class="form-control date" type="text" placeholder="2020-03-01" name="guardianRegistrationDate" id="guardianRegistrationDate" autocomplete="off" >
+	                                <span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>
+	                            </div>
+	                        </div>
+	                </div>
+					<!-- /.form-group -->  
 	                
 					
 	                 <div class="form-group">
 				    <label class="control-label col-lg-4">수급자와의 관계</label>
 				
 					    <div class="col-lg-3">
-					        <select class="form-control">
+					        <select class="form-control" name="guardianRelation">
 					            <option>자녀</option>
 					            <option>사위</option>
 					            <option>며느리</option>
@@ -171,7 +188,7 @@
 	                    <label for="text1" class="control-label col-lg-4">주소(거주지)</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text1"  class="form-control">
+	                        <input type="text" id="text1"  class="form-control" name="guardianAdressForStay">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -179,7 +196,7 @@
 	                    <label for="text1" class="control-label col-lg-4">주소(우편물)</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text1"  class="form-control">
+	                        <input type="text" id="text1"  class="form-control" name="guardianAdressForPost">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -189,13 +206,13 @@
 	                        <div class="col-lg-3">
 	                            <div class="checkbox">
 	                                <label>
-	                                    <input class="uniform" type="radio" name="직원성별선택" value="남" checked>동거
+	                                    <input class="uniform" type="radio" name="guardianCohabitation" value="동거" checked>동거
 	                                </label>
 	                            </div>
 	                            <!-- /.checkbox -->
 	                            <div class="checkbox">
 	                                <label>
-	                                    <input class="uniform" type="radio" name="직원성별선택" value="여">비동거
+	                                    <input class="uniform" type="radio" name="guardianCohabitation" value="비동거">비동거
 	                             
 	                                </label>
 	                            </div>
@@ -207,7 +224,7 @@
 	                    <label for="text1" class="control-label col-lg-5"></label>
 	
 						<div class="col-lg-3">
-						<input type="submit" value="등록하기" class="btn btn-primary">
+						<input type="submit" value="등록하기" class="btn btn-primary" name="centerId">
 						</div>
 	                 
 	                </div>
@@ -322,49 +339,12 @@
             </div>
             <!-- /.modal -->
             <!-- /#helpModal -->
-            <!--jQuery -->
-            <script src="/assets/lib/jquery/jquery.js"></script>
-
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
-                    <script src="//cdnjs.cloudflare.com/ajax/libs/Uniform.js/2.1.2/jquery.uniform.min.js"></script>
-                    <script src="//cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.jquery.min.js"></script>
-                    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.3/jquery.tagsinput.min.js"></script>
-                    <script src="//cdnjs.cloudflare.com/ajax/libs/autosize.js/1.18.17/jquery.autosize.min.js"></script>
-                    <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/js/bootstrap-switch.min.js"></script>
-                    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.1/js/bootstrap-datepicker.min.js"></script>
-                    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.0.1/js/bootstrap-colorpicker.min.js"></script>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
-
-            <!--Bootstrap -->
-            <script src="/assets/lib/bootstrap/js/bootstrap.js"></script>
-            <!-- MetisMenu -->
-            <script src="/assets/lib/metismenu/metisMenu.js"></script>
-            <!-- onoffcanvas -->
-            <script src="/assets/lib/onoffcanvas/onoffcanvas.js"></script>
-            <!-- Screenfull -->
-            <script src="/assets/lib/screenfull/screenfull.js"></script>
-
-                    <script src="/assets/lib/inputlimiter/jquery.inputlimiter.js"></script>
-                    <script src="/assets/lib/validVal/js/jquery.validVal.min.js"></script>
-                    <script src="/assets/lib/bootstrap-daterangepicker/daterangepicker.js"></script>
-
-            <!-- Metis core scripts -->
-            <script src="/assets/js/core.js"></script>
-            <!-- Metis demo scripts -->
-            <script src="/assets/js/app.js"></script>
-
-                <script>
-                    $(function() {
-                      Metis.formGeneral();
-                    });
-                </script>
-
-            <script src="/assets/js/style-switcher.js"></script>
+           
         </body>
 	
 </th:block>
 <th:block layout:fragment="customPlugin">
+
 	<!--jQuery -->
             <script src="/assets/lib/jquery/jquery.js"></script>
 
@@ -378,8 +358,34 @@
             <script src="/assets/lib/screenfull/screenfull.js"></script>
             <!-- Metis core scripts -->
             <script src="/assets/js/core.js"></script>
+             <!-- 날짜 입력때문에 추가한거. -->
+			<link rel="stylesheet" href="/assets/lib/jquery/jquery-ui.min.css" type="text/css" />  
+			<script src="/assets/lib/jquery/jquery-ui.min.js"></script>
+			<script src="/assets/lib/jquery/datepicker-ko.js"></script>
+			<!-- 날짜 입력때문에 추가한거. -->
+			<!-- 테이블 js -->
+		    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+		    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
+		    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
+		    <script src="/assets/lib/jquery/jquery.ui.touch-punch.min.js"></script>
+		    <!-- 테이블 js -->
+            
+            
+            
             <!-- Metis demo scripts -->
             <script src="/assets/js/app.js"></script>
             <script src="/assets/js/style-switcher.js"></script>
+            <script type="text/javascript">
+                    $(function() {
+                      Metis.formGeneral();
+                    });
+                    
+                    $( ".date" ).datepicker({
+            	    	
+            	    });
+            		$( "#employeeStartDate" ).datepicker({
+            	    	
+            	    });
+                </script>
 </th:block>
 </html>
