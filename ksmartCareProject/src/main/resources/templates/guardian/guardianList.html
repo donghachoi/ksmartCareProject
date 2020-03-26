@@ -74,56 +74,41 @@
 									<table id="dataTable" class="table table-bordered table-hover" style="font-size: 10px">
 										<thead>
 											<tr role="row">
+												<th>번호</th>
 												<th>보호자코드</th>
 												<th>수급자코드</th>
 												<th>수급자이름</th>
 												<th>보호자이름</th>
 												<th>연락처</th>
+												<th style="display: none">보호자비번</th>
+												<th style="display: none">성별</th>
+												<th style="display: none">주민번호</th>
+												<th style="display: none">등록일</th>
+												<th style="display: none">수급자와의 관계</th>
+												<th style="display: none">주소(거주지)</th>
+												<th style="display: none">주소(우편물)</th>
+												<th style="display: none">수급자 동거여부</th>
 											</tr>
-									</thead>
+										</thead>
 										<tbody>
-											<tr role="row" class="odd">
-												<td class="sorting_1">b_000001</td>
-											    <td>s_000001</td>
-											    <td>나수급</td>
-											    <td>나보호</td>
-											    <td>010-1212-1236</td>      
+											<tr role="row" class="odd" th:each="B:${guardianList}">
+												<td class="sorting_1" th:text="${B.guardianListNumber}" th:guardianListNumber="${B.guardianListNumber}"></td>
+											    <td th:text="${B.guardianId}" th:guardianId="${B.guardianId}"></td>
+											    <td th:text="${B.elderId}" th:elderId="${B.elderId}"></td>
+											    <td th:text="${B.elderName}" th:elderName="${B.elderName}"></td>
+											    <td th:text="${B.guardianName}" th:guardianName="${B.guardianName}"></td>
+											    <td th:text="${B.guardianPhone}" th:guardianPhone="${B.guardianPhone}"></td>
+											    <td th:text="${B.guardianPw}" th:guardianPw="${B.guardianPw}" style="display: none"></td>  
+											    <td th:text="${B.guardianGender}" th:guardianGender="${B.guardianGender}" style="display: none"></td>  
+											    <td th:text="${B.guardianPersonalNumber}" th:guardianPersonalNumber="${B.guardianPersonalNumber}" style="display: none"></td>
+											    <th th:text="${B.guardianRegistrationDate}" th:guardianRegistrationDate="${B.guardianRegistrationDate}" style="display: none"></th>
+											    <th th:text="${B.guardianRelation}" th:guardianRelation="${B.guardianRelation}" style="display: none"></th>
+											    <th th:text="${B.guardianAdressForStay}" th:guardianAdressForStay="${B.guardianAdressForStay}" style="display: none"></th>
+											    <th th:text="${B.guardianAdressForPost}" th:guardianAdressForPost="${B.guardianAdressForPost}" style="display: none"></th>
+											    <th th:text="${B.guardianCohabitation}" th:guardianCohabitation="${B.guardianCohabitation}" style="display: none"></th>
 											</tr>
-											<tr role="row" class="odd">
-											    <td class="sorting_1">b_000002</td>
-											    <td>s_000001</td>
-											    <td>나수급</td>
-											    <td>나가족</td>
-											    <td>010-1405-1254</td>
-											</tr>
-											<tr role="row" class="odd">
-												<td class="sorting_1">b_000003</td>
-											    <td>s_000001</td>
-											    <td>나수급</td>
-											    <td>나보모</td>
-											    <td>010-4479-7531</td>
-											</tr>
-											<tr role="row" class="odd">
-											    <td class="sorting_1">b_000004</td>
-											    <td>s_000003</td>
-											    <td>나아파</td>
-											    <td>나가가족</td>
-											    <td>010-1345-7220</td>
-											</tr>
-											<tr role="row" class="odd">
-											    <td class="sorting_1">b_000005</td>
-											    <td>s_000004</td>
-											    <td>가수급</td>
-											    <td>가보호</td>
-											    <td>010-6547-1346</td>
-											</tr>
-											<tr role="row" class="odd">
-											     <td class="sorting_1">b_000006</td>
-											     <td>s_000004</td>
-											     <td>가수급</td>
-											     <td>가가족</td>
-											     <td>010-1234-1237</td>
-											</tr>
+										
+											
 									</tbody>
 								</table>
 							</div>

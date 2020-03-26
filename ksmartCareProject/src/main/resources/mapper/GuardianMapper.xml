@@ -57,5 +57,14 @@
 				,#{guardianAdressForPost}
 				,#{guardianCohabitation});
 	</insert>
+	
+	<!--직원리스트-->
+	<select id="guardianList" resultType="com.cafe24.choiyooq1.domain.Guardian" resultMap="GuardianMap">
+		SELECT 
+			@rownum:=@rownum+1
+			, guardian.*
+		FROM guardian, (SELECT@rownum:=0)TMP;
+	
+	</select>
   	
 </mapper>

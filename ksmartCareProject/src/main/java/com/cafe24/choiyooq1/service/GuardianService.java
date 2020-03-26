@@ -1,5 +1,7 @@
 package com.cafe24.choiyooq1.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,11 @@ public class GuardianService {
 		guardian.setCenterCode(centerCode);
 		guardian.setCenterName(centerName);
 		
-		return guardianMapper.guardianInsert(guardian);
+		return guardianMapper.guardianInsert(guardian);		
+	}
+	//보호자 리스트 불러오기
+	public List<Guardian> guardianList() {
+		return guardianMapper.guardianList();
 		
 	}
 	
