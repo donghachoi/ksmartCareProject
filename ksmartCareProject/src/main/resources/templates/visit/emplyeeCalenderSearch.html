@@ -11,18 +11,12 @@
     
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- <script src="/vendor/js/visit.js"></script> -->
-	<script th:inline="javascript">
-		$(document).ready(function(){
-			
-			
-			$('.employeeId').on('click', function(){
-				var id = $(this).attr('data-employee-id');
-				var name =$(this).attr('data-employee-name');
-				$('#employeeNametitle').text("\( "+ name + " \)님의 일정");
-			});
-			
-		})
-	</script>
+	​<style>
+	body {background-color: #333;}
+	
+	#left{position: relative}
+	</style>
+	
 </th:block>
 
 <th:block layout:fragment="customContents">
@@ -103,16 +97,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.5/fullcalendar.min.js"></script>
-<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.18.4/js/jquery.tablesorter.min.js"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
-<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.min.js"></script> -->
-<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.selection.min.js"></script> -->
-<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.resize.min.js"></script> -->
-                             
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+	<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script> -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.5/fullcalendar.min.js"></script>
+	<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.18.4/js/jquery.tablesorter.min.js"></script> -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
+	<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.min.js"></script> -->
+	<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.selection.min.js"></script> -->
+	<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.resize.min.js"></script> -->
+	                             
     <!--Bootstrap -->
     <script src="/assets/lib/bootstrap/js/bootstrap.js"></script>
     <!-- MetisMenu -->
@@ -122,42 +116,13 @@
     <!-- Screenfull -->
     <script src="/assets/lib/screenfull/screenfull.js"></script>
 
+    <script src="/vendor/js/calenderSearch.js"></script>
+ 	<script src="/assets/lib/fullcalendar/locale/ko.js"></script> 
 
     <!-- Metis core scripts -->
     <script src="/assets/js/core.js"></script>
     <!-- Metis demo scripts -->
     <script src="/assets/js/app.js"></script>
-
-        <script>
-            $(function() {
-              //Metis.MetisTable();
-              $("#dataTable").DataTable({
-
-            	  displayLength: 50
-              });
-              
-              $('#calendar').fullCalendar({
-            	  header: {
-            		   left: "prev,next today",
-            		   center: "title",
-    		right: "month,basicWeek,basicDay"
-            		   //right: "today prev,next"
-            		   },
-            	  titleFormat: {
-            		  month: "YYYY년 MMMM"
-            	  },
-            	   buttonText: {
-            		   today : "오늘",
-            		   month : "월별",
-            		   week : "주별",
-            		   day : "일별",
-            		   },
-            	  lang: 'ko'
-              });
-              //Metis.metisSortable();
-              Metis.dashboard();
-            });
-        </script>
 
     <script src="/assets/js/style-switcher.js"></script>
 </th:block>

@@ -49,7 +49,7 @@ var newEvent = function (start, end, eventType) {
     eventModal.modal('show');
 
     /******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
-   var eventId = 1 + Math.floor(Math.random() * 1000);
+   //var eventId = 1 + Math.floor(Math.random() * 1000);
     /******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
 
     //새로운 일정 저장버튼 클릭
@@ -68,10 +68,10 @@ var newEvent = function (start, end, eventType) {
     //moment(editTime1.val()).format('HH:mm');
     //var test2 = moment(editTime2.val()).format('HH:mm');
     	var eventData = {
-            _id: eventId,
+           // _id: eventId,
             title: serviceTitle.attr('empservice'),
             start: editStart.val(),
-            end: editEnd.val(),
+            //end: editEnd.val(),
             //description: editDesc.val(),
             type: editType.val(),
             //username: '사나',
@@ -90,14 +90,8 @@ var newEvent = function (start, end, eventType) {
 			backgroundColor : backgroundColor.val(),      //배경색 
 			monthlyClaimGroupCode: editStart.val().substring(0, 7),  //날짜별 그룹
 			yoyangBathNonBenefit : yoyangBathNonBenefit.val(),  //비급여 여부
-            
 			visitServiceTime : total,
 
-			//.diff(moment(editTime1.val()).format('HH:mm')), 'minutes'),
-			//moment.duration(test2.diff(test1)).asMinutes(),
-			//moment.duration(t2.diff(t1)).asMinutes());
-			//visitServiceTime :  moment.duration((editTime2.val()) - (editTime1.val())).asMinutes(),
-			//visitServiceTime : moment.duration(editTime2.val() - editTime1.val()).asMinutes(),
 			
             allDay: false    
         };
@@ -118,16 +112,27 @@ var newEvent = function (start, end, eventType) {
 //    		    }
 //    		})
 //    	});
-
+  
         if (eventData.start > eventData.end) {
             alert('끝나는 날짜가 앞설 수 없습니다.');
             return false;
         }
 
-        if (eventData.title === '') {
+        if (!eventData.title) {
             alert('일정명은 필수입니다.');
             return false;
         }
+        
+        if (eventData.employeeId == '') {
+            alert('직원 선택은 필수입니다.');
+            return false;
+        }
+        
+        if (eventData.serviceCategoryDetail == '' &&  eventData.visitServiceCategory == '요양' ||  eventData.visitServiceCategory == '목욕') {
+            alert('서비스 선택은 필수입니다.');
+            return false;
+        }
+        
         
         if (!editTime1.val() || !editTime2.val()) {
             alert('시간 입력은 필수 입니다');
@@ -147,15 +152,17 @@ var newEvent = function (start, end, eventType) {
         	eventData.visitServiceTime = 150;
         }else if(210 <= eventData.visitServiceTime && eventData.visitServiceTime  <=239){
         	eventData.visitServiceTime = 210;
-        }else if(240 <= eventData.visitServiceTime){
+        }else if(240 == eventData.visitServiceTime){
         	eventData.visitServiceTime = 240;
+        }else if(240 < eventData.visitServiceTime){
+        	alert("최대시간을 넘겼습니다");
+        	return false;
         }
    
         if(eventData.visitServiceCategory == '요양'){
         	eventData.visitServiceTime = eventData.visitServiceTime + serviceCategoryDetail.val();
         }
-        
-        console.log(eventData.visitServiceTime);
+        alert(eventData.visitServiceTime);
         if(eventData.visitServiceCategory == '간호' && 60<eventData.visitServiceTime){
         	alert("60분이 최고 시간입니다");
         	eventData.visitServiceTime = 60;
@@ -166,10 +173,10 @@ var newEvent = function (start, end, eventType) {
         	eventData.visitServiceTime = serviceCategoryDetail.val();
         }
     
-
-            $('#editTime2').datepicker().on('changeDate', function() {
+        $(document).on('change', '#editTime2:input',  function() {
+        	alert("tetstetst");
             	$('#editTime3').val('11111');
-                    });
+        });
         
 //        $("#editTime2").datetimepicker({
 //            format: 'HH:mm'     
@@ -214,7 +221,7 @@ var newEvent = function (start, end, eventType) {
                 //DB연동시 중복이벤트 방지를 위한
                 $('#calendar').fullCalendar('removeEvents');
                 $('#calendar').fullCalendar('refetchEvents');
-                alert(response);
+
             }
         });
     });

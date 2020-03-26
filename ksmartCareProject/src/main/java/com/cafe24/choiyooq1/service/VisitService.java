@@ -36,7 +36,6 @@ public class VisitService {
 	//public List<BenefitCost> elderBenefitCost(String elder_id, String syear, String smoth){
 		
 		List<Visit> list = visitMapper.elderBenefitCost(elder_id, syear, smoth);
-		List<BenefitCost> setlist = new ArrayList<BenefitCost>();
 		int BenefitCost = 0;
 		int NonBenefitCost =0;
 	    int yoyang = 0;
@@ -119,6 +118,7 @@ public class VisitService {
 //	public List<Visit> visitInsert(Visit visit){
 		String str = null;
 		
+		String ort = visit.getVisitServiceTime();
 		if((visit.getVisitServiceCategory()).equals("요양")) {
 			 visit.setVisitServiceTime((visit.getVisitServiceTime()).replaceAll("[^0-9]",""));	
 		}
@@ -126,6 +126,7 @@ public class VisitService {
 		BenefitCost bcost =  visitMapper.serviceCost((visit.getMonthlyClaimGroupCode()).substring(0,4), visit.getVisitServiceCategory(),  
 				visit.getVisitServiceTime());
 		
+		visit.setVisitServiceTime(ort);
 		if(subCost- bcost.getBenefitCost()<0) {
 			str ="한도를 초과하였습니다. 비급여를 선택해 주세요";
 		}else {

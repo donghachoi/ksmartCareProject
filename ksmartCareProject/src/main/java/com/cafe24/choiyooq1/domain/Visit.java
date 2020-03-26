@@ -1,8 +1,5 @@
 package com.cafe24.choiyooq1.domain;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
-
 public class Visit {
 
 	private String visitCode;

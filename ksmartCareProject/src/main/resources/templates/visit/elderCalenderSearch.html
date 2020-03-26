@@ -10,19 +10,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.5/fullcalendar.min.css">
     
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	
+	​<style>
+	body {background-color: #333;}
+	
+	#left{position: relative}
+	</style>	
 	<!-- <script src="/vendor/js/visit.js"></script> -->
-	<script th:inline="javascript">
-		$(document).ready(function(){
-			
-			
-			$('.elderId').on('click', function(){
-				var id = $(this).attr('data-elder-id');
-				var name =$(this).attr('data-elder-name');
-				$('#elderNametitle').text("\( "+ name + " \)님의 일정");
-			});
-			
-		})
-	</script>
 </th:block>
 
 <th:block layout:fragment="customContents">
@@ -87,8 +81,30 @@
 				    </div>
 				</div>
 			    </div>
-			    <!--  /일정 -->		 			
-		
+			    <!--  /일정 -->	
+			    
+				<!-- 모달-->
+
+<!-- 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
+				
+				<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+				  <div class="modal-dialog modal-sm">
+				    <div class="modal-content">
+					  	 날짜: <span id="eventDate" class="eventDate"></span><br />
+					         서비스 종류: <span id="eventTitle" class="eventTitle"></span><br />
+					         담당 요양사: <span id="eventEmployeeName" class="eventEmployeeName"></span><br /><br />
+				    </div>
+				  </div>
+				</div> -->
+				
+				<!--  /모달 끝  -->
+				<div id="eventContent" class="eventContent" style="display: none; border: 1px solid #005eb8; position: absolute; background: #fcf8e3; width: 20%; opacity: 1.0; padding: 4px; color: #005eb8; z-index: 2000; line-height: 1.1em;">
+				    <a style="float: right;"><i class="fa fa-times closeEvent" aria-hidden="true"></i></a><br />
+				  	 날짜: <span id="eventDate" class="eventDate"></span><br />
+				         서비스 종류: <span id="eventTitle" class="eventTitle"></span><br />
+				         담당 요양사: <span id="eventEmployeeName" class="eventEmployeeName"></span><br /><br />
+				</div>
+						    	 			
 			 </div>
 			</div>
 		</div>	
@@ -104,11 +120,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
 <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.5/fullcalendar.min.js"></script>
+        <script src="/assets/lib/fullcalendar/locale/ko.js"></script>  
+    
+   
 <!--     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.18.4/js/jquery.tablesorter.min.js"></script> -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
 <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.min.js"></script> -->
 <!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.selection.min.js"></script> -->
 <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.resize.min.js"></script> -->
@@ -121,43 +140,16 @@
     <script src="/assets/lib/onoffcanvas/onoffcanvas.js"></script>
     <!-- Screenfull -->
     <script src="/assets/lib/screenfull/screenfull.js"></script>
+ 	  
 
+
+    <script src="/vendor/js/calenderSearch.js"></script>
 
     <!-- Metis core scripts -->
     <script src="/assets/js/core.js"></script>
     <!-- Metis demo scripts -->
     <script src="/assets/js/app.js"></script>
 
-    <script>
-        $(function() {
-          //Metis.MetisTable();
-          $("#dataTable").DataTable({
-
-        	  displayLength: 50
-          });
-          
-          $('#calendar').fullCalendar({
-        	  header: {
-        		   left: "prev,next today",
-        		   center: "title",
-		right: "month,basicWeek,basicDay"
-        		   //right: "today prev,next"
-        		   },
-        	  titleFormat: {
-        		  month: "YYYY년 MMMM"
-        	  },
-        	   buttonText: {
-        		   today : "오늘",
-        		   month : "월별",
-        		   week : "주별",
-        		   day : "일별",
-        		   },
-        	  lang: "ko"
-          });
-          //Metis.metisSortable();
-          Metis.dashboard();
-        });
-    </script>
 
     <script src="/assets/js/style-switcher.js"></script>
 </th:block>

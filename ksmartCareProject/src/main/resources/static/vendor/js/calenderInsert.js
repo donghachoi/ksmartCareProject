@@ -41,6 +41,8 @@ $(document).ready(function(){
 				error : function(error){
 					console.log("error", error);
 				}
+				
+				$('#calendar').fullCalendar('events');
 		});
 	});
 	
@@ -118,23 +120,26 @@ $(document).ready(function(){
 				$('#employeeId').find('option').remove();
 				$('#serviceCategoryDetail').find('option').remove();
 				$('.modal-title').text("방문"+ empservice);
-				
+				$('#employeeId').append("<option value=''>직원을 선택해주세요</option>");
 				for(var i=0; i<data.length; i++){
+					
 					$('#employeeId').append("<option value=\'"+ data[i].employeeId + "\'>"
 							+ data[i].employeeName +"</option>");
 				   }
 				
 				if(empservice =='요양'){
-					var test = "<option value=\'인지활동\'>인지활동</option>";
-					test += "<option value=\'가족케어\'>가족케어</option>";
-					test += "<option value=\'치매가족휴가\'>치매가족휴가</option>";
+					var test = "<option value=''>서비스를 선택헤주세요</option>";
+					test += "<option value='인지활동'>인지활동</option>";
+					test += "<option value='가족케어'>가족케어</option>";
+					test += "<option value='치매가족휴가'>치매가족휴가</option>";
 					
 					$('#serviceCategoryDetail').append(test);
 				}
 				if(empservice == '목욕'){
-					var test = "<option value=\'차량이용(차량 내)\'>차량이용(차량 내)</option>";
-						test += "<option value=\'차량이용(가정 내)\'>차량이용(가정 내)</option>";
-						test += "<option value=\'차량미이용\'>차량미이용</option>";
+					var test = "<option value=''>서비스를 선택헤주세요</option>";
+						test = "<option value='차량이용(차량 내)'>차량이용(차량 내)</option>";
+						test += "<option value='차량이용(가정 내)'>차량이용(가정 내)</option>";
+						test += "<option value='차량미이용'>차량미이용</option>";
 						
 					$('#serviceCategoryDetail').append(test);
 				 }

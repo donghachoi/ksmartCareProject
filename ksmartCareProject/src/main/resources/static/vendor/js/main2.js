@@ -163,11 +163,10 @@ var calendar = $('#calendar').fullCalendar({
    * ************** */
   events: function (start, end, timezone, callback) {
     $.ajax({
-      type: "post",
-      url: "/elder/elderCalenderSearch",
-      data: { id:  $('input[name=elderId]').val() },
+      type: "get",
+//      url: "/employee/vcalenderList",
+//      data: { elderId:  $('input[name=elderId]').val() , monthGroup : eventData.monthlyClaimGroupCode},
       success: function (response) {
-    	  alert("넘어 와라");
         var fixedDate = response.map(function (array) {
           if (array.allDay && array.start !== array.end) {
             // 이틀 이상 AllDay 일정인 경우 달력에 표기시 하루를 더해야 정상출력

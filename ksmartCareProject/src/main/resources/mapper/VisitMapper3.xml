@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="com.cafe24.choiyooq1.mapper.VisitMapper">
+  <mapper namespace="com.cafe24.choiyooq1.mapper.">
   
     <resultMap type="com.cafe24.choiyooq1.domain.Elder" id="ElderMap">
 	  	<result property="elderId" column="elder_id"/>
@@ -95,7 +95,7 @@
   
   <!-- 수급자 서비스 내용 -->
   	<select id="elderBenefitCost" parameterType="String" resultMap="VisitMap">
-		select visit_service_category, monthly_claim_group_code, visit_service_time, visit_plan_date
+		select visit_service_category, monthly_claim_group_code, visit_service_time, visitelder_name
 		from visit WHERE elder_id=#{elder_id}
 			AND monthly_claim_group_code=CONCAT(#{syear},'-',#{smoth})
   	</select>

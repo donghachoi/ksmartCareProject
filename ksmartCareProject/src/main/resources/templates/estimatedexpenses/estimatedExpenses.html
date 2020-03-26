@@ -10,9 +10,15 @@
     
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- <script src="/vendor/js/visit.js"></script> -->
+​<style>
+body {background-color: #333;}
 
+#left{position: relative}
+</style>
 </th:block>
-
+<style>
+.dataTable_filter {float:rigth;}
+</style>
 <th:block layout:fragment="customContents">
 <div id="content">
 	 <header class="head" >
@@ -36,23 +42,48 @@
 							<h5>예상청구비용 </h5>
 						</header>
 						<div id="collapse4" class="body">
+						<div style="float:left;">
+						<select name ="syear" class="autotab input-sm" id="syear">
+							<option th:value="2020">2020</option>
+							<option th:value="2019">2019</option>
+							<option th:value="2018">2018</option>
+						</select>
+						<select name ="smonth" class="autotab input-sm" id="smonth">
+						<th:block th:each="num: ${#numbers.sequence(1,12)}">
+							<option th:value="${num}" th:selected="${num} == ${#calendars.format(#calendars.createNow(), 'M')}">[[${num}]]</option>
+						</th:block>
+						</select>	
+						</div>			
 							<table id="dataTable"
 								class="table table-bordered table-condensed table-hover sortableTable">
 								<thead>
 									<tr>
-										<th>수급자</th>
-										<th>급여총액</th>
-										<th>본인부담</th>
-										<th>공단청구</th>
+							 			<th>수급자상태</th>
+										<th>수급자Id</th>
+										<th>이름</th>
+										<th>최대한도</th>
+										<th>공단 부담금</th>
+										<th>본인부담금</th>
+										<th>서비스 횟수</th>										
 									</tr>
 								</thead>
 								<tbody>
 									<tr th:each="e: ${list}">
-									    <td th:text="${e.elderFinalServiceStatus}"></td>
-										<td><a href="javascript:void(0)" class="elderId" 
-											th:data-elder-id="${e.elderId}" th:data-elder-name="${e.elderName}">[[${e.elderName}]]</a></td>
-										<td th:text="${e.elderFinalServiceApprovalLevel}"></td>
-										<td th:text="${e.elderDisease}"></td>
+									    <td class="t1" th:text="${e.elderFinalServiceStatus}"></td>
+									    <td class="t2" th:text="${e.elerId}"></td>
+										<td class="t3">
+											<a 	href="javascript:void(0)" 
+												class="elderId" 
+												th:data-elder-id ="${e.elerId}" 
+												th:data-elder-name="${e.elderName}"
+											>
+												[[${e.elderName}]]
+											</a>
+										</td>
+										<td class="t4" th:text="${e.maxCost}"></td>
+										<td class="t5" th:text="${e.benefitCost}"></td>
+										<td class="t6" th:text="${e.nonBenefitCost}"></td>
+										<td class="t7" th:text="${e.totolNum}"></td>
 									</tr>
 								</tbody>
 							</table>
@@ -61,6 +92,43 @@
 				</div>
 				<!--/수급자 목록-->
 	 			
+
+			    <!-- 상세보기 -->
+			    <div class="col-lg-12" id="sTable" style= "display:none;">
+			        <div class="box">
+			            <header>
+			                <h5 id="setitle">상세정보</h5>
+			                <div class="toolbar">
+					                <div class="btn-group">
+			                    <a href="#defaultTable" data-toggle="collapse" class="btn btn-sm btn-default minimize-box">
+			                        <i class="fa fa-angle-up"></i>
+			                    </a>
+			                    <a class="btn btn-danger btn-sm close-box"><i class="fa fa-times"></i></a>
+			                  </div>
+			                </div>
+			            </header>
+			            <div id="defaultTable" class="body collapse in">
+			                <table class="table responsive-table">
+			                    <thead>
+			                        <tr>
+			                            <th>날짜</th>
+			                            <th>서비스 종류</th>			                            
+			                            <th>서비스 상세</th>
+			                            <th>공단부담금</th>
+			                            <th>본인부담금</th>
+			                        </tr>
+			                    </thead>
+			                    <tbody>
+			                        <tr>                                                     
+			                        </tr>
+			                    </tbody>       
+			                  </table>
+			            </div>
+			        </div>
+			    </div>
+			    <!-- /상세보기 -->
+
+
 		
 			 </div>
 			</div>
@@ -87,6 +155,10 @@
     <script src="/assets/lib/screenfull/screenfull.js"></script>
 
 
+    <script src="/vendor/js/estimatEdexpenses.js"></script>
+
+
+
     <!-- Metis core scripts -->
     <script src="/assets/js/core.js"></script>
     <!-- Metis demo scripts -->
@@ -95,7 +167,8 @@
     <script>
         $(function() {
             $("#dataTable").DataTable({
-          	  displayLength: 50
+              lengthChange: false,
+          	  displayLength: 10
             });
         });
     </script>
