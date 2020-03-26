@@ -17,14 +17,25 @@ public class CenterService {
 	//센터 입력
 	public int centerInsert(Center center) {
 		return centerMapper.centerInsert(center);
-		
 	}
 	//센터 리스트
 	public List<Center> getCenterList(){
-		return centerMapper.getCenterList();
-		
+		return centerMapper.getCenterList();	
+	}
+	//센터 정보 업데이트를 위한 내용 불러오기
+	public Center centerSelectForUpdate(String centerCode) {
+		return centerMapper.centerSelectForUpdate(centerCode);
 	}
 	
+	//센터 정보 업데이트
+	public int centerUpdate(Center center) {
+		return centerMapper.centerUpdate(center);
+	}
+	
+	//센터 정보 삭제
+		public int centerDelete(String centerCode) {
+			return centerMapper.centerDelete(centerCode);
+		}
 	
 
 }

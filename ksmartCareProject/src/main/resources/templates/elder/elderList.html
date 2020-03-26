@@ -72,24 +72,22 @@
 								<table id="dataTable" class="table table-bordered table-hover" style="font-size: 15px">
 									<thead>
 										<tr role="row">
-											<th>수급자코드</th>
+											<th>수급자아이디</th>
 											<th>수급자이름</th>
 											<th>생년월일</th>
 											<th>성별</th>
 											<th>등급</th>
-											<th>계약일</th>
 											<th>인정만료일</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr role="row" class="odd">
-											<td class="sorting_1">수급자코드</td>
-											<td>수급자이름</td>
-											<td>생년월일</td>
-											<td>성별</td>
-											<td>등급</td>
-											<td>계약일</td>
-											<td>인정만료일</td>
+									<tbody id="elderRow">
+										<tr role="row" class="odd" th:each="E:${elderList}">
+											<td class="sorting_1" th:text="${E.elderId}"></td>
+											<td th:text="${E.elderName}"></td>
+											<td th:text="${E.elderBirthDate}"></td>
+											<td th:text="${E.elderGender}"></td>
+											<td th:text="${E.elderFinalServiceApprovalLevel}"></td>
+											<td th:text="${E.longTermCareValidity}"></td>
 										</tr>
 									</tbody>
 								</table>
@@ -119,24 +117,25 @@
 									<table class="table responsive-table">
 										<tbody>
 											<tr>
+												<th>수급자아이디</th>
+												<td id="elderId"></td>
 												<th>수급자명</th>
-												<td>나수급</td>
+												<td id="elderName"></td>
 												<th>성별</th>
-												<td>여 (만 86세)</td>
-												<th>생년월일</th>
-												<td>1933.04.13</td>
+												<td id="elderGender"></td>
+												
 											</tr>
 											<tr>
 												<th>최초입소일</th>
-												<td>2019.02.08</td>
+												<td id="serviceStartDate"></td>
 												<th>수급현황</th>
-												<td>수급 or 보류</td>
-												<th>생신일</th>
-												<td>1933.04.13(음력)</td>
+												<td id="elderFinalServiceStatus"></td>
+												<th>생년월일</th>
+												<td id="elderBirthDate"></td>
 											</tr>
 											<tr>
 												<th>본인부담률</th>
-												<td>15%</td>
+												<td id="elderCoinsurance"></td>
 												<th>급여한도</th>
 												<td>이번달 급여한도</td>
 												<td></td>
@@ -144,57 +143,55 @@
 											</tr>
 											<tr>
 												<th>인정등급/번호</th>
-												<td>3등급 / L0010162566</td>
+												<td id="elderLevel"></td>
 												<th>인정기간</th>
-												<td>2019.02.08 ~ 2022.02.07
-												<button type="button"  
+												<td id="elderServiceApprovalDate">
+												</td>
+												<th><button type="button"  
 														data-toggle="modal" data-target="#myModal"
 														class="btn btn-primary btn-sm">
 														<span>등급인정관리</span>
-													</button></td>
-												<th></th>
+													</button></th>
 												<th></th>
 											</tr>
 											<tr>
 												<th>계약만료일</th>
-												<td colspan="3">2022-03-12
-													<button type="button"  
+												<td id="serviceEndDate">
+													</td>
+												<th colspan="3"><button type="button"  
 														data-toggle="modal" data-target="#myModal3"
 														class="btn btn-primary btn-sm">
 													<span>계약관리</span>
-													</button></td>
-												<th></th>
+													</button></th>
 												<th></th>
 											</tr>
 											<tr>
 												<th>휴대폰</th>
-												<td>010-8988-1384</td>
-												<th>전화번호</th>
-												<td>010-8988-1384</td>
+												<td id= "elderPhone"></td>
+												<th></th>
+												<td></td>
 												<td></td>
 												<td></td>
 											</tr>
 											<tr>
 												<th>주소(거주)</th>
-												<td colspan="5">전주 덕진구 기린대로 406
-												</td>
+												<td colspan="5" id="elderAdressForStay"></td>
 											</tr>
 											<tr>
 												<th>주소(우편)</th>
-												<td colspan="5">전주 덕진구 기린대로 406
-												</td>
+												<td colspan="5" id="elderAdressForPost"></td>
 											</tr>
 											<tr>
 												<th>주요질환</th>
-												<td></td>
+												<td id="elderDisease"></td>
 												<th>비고</th>
-												<td colspan="3"></td>
+												<td colspan="3" id="elderRemarks"></td>
 											</tr>
 										</tbody>
 									</table>
 									<!-- 수급자 상태 관리 최근내역 -->
 									<h3>수급자 상태 최근 관리내역</h3>
-									<table class="table responsive-table text-center">
+									<table class="table text-center">
 									<tr class="active">
 										<td><strong>낙상위험측정</strong></td>
 										<td><strong>욕창위험측정</strong></td>
@@ -327,7 +324,10 @@
 									<tbody>
 										<tr class="odd">
 											<td >1</td>
-											<td>2020-03-01</td>
+											<td id="fallDownCheckDate">2020-03-01</td>
+											<td id="bedsoreCheckDate">2020-03-01</td>
+											<td id="functionCheckDate">2020-03-01</td>
+											<td id="needsCheckDate">2020-03-01</td>
 											<td>2020-03-01</td>
 											<td>2020-03-01</td>
 											<td>2020-03-01</td>
@@ -408,11 +408,11 @@
 									<input type="checkbox" value="002" ><label><span>목욕</span></label>
 									<input type="checkbox" value="003" ><label><span>간호</span></label>
 									<div>
-										<label>계약일
 											<div style="margin:0px; display:inline;">
-												<input class="date" type="text">
+												<label>계약일
+													<input class="date" type="text"/>
+												</label>
 											</div>
-										</label>
 									</div>
 									<label>유효기간
 										<div style="margin:0px; display:inline; margin-left:50px;">
@@ -477,6 +477,90 @@
     <script>
         
       $(document).ready(function(){
+    	  
+    	/* 수급자 상세정보 가져오기 */
+		$('#elderRow tr').click(function(){
+			var map = {};
+			var Id = $(this).find('td:eq(0)').text()
+			map.elderId = Id;
+			
+			 $.ajax({
+				type 	: 	'POST',
+				url		:	'/elderDetailList',
+				async	:	'true',
+				data	:	JSON.stringify(map),
+				contentType	:	'application/json',
+				success	:	function(data){
+					
+					console.log(data.fallDownCheck);
+					console.log(data.bedsoreCheck);
+					console.log(data.functionCheck);
+					console.log(data.needsCheck);
+					//수급자 정규검사 
+					var fallDownCheckDate = data.fallDownCheck.elderRegularCheckDoingDate
+					var bedsoreCheckDate = data.bedsoreCheck.elderRegularCheckDoingDate
+					var functionCheckDate = data.functionCheck.elderRegularCheckDoingDate
+					var needsCheckDate = data.needsCheck.elderRegularCheckDoingDate
+					
+					console.log(fallDownCheckDate);
+					console.log(bedsoreCheckDate);
+					console.log(functionCheckDate);
+					console.log(needsCheckDate);
+					
+					//수급자 수급 인정기간 
+					var serviceEndDate = data.elderLastStatus.serviceEndDate;
+					var serviceStartDate = data.elderFirstStatusDate.serviceStartDate;
+					
+					//수급자 등급 히스토리
+					var elderServiceApprovalEndDate = data.elderLastLevel.elderServiceApprovalEndDate;
+					var elderServiceApprovalStartDate = data.elderLastLevel.elderServiceApprovalStartDate;
+					//수급자 기본 테이블에서 나온것들.
+					var elderId = data.elderOenList.elderId
+					var elderName = data.elderOenList.elderName
+					var elderBirthDate = data.elderOenList.elderBirthDate
+					var elderGender = data.elderOenList.elderGender
+					var elderFinalServiceApprovalLevel = data.elderOenList.elderFinalServiceApprovalLevel
+					var elderFinalServiceStatus = data.elderOenList.elderFinalServiceStatus
+					var elderDisease = data.elderOenList.elderDisease
+					var elderCoinsurance = data.elderOenList.elderCoinsurance
+					var totalVisits = data.elderOenList.totalVisits
+					var totalServiceTime = data.elderOenList.totalServiceTime
+					var serviceLocalmanageCode = data.elderOenList.serviceLocalmanageCode
+					var serviceLocalmanageName = data.elderOenList.serviceLocalmanageName
+					var longTermCareNumver = data.elderOenList.longTermCareNumver
+					var longTermCareValidity = data.elderOenList.longTermCareValidity
+					var elderPhone = data.elderOenList.elderPhone
+					var elderAdressForStay = data.elderOenList.elderAdressForStay
+					var elderAdressForPost = data.elderOenList.elderAdressForPost
+					var elderRemarks = data.elderOenList.elderRemarks
+					var elderGroups = data.elderOenList.elderGroups
+					$('#elderId').text(elderId);
+					$('#elderName').text(elderName);
+					$('#elderGender').text(elderGender);
+					$('#elderFinalServiceStatus').text(elderFinalServiceStatus);
+					$('#elderBirthDate').text(elderBirthDate);
+					$('#elderCoinsurance').text(elderCoinsurance+"%");
+					$('#elderLevel').text(elderFinalServiceApprovalLevel+' 등급 / '+longTermCareNumver);
+					$('#elderServiceApprovalDate').text(elderServiceApprovalStartDate+" ~ "+elderServiceApprovalEndDate);
+					$('#serviceEndDate').text(serviceEndDate);
+					$('#serviceStartDate').text(serviceStartDate);
+					$('#elderPhone').text(elderPhone);
+					$('#elderAdressForStay').text(elderAdressForStay);
+					$('#elderAdressForPost').text(elderAdressForPost);
+					$('#elderDisease').text(elderDisease);
+					$('#elderRemarks').text(elderRemarks);
+					$('#fallDownCheckDate').text(fallDownCheckDate);
+					$('#bedsoreCheckDate').text(bedsoreCheckDate);
+					$('#functionCheckDate').text(functionCheckDate);
+					$('#needsCheckDate').text(needsCheckDate);
+				},
+				error	:	function(error){
+					console.log("error", error)
+				}
+			})   
+		})
+    	  
+    	  
     	  //data table
     	  $('#dataTable').DataTable({
               "language": 

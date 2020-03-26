@@ -84,18 +84,19 @@ public class Center {
 	public void setServiceStartDate(String serviceStartDate) {
 		this.serviceStartDate = serviceStartDate;
 	}
-	public String getServiceEndDate() {
-		return serviceEndDate;
-	}
-	public void setServiceEndDate(String serviceEndDate) {
-		this.serviceEndDate = serviceEndDate;
-	}
 	public String getServiceStatus() {
 		return serviceStatus;
 	}
 	public void setServiceStatus(String serviceStatus) {
 		this.serviceStatus = serviceStatus;
 	}
+	public String getServiceEndDate() {
+		return serviceEndDate;
+	}
+	public void setServiceEndDate(String serviceEndDate) {
+		this.serviceEndDate = serviceEndDate;
+	}
+	
 	public String getBusinessRegistrationNumber() {
 		return businessRegistrationNumber;
 	}

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.cafe24.choiyooq1.mapper.ElderMapper"> <!-- namespace="mapper 인터페이스 경로!!!!" -->
+  
+  <!-- 수급자 resultMap --> 
+  <resultMap type="com.cafe24.choiyooq1.domain.ElderLevelHistory" id="ElderLevelHistoryMap">
+  	<result property="elderLevelHistoryCode" column="elder_level_history_code"/>
+  	<result property="elderId" column="elder_id"/>
+  	<result property="elderName" column="elder_name"/>
+  	<result property="centerCode" column="center_code"/>
+  	<result property="centerName" column="center_name"/>
+  	<result property="elderServiceApprovalLevel" column="elder_service_approval_level"/>
+  	<result property="elderServiceApprovalCategory" column="elder_service_approval_category"/>
+  	<result property="elderServiceApprovalCategory2" column="elder_service_approval_category2"/>
+  	<result property="elderSercviceApplyDate" column="elder_sercvice_apply_date"/>
+  	<result property="elderServiceApprovalStartDate" column="elder_service_approval_start_date"/>
+  	<result property="elderServiceApprovalEndDate" column="elder_service_approval_end_date"/>
+  	<result property="elderServiceApprovalNumber" column="elder_service_approval_number"/>
+  </resultMap>
+  
+  <select id="getElderLastLevelHistory" resultMap="ElderLevelHistoryMap">
+  	SELECT 
+		elder_level_history_code, 
+		elder_id, 
+		elder_name, 
+		center_code, 
+		center_name, 
+		elder_service_approval_level, 
+		elder_service_approval_category, 
+		elder_service_approval_category2, 
+		elder_sercvice_apply_date, 
+		elder_service_approval_start_date, 
+		elder_service_approval_number,
+		MAX(elder_service_approval_end_date) AS elder_service_approval_end_date
+	FROM 
+		elder_level_history
+	WHERE 
+		elder_id=#{elderId};
+  
+  </select>
+  </mapper>

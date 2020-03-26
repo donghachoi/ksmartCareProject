@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
+<th:block> 
+	<head>
+	    
+	    <!-- Bootstrap -->
+	    <link rel="stylesheet" href="/assets/lib/bootstrap/css/bootstrap.css">
+	    
+	    <!-- Font Awesome -->
+	    <link rel="stylesheet" href="/assets/lib/font-awesome/css/font-awesome.css">
+	    
+	    <!-- Metis core stylesheet -->
+	    <link rel="stylesheet" href="/assets/css/main.css">
+	    
+	    <!-- metisMenu stylesheet -->
+	    <link rel="stylesheet" href="/assets/lib/metismenu/metisMenu.css">
+	    
+	    <!-- onoffcanvas stylesheet -->
+	    <link rel="stylesheet" href="/assets/lib/onoffcanvas/onoffcanvas.css">
+	    
+	    <!-- animate.css stylesheet -->
+	    <link rel="stylesheet" href="/assets/lib/animate.css/animate.css">
+		
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css">
+
+		
+	 	<script>
+	        less = {
+	            env: "development",
+	            relativeUrls: false,
+	            rootpath: "/assets/"
+	        };
+	    </script>
+	    <link rel="stylesheet" href="/assets/css/style-switcher.css">
+	    <link rel="stylesheet/less" type="text/css" href="/assets/less/theme.less">
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.js"></script>
+	</head>
+</th:block>
+<th:block layout:fragment="customTitle">
+	<title>index</title>
+</th:block>
+<!-- 페이지 안내  -->
+<th:block layout:fragment="customContents">
+        <body class="  ">
+            <div class="bg-dark dk" id="wrap">
+                <div id="top">
+
+                    <!-- /.navbar -->
+                        <header class="head">
+
+                                <!-- /.search-bar -->
+                            <div class="main-bar">
+                            	<h3>
+					              <i class="fa fa-pencil"></i>&nbsp;
+					            		직원등록 페이지
+					          	</h3>
+                            </div>
+                            <!-- /.main-bar -->
+                        </header>
+                        <!-- /.head -->
+                </div>
+
+                <div id="content">
+                    <div class="outer">
+                        <div class="inner bg-light lter">
+<!--BEGIN INPUT TEXT FIELDS-->
+<div class="row">
+	<div class="col-lg-12">
+	    <div class="box dark">
+	        <header>
+	            <div class="icons"><i class="fa fa-edit"></i></div>
+	            <h5>직원 상세 정보를 입력해주세요</h5>
+	            
+	            <!-- .toolbar -->
+	            <div class="toolbar">
+	              <nav style="padding: 8px;">
+	
+	                  
+	              </nav>
+	            </div>            
+	            <!-- /.toolbar -->
+	        </header>
+	        <div id="div-4" class="body">
+	            <form class="form-horizontal" th:action="@{/center/employeeInsert}" method="post">
+	
+	                <div class="form-group">
+	                    <label for="text1" class="control-label col-lg-4"  >아이디</label>
+	
+	                    <div class="col-lg-3">
+	                        <input type="text" id="text1"  class="form-control" name="employeeId">
+	                    </div>
+	                </div>
+	                <!-- /.form-group -->
+	                   <div class="form-group">
+	                    <label for="text1" class="control-label col-lg-4">이름</label>
+	
+	                    <div class="col-lg-3">
+	                        <input type="text" id="text1" class="form-control" name="employeeName">
+	                    </div>
+	                </div>
+	                <!-- /.form-group -->
+	
+	                <div class="form-group">
+	                    <label for="pass1" class="control-label col-lg-4">비밀번호</label>
+	
+	                    <div class="col-lg-3">
+	                        <input class="form-control" type="password" id="pass1"
+	                               data-original-title="Please use your secure password" data-placement="top" name="employeePw"/>
+	                    </div>
+	                </div>
+	                <!-- /.form-group -->
+	                <div class="form-group">
+				    <label class="control-label col-lg-4">직종선택</label>
+				
+					    <div class="col-lg-3">
+					        <select class="form-control" name="employeeCategory">
+					            <option>::직종선택::</option>
+					            <option>요양보호사</option>
+					            <option>사회복지사</option>
+					            <option>간호조무사</option>
+					            <option>사무원</option>
+					            <option>현장지원</option>
+					            <option>책임관리자</option>
+					            <option>기타</option>
+					        </select>
+					    </div>
+					</div>
+					<!-- /.form-group -->
+					<div class="form-group">
+	                  		 <label class="control-label col-lg-4">성별</label>
+	                        <div class="col-lg-3">
+	                            <div class="checkbox">
+	                                <label>
+	                                    <input class="uniform" type="radio" name="employeeGender" value="남" checked>남
+	                                </label>
+	                            </div>
+	                            <!-- /.checkbox -->
+	                            <div class="checkbox">
+	                                <label>
+	                                    <input class="uniform" type="radio" name="employeeGender" value="여">여
+	                             
+	                                </label>
+	                            </div>
+	                    	</div>
+	                  </div>  
+	                  <!-- /.form-group -->
+	
+	                <div class="form-group">
+	                    <label for="text2" class="control-label col-lg-4">주민등록번호</label>
+	
+	                    <div class="col-lg-3">
+	                        <input type="text" id="text2" placeholder="123456-0000000" class="form-control" name="employeePersonalNumber">
+	                    </div>
+	                </div>
+	                <!-- /.form-group -->
+					 <div class="form-group">
+	                    <label for="text2" class="control-label col-lg-4">연락처</label>
+	
+	                    <div class="col-lg-3">
+	                        <input type="text" id="text2" placeholder="000-000-0000" class="form-control" name="employeePhone">
+	                    </div>
+	                </div>
+	                <!-- /.form-group -->
+					
+					<div class="form-group">
+	                    <label  for="employeeStartDate" class="control-label col-lg-4">근무시작일</label>
+							<div class="col-lg-3">
+	                            <div class="input-group input-append">
+	                                <input class="form-control date" type="text" placeholder="2020-03-01" name="employeeStartDate" id="employeeStartDate" autocomplete="off" >
+	                                <span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>
+	                            </div>
+	                        </div>
+	                </div>
+					<!-- /.form-group -->
+					
+					<!-- END DATE PICKER -->                
+	                <div class="form-group">
+				    <label class="control-label col-lg-4">근무(재직)상태</label>
+				
+					    <div class="col-lg-3">
+					        <select class="form-control" name="employeeWorkingStatus" >
+					            <option>재직</option>
+					            <option>휴직</option>
+					            <option>퇴사</option>		   
+					        </select>
+					    </div>
+					</div>
+					<!-- /.form-group -->
+	                 <div class="form-group">
+				    <label class="control-label col-lg-4">근무 형태</label>
+				
+					    <div class="col-lg-3">
+					        <select class="form-control" name="employeeWorkingType">
+					            <option>전임</option>
+					            <option>계약직</option>
+					            <option>시간제</option>		   
+					        </select>
+					    </div>
+					</div>
+					<!-- /.form-group -->
+					<div class="form-group">
+	                    <label for="text1" class="control-label col-lg-4">직급</label>
+	
+	                    <div class="col-lg-3">
+	                        <input type="text" id="text1"  class="form-control" name="employeePosition">
+	                    </div>
+	                </div>
+	                <!-- /.form-group -->
+					<div class="form-group">
+						<label class="control-label col-lg-4">급여산정방식</label>
+				
+					    <div class="col-lg-3">
+					        <select class="form-control" name="employeePayType">
+					            <option>월급제</option>
+					            <option>시급제</option>	   
+					        </select>
+					    </div>
+					</div>
+					<!-- /.form-group -->
+	                <div class="form-group">
+	                    <label for="text1" class="control-label col-lg-4">근로계약시급</label>
+	
+	                    <div class="col-lg-3">
+	                        <input type="text" id="text1"  class="form-control" placeholder="숫자만 입력" name="employeeHourlyPay">
+	                    </div>
+	                </div>
+	                <!-- /.form-group -->
+	                <div class="form-group">
+	                    <label for="text1" class="control-label col-lg-4">급여계좌</label>
+	
+	                    <div class="col-lg-3">
+	                        <input type="text" id="text1"  class="form-control" name="employeeAccount">
+	                    </div>
+	                </div>
+	                <!-- /.form-group -->
+	                <div class="form-group">
+	                    <label for="text1" class="control-label col-lg-4">예금주</label>
+	
+	                    <div class="col-lg-3">
+	                        <input type="text" id="text1"  class="form-control" name="employeeAccountHolder">
+	                    </div>
+	                </div>
+	                <!-- /.form-group -->
+		             <div class="form-group">
+	                 <div class="form-actions">
+	                    <label for="text1" class="control-label col-lg-5"></label>
+	
+						<div class="col-lg-3">
+						<input type="submit" value="등록하기" class="btn btn-primary" name="centerId">
+						</div>
+	                 
+	                </div>
+	                </div>
+	                <!-- /.form-group -->
+	                <!-- /.row -->
+
+	            </form>
+	        </div>
+	    </div>
+	</div>
+
+<!--END TEXT INPUT FIELD-->
+
+</div>
+</div>
+
+                        </div>
+                        <!-- /.inner -->
+                    </div>
+                    <!-- /.outer -->
+                </div>
+                <!-- /#content -->
+
+            
+        </body>
+	
+</th:block>
+<th:block layout:fragment="customPlugin">
+            <!--jQuery -->
+            <script src="/assets/lib/jquery/jquery.js"></script>
+            <!--Bootstrap -->
+            <script src="/assets/lib/bootstrap/js/bootstrap.js"></script>
+            <!-- MetisMenu -->
+            <script src="/assets/lib/metismenu/metisMenu.js"></script>
+            <!-- onoffcanvas -->
+            <script src="/assets/lib/onoffcanvas/onoffcanvas.js"></script>
+            <!-- Screenfull -->
+            <script src="/assets/lib/screenfull/screenfull.js"></script>
+            <!-- Metis core scripts -->
+            <script src="/assets/js/core.js"></script>
+            <!-- 날짜 입력때문에 추가한거. -->
+			<link rel="stylesheet" href="/assets/lib/jquery/jquery-ui.min.css" type="text/css" />  
+			<script src="/assets/lib/jquery/jquery-ui.min.js"></script>
+			<script src="/assets/lib/jquery/datepicker-ko.js"></script>
+			<!-- 날짜 입력때문에 추가한거. -->
+			<!-- 테이블 js -->
+		    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+		    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
+		    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
+		    <script src="/assets/lib/jquery/jquery.ui.touch-punch.min.js"></script>
+		    <!-- 테이블 js -->
+		    
+            <!-- Metis demo scripts -->
+            <script src="/assets/js/app.js"></script>
+
+                <script type="text/javascript">
+                    $(function() {
+                      Metis.formGeneral();
+                    });
+                    
+                    $( ".date" ).datepicker({
+            	    	
+            	    });
+            		$( "#employeeStartDate" ).datepicker({
+            	    	
+            	    });
+                </script>
+
+
+</th:block>
+</html>
