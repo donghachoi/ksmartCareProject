@@ -12,6 +12,15 @@ import com.cafe24.choiyooq1.domain.ElderStatus;
 @Mapper
 public interface ElderMapper {
 	
+	/* 수급자 등급 및 인정기간 삭제 */
+	public void deleteElderLevel(String levelCode);
+	
+	/* 수급자 등급 관리 수정 */
+	public void updateElderLevel(ElderLevelHistory elderLevelHistory);
+	
+	/* 수급자 등급 관리 등록 */
+	public void insertElderLevel(ElderLevelHistory elderLevelHistory);
+	
 	/* 수급자 등급인정 관리 리스트 */
 	public List<ElderLevelHistory> getOneElderLevelHistoryList(String elderId);
 	

@@ -1,5 +1,7 @@
 package com.cafe24.choiyooq1.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,15 +26,34 @@ public class ElderService {
 	@Autowired ElderMapper elderMapper;
 	@Autowired GuaranteeingAgencyMapper guaranteeingAgency;
 	
+	/* 수급자 등급 및 인정기간 삭제 */
+	public void deleteElderLevel(String levelCode) {
+		elderMapper.deleteElderLevel(levelCode);
+	}
+	
+	
+	/* 수급자 등급 및 인정 기간 수정 */
+	public void updateElderLevel(ElderLevelHistory elderLevelHistory) {
+		elderMapper.updateElderLevel(elderLevelHistory);
+		
+	}
+	
 	/* 수급자 등급 및 인정 기간 입력 메서드 */
 	public void insertElderLevel(ElderLevelHistory elderLevelHistory ,HttpSession session) {
+		SimpleDateFormat format1 = new SimpleDateFormat ("yyyy-MM-dd");
+		Date date = new Date();
+		String today = format1.format(date);
+		System.out.println(today);
 		elderLevelHistory.setElderLevelHistoryCode("s_level_history_"+(elderMapper.getElderLevelMaxNum()+1));
 		String centerName= (String) session.getAttribute("SCENTERNAME");
 		String centerCode= (String) session.getAttribute("SCENTERCODE");
 		elderLevelHistory.setCenterCode(centerCode);
 		elderLevelHistory.setCenterName(centerName);
+		if(elderLevelHistory.getElderSercviceApplyDate() == null) {
+			elderLevelHistory.setElderSercviceApplyDate(today);
+		}
+		elderMapper.insertElderLevel(elderLevelHistory);
 	}
-	
 	
 	/* 수급자 상세리스트 메서드 */
 	public Map<String,Object> getOneElderList(String elderId){
@@ -42,6 +63,9 @@ public class ElderService {
 		List<ElderRegularCheck> list = elderMapper.getLastElderRegularHistory(elderId);
 		for(int i = 0; i< list.size();i++) {
 			String category = list.get(i).getElderRegularCheckCategory();
+			if(list.get(i).getElderRegularCheckDoingDate().equals("0000-00-00")) {
+				list.get(i).setElderRegularCheckDoingDate("시행전");
+			}
 			if(category.equals("낙상위험 측정")) {
 				map.put("fallDownCheck", list.get(i));
 			}if(category.equals("욕창위험 측정")) {

@@ -24,22 +24,29 @@ public class ElderController {
 	@Autowired BenefitService benefitService;
 	@Autowired ElderService elderService; 
 	
+	
+	/* 수급자 등급 삭제 */
+	@PostMapping("/employee/levelDelete")
+	public @ResponseBody void levelDelete(@RequestBody Map<String,Object> map){
+		String levelCode = (String) map.get("levelCode");
+		elderService.deleteElderLevel(levelCode);
+		
+	}
+	
+	/* 수급자 등급 수정 */
+	@PostMapping("/employee/levelUpdate")
+	public @ResponseBody void levelUpdate(ElderLevelHistory elderLevelHistory){
+		elderService.updateElderLevel(elderLevelHistory);
+		
+	}
+	
 	/* 수급자 등급 입력 */
 	@PostMapping("/employee/levelInsert")
 	public @ResponseBody void levelInsert(ElderLevelHistory elderLevelHistory
 											,HttpSession session){
-		System.out.println("hi");
-		System.out.println(elderLevelHistory.getElderServiceApprovalLevel());
-		System.out.println(elderLevelHistory.getElderServiceApprovalNumber());
-		System.out.println(elderLevelHistory.getElderServiceApprovalStartDate());
-		System.out.println(elderLevelHistory.getElderServiceApprovalEndDate());
-		System.out.println(elderLevelHistory.getElderServiceApprovalCategory());
-		System.out.println(elderLevelHistory.getElderServiceApprovalCategory2());
-		System.out.println(elderLevelHistory.getElderId());
 		
-		
+		elderService.insertElderLevel(elderLevelHistory, session);
 	}
-	
 	
 	/* 수급자 등록 */
 	@PostMapping("/employee/elderInsert")
@@ -78,6 +85,7 @@ public class ElderController {
 	@PostMapping("/elderDetailList")
 	public @ResponseBody Map<String,Object> getElderDetailList(@RequestBody Map<String,Object> map){
 		String elderId = (String) map.get("elderId");
+		System.out.println(elderId);
 		return elderService.getOneElderList(elderId);
 	}
 	

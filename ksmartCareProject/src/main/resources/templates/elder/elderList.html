@@ -37,6 +37,8 @@
        <link rel="stylesheet" href="/assets/css/style-switcher.css">
        <link rel="stylesheet/less" type="text/css" href="/assets/less/theme.less">
        <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.js"></script>
+
+       </style>
 </th:block>
 <th:block layout:fragment="customContents">
 <body class="  ">
@@ -107,7 +109,8 @@
 									<div class="toolbar">
 										<div class="btn-group">
 											<a href="#defaultTable" data-toggle="collapse"
-												class="btn btn-sm btn-default minimize-box"> 
+												class="btn btn-sm btn-default minimize-box"
+												id="collapsTable"> 
 												<i class="fa fa-angle-up"></i>
 											</a>
 										</div>
@@ -230,8 +233,8 @@
 			      <div class="modal-body">
 						<h3>인정기간 이력</h3>
 						<div class="row">
-							<div id="collapse4" class="col-sm-12">
-								<table class="table table-bordered table-condensed table-hover table-striped modal-able">
+							<div id="collapse4" class="col-sm-12" style="overflow:auto; height:150px;">
+								<table id="levelTable" class="table table-bordered table-condensed table-hover table-striped modal-able" >
 									<thead>
 										<tr>
 											<th>등급</th>
@@ -243,15 +246,14 @@
 											<th>삭제</th>
 										</tr>
 									</thead>
-									<tbody id="elderServiceLevel">
-										
+									<tbody id="elderServiceLevel" >
 									</tbody>
 								</table>
 							</div>
 						</div>
 						<h3>이력 등록/수정</h3>
-						<div class="row" >
-							<div class="col-sm-12" >
+						<div class="row">
+							<div class="col-sm-12">
 								<form id="level">
 								<div class="form-group" style="background-color: #CCCCCC; border-radius: 2px; padding: 10px;" >
 									<label>등급
@@ -275,7 +277,7 @@
 									<div>
 										<label>진행상태
 											<select id="approvalCategory" name="elderServiceApprovalCategory">
-												<option selected>진행상태 선택</option> 
+												<option selected value="">진행상태 선택</option> 
 												<option>1최초신청(진행중)</option> 
 												<option>2재신청(진행중)</option> 
 												<option>3_1최초등급승인</option>
@@ -286,7 +288,7 @@
 										</label>
 										<label>진행결과
 											<select id="approvalCategory2" name="elderServiceApprovalCategory2">
-												<option selected>진행결과 선택</option> 
+												<option selected value="">진행결과 선택</option> 
 												<option>1최초신청(진행중)</option> 
 												<option>2재신청(진행중)</option>
 												<option>3최초처리완료(결과완료)</option>
@@ -311,7 +313,9 @@
 									<button class="btn btn-metis-1 btn-xs" type="button" style="display: none" id="cancel">취소</button>
 									</div>
 								</div>
+								<input type="hidden" id="elderCodeInLevel" name="elderLevelHistoryCode">
 								<input type="hidden" id="elderIdInLevel" name="elderId">
+								<input type="hidden" id="elderNameInLevel" name="elderName">
 								</form>
 							</div>
 						</div>
@@ -491,23 +495,132 @@
 			<script src="/assets/lib/jquery/datepicker-ko.js"></script>
 		  
     <script>
-        
+	  /* 유효성 검사 함수 */
+	  var checkEmpty = function(id){
+			$(id).siblings('span').remove();
+		if($(id).val()==null || $(id).val()==""){
+			$(id).focus();
+			$(id).parent().append("<span style=\"color :red;\">입력해주세요.</span>");
+			return false;
+		}else{
+			return true;
+		}
+	}
+	  
+	  /* 수급자 레벨 리스트 뿌리는 함수  */
+	  var levelListInModal = function(id){
+	  var map = {};
+		var Id = $(id).val()
+		map.elderId = Id;
+		$.ajax({
+		type 	: 	'POST',
+		url		:	'/elderDetailList',
+		async	:	'true',
+		data	:	JSON.stringify(map),
+		contentType	:	'application/json',
+		success	:	function(data){
+			$('#elderNameInLevel').val(data.elderOenList.elderName);
+			$('#elderIdInLevel').val(data.elderOenList.elderId);
+			//등급인정 모달에 리스트 뿌리기.
+			$('#elderServiceLevel').empty();
+			for(var i = 0;i<data.elderOneLevelHistory.length;i++){
+				var elderLevelHistoryCode = data.elderOneLevelHistory[i].elderLevelHistoryCode;
+				var elderServiceApprovalLevel = data.elderOneLevelHistory[i].elderServiceApprovalLevel;
+				var elderServiceApprovalStartDate = data.elderOneLevelHistory[i].elderServiceApprovalStartDate;
+				var elderServiceApprovalEndDate = data.elderOneLevelHistory[i].elderServiceApprovalEndDate;
+				var elderServiceApprovalNumber = data.elderOneLevelHistory[i].elderServiceApprovalNumber;
+				var elderServiceApprovalCategory = data.elderOneLevelHistory[i].elderServiceApprovalCategory;
+				var elderServiceApprovalCategory2 = data.elderOneLevelHistory[i].elderServiceApprovalCategory2;
+				$('#elderServiceLevel').append("<tr class=\"elderLevelRow\"><input type=\"hidden\" name=\"levelCode\" value=\""+elderLevelHistoryCode+"\"><td>"+elderServiceApprovalLevel+"</td><td>"+elderServiceApprovalStartDate+"</td><td>"+elderServiceApprovalEndDate+"</td><td>"+elderServiceApprovalNumber+"</td><td>"+elderServiceApprovalCategory2+"</td><td>"+elderServiceApprovalCategory+"</td>"
+					+"<td style=\"align :center;\"><button type=\"button\" style=\"display: none;\" class=\"deleteBtn btn btn-danger btn-xs\">삭제</button></td></tr>");						
+				
+			}
+			
+		},error	:	function(error){
+			console.log("error", error)
+		}
+    	})
+		  
+	  }
+		
+		
+		$('#myModal').on('shown.bs.modal', function () {
+   			console.log('hi')
+   		})
+    	 $('#myModal').on('hidden.bs.modal', function () {
+			console.log('hi')
+		})
+		
       $(document).ready(function(){
+    	  
+			
+    	  /* 등급 및 인정기간 수정 */
+    	  $('#levelUpdate').click(function(){
+    		        $.ajax({
+					type 	: 	'POST',
+					url		:	'/employee/levelUpdate',
+					data	:	$("#level").serialize(),
+					traditional :true,
+					success	:	function(data){
+						alert("수정완료.")
+						levelListInModal(elderIdInLevel)
+						
+							},
+
+        			error	:	function(error){
+					console.log("error", error)
+						alert("수정실패.")
+				}
+         		})
+    	  })
     	  
     	 	/* 등급 및 인정기간 입력 */
         	$('#levelInsert').click(function(){
+        		if($('#elderIdInLevel').val()==""){
+        			alert('수급자를 선택해주세요.')
+        			return false;
+        		}
+        		if(checkEmpty(levelGrade)){
+        		}else{
+        			return false;
+        		}
+        		if(checkEmpty(approvalNumber)){
+        		}else{
+        			return false;
+        		}
+        		if(checkEmpty(approvalCategory)){
+        		}else{
+        			return false;
+        		}
+        		if(checkEmpty(approvalCategory2)){
+        		}else{
+        			return false;
+        		}
+        		if(checkEmpty(elderServiceApprovalStartDate)){
+        		}else{
+        			return false;
+        		}
+        		if(checkEmpty(elderServiceApprovalEndDate)){
+        		}else{
+        			return false;
+        		}
+        		
         		$.ajax({
 					type 	: 	'POST',
 					url		:	'/employee/levelInsert',
 					data	:	$("#level").serialize(),
 					traditional :true,
 					success	:	function(data){
-						console.log(data)
-						},
+						alert("등록되었습니다.")
+						levelListInModal(elderIdInLevel)
+							},
+
         			error	:	function(error){
 					console.log("error", error)
+						alert("등록 안됬습니다.")
 				}
          		})
+         		
         	})
             	
     	
@@ -526,6 +639,7 @@
 				success	:	function(data){
 					
 				
+					$('#elderNameInLevel').val(data.elderOenList.elderName);
 					$('#elderIdInLevel').val(data.elderOenList.elderId);
 					//등급인정 모달에 리스트 뿌리기.
 					$('#elderServiceLevel').empty();
@@ -540,11 +654,35 @@
 						$('#elderServiceLevel').append("<tr class=\"elderLevelRow\"><input type=\"hidden\" name=\"levelCode\" value=\""+elderLevelHistoryCode+"\"><td>"+elderServiceApprovalLevel+"</td><td>"+elderServiceApprovalStartDate+"</td><td>"+elderServiceApprovalEndDate+"</td><td>"+elderServiceApprovalNumber+"</td><td>"+elderServiceApprovalCategory2+"</td><td>"+elderServiceApprovalCategory+"</td>"
 							+"<td style=\"align :center;\"><button type=\"button\" style=\"display: none;\" class=\"deleteBtn btn btn-danger btn-xs\">삭제</button></td></tr>");						
 						
-						
 					}
+					/* 수급자 레벨 및 인정기간 삭제 */
+					$('.deleteBtn').click(function(){
+						if(confirm('정말 삭제 하시겠습니까?')){
+							var map = {};
+							var Code = $(this).parents('.elderLevelRow').find('input').val();
+							map.levelCode = Code;
+							$.ajax({
+								type 	: 	'POST',
+								url		:	'/employee/levelDelete',
+								async	:	'true',
+								data	:	JSON.stringify(map),
+								contentType	:	'application/json',
+								success	:	function(data){
+									alert("삭제완료.")
+									levelListInModal(elderIdInLevel)
+										},
+	
+			      			error	:	function(error){
+								console.log("error", error)
+									alert("수정실패.")
+							}
+			       		})
+						}
+						})
 					
 					/* 수급자 등급 및 인정기간 수정 하기 위해 아래 화면에 뿌려주기. */
 			   		$('.elderLevelRow').click(function(){
+			   			$("#levelGrade").siblings('span').remove();
 			   			var levelCode = $(this).find('input[name=levelCode]').val();
 			   			
 			   			var elderServiceApprovalLevelDetail = $(this).find('td:eq(0)').text();
@@ -553,6 +691,7 @@
 			   			var elderServiceApprovalNumber = $(this).find('td:eq(3)').text();
 			   			var elderServiceApprovalCategoryDetail = $(this).find('td:eq(4)').text();
 			   			var elderServiceApprovalCategory2Detail = $(this).find('td:eq(5)').text();
+			   			$('#elderCodeInLevel').val(levelCode);
 			   			$('#levelGrade').val(elderServiceApprovalLevelDetail);
 			   			$('#approvalNumber').val(elderServiceApprovalNumber)
 			   			$('#elderServiceApprovalStartDate').val(elderServiceApprovalStartDateDetail);
@@ -578,15 +717,14 @@
 					})
 					 $('.elderLevelRow').find('td:eq(6)').mouseover(function(){
 						 $(this).find('button').css('display','block')
-				  	    console.log('hihi')
 						
 					})
 					$('.elderLevelRow').find('td:eq(6)').mouseout(function(){
 						 $(this).find('button').css('display','none')
-				  	    console.log('hihi')
 						
 					})
-
+					
+					
 					//수급자 정규검사
 					var	fallDownCheckDate = data.fallDownCheck.elderRegularCheckDoingDate;
 					var bedsoreCheckDate = data.bedsoreCheck.elderRegularCheckDoingDate
@@ -651,6 +789,7 @@
     	  
     	  //data table
     	  $('#dataTable').DataTable({
+
               "language": 
                  {
                  "sInfo": " 총_TOTAL_건의 자료 중  _START_번부터~_END_번까지 ",
@@ -667,11 +806,9 @@
     	  
 		  	
 		  	
-		  	
 			$('#myModal').draggable();
-			 $('#myModal').on('shown.bs.modal', function () {
-				  console.log('hi')
-				})
+			 
+				
 		  	
 		 $( ".date" ).datepicker({
 		  	});
@@ -692,11 +829,10 @@
 					}
 			});
     	  }
+    	  
     	  changeDate($('input[name="elderServiceApprovalStartDate"]'),$('input[name="elderServiceApprovalEndDate"]'),$('input[name="levelTermYear"]'))
     	  changeDate($('input[name="serviceStartDate"]'), $('input[name="serviceEndDate"]'), $('input[name="serviceTermYear"]'))
     	 
-			    	  
-    	  
       });
    </script>
 </th:block>
