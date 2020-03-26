@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cafe24.choiyooq1.mapper.GuardianMapper">
+  	<!-- //id는 MemberMapper(인터페이스)안에 있는 메서드 이름 -->
+  	<resultMap type="com.cafe24.choiyooq1.domain.Guardian" id="GuardianMap">
+  		<result property="guardianListNumber" column="@rownum:=@rownum+1"/>
+  		<result property="guardianId" column="guardian_id"/>
+  		<result property="centerCode" column="center_code"/>
+  		<result property="centerName" column="center_name"/>
+  		<result property="elderId" column="elder_id"/>
+  		<result property="elderName" column="elder_name"/>
+  		<result property="guardianPw" column="guardian_pw"/>
+  		<result property="guardianName" column="guardian_name"/>
+  		<result property="guardianGender" column="guardian_gender"/>
+  		<result property="guardianPersonalNumber" column="guardian_personal_number"/>
+  		<result property="guardianPhone" column="guardian_phone"/>
+  		<result property="guardianRegistrationDate" column="guardian_registration_date"/>
+  		<result property="guardianRelation" column="guardian_relation"/>
+  		<result property="guardianAdressForStay" column="guardian_adress_for_stay"/>
+  		<result property="guardianAdressForPost" column="guardian_adress_for_post"/>
+  		<result property="guardianCohabitation" column="guardian_cohabitation"/>
+  	</resultMap>
+  		
+  	<!-- 직원등록 메서드  -->
+  	<insert id="guardianInsert" parameterType="com.cafe24.choiyooq1.domain.Guardian">
+  		INSERT INTO guardian
+			(guardian_id
+			, center_code
+			, center_name
+			, elder_id
+			, elder_name
+			, guardian_pw
+			, guardian_name
+			, guardian_gender
+			, guardian_personal_number
+			, guardian_phone
+			, guardian_registration_date
+			, guardian_relation
+			, guardian_adress_for_stay
+			, guardian_adress_for_post
+			, guardian_cohabitation)
+		VALUES (#{guardianId}
+				,#{centerCode}
+				,#{centerName}
+				,#{elderId}
+				,#{elderName}
+				,#{guardianPw}
+				,#{guardianName}
+				,#{guardianGender}
+				,#{guardianPersonalNumber}
+				,#{guardianPhone}
+				,#{guardianRegistrationDate}
+				,#{guardianRelation}
+				,#{guardianAdressForStay}
+				,#{guardianAdressForPost}
+				,#{guardianCohabitation});
+	</insert>
+  	
+</mapper>
