@@ -12,6 +12,9 @@ import com.cafe24.choiyooq1.domain.ElderStatus;
 @Mapper
 public interface ElderMapper {
 	
+	/* 수급자 한명의 리스트 가져오기. */
+	public List<ElderStatus> getOneElderStatusList(String elderId);
+	
 	/* 수급자 등급 및 인정기간 삭제 */
 	public void deleteElderLevel(String levelCode);
 	

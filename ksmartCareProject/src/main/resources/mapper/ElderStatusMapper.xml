@@ -15,6 +15,18 @@
   	<result property="serviceStartDate" column="service_start_date"/>
   	<result property="serviceEndDate" column="service_end_date"/>
   </resultMap>
+  
+  <select id="getOneElderStatusList" resultMap="ElderStatusMap">
+	SELECT 
+		service_status_code, elder_id, elder_name, service_status, service_start_date, service_end_date
+	FROM 
+		elder_status
+	WHERE 
+		elder_id= #{elder_id}
+	ORDER BY 
+		service_end_date DESC;
+	
+	</select>
   <insert id="insertStatus">
   	
   	INSERT INTO 

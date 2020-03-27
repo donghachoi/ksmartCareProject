@@ -79,6 +79,7 @@ public class ElderService {
 			System.out.println(list.get(i).getElderRegularCheckDoingDate());
 		}
 		
+		map.put("elderstatusList", elderMapper.getOneElderStatusList(elderId));
 		map.put("elderOenList", elderMapper.getOneElderList(elderId));
 		map.put("elderLastLevel", elderMapper.getElderLastLevelHistory(elderId));
 		map.put("elderLastStatus", elderMapper.getElderLastStatus(elderId));
