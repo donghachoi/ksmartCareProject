@@ -28,10 +28,28 @@ public class GuardianService {
 		
 		return guardianMapper.guardianInsert(guardian);		
 	}
+	
 	//보호자 리스트 불러오기
 	public List<Guardian> guardianList() {
-		return guardianMapper.guardianList();
+		return guardianMapper.guardianList();		
+	}
+	
+	//보호자 정보수정을 위한 페이지로 이동
+	public Guardian guardianSelectForUpdate(String  guardianId) {
+		return guardianMapper.guardianSelectForUpdate(guardianId);
+	}
+	
+	//보호자 정보수정 메서드
+	public int guardianUpdate(Guardian guardian) {
+		return guardianMapper.guardianUpdate(guardian);
 		
 	}
+	
+	//보호자 삭제 메서드
+	public int guardianDelete(String guardianId) {
+		return guardianMapper.guardianDelte(guardianId);
+		
+	}
+	
 	
 }

@@ -130,17 +130,17 @@
 											
 												<div class="btn-group">
 											
-													<button type="button"  
-																	data-toggle="modal" data-target="#myModal"
-																	class="btn btn-default btn-sm btn-line"
-																	>
-																	<span class="ui-button-text">정보수정</span>
+													<button type="button" class="btn btn-default btn-sm btn-line"
+															id="btnGuardianIdForUpdate">
+														<span class="ui-button-text">
+														정보수정
+														</span>
 													</button>
-													<button type="button"  
-																	data-toggle="modal" data-target="#myModal"
-																	class="btn btn-default btn-sm btn-line"
-																	>
-																	<span class="ui-button-text">보호자삭제</span>
+													<button type="button" class="btn btn-default btn-sm btn-line"
+															id="btnGuardianIdForDelete">
+															<span class="ui-button-text">
+															보호자삭제
+															</span>
 													</button>
 													<!-- <a href="#defaultTable" data-toggle="collapse"
 														class="btn btn-sm btn-default minimize-box"> 
@@ -157,37 +157,37 @@
 														<th rowspan="2"><img src="/assets/img/test_peng.png"></th>
 														
 														<th>보호자코드</th>
-														<td>b_000001</td>
+														<td id="guardianId"></td>
 														<th>수급자코드</th>
-														<td>s_000001</td>
+														<td id="elderId"></td>
 														<th>수급자이름</th>
-														<td>나수급</td>
+														<td id="elderName"></td>
 													</tr>
 													<tr>
 														<th>보호자이름</th>
-														<td>나보호</td>
+														<td id="guardianName"></td>
 														<th>보호자비번</th>
-														<td>pw006</td>
+														<td id="guardianPw"></td>
 														<th>성별</th>
-														<td>남</td>
+														<td id="guardianGender"></td>
 													</tr>
 													<tr>
 														<th>주민등록번호</th>
-														<td>771231-1111122</td>
+														<td id="guardianPersonalNumber"></td>
 														<th>연락처</th>
-														<td>010-1212-1236</td>
+														<td id="guardianPhone"></td>
 														<th>등록일</th>
-														<td>2020-03-01</td>
+														<td id="guardianRegistrationDate"></td>
 														<th>수급자와의 관계</th>
-														<td>자녀</td>
+														<td id="guardianRelation"></td>
 													</tr>
 													<tr>
 														<th>주소(거주지)</th>
-														<td>전주시 완산구 우림로 897-50 (용복동)</td>
+														<td id="guardianAdressForStay"></td>
 														<th>주소(우편물)</th>
-														<td>전주시 완산구 우림로 897-51 (용복동)</td>
+														<td id="guardianAdressForPost"></td>
 														<th>수급자 동거여부</th>
-														<td>비동거</td>
+														<td id="guardianCohabitation"></td>
 														<th></th>
 														<td></td>	
 													</tr>
@@ -206,169 +206,7 @@
 						
 					</div>
 				</div>
-					<!-- 자격증 정보 및  관리  Modal -->
-					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" style="position: absolute; padding-top: 200px">
-					  <div class="modal-dialog modal-lg">
-					    <div class="modal-content">
-					      <div class="modal-header">
-					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						        <div class="icons">
-									<i class="fa fa-check"></i>
-								</div>
-							<h3 class="modal-title" id="myModalLabel">자격증 정보 및 관리</h3>
-						  </div>
-					      <div class="modal-body">
-								<h3>자격 정보</h3>
-								<div class="row">
-									<div id="collapse4" class="col-sm-12">
-										<table id="dataTable"
-											class="table table-bordered table-condensed table-hover table-striped">
-											<thead>
-												<tr>
-													<th>직원아이디</th>
-													<th>이름</th>
-													<th>직종자격</th>
-													<th>자격번호</th>
-													<th>발급(취득)일</th>
-													<th>기타추가자격</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr class="odd">
-													<td>e_000001</td>
-													<td>이형열</td>
-													<td>정보처리기사</td>
-													<td>10-12345-456</td>
-													<td>2019-01-01</td>
-													<td></td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-								<h3>자격 등록/수정</h3>
-								<div class="col-sm-12" >
-									<div class="row" >
-										<!-- <form action="#" method="post" class="roundBox"> -->
-										<div class="form-group" style="background-color: #CCCCCC; border-radius: 2px; padding: 10px; padding-bottom: 35px" >
-											<label>자격정보
-												<select>
-													<option value="">=자격정보 선택=</option>
-													<option value="사회복지사 1급">사회복지사 1급</option>
-													<option value="사회복지사 2급">사회복지사 2급</option>
-													<option value="사회복지사 3급">사회복지사 3급</option>
-													<option value="요양보호사 1급">요양보호사 1급</option>
-													<option value="요양보호사 2급">요양보호사 2급</option>
-													<option value="요양보호사 기존 유예자">요양보호사 기존 유예자</option>
-													<option value="의사">의사</option>
-													<option value="방문간호전담 간호사">방문간호전담 간호사</option>
-													<option value="방문간호전담 이외 간호사">방문간호전담 이외 간호사</option>
-													<option value="방문간호전담 간호조무사">방문간호전담 간호조무사</option>
-													<option value="방문간호전담 이외 간호조무사">방문간호전담 이외 간호조무사</option>
-													<option value="물리치료사">물리치료사</option>
-													<option value="작업치료사">작업치료사</option>
-													<option value="영양사">영양사</option>
-													<option value="정보처리기사">정보처리기사</option>
-													<option value="기타">기타</option>
-												</select>
-											</label>
-											<label>자격번호
-												<input type="text" maxlength="11" >
-											</label>
-						                   <label> 자격발급(취득)일
-						                         <input type="date">
-						                   </label>
-						               
-						                   <!-- /.row -->
-  										   <label>기타추가자격(중복선택가능)</label>
-												<div class="checkbox">
-													
-													<label>
-										              <input class="uniform" type="checkbox" value="option1" >간호사
-										            </label> 
-										            <label> 
-										              <input class="uniform" type="checkbox" value="option2">간호조무사
-										            </label>   
-										            <label> 
-										              <input class="uniform" type="checkbox" value="option2">물리치료사
-										            </label>
- 													<label> 
-										              <input class="uniform" type="checkbox" value="option2">사회복지사 1급
-										            </label>
-										            <label>   
-										              <input class="uniform" type="checkbox" value="option2">사회복지사 2급
-										            </label>
-										            <label>   
-										              <input class="uniform" type="checkbox" value="option2">사회복지사 3급
-										            </label>
-										            <label>  
-										              <input class="uniform" type="checkbox" value="option2">작업치료사
-										            </label>
-										            <label> 
-										              <input class="uniform" type="checkbox" value="option2">기타
-										            </label>  
-										        	</div>
-										         	<label style="float:right; width:80%">
-													<button type="button" class="btn btn-metis-5 btn-xs" onclick="submit_frm_tab081_A()" style="float:right" >저장</button>
-										         	</label>
-										        	</div>
-												 </div>
-                    						</div>
-				                    	</div>
-									      <div class="modal-footer">
-								        	<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-									        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-									      </div>
-									    </div>
-									</div> 
-								</div>
-						
-					 
-					 
 				
-					<!-- 등급관리 model End -->
-					<!-- 상태변경 및 관리내역 기록 Modal -->
-					<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" style="position: absolute; padding-top: 200px">
-					  <div class="modal-dialog modal-lg">
-					    <div class="modal-content">
-					      <div class="modal-header">
-					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					        <h1 class="modal-title" id="myModalLabel">상태변경 및 관리내역 기록</h1>
-					      </div>
-					      <div class="modal-body">
-								<div class="row">
-									<div id="collapse4" class="col-sm-12">
-										<table id="dataTable"
-											class="table table-bordered table-condensed table-hover table-striped">
-											<thead>
-												<tr>
-													<th>번호</th>
-													<th>낙상위험측정</th>
-													<th>욕창위험측정</th>
-													<th>인지기능검사</th>
-													<th>욕구사정</th>
-												</tr>
-											</thead>
-											
-										</table>
-									</div>
-								</div>
-								<h3>이력 등록/수정</h3>
-								<div class="row" >
-									<div class="col-sm-12" >
-										
-											
-									</div>
-								</div>
-					      </div>
-					      <div class="modal-footer">
-				        	<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-					        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-					      </div>
-					    </div>
-					  </div>
-					</div>
-					<!-- 등급관리 model End -->
 				
 		</div>
 	</body>
@@ -398,23 +236,102 @@
 		    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
 		    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
 		    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
-    <script>
-      $(function() {
-         $('#dataTable').DataTable({
-            "language": 
-               {
-               "sInfo": " 총_TOTAL_건의 자료 중  _START_번부터~_END_번까지 ",
-               "lengthMenu": "_MENU_ 개씩 보기",
-               "search":         "검색:",
-               "paginate": {
-               "first":      "First",
-               "last":       "Last",
-               "next":       "다음",
-               "previous":   "이전"
-                    }
-            }           
-         });
-      });
-   </script>
+		    <script>
+		      $(function() {
+		         $('#dataTable').DataTable({
+		            "language": 
+		               {
+		               "sInfo": " 총_TOTAL_건의 자료 중  _START_번부터~_END_번까지 ",
+		               "lengthMenu": "_MENU_ 개씩 보기",
+		               "search":         "검색:",
+		               "paginate": {
+		               "first":      "First",
+		               "last":       "Last",
+		               "next":       "다음",
+		               "previous":   "이전"
+		                    }
+		            }           
+		         });
+		      });
+   			</script>
+   			<script>
+			$("#dataTable tr").click(function() {
+		
+				  var str = ""
+				
+				  // 현재 클릭된 Row(<tr>)		
+				  var guardianId = $(this).find('[guardianId]').attr('guardianId');
+				  var elderId = $(this).find('[elderId]').attr('elderId');
+				  var elderName = $(this).find('[elderName]').attr('elderName');
+				  var guardianPw = $(this).find('[guardianPw]').attr('guardianPw');
+				  var guardianName = $(this).find('[guardianName]').attr('guardianName');
+				  var guardianGender = $(this).find('[guardianGender]').attr('guardianGender');
+				  var guardianPersonalNumber = $(this).find('[guardianPersonalNumber]').attr('guardianPersonalNumber');
+				  var guardianPhone = $(this).find('[guardianPhone]').attr('guardianPhone');
+				  var guardianRelation = $(this).find('[guardianRelation]').attr('guardianRelation');
+				  var guardianRegistrationDate = $(this).find('[guardianRegistrationDate]').attr('guardianRegistrationDate');
+				  var guardianAdressForStay = $(this).find('[guardianAdressForStay]').attr('guardianAdressForStay');
+				  var guardianAdressForPost = $(this).find('[guardianAdressForPost]').attr('guardianAdressForPost');
+				  var guardianCohabitation = $(this).find('[guardianCohabitation]').attr('guardianCohabitation');
+				
+				  
+				  $('#guardianId').text(guardianId);
+				  $('#elderId').text(elderId);
+				  $('#elderName').text(elderName);
+				  $('#guardianPw').text(guardianPw);
+				  $('#guardianName').text(guardianName);
+				  $('#guardianGender').text(guardianGender);
+				  $('#guardianPersonalNumber').text(guardianPersonalNumber);
+				  $('#guardianPhone').text(guardianPhone);
+				  $('#guardianRelation').text(guardianRelation);
+				  $('#guardianRegistrationDate').text(guardianRegistrationDate);
+				  $('#guardianAdressForStay').text(guardianAdressForStay);
+				  $('#guardianAdressForPost').text(guardianAdressForPost);
+				  $('#guardianCohabitation').text(guardianCohabitation); 
+				
+				 $('#btnGuardianIdForUpdate').attr('guardianId', guardianId);
+				 $('#btnGuardianIdForDelete').attr('guardianId', guardianId);
+				 $('#btnGuardianIdForDelete').attr('guardianName', guardianName);	
+				});
+			
+				$('#btnGuardianIdForUpdate').click(function(){
+					var guardianId = $(this).attr('guardianId');
+					if(guardianId == undefined){
+						//수정할 보호자가 선택되지 않은 경우 알림창
+						alert('보호자를 선택해주세요');
+					}else{	
+						//선택한 보호자의 수정페이지로 이동
+						location.href="/center/guardianUpdate?guardianId="+guardianId;
+							
+					}
+				});
+				
+				$('#btnGuardianIdForDelete').click(function(){
+					var guardianId = $(this).attr('guardianId');
+					var guardianName = $(this).attr('guardianName');
+					if(guardianId == undefined){
+						//삭제할 보호자가 선택되지 않은 경우 알림창
+						alert('보호자를 선택해주세요');
+					}else{				
+						 //삭제 확인창	
+						 var confirmresult = confirm('!!!!확인요청!!!!\n\n보호자아이디:'+guardianId+'\n보호자명:'+guardianName+'\n\n을(를)정말 삭제하시겠습니까?\n\n삭제 후에는 되돌릴 수 없습니다');
+						 if(confirmresult){
+							//삭제 확인버튼
+							location.href="/center/guardianDelete?guardianId="+guardianId;
+						}else{
+							//삭제 취소버튼
+							return;
+						}	 	 
+					 
+					 
+						
+					}
+					
+				});
+				
+				
+			</script>
+   
+   
 </th:block>
 </html>
