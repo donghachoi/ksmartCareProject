@@ -167,7 +167,7 @@ var calendar = $('#calendar').fullCalendar({
       url: "/elder/elderCalenderSearch",
       data: { id:  $('input[name=elderId]').val() },
       success: function (response) {
-    	  alert("넘어 와라");
+    	 
         var fixedDate = response.map(function (array) {
           if (array.allDay && array.start !== array.end) {
             // 이틀 이상 AllDay 일정인 경우 달력에 표기시 하루를 더해야 정상출력
@@ -285,7 +285,7 @@ var calendar = $('#calendar').fullCalendar({
 
       //닫기 버튼이 아닐때
       if ($(this).data().role !== 'close') {
-        newEvent(startDate, endDate, $(this).html());
+        newEvent(startDate, endDate, $(this).html());    
       }
 
       $contextMenu.removeClass("contextOpened");

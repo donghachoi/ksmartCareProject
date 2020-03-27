@@ -24,4 +24,12 @@ public class VisitSearchController {
 		List<Visit> list = visitSerchService.elderCalenderSearch(id);
 		return list;
 	}
+	
+	@PostMapping("/employee/employeeCalenderSearch")
+	public @ResponseBody List<Visit> employeeCalenderSearch(@RequestParam(value="id") String id){
+		
+		List<Visit> list = visitSerchService.employeeCalenderSearch(id);
+		return list;
+	}
+	
 }

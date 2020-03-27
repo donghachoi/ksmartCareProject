@@ -41,7 +41,8 @@ $(document).ready(function(){
 				error : function(error){
 					console.log("error", error);
 				}
-
+				
+			
 		});
 	});
 	
@@ -145,6 +146,9 @@ $(document).ready(function(){
 				if(empservice == '간호'){
 					$('#serviceCategoryDetail').parent().hide();
 				}				
+//				$('input[name=visitServiceCategory]').val(empservice);
+//				$('input[name=elderId]').val(elderId);
+//				$('input[name=cname]').val($('#ycname').text());
 			},
             error:function(){
                 alert("ajax통신 실패!!!");

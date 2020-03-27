@@ -56,14 +56,15 @@ var newEvent = function (start, end, eventType) {
     $('#save-event').unbind();
     $('#save-event').on('click', function () {
  
-    
     var test1 = (editTime1.val()).split(':');
     var test2 = (editTime2.val()).split(':');
-    var startTime = new Date(0, 0, 0, test1[0], test1[1]);
-    var endTime = new Date(0, 0, 0, test2[0], test2[1]);
-    var tmp = (endTime.getTime() - startTime.getTime()) / 60000; 
-    console.log("111"+tmp);
+    var hour = (test2[0] - test1[0])*60;
 
+    var minutes = (test2[1] - test1[1]);
+    console.log(hour);
+    console.log(minutes);
+    var total = hour + minutes;
+    console.log(total);
     //moment(editTime1.val()).format('HH:mm');
     //var test2 = moment(editTime2.val()).format('HH:mm');
     	var eventData = {
@@ -89,7 +90,7 @@ var newEvent = function (start, end, eventType) {
 			backgroundColor : backgroundColor.val(),      //배경색 
 			monthlyClaimGroupCode: editStart.val().substring(0, 7),  //날짜별 그룹
 			yoyangBathNonBenefit : yoyangBathNonBenefit.val(),  //비급여 여부
-			visitServiceTime : tmp,
+			visitServiceTime : total,
 
 			
             allDay: false    
@@ -137,41 +138,37 @@ var newEvent = function (start, end, eventType) {
             alert('시간 입력은 필수 입니다');
             return false;
         }
-       console.log("aaaaa"+eventData.visitServiceTime);
+        
         //시간 계산
-        if(0 <eventData.visitServiceTime && eventData.visitServiceTime <60){
+        if( eventData.visitServiceTime <= 59){
         	eventData.visitServiceTime = 30;
-        }else if(60 <= eventData.visitServiceTime &&  eventData.visitServiceTime <90 ){
+        }else if(60 <= eventData.visitServiceTime &&  eventData.visitServiceTime <=89 ){
         	eventData.visitServiceTime = 60;
-        }else if(90 <= eventData.visitServiceTime && eventData.visitServiceTime  <120 || eventData.serviceCategoryDetail == '가족케어'){
+        }else if(90 <= eventData.visitServiceTime && eventData.visitServiceTime  <=119 || eventData.serviceCategoryDetail == '가족케어'){
         	eventData.visitServiceTime = 90;
-        }else if(120 <= eventData.visitServiceTime && eventData.visitServiceTime <150){
+        }else if(120 <= eventData.visitServiceTime && eventData.visitServiceTime <=149){
         	eventData.visitServiceTime = 120;
-        }else if(150 <= eventData.visitServiceTime && eventData.visitServiceTime <210){
+        }else if(150 <= eventData.visitServiceTime && eventData.visitServiceTime <=209){
         	eventData.visitServiceTime = 150;
-        }else if(210 <= eventData.visitServiceTime && eventData.visitServiceTime  <240){
+        }else if(210 <= eventData.visitServiceTime && eventData.visitServiceTime  <=239){
         	eventData.visitServiceTime = 210;
         }else if(240 == eventData.visitServiceTime){
         	eventData.visitServiceTime = 240;
         }else if(240 < eventData.visitServiceTime){
         	alert("최대시간을 넘겼습니다");
         	return false;
-        }else{
-        	alert("최대시간을 넘겼습니다");
-        	return false;
         }
-      
-        console.log("dddddda"+eventData.visitServiceTime);
+   
         if(eventData.visitServiceCategory == '요양'){
         	eventData.visitServiceTime = eventData.visitServiceTime + serviceCategoryDetail.val();
         }
-
+        alert(eventData.visitServiceTime);
         if(eventData.visitServiceCategory == '간호' && 60<eventData.visitServiceTime){
         	alert("60분이 최고 시간입니다");
         	eventData.visitServiceTime = 60;
             return false;
         }
-
+        
         if(eventData.visitServiceCategory == '목욕' ){
         	eventData.visitServiceTime = serviceCategoryDetail.val();
         }
@@ -179,7 +176,6 @@ var newEvent = function (start, end, eventType) {
         $(document).on('change', '#editTime2:input',  function() {
         	alert("tetstetst");
             	$('#editTime3').val('11111');
-
         });
         
 //        $("#editTime2").datetimepicker({

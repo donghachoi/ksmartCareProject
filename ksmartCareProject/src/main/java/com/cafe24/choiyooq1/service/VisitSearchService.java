@@ -16,12 +16,19 @@ public class VisitSearchService {
 	@Autowired
 	private VisitSearchMapper visitSearchMapper;
 	
-	//수급자 서비스 내용 
+	//방문 일정에서 수급자 일정 검색 
 	public List<Visit> elderCalenderSearch(String id){
 		
 		List<Visit> list = visitSearchMapper.elderCalenderSearch(id);
 		
 		return list;
 	}
-
+	
+	//방문 일정에서 직원 일정 검색 
+	public List<Visit> employeeCalenderSearch(String id){
+		
+		List<Visit> list = visitSearchMapper.employeeCalenderSearch(id);
+		
+		return list;
+	}
 }

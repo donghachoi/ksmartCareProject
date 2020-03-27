@@ -26,13 +26,19 @@
 	  	<result property="count" column="count"/> 	   	
   	</resultMap>
   
+<!--   	방문일정 수급자 일정 검색 -->
 	<select id="elderCalenderSearch" parameterType="String" resultMap="VisitMap">
-  		select visit_service_category, visit_service_time, visit_plan_date,
-  		visit_plan_time, employee_name
+  		select visit_service_category, visit_service_time, visit_plan_date, visit_plan_time, employee_name
 		from visit WHERE elder_id=#{id}
-<!--   		select visit_service_category, visit_service_time, visit_plan_date, -->
-<!--   		SUBSTRING_INDEX(visit_plan_time, '~', 1) as visit_plan_time -->
-<!-- 		from visit WHERE elder_id=#{id} -->
+<!--   		select visit_service_category, visit_service_time, visit_plan_date,
+  		SUBSTRING_INDEX(visit_plan_time, '~', 1) as visit_plan_time
+		from visit WHERE elder_id=#{id} -->
+	</select>
+  
+<!--   방문일정 직원 일정 검색 -->
+	<select id="employeeCalenderSearch" parameterType="String" resultMap="VisitMap">
+		SELECT elder_name, visit_plan_date, visit_plan_time, visit_service_time, visit_service_category
+		FROM visit WHERE employee_id =#{id}	
 	</select>
   
   </mapper>
