@@ -23,7 +23,7 @@
   		<result property="guardianCohabitation" column="guardian_cohabitation"/>
   	</resultMap>
   		
-  	<!-- 직원등록 메서드  -->
+  	<!-- 보호자등록 메서드  -->
   	<insert id="guardianInsert" parameterType="com.cafe24.choiyooq1.domain.Guardian">
   		INSERT INTO guardian
 			(guardian_id
@@ -58,7 +58,7 @@
 				,#{guardianCohabitation});
 	</insert>
 	
-	<!--직원리스트-->
+	<!--보호자리스트-->
 	<select id="guardianList" resultType="com.cafe24.choiyooq1.domain.Guardian" resultMap="GuardianMap">
 		SELECT 
 			@rownum:=@rownum+1
@@ -66,5 +66,44 @@
 		FROM guardian, (SELECT@rownum:=0)TMP;
 	
 	</select>
-  	
+	
+	<!--보호자정보수정을 위한 불러오기-->
+	<select id="guardianSelectForUpdate" parameterType="String" resultMap="GuardianMap">
+		SELECT 
+			* 
+		FROM 
+			guardian 
+		WHERE 
+			guardian_id=#{guardianId};
+	</select>
+	
+	<!--보호자 정보 업데이트 -->
+  	<update id="guardianUpdate" parameterType="Guardian">
+  		UPDATE guardian
+		SET
+			guardian_id=#{guardianId},
+			elder_id=#{elderId},
+			elder_name=#{elderName},
+			guardian_pw=#{guardianPw},
+			guardian_name=#{guardianName},
+			guardian_gender=#{guardianGender},
+			guardian_personal_number=#{guardianPersonalNumber},
+			guardian_phone=#{guardianPhone},
+			guardian_registration_date=#{guardianRegistrationDate},
+			guardian_relation=#{guardianRelation},
+			guardian_adress_for_stay=#{guardianAdressForStay},
+			guardian_adress_for_post=#{guardianAdressForPost},
+			guardian_cohabitation=#{guardianCohabitation}
+		WHERE guardian_id=#{guardianId};
+		</update>
+		
+		
+	<!--보호자 삭제 -->
+	<delete id="guardianDelte">
+		DELETE 
+		FROM 
+			guardian 
+		WHERE 
+			guardian_id=#{guardianId};
+	</delete>
 </mapper>
