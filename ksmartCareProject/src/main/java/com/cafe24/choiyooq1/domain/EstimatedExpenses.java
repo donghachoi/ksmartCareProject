@@ -20,7 +20,21 @@ public class EstimatedExpenses {
 	private String data;
 	private String serviceCategory;
 	private String servicedetail;
+	private String elderGender;
+	private String elderBirthDate;
 	
+	public String getElderGender() {
+		return elderGender;
+	}
+	public void setElderGender(String elderGender) {
+		this.elderGender = elderGender;
+	}
+	public String getElderBirthDate() {
+		return elderBirthDate;
+	}
+	public void setElderBirthDate(String elderBirthDate) {
+		this.elderBirthDate = elderBirthDate;
+	}
 	public String getData() {
 		return data;
 	}

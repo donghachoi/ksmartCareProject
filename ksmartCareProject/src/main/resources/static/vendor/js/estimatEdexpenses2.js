@@ -9,10 +9,6 @@ $(document).ready(function(){
     	  displayLength: 10
     });
     
-    $( "#tabs" ).tabs({
-        event: "mouseover"
-    });
-    
 	//년도와 달 별로 검색
 	$('#smonth').change(function() {
 		$('#dataTable tbody tr').empty();
@@ -67,45 +63,17 @@ $(document).ready(function(){
 			dataType: 'json',
 			success : function(data){
 				var test;
-				var nulltest= "<tr><td colspan='5' align='center'>결과 값이 없습니다</td></tr>";	
-				var categroy ;
 				if(data == "" || data == null || data == undefined){
-					$('#sTable tbody').append(nulltest);
+					test = "<tr><td colspan='5' align='center'>결과 값이 없습니다</td></tr>";	
+					$('#sTable tbody').append(test);
 			    }
-				
 				for(var i=0; i<data.length; i++){
-					
 					test = "<tr><td>"+ data[i].data +"</td>";
 					test += "<td>"+data[i].serviceCategory+"</td>";
 					test += "<td>"+data[i].servicedetail+"</td>";
 					test += "<td>"+data[i].benefitCost+"</td>";
-					test += "<td>"+data[i].nonBenefitCost+"</td></tr>";		
-					$("#tabs-1 tbody").append(test);
-					
-					if(data[i].serviceCategory == '요양'){
-						test = "<tr><td>"+ data[i].data +"</td>";
-						test += "<td>"+data[i].serviceCategory+"</td>";
-						test += "<td>"+data[i].servicedetail+"</td>";
-						test += "<td>"+data[i].benefitCost+"</td>";
-						test += "<td>"+data[i].nonBenefitCost+"</td></tr>";
-						categroy= "#tabs-2 tbody";
-					}else if(data[i].serviceCategory == '목욕'){
-						test = "<tr><td>"+ data[i].data +"</td>";
-						test += "<td>"+data[i].serviceCategory+"</td>";
-						test += "<td>"+data[i].servicedetail+"</td>";
-						test += "<td>"+data[i].benefitCost+"</td>";
-						test += "<td>"+data[i].nonBenefitCost+"</td></tr>";
-						categroy= "#tabs-3 tbody";						
-					}else if(data[i].serviceCategory == '간호'){
-						test = "<tr><td>"+ data[i].data +"</td>";
-						test += "<td>"+data[i].serviceCategory+"</td>";
-						test += "<td>"+data[i].servicedetail+"</td>";
-						test += "<td>"+data[i].benefitCost+"</td>";
-						test += "<td>"+data[i].nonBenefitCost+"</td></tr>";
-						categroy= "#tabs-4 tbody";							
-					}
-					
-					$(categroy).append(test);	
+					test += "<td>"+data[i].nonBenefitCost+"</td></tr>";
+					$('#sTable tbody').append(test);
 				}
 			},
 			error : function(error){

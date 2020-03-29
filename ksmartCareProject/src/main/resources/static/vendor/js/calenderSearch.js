@@ -30,6 +30,13 @@ var fullCalendarReload = function(events, isFirstEvent){
 			//locale: "ko",
 			//editable: false,
 			events:events,
+			eventLimit: true, // for all non-TimeGrid views
+			 views: {
+			   timeGrid: {
+			     eventLimit: 6
+			   }
+			 },	
+			eventLimitText : "보기",
 			eventClick:  function (events, jsEvent, view) {
 				
 				var stime = events.start.format('YYYY.MM.DD');
@@ -83,6 +90,8 @@ $(document).ready(function(){
     // 수급자 이름 검색 
     $('#dataTable .elderId').on('click', function(){
 
+    	$('.col-lg-12').attr('class', 'col-lg-5');	
+		$('.col-lg-7').css('display', 'block');
 		var id = $(this).attr('data-elder-id');
 		var name =$(this).attr('data-elder-name');
 		$('#elderNametitle').text("\( "+ name + " \)님의 일정");
@@ -101,7 +110,7 @@ $(document).ready(function(){
 					}else if(data[i].visitServiceCategory == '목욕'){
 						bcolor = '#ffc107';
 					}else{
-						bcolor = '#17a2b8';
+						bcolor = '#ffa94d';
 					}					
 					
 					events.push({ 
@@ -136,7 +145,9 @@ $(document).ready(function(){
     //직원 이름 검색
     
     $('#dataTable .employeeId').on('click', function(){
-
+    	
+    	$('.col-lg-12').attr('class', 'col-lg-5');	
+		$('.col-lg-7').css('display', 'block');
 		var id = $(this).attr('data-employee-id');
 		var name =$(this).attr('data-employee-name');
 		$('#employeeNametitle').text("\( "+ name + " \)님의 일정");
@@ -155,7 +166,7 @@ $(document).ready(function(){
 					}else if(data[i].visitServiceCategory == '목욕'){
 						bcolor = '#ffc107';
 					}else{
-						bcolor = '#17a2b8';
+						bcolor = '#ffa94d';
 					}					
 					
 					events.push({ 

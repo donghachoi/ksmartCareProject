@@ -8,12 +8,13 @@
 
    <link rel="stylesheet" href="/assets/lib/font-awesome/css/font-awesome.css">
 
-
+    <link rel="stylesheet" href="/vendor/css/fullcalendar.min.css" />
+<!--     <link rel="stylesheet" href="/vendor/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="/vendor/css/select2.min.css" />
     <link rel="stylesheet" href="/vendor/css/bootstrap-datetimepicker.min.css" />
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.5/fullcalendar.min.css">
-    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <link rel="stylesheet" href="/vendor/css/main.css">
 	<link rel="stylesheet"
@@ -168,7 +169,31 @@
 								</div>
 							</div>
 						</div>
-							<!--/수급자 제공급여 요약-->	
+							<!--/수급자 제공급여 요약-->
+							
+						<!-- 일정 등록 탭
+						<div class="box">
+							<header>
+								<div class="icons">
+									<i class="fa fa-table"></i>
+								</div>
+								<h5>일정등록</h5>
+								<div class="toolbar">
+									<div class="btn-group">
+										<a href="#defaultTable" data-toggle="collapse"
+											class="btn btn-sm">
+										</a>
+									</div>
+								</div>
+							</header>
+							<div id="collapse4" class="body">
+
+          hjghghjgjhgjgjhgjhgjg
+							</div>
+						</div>
+						-->
+						<!--/수급자 제공급여 요약-->							
+							
 				</div>									
 			</div>
 
@@ -177,8 +202,7 @@
 
 			<!--방문등록  -->
 
-	        <!-- 일자 클릭시 메뉴오픈 -->	        
-	        
+	        <!-- 일자 클릭시 메뉴오픈 -->
 	        <div id="contextMenu" class="dropdown clearfix">
 	            <ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
 	                style="display:block;position:static;margin-bottom:5px;">
@@ -190,21 +214,10 @@
 	            </ul>
 	        </div>
 	
-			<!--  일정 -->
-			<div class="col-lg-12" style="display:none;">
-				<div class="box">
-				    <header>
-						<div class="icons">
-							<i class="fa fa-table"></i>
-						</div>
-						<h5>방문일정등록</h5>
-				    </header>
-				    <div id="calendar_content" class="body">
-					<div id="calendar"></div>
-				    </div>
-				</div>
-			</div>
-			<!--  /일정 -->	
+	        <div id="wrapper">
+	            <div id="loading"></div>
+	            <div id="calendar"></div>
+	        </div>
 	
 			<!-- 일정 등록 폼 -->
 	        <!-- 일정 추가 MODAL -->
@@ -303,41 +316,51 @@
 </th:block>
 
 <th:block layout:fragment="customPlugin">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<!-- <script src="/vendor/js/visit.js"></script> -->
+	<script src="/vendor/js/calenderInsert.js"></script>		
+
+	<!--jQuery -->
+<!-- 	<script src="/assets/lib/jque/ry/jq/uery.js"></script> -->
 	
-    <script src="/assets/lib/jquery/jquery.js"></script>
+	<!-- Tables -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+	<script src="/assets/js/jquery.dataTables.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
+	
+	<!-- 움직임 관련  -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 
-<!--     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script> -->
-    <script src="/assets/js/jquery.dataTables.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
-<!--     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script> -->
-<!--     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script> -->
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.5/fullcalendar.min.js"></script>
-    <script src="/assets/lib/fullcalendar/locale/ko.js"></script>  
-    
-<!--     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script> -->
-            
+	<!-- 캘린더 -->
+<!--      <script src="/vendor/js/jquery.min.js"></script>  //Search 안나옴 -->
+    <script src="/vendor/js/bootstrap.min.js"></script>
+    <script src="/vendor/js/moment.min.js"></script>
+    <script src="/vendor/js/fullcalendar.min.js"></script>
+    <script src="/vendor/js/ko.js"></script>
+    <script src="/vendor/js/select2.min.js"></script>
+    <script src="/vendor/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="/vendor/js/main.js"></script>
     <script src="/vendor/js/addEvent.js"></script>
-      
-    <!--Bootstrap -->
-    <script src="/assets/lib/bootstrap/js/bootstrap.js"></script>
-    <!-- MetisMenu -->
-    <script src="/assets/lib/metismenu/metisMenu.js"></script>
-    <!-- onoffcanvas -->
-<!--     <script src="/assets/lib/onoffcanvas/onoffcanvas.js"></script> -->
-    <!-- Screenfull -->
-    <script src="/assets/lib/screenfull/screenfull.js"></script>
- 	  
-	<script src="/vendor/js/calenderInsert.js"></script>
-    <script src="/vendor/js/addEvent.js"></script>
+    <script src="/vendor/js/editEvent.js"></script>
+    <script src="/vendor/js/etcSetting.js"></script>
 
-    <!-- Metis core scripts -->
-    <script src="/assets/js/core.js"></script>
-    <!-- Metis demo scripts -->
-<!--     <script src="/assets/js/app.js"></script> -->
+	<!--Bootstrap -->
+	<script src="/assets/lib/bootstrap/js/bootstrap.js"></script>
+	<!-- MetisMenu -->
+	<script src="/assets/lib/metismenu/metisMenu.js"></script>
+	<!-- onoffcanvas -->
+	<script src="/assets/lib/onoffcanvas/onoffcanvas.js"></script>
+	<!-- Screenfull -->
+	<script src="/assets/lib/screenfull/screenfull.js"></script>
 
+	<!-- Metis core scripts -->
+	<script src="/assets/js/core.js"></script>
+	<!-- Metis demo scripts -->
+	<script src="/assets/js/app.js"></script>
+<!-- 	<script src="/assets/lib/metismenu/table_tab.js"></script> -->
 
-<!--     <script src="/assets/js/style-switcher.js"></script> -->
+	<script src="/assets/js/style-switcher.js"></script>
 </th:block>
 </html>

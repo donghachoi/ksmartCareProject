@@ -30,7 +30,7 @@
 	  	<result property="elderName" column="elder_name"/>
 	  	<result property="centerCode" column="center_code"/>	  	
 	  	<result property="centerName" column="center_name"/>	  	
-	  	<result property="elderBirthname" column="elder_birthdate"/>
+	  	<result property="elderBirthDate" column="elder_birthdate"/>
 	  	<result property="elderGender" column="elder_gender"/>
 	  	<result property="elderFinalServiceApprovalLevel" column="elder_final_service_approval_level"/>
 	  	<result property="elderFinalServiceStatus" column="elder_final_service_status"/>
@@ -62,7 +62,7 @@
     
 <!--     센터별 수급자 예상 금액 -->
 	<select id="centerElderList" parameterType="String" resultMap="ElderMap">
-		SELECT elder_id, elder_name, elder_final_service_approval_level, elder_gender, elder_final_service_status 
+		SELECT elder_id, elder_name, elder_final_service_approval_level, elder_gender, elder_final_service_status, elder_birthdate 
 		FROM elder 
 		WHERE center_code=#{centerCode}	
 	</select>

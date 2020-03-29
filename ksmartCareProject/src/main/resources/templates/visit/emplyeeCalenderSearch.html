@@ -32,7 +32,7 @@
 			<!--Begin Datatables-->
 			<div class="row">
 				<!--수급자 목록-->
-				<div class="col-lg-5">
+				<div class="col-lg-12">
 					<div class="box">
 						<header>
 							<div class="icons">
@@ -48,6 +48,7 @@
 										<th>이름</th>
 										<th>직종</th>
 										<th>연락처</th>
+										<th>성별</th>
 										<th>상태</th>
 									</tr>
 								</thead>
@@ -57,6 +58,7 @@
 											th:data-employee-id="${e.employeeId}" th:data-employee-name="${e.employeeName}">[[${e.employeeName}]]</a></td>
 										<td th:text="${e.employeeCategory}"></td>
 										<td th:text="${e.employeePhone}"></td>
+										<td th:text="${e.employeeGender}"></td>
 										<td th:text="${e.employeeWorkingStatus}"></td>
 									</tr>
 								</tbody>
@@ -67,7 +69,7 @@
 				<!--/수급자 목록-->
 				
 	 			<!--  일정 -->
-			    <div class="col-lg-7">
+			    <div class="col-lg-7" style="display:none;">
 				<div class="box">
 				    <header>
 						<div class="icons">
@@ -94,8 +96,8 @@
  						<div class="modal-body">
 	 						날짜 : <span id="eventDate" class="eventDate"></span><br />					    
 						  	시간: <span id="eventTime" class="eventTime"></span><br />
-						         서비스 종류: <span id="eventTitle" class="eventTitle"></span><br />
-						         수급자 이름: <span id="eventelderName" class="eventelderName"></span><br />
+						        서비스 종류: <span id="eventTitle" class="eventTitle"></span><br />
+						        수급자 이름: <span id="eventelderName" class="eventelderName"></span><br />
 					    </div>	
 				    </div>
 				  </div>

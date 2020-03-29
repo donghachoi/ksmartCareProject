@@ -1,10 +1,7 @@
 package com.cafe24.choiyooq1.service;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,9 +23,6 @@ public class EstimatEdexpensesService {
 	@Autowired
 	private VisitMapper visitMapper;
 	
-	private int subCost = 0;
-	
-	
 	//센터별 수급자 예상 금액(get)
 	public List<EstimatedExpenses> centerEstimatedExpensesList(String centerCode, String syear, String smonth){
 		
@@ -49,8 +43,11 @@ public class EstimatEdexpensesService {
 			estimated.setElderFinalServiceStatus(elder.getElderFinalServiceStatus());
 			estimated.setElerId(elder.getElderId());
 			estimated.setElderName(elder.getElderName());
+			estimated.setElderBirthDate(elder.getElderBirthDate());
+			estimated.setElderGender(elder.getElderGender());
 			
 			List<Visit> visitList = visitMapper.elderBenefitCost(elder.getElderId(), syear, smonth);
+			
 			for(int j=0; j< visitList.size(); j++) {
 				Visit vit= visitList.get(j);
 				//수정한 부분
@@ -65,17 +62,15 @@ public class EstimatEdexpensesService {
 				total +=1;
 			}
 			
-			//subCost = maxcost - benefitCost;  //잔액 전역 변수 선언
 			estimated.setBenefitCost(benefitCost);
 			estimated.setNonBenefitCost(nonBenefitCost);	
 			estimated.setTotolNum(total);
 			benefitCost = 0;
 			nonBenefitCost =0;
 			total = 0;
-			//estimated.setSubCost(subCost);
 			
 			estimatedList.add(estimated);
-			}
+		}
 	
 		return estimatedList;
 	}
@@ -88,20 +83,18 @@ public class EstimatEdexpensesService {
 	
 		List<EstimatedExpenses> estimatedList2 = new ArrayList<EstimatedExpenses>();
 		
-		//int benefitCost = 0;
-		//int nonBenefitCost =0;
-
 	  		for(int i=0; i< list.size(); i++) {
 			
-			EstimatedExpenses estimated = new EstimatedExpenses();
-
-			Visit vit= list.get(i);
-			String serviceTimedetail = vit.getVisitServiceTime();
-			System.out.println(serviceTimedetail);
+				EstimatedExpenses estimated = new EstimatedExpenses();
+	
+				Visit vit= list.get(i);
+				String serviceTimedetail = vit.getVisitServiceTime();
+				System.out.println(serviceTimedetail);
+				
+				if((vit.getVisitServiceCategory()).equals("요양")) {
+					vit.setVisitServiceTime((vit.getVisitServiceTime()).replaceAll("[^0-9]",""));	
+				}
 			
-			if((vit.getVisitServiceCategory()).equals("요양")) {
-				vit.setVisitServiceTime((vit.getVisitServiceTime()).replaceAll("[^0-9]",""));	
-			}
 			BenefitCost bcost =  visitMapper.serviceCost(syear, vit.getVisitServiceCategory(),  
 					vit.getVisitServiceTime());
 			
@@ -112,7 +105,7 @@ public class EstimatEdexpensesService {
 			estimated.setNonBenefitCost(bcost.getNonBenefitCost());
 				
 			estimatedList2.add(estimated);
-		}
+	  		}
 		return estimatedList2;
 	}
 	

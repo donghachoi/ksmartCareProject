@@ -9,7 +9,7 @@
 	  	<result property="elderName" column="elder_name"/>
 	  	<result property="centerCode" column="center_code"/>	  	
 	  	<result property="centerName" column="center_name"/>	  	
-	  	<result property="elderBirthname" column="elder_birthdate"/>
+	  	<result property="elderBirthDate" column="elder_birthdate"/>
 	  	<result property="elderGender" column="elder_gender"/>
 	  	<result property="elderFinalServiceApprovalLevel" column="elder_final_service_approval_level"/>
 	  	<result property="elderFinalServiceStatus" column="elder_final_service_status"/>
@@ -85,7 +85,7 @@
   	<select id="elderAllList" parameterType="String" resultMap="ElderMap">
 	     SELECT e.elder_final_service_approval_level as elder_final_service_approval_level,
 	     	e.elder_id as elder_id, e.elder_name as elder_name, e.elder_disease as elder_disease, 
-	     	e.elder_final_service_status as elder_final_service_status,
+	     	e.elder_final_service_status as elder_final_service_status, e.elder_gender, e.elder_birthdate,
 	    	 b.benefit_max_cost as benefit_max_cost
 	     FROM elder AS e INNER JOIN benefit_max AS b 
 	     	ON e.elder_final_service_approval_level = b.service_level 
@@ -97,7 +97,7 @@
   	<select id="elderBenefitCost" parameterType="String" resultMap="VisitMap">
 		select visit_service_category, monthly_claim_group_code, visit_service_time, visit_plan_date
 		from visit WHERE elder_id=#{elder_id}
-			AND monthly_claim_group_code=CONCAT(#{syear},'-',#{smoth})
+			AND monthly_claim_group_code=CONCAT(#{syear},'-',#{smoth}) ORDER by visit_plan_date
   	</select>
   	
    <!-- 서비스 종류별 금액 -->
@@ -115,7 +115,7 @@
   	<!-- 직원 목록  -->
   	<select id="emplyeeList" parameterType="String" resultMap="EmployeeMap">
   	
-	SELECT  employee_id, employee_name, employee_category, employee_phone, employee_working_status 
+	SELECT  employee_id, employee_name, employee_category, employee_phone, employee_working_status, employee_gender 
 	FROM employee WHERE center_code = #{centerCode}
 		AND employee_category LIKE '%간호%' or employee_category like '%요양%'  	
   	</select>
