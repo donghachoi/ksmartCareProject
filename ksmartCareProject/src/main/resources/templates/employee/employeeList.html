@@ -196,7 +196,7 @@
 															<button type="button"  
 																data-toggle="modal" data-target="#myModal"
 																class="btn btn-primary btn-sm">
-																<span class="ui-button-text">자격증정보 및 관리</span>
+															<span class="ui-button-text">	자격증정보 및 관리</span>
 														
 															</button>
 															</div>
@@ -244,7 +244,8 @@
 										<table id="dataTable"
 											class="table table-bordered table-condensed table-hover table-striped">
 											<thead>
-												<tr>
+												<tr  role="row" class="odd" >
+													<th>자격증일련번호</th>
 													<th>직원아이디</th>
 													<th>이름</th>
 													<th>직종자격</th>
@@ -255,6 +256,7 @@
 											</thead>
 											<tbody>
 												<tr class="odd">
+													<td>licens_01</td>
 													<td>e_000001</td>
 													<td>이형열</td>
 													<td>정보처리기사</td>
@@ -293,7 +295,7 @@
 												</select>
 											</label>
 											<label>자격번호
-												<input type="text" maxlength="11" >
+												<input type="text" placeholder="자격증고유번호입력">
 											</label>
 						                   <label> 자격발급(취득)일
 						                         <input type="date">
@@ -415,7 +417,20 @@
     <script src="/assets/js/core.js"></script>
     Metis demo scripts
     <script src="/assets/js/app.js"></script>
-    <script src="/assets/js/style-switcher.js"></script> -->
+    <script src="/assets/js/style-switcher.js"></script> 
+    <!-- 날짜 입력때문에 추가한거. -->
+	<link rel="stylesheet" href="/assets/lib/jquery/jquery-ui.min.css" type="text/css" />  
+	<script src="/assets/lib/jquery/jquery-ui.min.js"></script>
+	<script src="/assets/lib/jquery/datepicker-ko.js"></script>
+	<!-- 날짜 입력때문에 추가한거. -->
+	<!-- 테이블 js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
+	<script src="/assets/lib/jquery/jquery.ui.touch-punch.min.js"></script>
+	<!-- 테이블 js -->
+    
+    
 	<script>
 		$(function() {
 			$('#dataTable').DataTable({

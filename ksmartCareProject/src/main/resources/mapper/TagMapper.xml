@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.cafe24.choiyooq1.mapper.TagMapper">
+  	<!-- //id는 MemberMapper(인터페이스)안에 있는 메서드 이름 -->
+ 	<resultMap type="com.cafe24.choiyooq1.domain.Tag" id="TagMap">
+ 		<result property="tagListNumber" column="@rownum:=@rownum+1"/>
+  		<result property="tagCode" column="tag_code"/>
+  		<result property="centerCode" column="center_code"/>
+  		<result property="centerName" column="center_name"/>
+  		<result property="employeeId" column="employee_id"/>
+  		<result property="employeeName" column="employee_name"/>
+  		<result property="elderId" column="elder_id"/>
+  		<result property="elderName" column="elder_name"/>
+  		<result property="tagStartDatetime" column="tag_start_datetime"/>
+  		<result property="tagEndDatetime" column="tag_end_datetime"/>
+  		<result property="tagServiceTime" column="tag_service_time"/>
+  		<result property="tagServiceCategory" column="tag_service_category"/>
+ 	</resultMap>
+ 	
+ 	
+ 	<!--태그 리스트-->
+ 	<select id="getTagList" resultType="com.cafe24.choiyooq1.domain.Tag" resultMap="TagMap">
+ 		SELECT 
+			@rownum:=@rownum+1
+			, tag.*
+		FROM tag, (SELECT@rownum:=0)TMP;
+ 	</select>
+ 
+ 
+ </mapper>
