@@ -3,7 +3,7 @@
  * 
  */
 
-	/*삭제 메서드...*/
+	/* 공통 삭제 메서드...*/
 	var deleteEvent = function(){
 		
 		$('.deleteBtn').click(function(){
@@ -21,12 +21,17 @@
 			$.ajax({
 				type 	: 	'POST',
 				url		:	url,
-				async	:	'true',
 				data	:	JSON.stringify(map),
 				contentType	:	'application/json',
 				success	:	function(data){
 					console.log('삭제완료')
-					
+					if(subValue=='l'){
+						levelListInModal(elderIdInLevel)
+						var levelUpdate = $('#levelUpdate');
+			   			var statusInsert = $('#statusInsert');
+			   			var levelCancel = $('#levelCancel');
+			   			changeBtn(levelUpdate,levelInsert,levelCancel);
+					}
 				},
 				
 				error	:	function(error){
@@ -38,7 +43,7 @@
 		})
 	} 
 	
-	/* 계약관리 리스트 누르면 아래 수정 화면으로 바뀌고 값 뿌려주기 */
+	/* [계약]계약관리 리스트 누르면 아래 수정 화면으로 바뀌고 값 뿌려주기 */
 	var UpdateStatus = function(){
 		
 		$('.elderStatusRow').click(function(){
@@ -63,14 +68,13 @@
 		})
 	}	
 
-	/* 모달안 에 해당 수급자 계약상태 리스트 뿌리기 */
+	/* [계약]모달안 에 해당 수급자 계약상태 리스트 뿌리기 */
 	var statusListInModal = function(id){
 	  	var map = {};
 		map.elderId = id;
 		$.ajax({
 		type 	: 	'POST',
 		url		:	'/elderDetailList',
-		async	:	'true',
 		data	:	JSON.stringify(map),
 		contentType	:	'application/json',
 		success	:	function(data){
@@ -94,20 +98,22 @@
 				elderStatusRowHtml += '<td>'+serviceEndDate+'</td>';
 				elderStatusRowHtml += '<td><button type="button" style="display: none;" class="deleteBtn btn btn-danger btn-xs">삭제</button></td></tr>';
 			}
+				
 				$('#elderStatus').append(elderStatusRowHtml);
 				/*계약 리스트에 수정이벤트 걸기*/
 				UpdateStatus();
-				 /* 계약 등록 */
+				
+				/* 계약 등록 */
 				insertStatus();
 				deleteBtnEvent('.elderStatusRow','td:eq(3)');
 			}
 			,error	:	function(error){
 			console.log("error", error)
-		}
+			}
     	})
 	  }
 	
-	/* 계약관리 등록 함수 */
+	/* [계약]계약관리 등록 함수 */
 	var insertStatus = function(){
 		  $('#statusInsert').click(function(){
 			  $.ajax({
@@ -117,6 +123,7 @@
 					traditional :true,
 					success	:	function(data){
 						statusListInModal($('#elderIdInStatus').val());
+						
 							},
 	
 				error	:	function(error){
@@ -125,9 +132,9 @@
 				}
 	 		})
 		  })
-	}
+		}
 
-    /* 수정화면 뿌릴때 버튼 수정버튼 생기기 */
+    /* [공통]수정화면 뿌릴때 버튼 수정버튼 생기기 */
     var changeBtn = function(updateBtn,insertBtn,cancelBtn){
 				$(insertBtn).css('display','none');
 				$(updateBtn).show();
@@ -139,7 +146,7 @@
 				})
     }
     
-   	/* 오늘 날짜 구하기 */
+   	/* [공통}오늘 날짜 구하기 */
     var getToday = function(){
 	    var today = new Date();
     	var dd = today.getDate();
@@ -155,7 +162,7 @@
     	return yyyy+"-"+mm+"-"+dd;
     }
     
-	  /* 체크박스 체크된 년도로 날짜 계산하기 */
+	  /*[공통] 체크박스 체크된 년도로 날짜 계산하기 */
 	  var changeDate = function(startDate,endDate,inputName){
 			var levelStartDate = startDate;
 			var levelLastDate = endDate;
@@ -187,7 +194,7 @@
 	  	})
 	  }
     
-    /* 계약 상태가 바뀔때 input 박스와 버튼이 바뀌는 이벤트 */
+    /* [계약]계약 상태가 바뀔때 input 박스와 버튼이 바뀌는 이벤트 */
     var elderStatusEvent = function(value){
     		
 			var supplyHtml = '';
@@ -226,7 +233,7 @@
     }
 	
     
-    	/* 삭제 버튼 마우스 on이벤트 */
+    	/* [공통]삭제 버튼 마우스 on이벤트 */
     	var deleteBtnEvent = function(rowClass,tdNum){
     	
 		   	 $(rowClass).find(tdNum).mouseover(function(){
@@ -240,7 +247,7 @@
 	    }
     
     
-	  /* 유효성 검사 함수 */
+	  /* [공통]유효성 검사 함수 */
 	  var checkEmpty = function(id){
 			$(id).siblings('span').remove();
 		if($(id).val()==null || $(id).val()==""){
@@ -254,42 +261,85 @@
 		}
 	}
 	  
-	  /* 수급자 레벨 리스트 뿌리는 함수  */
+	  /* [등급]수급자 레벨 리스트 뿌리는 함수  */
 	  var levelListInModal = function(id){
 	  var map = {};
-		var Id = $(id).val()
-		map.elderId = Id;
-		$.ajax({
-		type 	: 	'POST',
-		url		:	'/elderDetailList',
-		async	:	'true',
-		data	:	JSON.stringify(map),
-		contentType	:	'application/json',
-		success	:	function(data){
-			$('#elderNameInLevel').val(data.elderOenList.elderName);
-			$('#elderIdInLevel').val(data.elderOenList.elderId);
-			//등급인정 모달에 리스트 뿌리기.
-			$('#elderServiceLevel').empty();
-			for(var i = 0;i<data.elderOneLevelHistory.length;i++){
-				var elderLevelHistoryCode = data.elderOneLevelHistory[i].elderLevelHistoryCode;
-				var elderServiceApprovalLevel = data.elderOneLevelHistory[i].elderServiceApprovalLevel;
-				var elderServiceApprovalStartDate = data.elderOneLevelHistory[i].elderServiceApprovalStartDate;
-				var elderServiceApprovalEndDate = data.elderOneLevelHistory[i].elderServiceApprovalEndDate;
-				var elderServiceApprovalNumber = data.elderOneLevelHistory[i].elderServiceApprovalNumber;
-				var elderServiceApprovalCategory = data.elderOneLevelHistory[i].elderServiceApprovalCategory;
-				var elderServiceApprovalCategory2 = data.elderOneLevelHistory[i].elderServiceApprovalCategory2;
-				$('#elderServiceLevel').append("<tr class=\"elderLevelRow\"><input type=\"hidden\" name=\"levelCode\" value=\""+elderLevelHistoryCode+"\"><td>"+elderServiceApprovalLevel+"</td><td>"+elderServiceApprovalStartDate+"</td><td>"+elderServiceApprovalEndDate+"</td><td>"+elderServiceApprovalNumber+"</td><td>"+elderServiceApprovalCategory2+"</td><td>"+elderServiceApprovalCategory+"</td>"
-					+"<td style=\"align :center;\"><button id=\"levelDeleteBtn\" type=\"button\" style=\"display: none;\" class=\"deleteBtn btn btn-danger btn-xs\">삭제</button></td></tr>");						
+	  var Id = $(id).val()
+	  map.elderId = Id;
+	  $.ajax({
+			type 	: 	'POST',
+			url		:	'/elderDetailList',
+			data	:	JSON.stringify(map),
+			contentType	:	'application/json',
+			success	:	function(data){
+				$('#elderNameInLevel').val(data.elderOenList.elderName);
+				$('#elderIdInLevel').val(data.elderOenList.elderId);
+				//등급인정 모달에 리스트 뿌리기.
+				$('#elderServiceLevel').empty();
+				for(var i = 0;i<data.elderOneLevelHistory.length;i++){
+					var elderLevelHistoryCode = data.elderOneLevelHistory[i].elderLevelHistoryCode;
+					var elderServiceApprovalLevel = data.elderOneLevelHistory[i].elderServiceApprovalLevel;
+					var elderServiceApprovalStartDate = data.elderOneLevelHistory[i].elderServiceApprovalStartDate;
+					var elderServiceApprovalEndDate = data.elderOneLevelHistory[i].elderServiceApprovalEndDate;
+					var elderServiceApprovalNumber = data.elderOneLevelHistory[i].elderServiceApprovalNumber;
+					var elderServiceApprovalCategory = data.elderOneLevelHistory[i].elderServiceApprovalCategory;
+					var elderServiceApprovalCategory2 = data.elderOneLevelHistory[i].elderServiceApprovalCategory2;
+					$('#elderServiceLevel').append(
+							"<tr class=\"elderLevelRow\"><input type=\"hidden\" name=\"levelCode\" value=\""+elderLevelHistoryCode+"\">" +
+							"<td>"+elderServiceApprovalLevel+"</td><td>"+elderServiceApprovalStartDate+"</td>" +
+							"<td>"+elderServiceApprovalEndDate+"</td><td>"+elderServiceApprovalNumber+"</td>" +
+							"<td>"+elderServiceApprovalCategory2+"</td><td>"+elderServiceApprovalCategory+"</td>"+
+							"<td style=\"align :center;\">" +
+							"<button id=\"levelDeleteBtn\" type=\"button\" style=\"display: none;\" class=\"deleteBtn btn btn-danger btn-xs\">삭제" +
+							"</button></td></tr>");						
+				}
+				deleteBtnEvent('.elderLevelRow','td:eq(6)');
+				deleteEvent();
+			},
+			error	:	function(error){
+				console.log("error", error)
 			}
-			deleteBtnEvent('.elderLevelRow','td:eq(6)');
-			
-		},error	:	function(error){
-			console.log("error", error)
-		}
-    	})
-		  
+		})
+  	}
+	  
+		/*
+		* [등급]수급자 등급 및 인정기간 수정 하기 위해 아래 화면에 뿌려주기--------------------------------------------
+		* 
+		* */
+	  var updateLevel = function(){
+		  console.log('이거 업데이트 이벤트 ㅠㅠㅠ');
+		  $('.elderLevelRow').click(function(){
+			  $("#levelGrade").siblings('span').remove();
+			  var levelCode = $(this).find('input[name=levelCode]').val();
+			  
+			  var elderServiceApprovalLevelDetail = $(this).find('td:eq(0)').text();
+			  var elderServiceApprovalStartDateDetail = $(this).find('td:eq(1)').text();
+			  var elderServiceApprovalEndDateDetail = $(this).find('td:eq(2)').text();
+			  var elderServiceApprovalNumber = $(this).find('td:eq(3)').text();
+			  var elderServiceApprovalCategoryDetail = $(this).find('td:eq(4)').text();
+			  var elderServiceApprovalCategory2Detail = $(this).find('td:eq(5)').text();
+			  $('#elderCodeInLevel').val(levelCode);
+			  $('#levelGrade').val(elderServiceApprovalLevelDetail);
+			  $('#approvalNumber').val(elderServiceApprovalNumber)
+			  $('#elderServiceApprovalStartDate').val(elderServiceApprovalStartDateDetail);
+			  $('#elderServiceApprovalEndDate').val(elderServiceApprovalEndDateDetail);
+			  $('#approvalCategory').val(elderServiceApprovalCategoryDetail);
+			  $('#approvalCategory2').val(elderServiceApprovalCategory2Detail)
+			  var levelUpdate = $('#levelUpdate');
+			  var statusInsert = $('#statusInsert');
+			  var levelCancel = $('#levelCancel');
+			  changeBtn(levelUpdate,levelInsert,levelCancel);
+			  $('#levelCancel').click(function(){
+				  $('#levelGrade').val('');
+				  $('#approvalNumber').val('');
+				  $('#elderServiceApprovalStartDate').val('');
+				  $('#elderServiceApprovalEndDate').val('');
+				  $('#approvalCategory').val('진행결과 선택');
+				  $('#approvalCategory2').val('진행상태 선택');
+				  
+			  })
+		  })
 	  }
-		
 		
       $(document).ready(function(){
 
@@ -314,7 +364,7 @@
          		})
     	  })
     	  
-    	 	/* 등급 및 인정기간 입력 */
+    	 	/* [등급]등급 및 인정기간 입력 */
         	$('#levelInsert').click(function(){
         		if($('#elderIdInLevel').val()==""){
         			alert('수급자를 선택해주세요.')
@@ -353,15 +403,18 @@
 					success	:	function(data){
 						alert("등록되었습니다.")
 						levelListInModal(elderIdInLevel);
-						
+						var levelUpdate = $('#levelUpdate');
+			   			var statusInsert = $('#statusInsert');
+			   			var levelCancel = $('#levelCancel');
+			   			changeBtn(levelUpdate,levelInsert,levelCancel);
+			   			updateLevel();
 							},
 
         			error	:	function(error){
 					console.log("error", error)
 						alert("등록 안됬습니다.")
-				}
+        			}
          		})
-         		
         	})
             	
     	
@@ -375,7 +428,6 @@
 			 $.ajax({
 				type 	: 	'POST',
 				url		:	'/elderDetailList',
-				async	:	'true',
 				data	:	JSON.stringify(map),
 				contentType	:	'application/json',
 				success	:	function(data){
@@ -430,40 +482,7 @@
 							+"<td style=\"align :center;\"><button id=\"elderLevelDelete\" type=\"button\" style=\"display: none;\" class=\"deleteBtn btn btn-danger btn-xs\">삭제</button></td></tr>");						
 					}
 					
-					/* 수급자 등급 및 인정기간 수정 하기 위해 아래 화면에 뿌려주기-------------------------------------------- */
-			   		$('.elderLevelRow').click(function(){
-			   			$("#levelGrade").siblings('span').remove();
-			   			var levelCode = $(this).find('input[name=levelCode]').val();
-			   			
-			   			var elderServiceApprovalLevelDetail = $(this).find('td:eq(0)').text();
-			   			var elderServiceApprovalStartDateDetail = $(this).find('td:eq(1)').text();
-			   			var elderServiceApprovalEndDateDetail = $(this).find('td:eq(2)').text();
-			   			var elderServiceApprovalNumber = $(this).find('td:eq(3)').text();
-			   			var elderServiceApprovalCategoryDetail = $(this).find('td:eq(4)').text();
-			   			var elderServiceApprovalCategory2Detail = $(this).find('td:eq(5)').text();
-			   			$('#elderCodeInLevel').val(levelCode);
-			   			$('#levelGrade').val(elderServiceApprovalLevelDetail);
-			   			$('#approvalNumber').val(elderServiceApprovalNumber)
-			   			$('#elderServiceApprovalStartDate').val(elderServiceApprovalStartDateDetail);
-			   			$('#elderServiceApprovalEndDate').val(elderServiceApprovalEndDateDetail);
-			   			$('#approvalCategory').val(elderServiceApprovalCategoryDetail);
-			   			$('#approvalCategory2').val(elderServiceApprovalCategory2Detail)
-			   			var levelUpdate = $('#levelUpdate');
-			   			var statusInsert = $('#statusInsert');
-			   			var levelCancel = $('#levelCancel');
-			   			changeBtn(levelUpdate,levelInsert,levelCancel);
-			   			$('#levelCancel').click(function(){
-							$('#levelGrade').val('');
-							$('#approvalNumber').val('');
-							$('#elderServiceApprovalStartDate').val('');
-							$('#elderServiceApprovalEndDate').val('');
-							$('#approvalCategory').val('진행결과 선택');
-							$('#approvalCategory2').val('진행상태 선택');
-			   				
-			   			})
-
-					})
-					/* 수급자 등급 및 인정기간 수정 하기 위해 아래 화면에 뿌려주기-------------------------------------------- */
+					updateLevel();
 					
 					/* 등급인정 관리 리스트 삭제 부분에 마우스 올리면 삭제 버튼 나타남 */
 					deleteBtnEvent('.elderLevelRow','td:eq(6)');
