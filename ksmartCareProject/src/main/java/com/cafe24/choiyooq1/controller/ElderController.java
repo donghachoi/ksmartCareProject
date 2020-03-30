@@ -1,6 +1,5 @@
 package com.cafe24.choiyooq1.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cafe24.choiyooq1.domain.Elder;
 import com.cafe24.choiyooq1.domain.ElderLevelHistory;
+import com.cafe24.choiyooq1.domain.ElderStatus;
 import com.cafe24.choiyooq1.service.BenefitService;
 import com.cafe24.choiyooq1.service.ElderService;
 
@@ -24,12 +24,29 @@ public class ElderController {
 	@Autowired BenefitService benefitService;
 	@Autowired ElderService elderService; 
 	
+	/* 수급자 리스트 삭제 */
+	@PostMapping("/employee/statusDelete")
+	public @ResponseBody void statusDelete(@RequestBody Map<String,Object> map){
+		System.out.println("계약관리 삭제!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		String code = (String) map.get("code");
+		elderService.deleteElderStatus(code);
+		
+	}
+	
+	
+	/* 수급자 계약 등록 */
+	@PostMapping("/employee/insertStatus")
+	public @ResponseBody void insertElderStatus(ElderStatus elderStatus
+											,HttpSession session) {
+		elderService.insertElderStatus(elderStatus, session);
+		
+	}
 	
 	/* 수급자 등급 삭제 */
 	@PostMapping("/employee/levelDelete")
 	public @ResponseBody void levelDelete(@RequestBody Map<String,Object> map){
-		String levelCode = (String) map.get("levelCode");
-		elderService.deleteElderLevel(levelCode);
+		String code = (String) map.get("code");
+		elderService.deleteElderLevel(code);
 		
 	}
 	

@@ -12,6 +12,12 @@ import com.cafe24.choiyooq1.domain.ElderStatus;
 @Mapper
 public interface ElderMapper {
 	
+	/* 수급자 계약 삭제 */
+	public void deleteElderStatus(String statusCode);
+	
+	/* 수급자 계약 등록 */
+	public void insertElderStatus(ElderStatus elderStatus);
+	
 	/* 수급자 한명의 리스트 가져오기. */
 	public List<ElderStatus> getOneElderStatusList(String elderId);
 	
@@ -40,7 +46,7 @@ public interface ElderMapper {
 	public void insertRegularCheck(ElderRegularCheck elderCheck);
 	
 	/* 수급자 초기입력시 상태 등록 */
-	public void insertStatus(ElderStatus elderstatus);
+	public void insertFirstStatus(ElderStatus elderstatus);
 	
 	/* 수급자 체크 맥스 코드 가져오기 */
 	public int getMaxNum();

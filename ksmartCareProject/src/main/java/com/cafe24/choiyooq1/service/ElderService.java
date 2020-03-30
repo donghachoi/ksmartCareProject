@@ -26,6 +26,35 @@ public class ElderService {
 	@Autowired ElderMapper elderMapper;
 	@Autowired GuaranteeingAgencyMapper guaranteeingAgency;
 	
+	/* 수급자 계약관리 삭제 */
+	public void deleteElderStatus(String statusCode) {
+		elderMapper.deleteElderStatus(statusCode);
+	}
+	
+	/* 수급자 계약 관리 등록 */
+	public void insertElderStatus(ElderStatus elderStatus
+			,HttpSession session) {
+		String centerName= (String) session.getAttribute("SCENTERNAME");
+		String centerCode= (String) session.getAttribute("SCENTERCODE");
+		int maxNum = elderMapper.getElderStatusMaxNum();
+		System.out.println("elderMapper.getElderStatusMaxNum() ==>>>" + maxNum);
+		System.out.println("<<<<<====== eldertostring" + elderStatus.toString());
+		if(maxNum < 9) {
+			elderStatus.setServiceStatusCode("s_current_cd_0"+(maxNum+1));
+		}else {
+			elderStatus.setServiceStatusCode("s_current_cd_"+(maxNum+1));
+		}
+		elderStatus.setCenterCode(centerCode);
+		elderStatus.setCenterName(centerName);
+		String status = elderStatus.getServiceStatus();
+		if("사망".equals(status) || "해지".equals(status) || "타기관".equals(status)) {
+			elderStatus.setServiceEndDate("0000-00-00");
+		}
+		
+		
+		elderMapper.insertElderStatus(elderStatus);
+	}
+	
 	/* 수급자 등급 및 인정기간 삭제 */
 	public void deleteElderLevel(String levelCode) {
 		elderMapper.deleteElderLevel(levelCode);
@@ -43,7 +72,6 @@ public class ElderService {
 		SimpleDateFormat format1 = new SimpleDateFormat ("yyyy-MM-dd");
 		Date date = new Date();
 		String today = format1.format(date);
-		System.out.println(today);
 		elderLevelHistory.setElderLevelHistoryCode("s_level_history_"+(elderMapper.getElderLevelMaxNum()+1));
 		String centerName= (String) session.getAttribute("SCENTERNAME");
 		String centerCode= (String) session.getAttribute("SCENTERCODE");
@@ -123,7 +151,7 @@ public class ElderService {
 		elderstatus.setElderName(elder.getElderName());
 		elderstatus.setServiceStatus("수급");
 		elderstatus.setServiceEndDate("0000-00-00");
-		elderMapper.insertStatus(elderstatus);
+		elderMapper.insertFirstStatus(elderstatus);
 		
 		//수급자 등급 상태 초기등록
 		System.out.println(elderMapper.getElderLevelMaxNum());
