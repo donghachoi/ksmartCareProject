@@ -8,18 +8,19 @@
 
    <link rel="stylesheet" href="/assets/lib/font-awesome/css/font-awesome.css">
 
-
     <link rel="stylesheet" href="/vendor/css/bootstrap-datetimepicker.min.css" />
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.5/fullcalendar.min.css">
-    
 
     <link rel="stylesheet" href="/vendor/css/main.css">
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css">
-		
-<!--    <link rel="stylesheet" href="/assets/css/table_tab.css">			 -->
+
+	​<style>
+		body {background-color: #333;}
+		#left{position: relative}
+	</style>		
 
 </th:block>
 		
@@ -89,10 +90,8 @@
 						</header>
 
 						<div id="collapse4" class="body">
-								<!-- /.col-lg-6 -->
 							<div class="row form-group">	 
 								<div class="col-lg-5">
-<!-- 								<form method="post" class="yearserch"> -->
 									<select name ="syear" class="autotab input-sm" id="syear">
 										<option th:value="2020">2020</option>
 										<option th:value="2019">2019</option>
@@ -106,17 +105,13 @@
 									<input type="hidden" name="elderId">
 									<input type="hidden" name="maxcost">
 									<button type="button" class="btn btn-primary btn-sm" id="yearSearch">검색</button>
-<!-- 								</form>							 -->
 							    </div>
 									<div style="align:right;">
 										<span><b>이름:  </b></span>
 										<span id="ycname"></span>
 									</div>								
 								</div>
-
-							<!-- /.row -->
-							<!-- /.col-lg-6 -->
-
+								
 								<div id="collapse4" class="body">
 									<table
 										class="table table-bordered table-condensed table-hover table-striped">
@@ -172,24 +167,21 @@
 				</div>									
 			</div>
 
-			<!-- /.row -->
-			<!--End Datatables-->
-
 			<!--방문등록  -->
 
 	        <!-- 일자 클릭시 메뉴오픈 -->	        
-	        
-	        <div id="contextMenu" class="dropdown clearfix">
-	            <ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
-	                style="display:block;position:static;margin-bottom:5px;">
-	                <li><a tabindex="-1" href="javascript:void(0)" class="serviceMenu" th:empcategory="요양" th:empservice="요양">방문요양</a></li>
-	                <li><a tabindex="-1" href="javascript:void(0)" class="serviceMenu" th:empcategory="요양" th:empservice="목욕">방문목욕</a></li>
-	                <li><a tabindex="-1" href="javascript:void(0)" class="serviceMenu" th:empcategory="간호" th:empservice="간호">방문간호</a></li>
-	                <li class="divider"></li>
-	                <li><a tabindex="-1" href="#" data-role="close">Close</a></li>
-	            </ul>
-	        </div>
-	
+			<div class="modal fade" id="myModal" role="dialog">
+				<ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
+				    style="display:block;position:static;margin-bottom:5px;">
+				    <li><a tabindex="-1" href="javascript:void(0)" class="serviceMenu" th:empcategory="요양" th:empservice="요양">방문요양</a></li>
+				    <li><a tabindex="-1" href="javascript:void(0)" class="serviceMenu" th:empcategory="요양" th:empservice="목욕">방문목욕</a></li>
+				    <li><a tabindex="-1" href="javascript:void(0)" class="serviceMenu" th:empcategory="간호" th:empservice="간호">방문간호</a></li>
+				    <li class="divider"></li>
+				    <li><a tabindex="-1" href="#" data-role="close" id="close">Close</a></li>
+				</ul>
+			</div>
+	        <!-- 일자 클릭시 메뉴끝-->	        
+
 			<!--  일정 -->
 			<div class="col-lg-12" style="display:none;">
 				<div class="box">
@@ -216,14 +208,23 @@
 	                                aria-hidden="true">&times;</span></button>
 	                        <h4 class="modal-title"></h4>
 	                    </div>
-	                    <div class="modal-body"> 
+	                    <div class="modal-body">                    
 	                        <div class="row">
 	                            <div class="col-xs-12">
 	                                <label class="col-xs-4">비급여 체크</label>
 	                                <input class='allDayNewEvent' id="yoyangBathNonBenefit" type="checkbox" name="yoyangBathNonBenefit" />
 	                            </div>
 	                        </div>
-	
+	                        <div class="row serviceCategory" style="display:none;">
+	                            <div class="col-xs-12">
+	                                <label class="col-xs-4">서비스 종류</label>
+	                                <select class="inputModal" name="serviceCategory" id="serviceCategory">
+	                                	<option value="요양">방문요양</option>
+	                                	<option value="목욕">방문목욕</option>
+	                                	<option value="간호">방문간호</option>                       	
+	                                </select>
+	                            </div>
+	                        </div>	 
 	                        <div class="row">
 	                            <div class="col-xs-12">
 	                                <label class="col-xs-4">날짜</label>
@@ -235,7 +236,7 @@
 	                                <label class="col-xs-4" for="edit-end">시간</label>
 	                                <input class="inputModal" type="text"  id="editTime1"  style="width: 25%;"/> -
 	                                <input class="inputModal" type="text" id="editTime2" style="width:25%;"/>&nbsp;&nbsp;
-	                                <input type="text" id="editTime3" style="width:11%;"/>
+<!-- 	                                <input type="text" id="editTime3" style="width:11%;"/> -->
 	                            </div>
 	                        </div>
 	                        <div class="row">
@@ -251,18 +252,6 @@
 	                                </select>
 	                            </div>
 	                        </div>
-<!-- 	                        <div class="row">
-	                            <div class="col-xs-12">
-	                                <label class="col-xs-4" for="edit-color">색상</label>
-	                                <select class="inputModal" name="backgroundColor" id="backgroundColor">
-	                                    <option value="#D25565" style="color:#D25565;">빨간색</option>
-	                                    <option value="#9775fa" style="color:#9775fa;">보라색</option>
-	                                    <option value="#ffa94d" style="color:#ffa94d;">주황색</option>
-	                                    <option value="#74c0fc" style="color:#74c0fc;">파란색</option>
-	                                    <option value="#a9e34b" style="color:#a9e34b;">초록색</option>
-	                                </select>
-	                            </div>
-	                        </div> -->
 	                        <div class="row">
 	                            <div class="col-xs-12">
 	                                <label class="col-xs-4" for="description">비고</label>
@@ -314,6 +303,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.5/fullcalendar.min.js"></script>
+    <script src="/vendor/js/bootstrap-datetimepicker.min.js"></script>
     <script src="/assets/lib/fullcalendar/locale/ko.js"></script>  
     
 <!--     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script> -->
@@ -331,6 +321,8 @@
  	  
 	<script src="/vendor/js/calenderInsert.js"></script>
     <script src="/vendor/js/addEvent.js"></script>
+    <script src="/vendor/js/editEvent.js"></script>
+    
 
     <!-- Metis core scripts -->
     <script src="/assets/js/core.js"></script>

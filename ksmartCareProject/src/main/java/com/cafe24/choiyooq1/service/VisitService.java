@@ -1,6 +1,5 @@
 package com.cafe24.choiyooq1.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,27 +61,21 @@ public class VisitService {
 			//setlist.add(bcost);
 			
 			if(bcost.getServiceCategory().contains("요양")) {
-				getYoyang = bcost.getBenefitCost();
-				mgetYoyang = bcost.getNonBenefitCost();
+				getYoyang += bcost.getBenefitCost();
+				mgetYoyang += bcost.getNonBenefitCost();
 				yoyang +=1;
 			}else if(bcost.getServiceCategory().contains("목욕")) {
-				getbath = bcost.getBenefitCost();
-				mgetbath = bcost.getNonBenefitCost();
+				getbath += bcost.getBenefitCost();
+				mgetbath += bcost.getNonBenefitCost();
 				bath += 1;
 			}else if(bcost.getServiceCategory().contains("간호")) {
-				getnurse = bcost.getBenefitCost();
-				mgetnurse = bcost.getNonBenefitCost();
+				getnurse += bcost.getBenefitCost();
+				mgetnurse += bcost.getNonBenefitCost();
 				nurse += 1;
 			}
 		}
 
 		subCost = maxcost - BenefitCost;  //잔액 전역 변수 선언
-		getYoyang = getYoyang * yoyang;
-		getbath = getbath * bath;
-		getnurse = getnurse * nurse;
-		mgetYoyang = mgetYoyang *yoyang;
-		mgetbath = mgetbath * bath;
-		mgetnurse = mgetnurse * nurse;
 		int tolnum = yoyang+bath+nurse;
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("yoyang", yoyang);   //요양 총 횟수
@@ -128,10 +121,10 @@ public class VisitService {
 		
 		visit.setVisitServiceTime(ort);
 		if(subCost- bcost.getBenefitCost()<0) {
-			str ="한도를 초과하였습니다. 비급여를 선택해 주세요";
+			str ="초과";
 		}else {
 			visitMapper.visitInsert(visit);
-			str ="정상 입력 되었습니다";
+			str ="정상";
 		}
 		
 		//
@@ -148,8 +141,8 @@ public class VisitService {
 	}
 
 	//일정 등록 후 캘린더 리스트 보여주기
-	public List<Visit> vCalenderList(String elderId, String monthGroup){
-		List<Visit> list = visitMapper.vCalenderList(elderId, monthGroup);
+	public List<Visit> vCalenderList(String elderId){
+		List<Visit> list = visitMapper.vCalenderList(elderId);
 		return list;
 	}
 	

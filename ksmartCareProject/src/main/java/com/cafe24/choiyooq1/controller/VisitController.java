@@ -59,7 +59,7 @@ public class VisitController {
 			smonth ="0"+smonth;
 		}
 		
-		List<Visit> calender = visitSerchService.elderCalenderSearch(elder_id);
+		List<Visit> calender = visitservice.vCalenderList(elder_id);
 		
 		Map<String, Integer>  list = visitservice.elderBenefitCost(elder_id, syear, smonth, maxcost);
 		list.put("syear", Integer.parseInt(syear));
@@ -117,15 +117,4 @@ public class VisitController {
 		return str;
 	}
     
- 
-    //일정등록 캘린더 보여주기 
-    @PostMapping("/employee/vcalenderList")
-    public @ResponseBody List<Visit> vCalenderList(@RequestParam(value="elderId") String elderId ,
-    		@RequestParam(value="monthGroup") String monthGroup){
-    	
-    	visitservice.vCalenderList(elderId, monthGroup);
-    	
-		return null;
-    }
-
 }

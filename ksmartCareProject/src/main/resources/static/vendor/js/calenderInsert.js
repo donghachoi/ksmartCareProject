@@ -27,82 +27,72 @@ $(document).ready(function(){
 				
 				//locale: "ko",
 				//editable: false,
+			    defaultView: "month",
+			    navLinks: true, // can click day/week names to navigate views
+			    selectable: true,
+			    selectHelper: true,
+			    editable: true,
+			    eventLimit: true, // allow "more" link when too many events				 
+			    select: function(start, end) {
+
+			        $("#myModal").modal("show");
+					$("#myModal").css('left', '60%');
+					$("#myModal").css('top', '40%');
+					
+				    var today = moment();
+
+				    start.set({
+				          hours: today.hours(),
+				          minute: today.minutes()
+				    });
+				    end.set({
+				          hours: today.hours() + 1,
+				          minute: today.minutes()
+				    });	
+			        start= moment(start).format('YYYY-MM-DD');
+			        end = moment(end).format('YYYY-MM-DD');
+		    
+				    //날짜 클릭시 카테고리 선택메뉴
+				    var $contextMenu = $("#myModal");
+				    $contextMenu.on("click", "a", function (e) {
+				      e.preventDefault();
+
+				      //닫기 버튼이 아닐때
+				      if ($(this).data().role !== 'close') {
+				        newEvent(start, end, $(this).html());    
+				      }
+
+				    // $contextMenu.removeClass("contextOpened");
+				      $contextMenu.hide();
+				    });
+				    
+				    $("#close").click(function(){
+				        $("#myModal").modal("hide");
+				      });
+
+				    
+/*				    $('body').on('click', function () {
+				        //$contextMenu.removeClass("contextOpened");
+				        $contextMenu.modal("hide"); 
+				    });*/
+			    }, 
+				eventLimitText : "보기",
 				events:events,
 				eventLimit: true, // for all non-TimeGrid views
 				 views: {
 				   timeGrid: {
 				     eventLimit: 6
 				   }
-				 },	
-				dayClick:function (date, jsEvent, view) {
-					
-				    $(".fc-body").unbind('click');
-				    $(".fc-body").on('click', 'td', function (e) {
-
-				      $("#contextMenu")
-				        .addClass("contextOpened")
-				        .css({
-				          display: "block",
-				          left: e.pageX - 200,
-				          top: e.pageY - 150
-				        });
-				      return false;
-				    });
-				    
-				    var today = moment();
-				    
-				    date.set({
-				          hours: today.hours(),
-				          minute: today.minutes()
-				        });
-				      
-				    date = moment(date).format('YYYY-MM-DD');
-				    
-				    //날짜 클릭시 카테고리 선택메뉴
-				    var $contextMenu = $("#contextMenu");
-				    $contextMenu.on("click", "a", function (e) {
-				      e.preventDefault();
-
-				      //닫기 버튼이 아닐때
-				      if ($(this).data().role !== 'close') {
-				        newEvent(startDate, endDate, $(this).html());    
-				      }
-
-				      $contextMenu.removeClass("contextOpened");
-				      $contextMenu.hide();
-				    });			 	
-				},
-				eventLimitText : "보기",
+				 },
 				eventClick:  function (events, jsEvent, view) {
-					
-					var stime = events.start.format('YYYY.MM.DD');
-					var xpos = jsEvent.pageX;
-					var ypos = jsEvent.pageY;
-					
-					if(events.eventname == 'elder'){
-						$(".eventDate").text(stime);
-						$(".eventTitle").text(events.title);
-						$(".eventEmployeeName").text(events.employeeName);	
-						
-					}else if(events.eventname == 'employee'){
-						$(".eventDate").text(stime);
-						$(".eventTitle").text(events.visitServiceTime);
-						$(".eventTime").text(events.time);
-						$(".eventelderName").text(events.elderName);
-					}
-				
-						$("#test").modal("show");
-						$("#test").css('left', '60%');
-						$("#test").css('top', '40%');
-						return false;	
-				}
-				
+				    editEvent(events);
+				}		    
 			});
 		}else{	
 			
 			calendar.fullCalendar('removeEvents');
 			calendar.fullCalendar('addEventSource', events);         
-			calendar.fullCalendar('rerenderEvents' );		
+			calendar.fullCalendar('rerenderEvents');		
 		}
 	}
     
@@ -110,14 +100,23 @@ $(document).ready(function(){
 		$(".eventContent").css('display', 'none');
 	});
 
-	
-	
+		
 	//테이블 행 출력 갯수 
     $("#dataTable").DataTable({
         lengthChange: false,
     	  displayLength: 5
     });
     
+    
+	$("#visitPlanDate").datetimepicker({
+	     format: 'YYYY-MM-DD'     
+	});
+
+
+	$("#editTime1, #editTime2").datetimepicker({
+	    format: 'HH:mm'     
+	});
+	    
     //금액 오른쪽 정렬 
 	$('.trigth').css('text-align', 'right');
 	
@@ -182,6 +181,8 @@ $(document).ready(function(){
 							employeeName : data.calender[i].employeeName,
 							backgroundColor: bcolor,
 							borderColor: bcolor,
+							description:  data.calender[i].description,
+							visitCode : data.calender[i].visitCode,
 							textColor: '#fff'
 						});	
 						
@@ -290,7 +291,7 @@ $(document).ready(function(){
 				}
 				if(empservice == '목욕'){
 					var test = "<option value=''>서비스를 선택헤주세요</option>";
-						test = "<option value='차량이용(차량 내)'>차량이용(차량 내)</option>";
+						test += "<option value='차량이용(차량 내)'>차량이용(차량 내)</option>";
 						test += "<option value='차량이용(가정 내)'>차량이용(가정 내)</option>";
 						test += "<option value='차량미이용'>차량미이용</option>";
 						

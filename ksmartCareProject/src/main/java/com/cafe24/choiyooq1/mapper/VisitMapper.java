@@ -20,7 +20,7 @@ public interface VisitMapper {
 	public List<Visit> elderBenefitCost(String elder_id, String syear, String smoth);
 	
 	//일정등록 캘린더 리스트
-	public List<Visit> vCalenderList(String elderId, String monthGroup);
+	public List<Visit> vCalenderList(String elderId);
 	
 	//서비스 종류별 금액 
 	public BenefitCost serviceCost(String syear, String scategory, String stype);

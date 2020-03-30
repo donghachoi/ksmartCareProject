@@ -18,7 +18,6 @@ var editStart = $('#visitPlanDate');
 var editTime1 = $('#editTime1');
 var editTime2 = $('#editTime2');
 var serviceCategoryDetail = $('#serviceCategoryDetail');
-var backgroundColor = $('#backgroundColor');
 var description = $('#editDesc');
 var serviceTitle = $('.serviceMenu');
 var employeeId = $('#employeeId');
@@ -36,9 +35,7 @@ var newEvent = function (start, end, eventType) {
 	
 	var elerId = $('input[name=elderId]').val();
 	
-	
-    $("#contextMenu").hide(); //메뉴 숨김
-
+    $("#myModal").modal("hide");
     //modalTitle.html('');
     editStart.val(start);
     editEnd.val(end);
@@ -54,27 +51,18 @@ var newEvent = function (start, end, eventType) {
 
     //새로운 일정 저장버튼 클릭
     $('#save-event').unbind();
-    $('#save-event').on('click', function () {
- 
-    
+    $(document).on('click','#save-event', function () {
+    	
     var test1 = (editTime1.val()).split(':');
     var test2 = (editTime2.val()).split(':');
     var startTime = new Date(0, 0, 0, test1[0], test1[1]);
     var endTime = new Date(0, 0, 0, test2[0], test2[1]);
     var tmp = (endTime.getTime() - startTime.getTime()) / 60000; 
-    console.log("111"+tmp);
 
-    //moment(editTime1.val()).format('HH:mm');
-    //var test2 = moment(editTime2.val()).format('HH:mm');
     	var eventData = {
-           // _id: eventId,
-            title: serviceTitle.attr('empservice'),
+            title: modalTitle.text(),
             start: editStart.val(),
-            //end: editEnd.val(),
-            //description: editDesc.val(),
             type: editType.val(),
-            //username: '사나',
-            //backgroundColor: editColor.val(),
             textColor: '#ffffff',
             //***** 입력값 ********
 			visitServiceCategory : (modalTitle.text()).substring(2,4),  //서비스 종류
@@ -86,12 +74,9 @@ var newEvent = function (start, end, eventType) {
 			elderId : elerId,                            //수급자 아이디
 			description : description.val(),            //설명
 			serviceCategoryDetail : serviceCategoryDetail.val(),  //인지활동 등 상세 서비스
-			backgroundColor : backgroundColor.val(),      //배경색 
 			monthlyClaimGroupCode: editStart.val().substring(0, 7),  //날짜별 그룹
 			yoyangBathNonBenefit : yoyangBathNonBenefit.val(),  //비급여 여부
 			visitServiceTime : tmp,
-
-			
             allDay: false    
         };
     	
@@ -127,7 +112,7 @@ var newEvent = function (start, end, eventType) {
             return false;
         }
         
-        if (eventData.serviceCategoryDetail == '' &&  eventData.visitServiceCategory == '요양' ||  eventData.visitServiceCategory == '목욕') {
+        if (eventData.serviceCategoryDetail == '' &&  eventData.visitServiceCategory == '요양' &&  eventData.visitServiceCategory == '목욕') {
             alert('서비스 선택은 필수입니다.');
             return false;
         }
@@ -137,7 +122,7 @@ var newEvent = function (start, end, eventType) {
             alert('시간 입력은 필수 입니다');
             return false;
         }
-       console.log("aaaaa"+eventData.visitServiceTime);
+
         //시간 계산
         if(0 <eventData.visitServiceTime && eventData.visitServiceTime <60){
         	eventData.visitServiceTime = 30;
@@ -161,7 +146,6 @@ var newEvent = function (start, end, eventType) {
         	return false;
         }
       
-        console.log("dddddda"+eventData.visitServiceTime);
         if(eventData.visitServiceCategory == '요양'){
         	eventData.visitServiceTime = eventData.visitServiceTime + serviceCategoryDetail.val();
         }
@@ -176,29 +160,11 @@ var newEvent = function (start, end, eventType) {
         	eventData.visitServiceTime = serviceCategoryDetail.val();
         }
     
-        $(document).on('change', '#editTime2:input',  function() {
+/*        $(document).on('change', '#editTime2:input',  function() {
         	alert("tetstetst");
             	$('#editTime3').val('11111');
-
         });
-        
-//        $("#editTime2").datetimepicker({
-//            format: 'HH:mm'     
-//        }).on('change', function() {
-//            
-//       //현재 변경된 데이터 셋팅
-//     	$('#editTime3').val('11111');
-//   	alert('1111');
-//       }).trigger('change');  
-//        	
-//       // $('#editTime2').on('change', function() {
-            
-            // 현재 변경된 데이터 셋팅
-       // 	$('#editTime3').val('11111');
-        //	alert('1111');
-      //   });    
-        
-
+*/
         var realEndDay;
 
         if (editAllDay.is(':checked')) {
@@ -211,10 +177,30 @@ var newEvent = function (start, end, eventType) {
             eventData.allDay = true;
         }
         
-        $("#calendar").fullCalendar('renderEvent', eventData, true);
+
+			if(eventData.visitServiceCategory == '요양'){
+				bcolor = '#28a745';
+			}else if(eventData.visitServiceCategory == '목욕'){
+				bcolor = '#ffc107';
+			}else{
+				bcolor = '#ffa94d';
+			}
+			
+        var renderData ={
+        		title: eventData.visitServiceCategory + "("+ eventData.visitPlanTime +")", 	
+				start: eventData.visitPlanDate,
+				time : eventData.visitPlanTime,
+				employeeName : eventData.employeeName,
+				backgroundColor: bcolor,
+				borderColor: bcolor,
+				textColor: '#fff'	
+        };
+        
+        $("#calendar").fullCalendar('renderEvent', renderData, true);
         eventModal.find('input, textarea').val('');
         editAllDay.prop('checked', false);
         eventModal.modal('hide');
+
 
     //새로운 일정 저장
         $.ajax({
@@ -222,11 +208,15 @@ var newEvent = function (start, end, eventType) {
             url: '/employee/visitInsert',
             data:  eventData,
             success: function (response) {
-                //DB연동시 중복이벤트 방지를 위한
-                $('#calendar').fullCalendar('removeEvents');
-                $('#calendar').fullCalendar('refetchEvents');
-
-            }
+	            if(response =='초과'){
+	            	alert("한도 초과 되었습니다. 비급여를 선택해 주세요");
+	            	return false;
+	            }else{
+	                //DB연동시 중복이벤트 방지를 위한
+	    			calendar.fullCalendar('removeEvents');
+	    			calendar.fullCalendar('rerenderEvents');
+	            }
+            },
         });
     });
 };

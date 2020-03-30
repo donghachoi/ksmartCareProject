@@ -43,7 +43,6 @@
 	  	<result property="familyRelation" column="family_relation"/>
 	  	<result property="visitServiceCategory" column="visit_service_category"/>
 	  	<result property="monthlyClaimGroupCode" column="monthly_claim_group_code"/>
-	  	<result property="backgroundColor" column="backgroundColor"/>
 	  	<result property="description" column="description"/>
 	  	<result property="yoyangBathNonBenefit" column="yoyang_bath_non_benefit"/>  
 	  	<result property="serviceCategoryDetail" column="service_category_detail"/> 
@@ -136,20 +135,19 @@
 		 INSERT INTO visit (visit_code, center_code, center_name, elder_id, elder_name, 
 				employee_id, employee_name, visit_plan_date, 
 				visit_plan_time, visit_service_time, family_relation, 
-				visit_service_category, monthly_claim_group_code, background_color, 
+				visit_service_category, monthly_claim_group_code,
 				description, yoyang_bath_nonBenefit) 
 			VALUE (#{visitCode},
 				#{centerCode}, #{centerName}, #{elderId}, #{elderName}, #{employeeId}, #{employeeName},
 				#{visitPlanDate}, #{visitPlanTime}, #{visitServiceTime}, #{familyRelation},
-				#{visitServiceCategory}, #{monthlyClaimGroupCode}, #{backgroundColor}, #{description}, #{yoyangBathNonBenefit})
+				#{visitServiceCategory}, #{monthlyClaimGroupCode}, #{description}, #{yoyangBathNonBenefit})
   	</insert>  	
   	
 <!--   	일정등록 후 캘린더에 보여주기 -->
   	<select id="vCalenderList" parameterType="String" resultMap="VisitMap">
-	SELECT elder_id, elder_name, employee_name, visit_plan_date, visit_plan_time, 
-		visit_service_time, visit_service_category, background_color
+	SELECT visit_code, elder_id, elder_name, employee_name, visit_plan_date, visit_plan_time, 
+		visit_service_time, visit_service_category, description
 	from visit WHERE elder_id=#{elderId}
-		AND monthly_claim_group_code=#{monthGroup}
   	</select>  	
   	
 
