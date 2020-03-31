@@ -3,7 +3,11 @@
  * 
  */
 
-	/* 공통 삭제 메서드...*/
+
+
+	/**
+	 * [공통] 삭제 메서드
+	 * */
 	var deleteEvent = function(){
 		
 		$('.deleteBtn').click(function(){
@@ -100,12 +104,17 @@
 			}
 				
 				$('#elderStatus').append(elderStatusRowHtml);
+				
 				/*계약 리스트에 수정이벤트 걸기*/
 				UpdateStatus();
 				
 				/* 계약 등록 */
 				insertStatus();
+				
+				/*삭제버튼 생기게하는 이벤트*/
 				deleteBtnEvent('.elderStatusRow','td:eq(3)');
+				/*누르면 삭제 되는 이벤트*/
+				deleteEvent();
 			}
 			,error	:	function(error){
 			console.log("error", error)
@@ -295,6 +304,7 @@
 				}
 				deleteBtnEvent('.elderLevelRow','td:eq(6)');
 				deleteEvent();
+				updateLevel();
 			},
 			error	:	function(error){
 				console.log("error", error)
@@ -354,13 +364,11 @@
 					success	:	function(data){
 						alert("수정완료.")
 						levelListInModal(elderIdInLevel)
-						
-							},
-
+					},
         			error	:	function(error){
-					console.log("error", error)
+        				console.log("error", error)
 						alert("수정실패.")
-				}
+        			}
          		})
     	  })
     	  
@@ -403,15 +411,9 @@
 					success	:	function(data){
 						alert("등록되었습니다.")
 						levelListInModal(elderIdInLevel);
-						var levelUpdate = $('#levelUpdate');
-			   			var statusInsert = $('#statusInsert');
-			   			var levelCancel = $('#levelCancel');
-			   			changeBtn(levelUpdate,levelInsert,levelCancel);
-			   			updateLevel();
-							},
-
+					},
         			error	:	function(error){
-					console.log("error", error)
+        				console.log("error", error)
 						alert("등록 안됬습니다.")
         			}
          		})
@@ -424,15 +426,12 @@
 			var map = {};
 			var Id = $(this).find('td:eq(0)').text()
 			map.elderId = Id;
-			
-			 $.ajax({
+			$.ajax({
 				type 	: 	'POST',
 				url		:	'/elderDetailList',
 				data	:	JSON.stringify(map),
 				contentType	:	'application/json',
 				success	:	function(data){
-					
-					
 					/* 수급자 계약 상태 리스트  */
 					var status = data.elderstatusList
 					$('#elderStatus').empty();
@@ -450,10 +449,10 @@
 						elderStatusRowHtml += '<td>'+serviceEndDate+'</td>';
 						elderStatusRowHtml += '<td><button type="button" style="display: none;" class="deleteBtn btn btn-danger btn-xs">삭제</button></td></tr>';
 					}
-						$('#elderStatus').append(elderStatusRowHtml);
-						$('#serviceStatusCodeInStatus').val(status[0].serviceStatusCode);
-						$('#elderIdInStatus').val(status[0].elderId);
-						$('#elderNameInStatus').val(status[0].elderName);
+					$('#elderStatus').append(elderStatusRowHtml);
+					$('#serviceStatusCodeInStatus').val(status[0].serviceStatusCode);
+					$('#elderIdInStatus').val(status[0].elderId);
+					$('#elderNameInStatus').val(status[0].elderName);
 						
 					/* 계약관리 내에 셀렉박스 바뀔때 인풋 박스 변경 */
 					$('#elderStatusSelect').change(function(){
@@ -554,7 +553,6 @@
     	  
     	  //data table
     	  $('#dataTable').DataTable({
-
               "language": 
                  {
                  "sInfo": " 총_TOTAL_건의 자료 중  _START_번부터~_END_번까지 ",
@@ -567,7 +565,7 @@
                  "previous":   "이전"
                       }
               }           
-           });
+    	  });
     	  
 		  	
 		  	
