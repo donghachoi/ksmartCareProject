@@ -136,7 +136,6 @@ public class VisitService {
 	public List<Employee> emplyeeList(String centerCode) {
 		
 		List<Employee> list = visitMapper.emplyeeList(centerCode);
-		// TODO Auto-generated method stub
 		return list;
 	}
 
@@ -156,6 +155,10 @@ public class VisitService {
 //		// TODO Auto-generated method stub
 //		
 //	}
+
+	
+	//센터별 직원 보여주기 
+
 
 
 }

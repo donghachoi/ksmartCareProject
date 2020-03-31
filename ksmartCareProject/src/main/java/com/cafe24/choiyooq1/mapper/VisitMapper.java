@@ -38,4 +38,7 @@ public interface VisitMapper {
 	//직원 같은날짜, 시간 중복 체크
 	public Visit emplyeeDayCheck(String emplyeeId, String date, String strattime);
 	
+	//센터별로 직원 가져오기
+	public List<Employee> centerempCategory(String center);
+	
 }
