@@ -168,14 +168,16 @@
 							<div class="form-group">
 				                    <label for="elderAdressForStay" class="control-label col-lg-4">주소(거주지)</label>
 				                    <div class="col-lg-3">
-				                        <input type="text" class="form-control" name="elderAdressForStay" id="elderAdressForStay">
+										<input type="text" class="form-control" name="elderAdressForStay" id="elderAdressForStay" placeholder="거주지 주소" >
 				                    </div>
+				                    <input type="button" class="btn btn-primary btn-sm" id="elderAdressSearchForStay" value="거주지 주소찾기">
 			                 </div>
 							<div class="form-group">
 				                    <label for="elderAdressForPost" class="control-label col-lg-4">주소(우편물)</label>
 				                    <div class="col-lg-3">
-				                        <input type="text" class="form-control" name="elderAdressForPost" id="elderAdressForPost">
+				                        <input type="text" class="form-control" name="elderAdressForPost" id="elderAdressForPost"  placeholder="우편물 주소">
 				                    </div>
+				                    	<input type="button" class="btn btn-primary btn-sm" id="elderAdressSearchForPost" value="우편물 우편번호 찾기">
 			                 </div>
 				            <!-- /.form-group -->
 				                <div class="form-group">
@@ -238,6 +240,7 @@
 					  </div>
 					</div>
 					<!-- 등급관리 model End -->
+					
 							</form>
 				        </div>
 				    </div>
@@ -274,10 +277,73 @@
 		    <script src="/assets/lib/jquery/jquery.ui.touch-punch.min.js"></script>
 		    <!-- 테이블 js -->
 			
-			
+			<!-- 주소 api 활용을 위한 js -->
+			<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
+/* 아이디 체크 함수 */
+function Idcheck(){
+	var map = {};
+		$('#elderId').siblings('span').remove();
+	if($('#elderId').val()==""){
+		$('#elderId').parent().append("<span style=\"color :red;\">아이디를 입력해주세요.</span>");
+		$('#elderId').focus();
+	}else{
+		map.Id = $('#elderId').val();
+		 var result = $.ajax({
+			type 	: 	'POST',
+			url		:	'/employee/idCheck',
+			async	:	'true',
+			data	:	JSON.stringify(map),
+			contentType	:	'application/json',
+			success	:	function(data){
+				if("아이디 사용가능합니다"==data){
+					$('#elderId').parent().append("<span style=\"color :blue;\">"+data+"</span>");
+				}else{
+					$('#elderId').parent().append("<span style=\"color :red;\">"+data+"</span>");
+					$('#elderId').focus();
+				}
+			},
+			error	:	function(error){
+				console.log("error", error)
+			}
+		})  
+	}
+}
+
+
+/* 주소창 팝업 함수 */
+var getAddress = function(inputboxId){
+	new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var addr = ''; // 주소 변수
+
+            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                addr = data.roadAddress;
+            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                addr = data.jibunAddress;
+            }
+            // 주소 정보를 해당 필드에 넣는다.
+            $(inputboxId).val(addr)
+        }
+    }).open();
+}
+
+
+
 
 	$(function() {
+		$('#elderAdressSearchForPost').click(function(){
+			getAddress(elderAdressForPost);
+		})
+		$('#elderAdressSearchForStay').click(function(){
+			getAddress(elderAdressForStay);
+		})
+		
 		
 		$("#dataTable tbody tr").click(function(){
 			$("#serviceLocalmanageCode").val($(this).find('td:eq(0)').text())
@@ -289,27 +355,7 @@
 		
 		/* 아이디 중복체크 */
 		$('#idCheck').click(function(){
-			var map = {};
-			if($('#elderId').val()==""){
-				alert('아이디를 입력해주세요.')
-				$('#elderId').focus();
-			}else{
-				map.Id = $('#elderId').val();
-				 $.ajax({
-					type 	: 	'POST',
-					url		:	'/employee/idCheck',
-					async	:	'true',
-					data	:	JSON.stringify(map),
-					contentType	:	'application/json',
-					success	:	function(data){
-						alert(data)
-						$('#elderId').focus();
-					},
-					error	:	function(error){
-						console.log("error", error)
-					}
-				})  
-			}
+			Idcheck();
 		})
 		
 		/* 날짜 포맷 메서드 */
@@ -341,11 +387,6 @@
 		$("#btn").click(function(){
 			var day =$('.date');
 			
-			if($("#elderId").val()==null || $("#elderId").val()==""){
-				alert('아이디를 입력해주세요.')
-				$("#elderId").focus();
-				return false;
-			}
 			if($("#elderName").val()==null || $("#elderName").val()==""){
 				alert('이름 입력해주세요.')
 				$("#elderName").focus();
@@ -377,6 +418,7 @@
 				$('#elderServiceApprovalEndDate').focus();
 				return false;
 			}
+			Idcheck();
 			
 			if(DayCheck(day)){
 				console.log('성공')
@@ -385,9 +427,7 @@
 				return false;
 				
 			} 
-			
 		})		
-
 		
 	    $( ".date" ).datepicker({
 	    	
