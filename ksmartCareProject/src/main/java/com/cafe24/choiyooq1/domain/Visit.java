@@ -15,12 +15,10 @@ public class Visit {
 	private String familyRelation;
 	private String visitServiceCategory;
 	private String monthlyClaimGroupCode;
-	private String backgroundColor;
 	private String description;
 	private String yoyangBathNonBenefit;
 	private String serviceCategoryDetail;
 	private int count;
-	
 	
 	public int getCount() {
 		return count;
@@ -119,13 +117,6 @@ public class Visit {
 	public void setMonthlyClaimGroupCode(String monthlyClaimGroupCode) {
 		this.monthlyClaimGroupCode = monthlyClaimGroupCode;
 	}
-	
-	public String getBackgroundColor() {
-		return backgroundColor;
-	}
-	public void setBackgroundColor(String backgroundColor) {
-		this.backgroundColor = backgroundColor;
-	}
 	public String getDescription() {
 		return description;
 	}
@@ -139,7 +130,7 @@ public class Visit {
 				+ employeeName + ", visitPlanDate=" + visitPlanDate + ", visitPlanTime=" + visitPlanTime
 				+ ", visitServiceTime=" + visitServiceTime + ", familyRelation=" + familyRelation
 				+ ", visitServiceCategory=" + visitServiceCategory + ", monthlyClaimGroupCode=" + monthlyClaimGroupCode
-				+ ", backgroundColor=" + backgroundColor + ", description=" + description + ", yoyangBathNonBenefit="
-				+ yoyangBathNonBenefit + "]";
+				+ ", description=" + description + ", yoyangBathNonBenefit="
+				+ yoyangBathNonBenefit + ", serviceCategoryDetail=" + serviceCategoryDetail + ", count=" + count + "]";
 	}
 }

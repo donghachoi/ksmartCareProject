@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.cafe24.choiyooq1.mapper.VisitSearchMapper">
+  
+  	<resultMap type="com.cafe24.choiyooq1.domain.Visit" id="VisitMap">
+	  	<result property="visitCode" column="visit_code"/>
+	  	<result property="centerCode" column="center_code"/>
+	  	<result property="centerName" column="center_name"/>	  	
+	  	<result property="elderId" column="elder_id"/>	  	
+	  	<result property="elderName" column="elder_name"/>
+	  	<result property="employeeId" column="employee_id"/>
+	  	<result property="employeeName" column="employee_name"/>
+	  	<result property="visitPlanDate" column="visit_plan_date"/>
+	  	<result property="visitPlanTime" column="visit_plan_time"/>
+	  	<result property="visitServiceTime" column="visit_service_time"/>
+	  	<result property="familyRelation" column="family_relation"/>
+	  	<result property="visitServiceCategory" column="visit_service_category"/>
+	  	<result property="monthlyClaimGroupCode" column="monthly_claim_group_code"/>
+	  	<result property="backgroundColor" column="backgroundColor"/>
+	  	<result property="description" column="description"/>
+	  	<result property="yoyangBathNonBenefit" column="yoyang_bath_non_benefit"/>  
+	  	<result property="serviceCategoryDetail" column="service_category_detail"/> 
+	  	<result property="count" column="count"/> 	   	
+  	</resultMap>
+  
+<!--   	방문일정 수급자 일정 검색 -->
+	<select id="elderCalenderSearch" parameterType="String" resultMap="VisitMap">
+  		select visit_service_category, visit_service_time, visit_plan_date, visit_plan_time, employee_name
+		from visit WHERE elder_id=#{id}
+<!--   		select visit_service_category, visit_service_time, visit_plan_date,
+  		SUBSTRING_INDEX(visit_plan_time, '~', 1) as visit_plan_time
+		from visit WHERE elder_id=#{id} -->
+	</select>
+  
+<!--   방문일정 직원 일정 검색 -->
+	<select id="employeeCalenderSearch" parameterType="String" resultMap="VisitMap">
+		SELECT elder_name, visit_plan_date, visit_plan_time, visit_service_time, visit_service_category
+		FROM visit WHERE employee_id =#{id}	
+	</select>
+  
+  </mapper>

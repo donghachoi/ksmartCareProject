@@ -50,7 +50,7 @@
                             <div class="main-bar">
                             	<h3>
 					              <i class="fa fa-pencil"></i>&nbsp;
-					            		보호자등록 페이지
+					            		보호자정보 수정 페이지
 					          	</h3>
                             </div>
                             <!-- /.main-bar -->
@@ -67,7 +67,7 @@
 	    <div class="box dark">
 	        <header>
 	            <div class="icons"><i class="fa fa-edit"></i></div>
-	            <h5>보호자 상세 정보를 입력해주세요</h5>
+	            <h5>수정할 정보를 입력해주세요</h5>
 	            
 	            <!-- .toolbar -->
 	            <div class="toolbar">
@@ -78,13 +78,13 @@
 	            </div>            <!-- /.toolbar -->
 	        </header>
 	        <div id="div-4" class="body">
-	            <form class="form-horizontal" th:action="@{/center/guardianInsert}" method="post">
+	            <form class="form-horizontal" th:action="@{/center/guardianUpdate}" method="post">
 	
 	                <div class="form-group">
 	                    <label for="text1" class="control-label col-lg-4">보호자코드</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text1" class="form-control" name="guardianId">
+	                        <input type="text" id="text1" class="form-control" name="guardianId" th:value="${Guardian.guardianId}" readonly="readonly">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -92,7 +92,7 @@
 	                    <label for="text1" class="control-label col-lg-4">수급자코드</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text1"  class="form-control" name="elderId">
+	                        <input type="text" id="text1"  class="form-control" name="elderId" th:value="${Guardian.elderId}">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -100,7 +100,7 @@
 	                    <label for="text1" class="control-label col-lg-4">수급자이름</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text1" class="form-control" name="elderName">
+	                        <input type="text" id="text1" class="form-control" name="elderName" th:value="${Guardian.elderName}">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -108,7 +108,7 @@
 	                    <label for="text1" class="control-label col-lg-4">보호자이름</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text1" class="form-control" name="guardianName">
+	                        <input type="text" id="text1" class="form-control" name="guardianName" th:value="${Guardian.guardianName}">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -118,7 +118,7 @@
 	
 	                    <div class="col-lg-3">
 	                        <input class="form-control" type="password" id="pass1"
-	                               data-original-title="Please use your secure password" data-placement="top" name="guardianPw"/>
+	                               data-original-title="Please use your secure password" data-placement="top" name="guardianPw" th:value="${Guardian.guardianPw}"/>
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -127,13 +127,13 @@
 	                        <div class="col-lg-3">
 	                            <div class="checkbox">
 	                                <label>
-	                                    <input class="uniform" type="radio" name="guardianGender" value="남" checked>남
+	                                    <input class="uniform" type="radio" name="guardianGender" value="남" checked th:value="${Guardian.guardianGender}">남
 	                                </label>
 	                            </div>
 	                            <!-- /.checkbox -->
 	                            <div class="checkbox">
 	                                <label>
-	                                    <input class="uniform" type="radio" name="guardianGender" value="여">여
+	                                    <input class="uniform" type="radio" name="guardianGender" value="여" th:value="${Guardian.guardianGender}">여
 	                             
 	                                </label>
 	                            </div>
@@ -145,7 +145,7 @@
 	                    <label for="text2" class="control-label col-lg-4">주민등록번호</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text2" placeholder="123456-0000000" class="form-control" name="guardianPersonalNumber">
+	                        <input type="text" id="text2" placeholder="123456-0000000" class="form-control" name="guardianPersonalNumber" th:value="${Guardian.guardianPersonalNumber}">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -153,7 +153,7 @@
 	                    <label for="text2" class="control-label col-lg-4">연락처</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text2" placeholder="000-000-0000" class="form-control" name="guardianPhone">
+	                        <input type="text" id="text2" placeholder="000-000-0000" class="form-control" name="guardianPhone" th:value="${Guardian.guardianPhone}">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -161,7 +161,7 @@
 	                    <label  for="employeeStartDate" class="control-label col-lg-4">보호자등록일</label>
 							<div class="col-lg-3">
 	                            <div class="input-group input-append">
-	                                <input class="form-control date" type="text" placeholder="2020-03-01" name="guardianRegistrationDate" id="guardianRegistrationDate" autocomplete="off" >
+	                                <input class="form-control date" type="text" placeholder="2020-03-01" name="guardianRegistrationDate" id="guardianRegistrationDate" th:value="${Guardian.guardianRegistrationDate}" autocomplete="off" >
 	                                <span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>
 	                            </div>
 	                        </div>
@@ -173,7 +173,7 @@
 				    <label class="control-label col-lg-4">수급자와의 관계</label>
 				
 					    <div class="col-lg-3">
-					        <select class="form-control" name="guardianRelation">
+					        <select class="form-control" name="guardianRelation" th:value="${Guardian.guardianRelation}">
 					            <option>자녀</option>
 					            <option>사위</option>
 					            <option>며느리</option>
@@ -188,7 +188,7 @@
 	                    <label for="text1" class="control-label col-lg-4">주소(거주지)</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text1"  class="form-control" name="guardianAdressForStay">
+	                        <input type="text" id="text1"  class="form-control" name="guardianAdressForStay" th:value="${Guardian.guardianAdressForStay}">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -196,7 +196,7 @@
 	                    <label for="text1" class="control-label col-lg-4">주소(우편물)</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text1"  class="form-control" name="guardianAdressForPost">
+	                        <input type="text" id="text1"  class="form-control" name="guardianAdressForPost" th:value="${Guardian.guardianAdressForPost}">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -206,13 +206,13 @@
 	                        <div class="col-lg-3">
 	                            <div class="checkbox">
 	                                <label>
-	                                    <input class="uniform" type="radio" name="guardianCohabitation" value="동거" checked>동거
+	                                    <input class="uniform" type="radio" name="guardianCohabitation" value="동거" checked th:value="${Guardian.guardianCohabitation}">동거
 	                                </label>
 	                            </div>
 	                            <!-- /.checkbox -->
 	                            <div class="checkbox">
 	                                <label>
-	                                    <input class="uniform" type="radio" name="guardianCohabitation" value="비동거">비동거
+	                                    <input class="uniform" type="radio" name="guardianCohabitation" value="비동거" th:value="${Guardian.guardianCohabitation}">비동거
 	                             
 	                                </label>
 	                            </div>
@@ -224,7 +224,7 @@
 	                    <label for="text1" class="control-label col-lg-5"></label>
 	
 						<div class="col-lg-3">
-						<input type="submit" value="등록하기" class="btn btn-primary" name="centerId">
+						<input type="submit" value="수정하기" class="btn btn-primary" >
 						</div>
 	                 
 	                </div>
@@ -267,78 +267,12 @@
                             </ul>
                         </div>
                         <!-- /.well well-small -->
-                        <!-- .well well-small -->
-                        <div class="well well-small dark">
-                            <button class="btn btn-block">Default</button>
-                            <button class="btn btn-primary btn-block">Primary</button>
-                            <button class="btn btn-info btn-block">Info</button>
-                            <button class="btn btn-success btn-block">Success</button>
-                            <button class="btn btn-danger btn-block">Danger</button>
-                            <button class="btn btn-warning btn-block">Warning</button>
-                            <button class="btn btn-inverse btn-block">Inverse</button>
-                            <button class="btn btn-metis-1 btn-block">btn-metis-1</button>
-                            <button class="btn btn-metis-2 btn-block">btn-metis-2</button>
-                            <button class="btn btn-metis-3 btn-block">btn-metis-3</button>
-                            <button class="btn btn-metis-4 btn-block">btn-metis-4</button>
-                            <button class="btn btn-metis-5 btn-block">btn-metis-5</button>
-                            <button class="btn btn-metis-6 btn-block">btn-metis-6</button>
-                        </div>
-                        <!-- /.well well-small -->
-                        <!-- .well well-small -->
-                        <div class="well well-small dark">
-                            <span>Default</span><span class="pull-right"><small>20%</small></span>
-                        
-                            <div class="progress xs">
-                                <div class="progress-bar progress-bar-info" style="width: 20%"></div>
-                            </div>
-                            <span>Success</span><span class="pull-right"><small>40%</small></span>
-                        
-                            <div class="progress xs">
-                                <div class="progress-bar progress-bar-success" style="width: 40%"></div>
-                            </div>
-                            <span>warning</span><span class="pull-right"><small>60%</small></span>
-                        
-                            <div class="progress xs">
-                                <div class="progress-bar progress-bar-warning" style="width: 60%"></div>
-                            </div>
-                            <span>Danger</span><span class="pull-right"><small>80%</small></span>
-                        
-                            <div class="progress xs">
-                                <div class="progress-bar progress-bar-danger" style="width: 80%"></div>
-                            </div>
-                        </div>
+                
                     </div>
                     <!-- /#right -->
             </div>
             <!-- /#wrap -->
- 
-            <!-- #helpModal -->
-            <div id="helpModal" class="modal fade">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title">Modal title</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.
-                            </p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
-            <!-- /.modal -->
-            <!-- /#helpModal -->
+
            
         </body>
 	

@@ -1,6 +1,7 @@
 package com.cafe24.choiyooq1.controller;
 
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,10 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.cafe24.choiyooq1.domain.BenefitCost;
 import com.cafe24.choiyooq1.domain.Elder;
 import com.cafe24.choiyooq1.domain.Employee;
 import com.cafe24.choiyooq1.domain.Visit;
+import com.cafe24.choiyooq1.service.VisitSearchService;
 import com.cafe24.choiyooq1.service.VisitService;
 
 
@@ -25,6 +26,8 @@ public class VisitController {
 	@Autowired
 	private VisitService visitservice;
 	
+	@Autowired
+	private VisitSearchService visitSerchService;
 	//임의에 세션값 
 	private String centerCode= "3-41590-00001";
 	private String canterName ="전주스마트재가센터";
@@ -41,7 +44,7 @@ public class VisitController {
 	//수급자 총 금
 	@PostMapping("/employee/velderbenefitcost")
 	//@PostMapping(value="/elderbenefitcost", produces = "application/json")
-	public @ResponseBody Map<String, Integer> velderBenefitCost(@RequestParam(value="elder_id") String elder_id, 
+	public @ResponseBody Map<String, Object> velderBenefitCost(@RequestParam(value="elder_id") String elder_id, 
 			@RequestParam(value="maxcost") int maxcost,
 			@RequestParam(value="syear", required=false) String syear,
 			@RequestParam(value="smonth" , required=false) String smonth) {
@@ -52,11 +55,20 @@ public class VisitController {
 			smonth = Integer.toString(today.get(Calendar.MONTH) + 1);
 		}
 		
+		if(smonth.length()>0) {
+			smonth ="0"+smonth;
+		}
+		
+		List<Visit> calender = visitservice.vCalenderList(elder_id);
+		
 		Map<String, Integer>  list = visitservice.elderBenefitCost(elder_id, syear, smonth, maxcost);
 		list.put("syear", Integer.parseInt(syear));
 		list.put("smonth", Integer.parseInt(smonth));
 		
-		return list; 
+		Map<String, Object> totle =new HashMap<String, Object>();
+		totle.put("cost", list);
+		totle.put("calender", calender);
+		return totle; 
 	}
 	
 	//수급자 년, 월 별 로 수급 예상 내용 출력
@@ -80,35 +92,29 @@ public class VisitController {
 		return list;
 	}
 
+	//직원 같은날짜, 시간 중복 체크
+//	@PostMapping("/employee/emplyeeDayCheck")
+//	public String vemplyeeDayCheck(@RequestParam(value="employeeId") String employeeId, 
+//			@RequestParam(value="visitPlanDate") String visitPlanDate,
+//			@RequestParam(value="visitPlanTime") String visitPlanTime) {
+//		   
+//		visitservice.vemplyeeDayCheck(employeeId, visitPlanDate, visitPlanTime);
+//		           
+//		
+//				return visitPlanTime;
+//	}
+//	
+	
 	//일정등록 
-    @PostMapping(value="/employee/visitInsert", produces = "application/json")
-	public String visitInsert(Visit visit){
-		System.out.println(visit.toString());
-		visitservice.visitInsert(visit);
+    @PostMapping("/employee/visitInsert")
+	public @ResponseBody String visitInsert(Visit visit){
 		
-		return "/df";
+		visit.setCenterCode(centerCode);
+		visit.setCenterName(canterName);
+		
+		String str = visitservice.visitInsert(visit);
+		
+		return str;
 	}
     
-    
-    //방문일정검색(직원별)
-    @GetMapping("/employee/emplyeeCalenderSearch")
-    public String vemplyeeCalenderSearch(Model model) {
-    	
-    	List<Employee> list = visitservice.emplyeeList(centerCode);
-    	model.addAttribute("list", list);
-    	
-    	return "visit/emplyeeCalenderSearch";
-    }
-    
-    //방문일정검색(수급자별)
-    @GetMapping("/employee/elderCalenderSearch")
-    public String velderCalenderSearch(Model model) {
-    	
-    	List<Elder> list = visitservice.elderAllList(centerCode);
-    	model.addAttribute("list", list);
-    	
-    	return "visit/elderCalenderSearch";
-    }    
-   
-
 }

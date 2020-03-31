@@ -1,7 +1,7 @@
 package com.cafe24.choiyooq1.domain;
 
 public class Employee {
-	
+	private int employeeListNumber;
 	private String employeeId;
 	private String centerCode;
 	private String centerName;
@@ -19,6 +19,22 @@ public class Employee {
 	private String employeeHourlyPay;
 	private String employeeAccount;
 	private String employeeAccountHolder;
+	private String employee_photo;
+	
+	
+	
+	public String getEmployee_photo() {
+		return employee_photo;
+	}
+	public void setEmployee_photo(String employee_photo) {
+		this.employee_photo = employee_photo;
+	}
+	public int getEmployeeListNumber() {
+		return employeeListNumber;
+	}
+	public void setEmployeeListNumber(int employeeListNumber) {
+		this.employeeListNumber = employeeListNumber;
+	}
 	public String getEmployeeId() {
 		return employeeId;
 	}
@@ -123,13 +139,13 @@ public class Employee {
 	}
 	@Override
 	public String toString() {
-		return "Employee [employeeId=" + employeeId + ", centerCode=" + centerCode + ", centerName=" + centerName
-				+ ", employeeName=" + employeeName + ", employeePw=" + employeePw + ", employeeCategory="
-				+ employeeCategory + ", employeeGender=" + employeeGender + ", employeePersonalNumber="
-				+ employeePersonalNumber + ", employeePhone=" + employeePhone + ", employeeStartDate="
-				+ employeeStartDate + ", employeeWorkingStatus=" + employeeWorkingStatus + ", employeeWorkingType="
-				+ employeeWorkingType + ", employeePosition=" + employeePosition + ", employeePayType="
-				+ employeePayType + ", employeeHourlyPay=" + employeeHourlyPay + ", employeeAccount=" + employeeAccount
-				+ ", employeeAccountHolder=" + employeeAccountHolder + "]";
+		return "Employee [employeeListNumber=" + employeeListNumber + ", employeeId=" + employeeId + ", centerCode="
+				+ centerCode + ", centerName=" + centerName + ", employeeName=" + employeeName + ", employeePw="
+				+ employeePw + ", employeeCategory=" + employeeCategory + ", employeeGender=" + employeeGender
+				+ ", employeePersonalNumber=" + employeePersonalNumber + ", employeePhone=" + employeePhone
+				+ ", employeeStartDate=" + employeeStartDate + ", employeeWorkingStatus=" + employeeWorkingStatus
+				+ ", employeeWorkingType=" + employeeWorkingType + ", employeePosition=" + employeePosition
+				+ ", employeePayType=" + employeePayType + ", employeeHourlyPay=" + employeeHourlyPay
+				+ ", employeeAccount=" + employeeAccount + ", employeeAccountHolder=" + employeeAccountHolder + "]";
 	}
 }

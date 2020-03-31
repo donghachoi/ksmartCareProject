@@ -1,6 +1,5 @@
 package com.cafe24.choiyooq1.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +22,7 @@ public class VisitService {
 	private VisitMapper visitMapper;
 	
 	private int elderMaxCost =0;
+	private int subCost = 0;
 	
 	//수급자 목록 
 	public List<Elder> elderAllList(String centerCode){
@@ -35,7 +35,6 @@ public class VisitService {
 	//public List<BenefitCost> elderBenefitCost(String elder_id, String syear, String smoth){
 		
 		List<Visit> list = visitMapper.elderBenefitCost(elder_id, syear, smoth);
-		List<BenefitCost> setlist = new ArrayList<BenefitCost>();
 		int BenefitCost = 0;
 		int NonBenefitCost =0;
 	    int yoyang = 0;
@@ -50,6 +49,10 @@ public class VisitService {
 	    
 		for(int i=0; i< list.size(); i++) {
 			Visit vit= list.get(i);
+			//수정한 부분
+			if((vit.getVisitServiceCategory()).equals("요양")) {
+				vit.setVisitServiceTime((vit.getVisitServiceTime()).replaceAll("[^0-9]",""));	
+			}
 			BenefitCost bcost =  visitMapper.serviceCost(syear, vit.getVisitServiceCategory(),  
 					vit.getVisitServiceTime());
 			
@@ -58,27 +61,21 @@ public class VisitService {
 			//setlist.add(bcost);
 			
 			if(bcost.getServiceCategory().contains("요양")) {
-				getYoyang = bcost.getBenefitCost();
-				mgetYoyang = bcost.getNonBenefitCost();
+				getYoyang += bcost.getBenefitCost();
+				mgetYoyang += bcost.getNonBenefitCost();
 				yoyang +=1;
 			}else if(bcost.getServiceCategory().contains("목욕")) {
-				getbath = bcost.getBenefitCost();
-				mgetbath = bcost.getNonBenefitCost();
+				getbath += bcost.getBenefitCost();
+				mgetbath += bcost.getNonBenefitCost();
 				bath += 1;
 			}else if(bcost.getServiceCategory().contains("간호")) {
-				getnurse = bcost.getBenefitCost();
-				mgetnurse = bcost.getNonBenefitCost();
+				getnurse += bcost.getBenefitCost();
+				mgetnurse += bcost.getNonBenefitCost();
 				nurse += 1;
 			}
 		}
 
-		int subCost = maxcost - BenefitCost;
-		getYoyang = getYoyang * yoyang;
-		getbath = getbath * bath;
-		getnurse = getnurse * nurse;
-		mgetYoyang = mgetYoyang *yoyang;
-		mgetbath = mgetbath * bath;
-		mgetnurse = mgetnurse * nurse;
+		subCost = maxcost - BenefitCost;  //잔액 전역 변수 선언
 		int tolnum = yoyang+bath+nurse;
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("yoyang", yoyang);   //요양 총 횟수
@@ -107,11 +104,31 @@ public class VisitService {
 		return list;
 	}
 	
+	
+	
 	//일정 등록 
-	public List<Visit> visitInsert(Visit visit){
+	public String visitInsert(Visit visit){
+//	public List<Visit> visitInsert(Visit visit){
+		String str = null;
 		
-		visit.setVisitCode("dfsdfsdfsdf");
-		return null;
+		String ort = visit.getVisitServiceTime();
+		if((visit.getVisitServiceCategory()).equals("요양")) {
+			 visit.setVisitServiceTime((visit.getVisitServiceTime()).replaceAll("[^0-9]",""));	
+		}
+		
+		BenefitCost bcost =  visitMapper.serviceCost((visit.getMonthlyClaimGroupCode()).substring(0,4), visit.getVisitServiceCategory(),  
+				visit.getVisitServiceTime());
+		
+		visit.setVisitServiceTime(ort);
+		if(subCost- bcost.getBenefitCost()<0) {
+			str ="초과";
+		}else {
+			visitMapper.visitInsert(visit);
+			str ="정상";
+		}
+		
+		//
+		return str;
 	}
 	
 	
@@ -119,9 +136,29 @@ public class VisitService {
 	public List<Employee> emplyeeList(String centerCode) {
 		
 		List<Employee> list = visitMapper.emplyeeList(centerCode);
-		// TODO Auto-generated method stub
 		return list;
 	}
+
+	//일정 등록 후 캘린더 리스트 보여주기
+	public List<Visit> vCalenderList(String elderId){
+		List<Visit> list = visitMapper.vCalenderList(elderId);
+		return list;
+	}
+	
+//	//직원 같은날짜, 시간 중복 체크
+//	public void vemplyeeDayCheck(String employeeId, String visitPlanDate, String visitPlanTime) {
+//		//String[] visitPlanTime1 = visitPlanTime.split("~");
+//		
+//		
+//		visitMapper.emplyeeDayCheck(employeeId, visitPlanDate, visitPlanTime.replace("[^0-9]", ""));
+//		//visitMapper.emplyeeDayCheck(employeeId, visitPlanDate,visitPlanTime1[0], visitPlanTime1[1]);
+//		// TODO Auto-generated method stub
+//		
+//	}
+
+	
+	//센터별 직원 보여주기 
+
 
 
 }

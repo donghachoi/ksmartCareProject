@@ -1,7 +1,7 @@
 package com.cafe24.choiyooq1.domain;
 
 public class Elder {
-
+	
 	private String elderId;
 	private String elderName;
 	private String centerCode;
@@ -172,3 +172,4 @@ public class Elder {
 	
 	
 }
+

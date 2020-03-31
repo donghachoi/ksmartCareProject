@@ -7,13 +7,13 @@
 <th:block layout:fragment="customCss">
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css">
-    	
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	
+    
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- <script src="/vendor/js/visit.js"></script> -->
 	​<style>
 		body {background-color: #333;}
 		#left{position: relative}
+		.dataTable_filter {float:rigth;}
 	</style>
 </th:block>
 <th:block layout:fragment="customContents">
@@ -106,101 +106,26 @@
 					          </div>
 			                </div>
 			            </header>
-			            
-						<!-- tabs 시작 -->
-						<div id="tabs">
-						  <ul>
-						    <li><a href="#tabs-1">전체</a></li>
-						    <li><a href="#tabs-2">방문요양</a></li>
-						    <li><a href="#tabs-3">방문목욕</a></li>
-						    <li><a href="#tabs-4">방문간호</a></li>
-						  </ul>
-						  
-						  <div id="tabs-1">
-				            <div id="defaultTable" class="body collapse in">
-				                <table class="table responsive-table">
-				                    <thead>
-				                        <tr>
-				                            <th>날짜</th>
-				                            <th>서비스 종류</th>			                            
-				                            <th>서비스 상세</th>
-				                            <th>공단부담금</th>
-				                            <th>본인부담금</th>
-				                        </tr>
-				                    </thead>
-				                    <tbody>
-				                        <tr>                                                     
-				                        </tr>
-				                    </tbody>       
-				                </table>
-				            </div>
-						  </div>
-						  
-						  <div id="tabs-2">
-				            <div id="defaultTable" class="body collapse in">
-				                <table class="table responsive-table">
-				                    <thead>
-				                        <tr>
-				                            <th>날짜</th>
-				                            <th>서비스 종류</th>			                            
-				                            <th>서비스 상세</th>
-				                            <th>공단부담금</th>
-				                            <th>본인부담금</th>
-				                        </tr>
-				                    </thead>
-				                    <tbody>
-				                        <tr>                                                     
-				                        </tr>
-				                    </tbody>       
-				                </table>
-				            </div>
-						  </div>
-						  
-						  <div id="tabs-3">
-				            <div id="defaultTable" class="body collapse in">
-				                <table class="table responsive-table">
-				                    <thead>
-				                        <tr>
-				                            <th>날짜</th>
-				                            <th>서비스 종류</th>			                            
-				                            <th>서비스 상세</th>
-				                            <th>공단부담금</th>
-				                            <th>본인부담금</th>
-				                        </tr>
-				                    </thead>
-				                    <tbody>
-				                        <tr>                                                     
-				                        </tr>
-				                    </tbody>       
-				                </table>
-				            </div>
-						  </div>
-						  
-						  <div id="tabs-4">
-				            <div id="defaultTable" class="body collapse in">
-				                <table class="table responsive-table">
-				                    <thead>
-				                        <tr>
-				                            <th>날짜</th>
-				                            <th>서비스 종류</th>			                            
-				                            <th>서비스 상세</th>
-				                            <th>공단부담금</th>
-				                            <th>본인부담금</th>
-				                        </tr>
-				                    </thead>
-				                    <tbody>
-				                        <tr>                                                     
-				                        </tr>
-				                    </tbody>       
-				                </table>
-				            </div>
-						  </div>					  
-						</div>
-						<!-- tabs 끝 -->
-		
+			            <div id="defaultTable" class="body collapse in">
+			                <table class="table responsive-table">
+			                    <thead>
+			                        <tr>
+			                            <th>날짜</th>
+			                            <th>서비스 종류</th>			                            
+			                            <th>서비스 상세</th>
+			                            <th>공단부담금</th>
+			                            <th>본인부담금</th>
+			                        </tr>
+			                    </thead>
+			                    <tbody>
+			                        <tr>                                                     
+			                        </tr>
+			                    </tbody>       
+			                </table>
+			            </div>
 			        </div>
 			    </div>
-				<!-- 상세보기 끝 -->
+			    <!-- /상세보기 -->
 			    
 			 </div>
 			</div>
@@ -210,7 +135,7 @@
 
 <th:block layout:fragment="customPlugin">
     <script src="/assets/lib/jquery/jquery.js"></script>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
     <script src="/assets/js/jquery.dataTables.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
@@ -230,8 +155,6 @@
 
     <!-- Metis core scripts -->
     <script src="/assets/js/core.js"></script>
-    
-
     <!-- Metis demo scripts -->
 <!--     <script src="/assets/js/app.js"></script> -->
 

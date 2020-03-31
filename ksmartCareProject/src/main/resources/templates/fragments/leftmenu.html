@@ -68,11 +68,11 @@
 				<li>
 					<a href="/center/employeeInsert"> 
 						<i class="fa fa-angle-right"></i>
-						&nbsp;!직원등록 2-1
+						&nbsp;직원등록 2-1
 					</a>
 				</li>
 				<li>
-					<a href="/emplist"> 
+					<a href="/center/employeeList"> 
 						<i class="fa fa-angle-right"></i>
 						&nbsp;!직원목록 및 관리 2-2
 					</a>
@@ -85,7 +85,7 @@
 		<a href="javascript:;"> 
 			<i class="fa fa-building"></i>
 
-			<span class="link-title">!보호자관리 3 .박</span> 
+			<span class="link-title">보호자관리 3 .박</span> 
 
 			<span class="fa arrow"></span>
 		</a>
@@ -94,7 +94,7 @@
 				<a href="/center/guardianInsert"> 
 				<i class="fa fa-angle-right"></i>
 
-				<span class="link-title">&nbsp;!보호자등록 3-1</span> 
+				<span class="link-title">&nbsp;보호자등록 3-1</span> 
 
 				</a>
 			</li>
@@ -103,7 +103,7 @@
 				<a href="/center/guardianList"> 
 				<i class="fa fa-angle-right"></i>
 
-				<span class="link-title">&nbsp;!보호자목록 및 관리 3-2</span>
+				<span class="link-title">&nbsp;보호자목록 및 관리 3-2</span>
 
 				</a>
 			</li>
@@ -123,7 +123,7 @@
 				<li>
 					<a href="/employee/elderInsert"> 
 					<i class="fa fa-angle-right"></i>
-					&nbsp;!수급자등록 4-1
+					&nbsp;수급자등록 4-1
 				</a>
 				</li>
 				<li>
@@ -132,45 +132,39 @@
 					&nbsp;!수급자검색 4-2
 				</a>
 				</li>
-				<li>
-					<a href="/table"> 
-					<i class="fa fa-angle-right"></i>
-					&nbsp;!데이터 테이블 테스트용
-				</a>
-				</li>
 			</ul>
 	</li>
 		<!-- 방문일정관리 -->	
-		<li class="">
+	<li class="">
 		<a href="javascript:;"> 
 			<i class="fa fa-building"></i>
 			<span class="link-title">!방문일정관리 5 .김</span> 
 
 			<span class="fa arrow"></span>
 		</a>
-			<ul class="collapse">
+		<ul class="collapse">
 
-				<li><a th:href="@{/employee/velderList(centerCode=3-41590-00001)}">
+			<li><a th:href="@{/employee/velderList(centerCode=3-41590-00001)}">
 
-				<i class="fa fa-angle-right"></i>&nbsp;!방문일정등록(수급자) 5-1
-				</a></li>
-				
-				<li><a th:href="@{/employee/elderCalenderSearch}"> <i
-						class="fa fa-angle-right"></i>&nbsp;!방문일정검색 수급자별 5-2
-				</a></li>
-		
-				<li><a th:href="@{/employee/emplyeeCalenderSearch}"> 
-				<i class="fa fa-angle-right"></i>&nbsp;!방문일정검색 요양보호사별 5-3
-				</a></li>
-				<!--  	
-				<li><a href="#"> <i
-						class="fa fa-angle-right"></i>&nbsp;#방문일정검색 기간별 5-3
-				</a></li>	
-			    -->							
-			</ul>
-		</li>	
+			<i class="fa fa-angle-right"></i>&nbsp;!방문일정등록(수급자) 5-1
+			</a></li>
+			
+			<li><a th:href="@{/employee/elderCalenderSearch}"> <i
+					class="fa fa-angle-right"></i>&nbsp;!방문일정검색 수급자별 5-2
+			</a></li>
 	
-		      <!-- 태그 비교관리 -->
+			<li><a th:href="@{/employee/emplyeeCalenderSearch}"> 
+			<i class="fa fa-angle-right"></i>&nbsp;!방문일정검색 요양보호사별 5-3
+			</a></li>
+			<!--  	
+			<li><a href="#"> <i
+					class="fa fa-angle-right"></i>&nbsp;#방문일정검색 기간별 5-3
+			</a></li>	
+		    -->							
+		</ul>
+	</li>	
+	
+      <!-- 태그 비교관리 -->
       <li class="">
          <a href="javascript:;"> 
             <i class="fa fa-building"></i> 
@@ -182,7 +176,7 @@
                <a href="/center/tagList"> 
                   <i class="fa fa-angle-right"></i>
 
-                  &nbsp;!태그 리스트 조회 및 검색 6-1
+                  &nbsp;태그 리스트 조회 및 검색 6-1
 
 
                </a>
@@ -206,7 +200,7 @@
 			</a>
 			<ul class="collapse">
 				<li>
-					<a th:href="@{/employee/estimatedExpenses}"> 
+					<a th:href="@{/elder/estimatedExpensesList}"> 
 						<i class="fa fa-angle-right"></i>
 						&nbsp;!방문일정 대비 예상청구비용 관리 7-1
 					</a>

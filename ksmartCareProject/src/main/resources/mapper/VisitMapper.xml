@@ -9,7 +9,7 @@
 	  	<result property="elderName" column="elder_name"/>
 	  	<result property="centerCode" column="center_code"/>	  	
 	  	<result property="centerName" column="center_name"/>	  	
-	  	<result property="elderBirthname" column="elder_birthdate"/>
+	  	<result property="elderBirthDate" column="elder_birthdate"/>
 	  	<result property="elderGender" column="elder_gender"/>
 	  	<result property="elderFinalServiceApprovalLevel" column="elder_final_service_approval_level"/>
 	  	<result property="elderFinalServiceStatus" column="elder_final_service_status"/>
@@ -43,7 +43,6 @@
 	  	<result property="familyRelation" column="family_relation"/>
 	  	<result property="visitServiceCategory" column="visit_service_category"/>
 	  	<result property="monthlyClaimGroupCode" column="monthly_claim_group_code"/>
-	  	<result property="backgroundColor" column="backgroundColor"/>
 	  	<result property="description" column="description"/>
 	  	<result property="yoyangBathNonBenefit" column="yoyang_bath_non_benefit"/>  
 	  	<result property="serviceCategoryDetail" column="service_category_detail"/> 
@@ -85,7 +84,7 @@
   	<select id="elderAllList" parameterType="String" resultMap="ElderMap">
 	     SELECT e.elder_final_service_approval_level as elder_final_service_approval_level,
 	     	e.elder_id as elder_id, e.elder_name as elder_name, e.elder_disease as elder_disease, 
-	     	e.elder_final_service_status as elder_final_service_status,
+	     	e.elder_final_service_status as elder_final_service_status, e.elder_gender, e.elder_birthdate,
 	    	 b.benefit_max_cost as benefit_max_cost
 	     FROM elder AS e INNER JOIN benefit_max AS b 
 	     	ON e.elder_final_service_approval_level = b.service_level 
@@ -95,13 +94,12 @@
   
   <!-- 수급자 서비스 내용 -->
   	<select id="elderBenefitCost" parameterType="String" resultMap="VisitMap">
-		select visit_service_category, monthly_claim_group_code, visit_service_time
+		select visit_service_category, monthly_claim_group_code, visit_service_time, visit_plan_date
 		from visit WHERE elder_id=#{elder_id}
-			AND monthly_claim_group_code=CONCAT(#{syear},'-',#{smoth})
+			AND monthly_claim_group_code=CONCAT(#{syear},'-',#{smoth}) ORDER by visit_plan_date
   	</select>
   	
    <!-- 서비스 종류별 금액 -->
-   
    <select id="serviceCost" parameterType="String" resultMap="BenefitCostMap">
 	select * FROM benefit_cost WHERE benefit_cost_year = ${syear}
 	AND service_time_and_type = #{stype} AND service_category LIKE CONCAT('%', #{scategory})
@@ -114,16 +112,50 @@
   	</select>
   	
   	<!-- 직원 목록  -->
-  	
   	<select id="emplyeeList" parameterType="String" resultMap="EmployeeMap">
   	
-	SELECT  employee_id, employee_name, employee_category, employee_phone, employee_working_status 
+	SELECT  employee_id, employee_name, employee_category, employee_phone, employee_working_status, employee_gender 
 	FROM employee WHERE center_code = #{centerCode}
 		AND employee_category LIKE '%간호%' or employee_category like '%요양%'  	
   	</select>
-  	<!-- 일정 등록 -->
+  	
+  	<!-- 날짜, 시간으로 직원 검색 0-->
+  	<select id="emplyeeDayCheck" parameterType="String" resultType="int">
+  	
+  		
+  	</select>
+  	
+  	
+<!--  일정등록 -->
   	<insert id="visitInsert" parameterType="Visit">
+	     <selectKey resultType="String" keyProperty="visitCode" order="BEFORE">
+	          SELECT CONCAT('a', '_', (SELECT LPAD(COUNT(*)+1,7,'0') as visit_code FROM visit)) 
+	     </selectKey>
+       		
+		 INSERT INTO visit (visit_code, center_code, center_name, elder_id, elder_name, 
+				employee_id, employee_name, visit_plan_date, 
+				visit_plan_time, visit_service_time, family_relation, 
+				visit_service_category, monthly_claim_group_code,
+				description, yoyang_bath_nonBenefit) 
+			VALUE (#{visitCode},
+				#{centerCode}, #{centerName}, #{elderId}, #{elderName}, #{employeeId}, #{employeeName},
+				#{visitPlanDate}, #{visitPlanTime}, #{visitServiceTime}, #{familyRelation},
+				#{visitServiceCategory}, #{monthlyClaimGroupCode}, #{description}, #{yoyangBathNonBenefit})
+  	</insert>  	
   	
+<!--   	일정등록 후 캘린더에 보여주기 -->
+  	<select id="vCalenderList" parameterType="String" resultMap="VisitMap">
+	SELECT visit_code, elder_id, elder_name, employee_name, visit_plan_date, visit_plan_time, 
+		visit_service_time, visit_service_category, description
+	from visit WHERE elder_id=#{elderId}
+  	</select>  	
   	
-  	</insert>
+  	  	<!-- 센터별 직원 목록 -->
+  	<select id="centerempCategory" parameterType="String" resultMap="EmployeeMap">
+	SELECT  employee_id, employee_name, employee_category, employee_phone, employee_working_status, employee_gender 
+	FROM employee WHERE center_code = #{centerCode}
+		AND employee_category LIKE '%간호%' or employee_category like '%요양%'  	
+  	</select>
+  	
+
   </mapper>
