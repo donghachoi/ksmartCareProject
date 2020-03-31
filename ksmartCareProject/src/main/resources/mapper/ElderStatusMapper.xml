@@ -15,7 +15,60 @@
   	<result property="serviceStartDate" column="service_start_date"/>
   	<result property="serviceEndDate" column="service_end_date"/>
   </resultMap>
+  <delete id="deleteElderStatus">
+  	DELETE 
+  	FROM 
+  		elder_status 
+  	WHERE 
+  		service_status_code=#{statusCode};
+  </delete>
+  <insert id="insertElderStatus">
+  	INSERT INTO 
+		elder_status
+			(service_status_code, 
+			center_code, center_name, 
+			elder_id, 
+			elder_name, 
+			service_status, 
+			service_start_date, 
+			service_end_date)
+	VALUES 
+			(#{serviceStatusCode}, #{centerCode}, #{centerName}, #{elderId}, #{elderName}, #{serviceStatus}, #{serviceStartDate}, #{serviceEndDate});
+  </insert>
+  <select id="getOneElderStatusList" resultMap="ElderStatusMap">
+	SELECT 
+		service_status_code, elder_id, elder_name, service_status, service_start_date, service_end_date
+	FROM 
+		elder_status
+	WHERE 
+		elder_id= #{elder_id}
+	ORDER BY 
+		service_end_date DESC;
+	
+	</select>
+  <insert id="insertFirstStatus">
+  	
+  	INSERT INTO 
+		elder_status
+			(service_status_code, 
+			center_code, 
+			center_name, 
+			elder_id, 
+			elder_name, 
+			service_status, 
+			service_start_date, 
+			service_end_date)
+	VALUES 
+		(#{serviceStatusCode}, #{centerCode}, #{centerName}, #{elderId}, #{elderName}, #{serviceStatus}, NOW(), #{serviceEndDate})
+  </insert>
   
+  
+  <select id="getElderStatusMaxNum" resultType="int">
+	SELECT 
+		MAX(substring(service_status_code,14)) 
+	from 
+		elder_status
+  </select>
   
   <select id="getElderFirtsStatusDate" resultMap="ElderStatusMap">
   	SELECT 
