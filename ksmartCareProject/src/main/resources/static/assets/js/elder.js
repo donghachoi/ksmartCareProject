@@ -3,11 +3,41 @@
  * 
  */
 
+	/*[검사] 오늘 이상이면 테두리 빨강으로 바꾸기*/
+	var putRedLine = function(array){
+		var today = new Date();
+    	var dd = today.getDate();
+    	var mm = today.getMonth()+1;
+    	var mmAgo = today.getMonth();
+    	var yyyy = today.getFullYear();
+    	if(dd<10) {
+    	    dd='0'+dd
+    	}if(mm<10) {
+    	    mm='0'+mm
+    	}if(mmAgo<10) {
+    		mmAgo='0'+mmAgo
+    	}
+    	var formatToday = yyyy+"-"+mm+"-"+dd;
+    	var formatOneMonthAgo = yyyy+"-"+mmAgo+"-"+dd;
+		for(var i=0;i<array.length;i++){
+			
+			//검사 시행 날짜가 
+			if(array[i].text()<formatOneMonthAgo){
+				array[i].css('border','solid red')
+				array[i].append("</br><span>한달에 한번 시행해 주기 바랍니다.</span>")
+			}else if(array[i].text()=="시행전"){
+				array[i].css('border','solid green')
+				array[i].append("</br><span>검사일정을 잡아주세요.</span>")
+			}else if(array[i].text()>formatToday){
+				array[i].css('border','solid green')
+				array[i].append("</br><span>검사예정입니다.</span>")
+			}else{
+				array[i].css('border','')
+			}
+		}
+	}
 
-
-	/**
-	 * [공통] 삭제 메서드
-	 * */
+	/*[공통] 삭제 메서드*/
 	var deleteEvent = function(){
 		
 		$('.deleteBtn').click(function(){
@@ -31,10 +61,11 @@
 					console.log('삭제완료')
 					if(subValue=='l'){
 						levelListInModal(elderIdInLevel)
-						var levelUpdate = $('#levelUpdate');
-			   			var statusInsert = $('#statusInsert');
-			   			var levelCancel = $('#levelCancel');
-			   			changeBtn(levelUpdate,levelInsert,levelCancel);
+
+					}
+					else if(subValue=='c'){
+						statusListInModal($('#elderIdInStatus').val());
+						
 					}
 				},
 				
@@ -51,14 +82,15 @@
 	var UpdateStatus = function(){
 		
 		$('.elderStatusRow').click(function(){
+			var statusCode = $(this).find('input').val();
 			var statusSort = $(this).find('td:eq(0)').text();
 			var serviceStartDate = $(this).find('td:eq(1)').text();
 			var serviceEndDate = $(this).find('td:eq(2)').text();
 			$('#elderStatusSelect').val(statusSort);
 			elderStatusEvent(statusSort);
-			$('input[name="serviceStartDate"]').val(serviceStartDate)
-			$('input[name="serviceEndDate"]').val(serviceEndDate)
-			
+			$('input[name="serviceStartDate"]').val(serviceStartDate);
+			$('input[name="serviceEndDate"]').val(serviceEndDate);
+			$('#serviceStatusCodeInStatus').val(statusCode);
 			/* 리스트를 누르면 수정버튼으로 바뀌는 이벤트 */
 			var statusUpdate = $('#statusUpdate');
 			var statusInsert = $('#statusInsert');
@@ -70,6 +102,8 @@
 				$('#statusEndDate').val("")
 			})
 		})
+		
+
 	}	
 
 	/* [계약]모달안 에 해당 수급자 계약상태 리스트 뿌리기 */
@@ -95,7 +129,6 @@
 				var statusSort = status[i].serviceStatus
 				var serviceStartDate = status[i].serviceStartDate
 				var serviceEndDate = status[i].serviceEndDate
-				console.log(serviceStatusCode);
 				elderStatusRowHtml += '<tr class="elderStatusRow">';
 				elderStatusRowHtml += '<input type="hidden" name="serviceStatusCode" value="'+serviceStatusCode+'">';
 				elderStatusRowHtml += '<td>'+statusSort+'</td><td>'+serviceStartDate+'</td>';
@@ -115,6 +148,8 @@
 				deleteBtnEvent('.elderStatusRow','td:eq(3)');
 				/*누르면 삭제 되는 이벤트*/
 				deleteEvent();
+
+
 			}
 			,error	:	function(error){
 			console.log("error", error)
@@ -237,8 +272,27 @@
 			}
 			 $( ".date" ).datepicker({
 			  	});
-			 /* 계약 등록 */
+			/* [계약] 등록 */
 		    insertStatus();
+		    
+	    	/*[계약] 수정*/
+	    	$('#statusUpdate').click(function(){
+	    		console.log('hi')
+	    		$.ajax({
+					type 	: 	'POST',
+					url		:	'/employee/statusUpdate',
+					data	:	$("#status").serialize(),
+					traditional :true,
+					success	:	function(data){
+						statusListInModal($('#elderIdInStatus').val());
+						console.log('success')
+						
+					},
+        			error	:	function(error){
+        				console.log("error", error)
+        			}
+         		})
+	    	})
     }
 	
     
@@ -302,9 +356,14 @@
 							"<button id=\"levelDeleteBtn\" type=\"button\" style=\"display: none;\" class=\"deleteBtn btn btn-danger btn-xs\">삭제" +
 							"</button></td></tr>");						
 				}
+				
 				deleteBtnEvent('.elderLevelRow','td:eq(6)');
 				deleteEvent();
 				updateLevel();
+				var levelUpdate = $('#levelUpdate');
+	   			var statusInsert = $('#statusInsert');
+	   			var levelCancel = $('#levelCancel');
+	   			changeBtn(levelUpdate,levelInsert,levelCancel);
 			},
 			error	:	function(error){
 				console.log("error", error)
@@ -317,7 +376,6 @@
 		* 
 		* */
 	  var updateLevel = function(){
-		  console.log('이거 업데이트 이벤트 ㅠㅠㅠ');
 		  $('.elderLevelRow').click(function(){
 			  $("#levelGrade").siblings('span').remove();
 			  var levelCode = $(this).find('input[name=levelCode]').val();
@@ -351,25 +409,60 @@
 		  })
 	  }
 		
+/***********document ready **********************************************************************************************************/
       $(document).ready(function(){
-
+    	  /*[검사] 리스트*/
+    	  $('#regularCheck').click(function(){
+    		  $('#regularCheckRow').empty();
+    		  var map = {};
+    		  var elderId = $(this).parents('div').find('#elderId').text();
+    		  map.elderId = elderId;
+    		  $.ajax({
+    			  type			:	'POST',
+    			  url			:	'/employee/regularCheck',
+    			  data			:	JSON.stringify(map),
+    			  contentType	:	'application/json',
+    			  success		:	function(data){
+    				  regularCheckHtml = "";
+    				  for(var i=0;i<data.length;i++){
+    					  regularCheckHtml += "<tr class=\"regularCheckRow\">";
+    					  regularCheckHtml += "<input type=\"hidden\" name=\"elderRegularCheckCode\" value=\""+data[i].elderRegularCheckCode+"\"\/>";
+    					  regularCheckHtml += "<td>"+(i+1)+"</td>";
+    					  regularCheckHtml += "<td>"+data[i].elderRegularCheckCategory+"</td>";
+    					  regularCheckHtml += "<td>"+data[i].elderRegularCheckPlanDate+"</td>";
+    					  regularCheckHtml += "<td>"+data[i].elderRegularCheckDoingDate+"</td>";
+    					  regularCheckHtml += "<td>"+data[i].elderRegularCheckRegistrationDate+"</td>";
+    					  regularCheckHtml += "<td><button type=\"button\" style=\"display: none;\" class= \"deleteBtn btn btn-danger btn-xs\">삭제</button></tr>";
+    					  
+    					  regularCheckHtml += "</tr>";
+    				  }
+    				  $('#regularCheckRow').append(regularCheckHtml);
+    				  deleteBtnEvent('.regularCheckRow','td:eq(5)');
+    			  },
+    			  error		:	function(error){
+    				  console.log("error", error)
+    			  }
+    		  })
+    	  })
+    	  
+    	  
     	  
     	  /* 등급 및 인정기간 수정 */
     	  $('#levelUpdate').click(function(){
-    		        $.ajax({
-					type 	: 	'POST',
-					url		:	'/employee/levelUpdate',
+    		  $.ajax({
+	    			type 	: 	'POST',
+	    			url		:	'/employee/levelUpdate',
 					data	:	$("#level").serialize(),
 					traditional :true,
 					success	:	function(data){
 						alert("수정완료.")
 						levelListInModal(elderIdInLevel)
 					},
-        			error	:	function(error){
-        				console.log("error", error)
+					error	:	function(error){
+						console.log("error", error)
 						alert("수정실패.")
-        			}
-         		})
+					}
+    		  })
     	  })
     	  
     	 	/* [등급]등급 및 인정기간 입력 */
@@ -420,7 +513,7 @@
         	})
             	
     	
-	  	/* 위에 메인 리스트를 누르면 해당 수급자 상세정보 가져오기 */
+	  	/* [메인] 메인 리스트를 누르면 해당 수급자 상세정보 가져오기 */
 		$('#elderRow tr').click(function(){
 			$('#defaultTable').css('display','block');
 			var map = {};
@@ -432,7 +525,9 @@
 				data	:	JSON.stringify(map),
 				contentType	:	'application/json',
 				success	:	function(data){
-					/* 수급자 계약 상태 리스트  */
+					
+					
+					/* [계약] 리스트  */
 					var status = data.elderstatusList
 					$('#elderStatus').empty();
 					var elderStatusRowHtml = '';
@@ -450,7 +545,7 @@
 						elderStatusRowHtml += '<td><button type="button" style="display: none;" class="deleteBtn btn btn-danger btn-xs">삭제</button></td></tr>';
 					}
 					$('#elderStatus').append(elderStatusRowHtml);
-					$('#serviceStatusCodeInStatus').val(status[0].serviceStatusCode);
+					
 					$('#elderIdInStatus').val(status[0].elderId);
 					$('#elderNameInStatus').val(status[0].elderName);
 						
@@ -464,6 +559,7 @@
 					
 					/* 계약관리 리스트 누르면 아래 수정 화면으로 바뀌고 값 뿌려주기 */
 					UpdateStatus();
+
 					
 					//등급인정 모달에 리스트 뿌리기.
 					$('#elderNameInLevel').val(data.elderOenList.elderName);
@@ -538,11 +634,17 @@
 					$('#bedsoreCheckDate').text(bedsoreCheckDate);
 					$('#functionCheckDate').text(functionCheckDate);
 					$('#needsCheckDate').text(needsCheckDate);
-					
+
 					$( ".date" ).datepicker({});
 					
 					deleteEvent();
-					 
+					
+					var fallDownCheckDate = $('#fallDownCheckDate')
+					var bedsoreCheckDate = $('#bedsoreCheckDate')
+					var functionCheckDate = $('#functionCheckDate')
+					var needsCheckDate = $('#needsCheckDate')
+					var checkTd = [fallDownCheckDate,bedsoreCheckDate,functionCheckDate,needsCheckDate];
+					putRedLine(checkTd);
 					
 				},
 				error	:	function(error){

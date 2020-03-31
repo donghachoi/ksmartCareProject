@@ -26,6 +26,34 @@ public class ElderService {
 	@Autowired ElderMapper elderMapper;
 	@Autowired GuaranteeingAgencyMapper guaranteeingAgency;
 	
+	
+	/* [검사] 리스트 */
+	public List<ElderRegularCheck> getOneElderRegularList(String elderId){
+		List<ElderRegularCheck> list = elderMapper.getOneElderRegularList(elderId);
+		for(int i =0;i<list.size();i++) {
+			if(list.get(i).getElderRegularCheckPlanDate()==null || list.get(i).getElderRegularCheckRegistrationDate()==null) {
+				list.get(i).setElderRegularCheckPlanDate("");
+				list.get(i).setElderRegularCheckRegistrationDate("");
+			}
+			if(list.get(i).getElderRegularCheckDoingDate().equals("0000-00-00")) {
+				list.get(i).setElderRegularCheckDoingDate("시행전");
+			}
+		}
+		return list;
+	}
+	
+	/* [계약] 수정 */
+	public void updateStatus(ElderStatus elderStatus) {
+		
+		//만약 계약타입이 해지,사망, 타기관 일시 endDate는 null값으로 넘어오니 0000-00-00로 해둡니다.
+		String elderStatusType = elderStatus.getServiceStatus();
+		if(elderStatusType.equals("해지") || elderStatusType.equals("사망") || elderStatusType.equals("타기관")) {
+			elderStatus.setServiceEndDate("0000-00-00");
+		}
+		elderMapper.updateStatus(elderStatus);
+		
+	}
+	
 	/* 수급자 계약관리 삭제 */
 	public void deleteElderStatus(String statusCode) {
 		elderMapper.deleteElderStatus(statusCode);
@@ -37,8 +65,7 @@ public class ElderService {
 		String centerName= (String) session.getAttribute("SCENTERNAME");
 		String centerCode= (String) session.getAttribute("SCENTERCODE");
 		int maxNum = elderMapper.getElderStatusMaxNum();
-		System.out.println("elderMapper.getElderStatusMaxNum() ==>>>" + maxNum);
-		System.out.println("<<<<<====== eldertostring" + elderStatus.toString());
+		
 		if(maxNum < 9) {
 			elderStatus.setServiceStatusCode("s_current_cd_0"+(maxNum+1));
 		}else {
@@ -104,10 +131,18 @@ public class ElderService {
 				map.put("needsCheck", list.get(i));
 			}
 			
-			System.out.println(list.get(i).getElderRegularCheckDoingDate());
 		}
 		
-		map.put("elderstatusList", elderMapper.getOneElderStatusList(elderId));
+		// ServiceEndDate 시간이 0000-00-00이면 공백으로 넘깁니다.
+		List<ElderStatus> Statuslist = elderMapper.getOneElderStatusList(elderId);
+		for(int i=0;i<Statuslist.size();i++) {
+			String EndDate = Statuslist.get(i).getServiceEndDate();
+			if(EndDate.equals("0000-00-00")) {
+				Statuslist.get(i).setServiceEndDate("");
+			}
+		}
+		
+		map.put("elderstatusList", Statuslist);
 		map.put("elderOenList", elderMapper.getOneElderList(elderId));
 		map.put("elderLastLevel", elderMapper.getElderLastLevelHistory(elderId));
 		map.put("elderLastStatus", elderMapper.getElderLastStatus(elderId));

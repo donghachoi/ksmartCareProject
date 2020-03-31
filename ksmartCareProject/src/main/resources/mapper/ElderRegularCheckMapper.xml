@@ -17,6 +17,19 @@
   	<result property="elderRegularCheckDoingDate" column="elder_regular_check_doing_date"/>
   	<result property="elderRegularCheckRegistrationDate" column="elder_regular_check_registration_date"/>
   </resultMap>
+  <select id="getOneElderRegularList" resultMap="ElderRegularCheck">
+ 	SELECT 
+ 		elder_regular_check_code,
+		elder_regular_check_category, 
+		elder_regular_check_plan_date, 
+		elder_regular_check_doing_date, 
+		elder_regular_check_registration_date
+	FROM 
+		elder_regular_check
+	WHERE 
+		elder_id = #{elderId};
+  </select>
+
   
 	<insert id="insertRegularCheck">
   	INSERT INTO 

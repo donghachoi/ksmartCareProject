@@ -12,6 +12,12 @@ import com.cafe24.choiyooq1.domain.ElderStatus;
 @Mapper
 public interface ElderMapper {
 	
+	/* 수급자 검사 리스트 */
+	public List<ElderRegularCheck> getOneElderRegularList(String elderId);
+	
+	/* 수급자 계약 수정 */
+	public void updateStatus(ElderStatus elderStatus);
+	
 	/* 수급자 계약 삭제 */
 	public void deleteElderStatus(String statusCode);
 	
