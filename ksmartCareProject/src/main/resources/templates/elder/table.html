@@ -80,6 +80,7 @@
 														<th>비고</th>
 													</tr>
 												</thead>
+												<div style="overflow:auto; height:150px;">
 												<tbody>
 													<tr th:each="b : ${benefitcost}" role="row" class="odd">
 														<td th:text="${b.serviceCategory}" class="sorting_1"></td>
@@ -90,6 +91,7 @@
 													    <td></td>
 													</tr>
 											</tbody>
+												</div>
 										</table>
 									</div>
 								</div>
@@ -130,12 +132,7 @@
 		    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
 		    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
     <script>
-      $(function() {
-         $('#dataTable').DataTable({
-            
-         });
-         
-      });
+
    </script>
 </th:block>
 </html>

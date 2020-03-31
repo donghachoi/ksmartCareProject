@@ -19,25 +19,89 @@
   	<result property="elderServiceApprovalEndDate" column="elder_service_approval_end_date"/>
   	<result property="elderServiceApprovalNumber" column="elder_service_approval_number"/>
   </resultMap>
+  <delete id="deleteElderLevel">
+  DELETE FROM 
+  	elder_level_history 
+  WHERE 
+  	elder_level_history_code=#{elderLevelHistoryCode};
+  </delete>
   
-  <select id="getElderLastLevelHistory" resultMap="ElderLevelHistoryMap">
-  	SELECT 
-		elder_level_history_code, 
-		elder_id, 
-		elder_name, 
-		center_code, 
-		center_name, 
-		elder_service_approval_level, 
-		elder_service_approval_category, 
-		elder_service_approval_category2, 
-		elder_sercvice_apply_date, 
-		elder_service_approval_start_date, 
-		elder_service_approval_number,
-		MAX(elder_service_approval_end_date) AS elder_service_approval_end_date
+  <update id="updateElderLevel">
+  	UPDATE 
+  		elder_level_history
+	SET
+		elder_service_approval_level=#{elderServiceApprovalLevel},
+		elder_service_approval_category=#{elderServiceApprovalCategory},
+		elder_service_approval_category2=#{elderServiceApprovalCategory2},
+		elder_sercvice_apply_date=NOW(),
+		elder_service_approval_start_date=#{elderServiceApprovalStartDate},
+		elder_service_approval_end_date=#{elderServiceApprovalEndDate},
+		elder_service_approval_number=#{elderServiceApprovalNumber}
+	WHERE 
+		elder_level_history_code = #{elderLevelHistoryCode};
+  </update>
+  
+  <insert id="insertElderLevel">
+	INSERT INTO 
+	elder_level_history
+	(elder_level_history_code, 
+	elder_id,
+	elder_name,
+	center_code, 
+	center_name, elder_service_approval_level,	elder_service_approval_category, 
+	elder_service_approval_category2, 
+	elder_sercvice_apply_date, 
+	elder_service_approval_start_date, 
+	elder_service_approval_end_date, 
+	elder_service_approval_number)
+	VALUES (#{elderLevelHistoryCode}, #{elderId}, #{elderName}, #{centerCode}, #{centerName}, 
+	#{elderServiceApprovalLevel}, #{elderServiceApprovalCategory}, #{elderServiceApprovalCategory2}, #{elderSercviceApplyDate}, #{elderServiceApprovalStartDate}, #{elderServiceApprovalEndDate}, #{elderServiceApprovalNumber})  
+  </insert>
+	<select id="getOneElderLevelHistoryList" resultMap="ElderLevelHistoryMap">
+	SELECT
+		elder_level_history_code, elder_id, elder_name, center_code, center_name, elder_service_approval_level, elder_service_approval_category, elder_service_approval_category2, elder_sercvice_apply_date, elder_service_approval_start_date, elder_service_approval_end_date, elder_service_approval_number
 	FROM 
 		elder_level_history
 	WHERE 
-		elder_id=#{elderId};
+		elder_id = #{elderId}
+	ORDER BY 
+		elder_level_history_code DESC;
+	</select>
+  <insert id="insertFirstLevel">
+	INSERT INTO 
+	elder_level_history
+	(elder_level_history_code, 
+	elder_id,
+	elder_name,
+	center_code, 
+	center_name, elder_service_approval_level,	elder_service_approval_category, 
+	elder_service_approval_category2, 
+	elder_sercvice_apply_date, 
+	elder_service_approval_start_date, 
+	elder_service_approval_end_date, 
+	elder_service_approval_number)
+	VALUES (#{elderLevelHistoryCode}, #{elderId}, #{elderName}, #{centerCode}, #{centerName}, 
+	#{elderServiceApprovalLevel}, #{elderServiceApprovalCategory}, #{elderServiceApprovalCategory2}, #{elderSercviceApplyDate}, #{elderServiceApprovalStartDate}, #{elderServiceApprovalEndDate}, #{elderServiceApprovalNumber})  
+  </insert>
+  <select id="getElderLevelMaxNum" resultType="int">
+	SELECT 
+		MAX(substring(elder_level_history_code,17)) 
+	from 
+		elder_level_history
+  </select>
   
+  <select id="getElderLastLevelHistory" resultMap="ElderLevelHistoryMap">
+SELECT 
+	*
+FROM 
+	elder_level_history
+WHERE elder_service_approval_end_date = 
+		(select 
+			MAX(elder_service_approval_end_date)
+		FROM 
+			elder_level_history
+		WHERE 
+			elder_id = #{elderId})
+AND elder_id = #{elderId};
   </select>
   </mapper>
