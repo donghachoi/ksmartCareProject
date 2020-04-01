@@ -29,7 +29,7 @@
 				array[i].css('border','solid green')
 				array[i].append("</br><span>검사일정을 잡아주세요.</span>")
 			}else if(array[i].text()>formatToday){
-				array[i].css('border','solid green')
+				array[i].css('border','solid blue')
 				array[i].append("</br><span>검사예정입니다.</span>")
 			}else{
 				array[i].css('border','')
@@ -312,17 +312,17 @@
     
 	  /* [공통]유효성 검사 함수 */
 	  var checkEmpty = function(id){
-			$(id).siblings('span').remove();
-		if($(id).val()==null || $(id).val()==""){
-			$(id).focus();
-			$(id).parent().append("<span style=\"color :red;\">입력해주세요.</span>");
-			
-			return false;
-		}else{
-			
-			return true;
+		  $(id).siblings('span').remove();
+			if($(id).val()==null || $(id).val()==""){
+				$(id).focus();
+				$(id).parent().append("<span style=\"color :red;\">입력해주세요.</span>");
+				
+				return false;
+			}else{
+				
+				return true;
+			}
 		}
-	}
 	  
 	  /* [등급]수급자 레벨 리스트 뿌리는 함수  */
 	  var levelListInModal = function(id){
@@ -409,8 +409,60 @@
 		  })
 	  }
 		
-/***********document ready **********************************************************************************************************/
+/***********document ready *************************************************************************************************************************************************/
       $(document).ready(function(){
+    	  
+    	  /*[검사 등록]*/
+    	  $('#insertRegularCheck').click(function(){
+    		  var kindOfValue = ['낙상위험','욕창위험측정','인지기능검사','욕구사정'];
+    		  var elderName = $('input[name=elderName]').val();
+    		  var elderId = $('input[name=elderId]').val();
+    		  for(var i=0;i<kindOfValue.length;i++){
+    			  formData = $('#regularCheck').serializeArray();
+    			  var elderRegularCheckDoingDate = $('#elderRegularCheckDoingDate')
+    			  var elderRegularCheckPlanDate = $('#elderRegularCheckPlanDate')
+    			  var $chk = $('#elderRegularCheckCategory'+i+''); 
+    			  if($chk.is(':checked')){
+    				  formData.push({
+    					  name : "elderName", 
+    					  value : elderName
+    				  });
+    				  formData.push({
+    					  name : "elderId", 
+    					  value : elderId
+    				  });
+    				  formData.push({
+    					  name : $chk.attr('name'), 
+    					  value : kindOfValue[i]
+    				  }); 
+    				  formData.push({
+    					  name : "elderRegularCheckPlanDate",
+    					  value : elderRegularCheckPlanDate.val()
+    				  })
+    				  formData.push({
+    					  name : "elderRegularCheckDoingDate",
+    					  value : elderRegularCheckDoingDate.val()
+    				  });
+    				  $.ajax({
+    					  type 	: 	'POST',
+    					  url	:	'/employee/insertRegularCheck',
+    					  data	:	formData,
+    					  traditional :true,
+    					  success	:	function(data){
+    						  console.log('success')
+    					  },
+    					  error	:	function(error){
+    						  console.log("error", error)
+    					  }
+    				  })
+    			  }
+    		  }
+    	  })
+    	  	
+    	  
+    	  
+    	  
+    	  
     	  /*[검사] 리스트*/
     	  $('#regularCheck').click(function(){
     		  $('#regularCheckRow').empty();
@@ -427,6 +479,8 @@
     				  for(var i=0;i<data.length;i++){
     					  regularCheckHtml += "<tr class=\"regularCheckRow\">";
     					  regularCheckHtml += "<input type=\"hidden\" name=\"elderRegularCheckCode\" value=\""+data[i].elderRegularCheckCode+"\"\/>";
+    					  regularCheckHtml += "<input type=\"hidden\" name=\"elderId\" value=\""+data[i].elderId+"\"\/>";
+    					  regularCheckHtml += "<input type=\"hidden\" name=\"elderName\" value=\""+data[i].elderName+"\"\/>";
     					  regularCheckHtml += "<td>"+(i+1)+"</td>";
     					  regularCheckHtml += "<td>"+data[i].elderRegularCheckCategory+"</td>";
     					  regularCheckHtml += "<td>"+data[i].elderRegularCheckPlanDate+"</td>";
@@ -437,6 +491,8 @@
     					  regularCheckHtml += "</tr>";
     				  }
     				  $('#regularCheckRow').append(regularCheckHtml);
+    				  
+    				  
     				  deleteBtnEvent('.regularCheckRow','td:eq(5)');
     			  },
     			  error		:	function(error){

@@ -434,22 +434,24 @@
 					<h3>검사 등록 및 수정</h3>
 					<div class="row" >
 						<div class="col-sm-12" >
-							<div class="form-group">
-								<h4>검사 선택</h4>
-								<label style="margin-right:10px;"><input type="checkbox" value="낙상위험">낙상위험측정</label>
-								<label style="margin-right:10px;"><input type="checkbox" value="욕창위험측정">욕창위험측정</label>
-								<label style="margin-right:10px;"><input type="checkbox" value="인지기능검사">인지기능검사</label>
-								<label style="margin-right:10px;"><input type="checkbox" value="욕구사정">욕구사정</label></br>
-								<h4>날짜 선택</h4>
-								<label>날짜<input class="date"></label>
-								<button type="button" class="btn btn-metis-5 btn-xs" style="text-align: right; margin-left: 10px;">등록하기/수정하기</button>
-							</div>	
+							<form id="regularCheck">
+								<div class="form-group">
+									<h4>검사 선택</h4>
+									<label style="margin-right:10px;"><input name="elderRegularCheckCategory" id="elderRegularCheckCategory0" type="checkbox" value="낙상위험">낙상위험측정</label>
+									<label style="margin-right:10px;"><input name="elderRegularCheckCategory" id="elderRegularCheckCategory1" type="checkbox" value="욕창위험측정">욕창위험측정</label>
+									<label style="margin-right:10px;"><input name="elderRegularCheckCategory" id="elderRegularCheckCategory2" type="checkbox" value="인지기능검사">인지기능검사</label>
+									<label style="margin-right:10px;"><input name="elderRegularCheckCategory" id="elderRegularCheckCategory3" type="checkbox" value="욕구사정">욕구사정</label></br>
+									<h4>날짜 선택</h4>
+									<label>계획 날짜<input name="elderRegularCheckPlanDate" id="elderRegularCheckPlanDate" class="date"></label>
+									<label>시행 날짜<input name="elderRegularCheckDoingDate" id="elderRegularCheckDoingDate" class="date"></label>
+									<button id="insertRegularCheck" type="button" class="btn btn-metis-5 btn-xs" style="text-align: right; margin-left: 10px;">등록하기/수정하기</button>
+								</div>
+							</form>
 						</div>
 					</div>
 			      </div>
 			      <div class="modal-footer">
 		        	<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-			        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
 			      </div>
 			    </div>
 			  </div>

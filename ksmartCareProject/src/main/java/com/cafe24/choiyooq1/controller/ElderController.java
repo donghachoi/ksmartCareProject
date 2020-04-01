@@ -26,6 +26,14 @@ public class ElderController {
 	@Autowired BenefitService benefitService;
 	@Autowired ElderService elderService; 
 	
+	
+	/* [검사] 등록 */
+	@PostMapping("/employee/insertRegularCheck")
+	public @ResponseBody void insertRegularCheck(ElderRegularCheck elderRegularCheck
+												,HttpSession session) {
+		elderService.insertRegularCheck(elderRegularCheck, session);
+	}
+	
 	/* [검사] 리스트 */
 	@PostMapping("/employee/regularCheck")
 	public @ResponseBody List<ElderRegularCheck> regularCheckList(@RequestBody Map<String,Object> map){
@@ -47,7 +55,6 @@ public class ElderController {
 		System.out.println("계약관리 삭제!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		String code = (String) map.get("code");
 		elderService.deleteElderStatus(code);
-		
 	}
 	
 	

@@ -70,8 +70,6 @@ public class MainController {
 			 session.setAttribute("SCENTERCODE", center.getCenterCode());
 			 session.setAttribute("SCENTERNAME", center.getCenterName());
 			 session.setAttribute("SMANAGERNAME", center.getCenterManagerName());
-			 System.out.println(session.getAttribute("SID"));
-			 System.out.println(session.getAttribute("SCENTERCODE"));
 			 return "index1"; 
 
 		 }else {
