@@ -23,7 +23,7 @@ $(document).ready(function(){
 					week : "주별",
 					day : "일별",
 				},
-				lang: "ko",
+				locale: "ko",
 				
 				//locale: "ko",
 				//editable: false,
@@ -86,6 +86,8 @@ $(document).ready(function(){
 				 },
 				eventClick:  function (events, jsEvent, view) {
 				    editEvent(events);
+					calendar.fullCalendar('updateEvent', events);         
+					calendar.fullCalendar('removeEvents');
 				}		    
 			});
 		}else{	
@@ -109,7 +111,7 @@ $(document).ready(function(){
     
     
 	$("#visitPlanDate").datetimepicker({
-	     format: 'YYYY-MM-DD'     
+	     format: 'YYYY-MM-DD',
 	});
 
 
@@ -183,9 +185,10 @@ $(document).ready(function(){
 							borderColor: bcolor,
 							description:  data.calender[i].description,
 							visitCode : data.calender[i].visitCode,
-							textColor: '#fff'
-						});	
-						
+							textColor: '#fff',
+							empList : data.empList,
+							serviceTime : data.calender[i].visitServiceTime
+						});		
 					}				    
 					//켈린더 함수 호출
 					fullCalendarReload(events, firstEvent);

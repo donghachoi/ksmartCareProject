@@ -127,7 +127,7 @@
   	</select>
   	
   	
-<!--  일정등록 -->
+	<!--  일정등록 -->
   	<insert id="visitInsert" parameterType="Visit">
 	     <selectKey resultType="String" keyProperty="visitCode" order="BEFORE">
 	          SELECT CONCAT('a', '_', (SELECT LPAD(COUNT(*)+1,7,'0') as visit_code FROM visit)) 
@@ -144,7 +144,7 @@
 				#{visitServiceCategory}, #{monthlyClaimGroupCode}, #{backgroundColor}, #{description}, #{yoyangBathNonBenefit})
   	</insert>  	
   	
-<!--   	일정등록 후 캘린더에 보여주기 -->
+	<!--  일정등록 후 캘린더에 보여주기 -->
   	<select id="vCalenderList" parameterType="String" resultMap="VisitMap">
 	SELECT elder_id, elder_name, employee_name, visit_plan_date, visit_plan_time, 
 		visit_service_time, visit_service_category, background_color
@@ -152,5 +152,9 @@
 		AND monthly_claim_group_code=#{monthGroup}
   	</select>  	
   	
+	<!--   일정 삭제 -->
+	<delete id="visitDelete" parameterType="String">
+		DELETE FROM visit WHERE visit_code =#{visitCode}
+	</delete>
 
   </mapper>

@@ -101,8 +101,8 @@
   	
    <!-- 서비스 종류별 금액 -->
    <select id="serviceCost" parameterType="String" resultMap="BenefitCostMap">
-	select * FROM benefit_cost WHERE benefit_cost_year = ${syear}
-	AND service_time_and_type = #{stype} AND service_category LIKE CONCAT('%', #{scategory})
+		select * FROM benefit_cost WHERE benefit_cost_year = ${syear}
+		AND service_time_and_type = #{stype} AND service_category LIKE CONCAT('%', #{scategory})
    </select>
 
    <!-- 직업별 직원  -->
@@ -114,22 +114,24 @@
   	<!-- 직원 목록  -->
   	<select id="emplyeeList" parameterType="String" resultMap="EmployeeMap">
   	
-	SELECT  employee_id, employee_name, employee_category, employee_phone, employee_working_status, employee_gender 
-	FROM employee WHERE center_code = #{centerCode}
-		AND employee_category LIKE '%간호%' or employee_category like '%요양%'  	
+		SELECT  employee_id, employee_name, employee_category, employee_phone, employee_working_status, employee_gender 
+		FROM employee WHERE center_code = #{centerCode}
+			AND employee_category LIKE '%간호%' or employee_category like '%요양%'  	
   	</select>
   	
   	<!-- 날짜, 시간으로 직원 검색 0-->
   	<select id="emplyeeDayCheck" parameterType="String" resultType="int">
-  	
-  		
+		SELECT COUNT(*) FROM visit WHERE 
+			<![CDATA[ convert(REPLACE(SUBSTRING_INDEX(visit_plan_time, '~', 1),':',''), SIGNED INTEGER)  > #{strattime} ]]>
+			<![CDATA[ AND convert(REPLACE(SUBSTRING_INDEX(visit_plan_time, '~', -1),':',''), SIGNED INTEGER)  < #{lasttime} ]]>
+		AND employee_id = #{emplyeeId} AND visit_plan_date = #{date}
   	</select>
   	
   	
 <!--  일정등록 -->
   	<insert id="visitInsert" parameterType="Visit">
 	     <selectKey resultType="String" keyProperty="visitCode" order="BEFORE">
-	          SELECT CONCAT('a', '_', (SELECT LPAD(COUNT(*)+1,7,'0') as visit_code FROM visit)) 
+			SELECT CONCAT('a', '_', (select LPAD(MAX(CONVERT(REPLACE(visit_code, 'a_00000', ''), SIGNED INTEGER))+1 ,7 ,'0') as visit_code FROM visit))
 	     </selectKey>
        		
 		 INSERT INTO visit (visit_code, center_code, center_name, elder_id, elder_name, 
@@ -143,19 +145,29 @@
 				#{visitServiceCategory}, #{monthlyClaimGroupCode}, #{description}, #{yoyangBathNonBenefit})
   	</insert>  	
   	
-<!--   	일정등록 후 캘린더에 보여주기 -->
+	<!-- 	일정등록 후 캘린더에 보여주기 -->
   	<select id="vCalenderList" parameterType="String" resultMap="VisitMap">
-	SELECT visit_code, elder_id, elder_name, employee_name, visit_plan_date, visit_plan_time, 
-		visit_service_time, visit_service_category, description
-	from visit WHERE elder_id=#{elderId}
+		SELECT visit_code, elder_id, elder_name, employee_name, visit_plan_date, visit_plan_time, 
+			visit_service_time, visit_service_category, description
+		from visit WHERE elder_id=#{elderId}
   	</select>  	
   	
-  	  	<!-- 센터별 직원 목록 -->
+  	 <!-- 센터별 직원 목록 -->
   	<select id="centerempCategory" parameterType="String" resultMap="EmployeeMap">
-	SELECT  employee_id, employee_name, employee_category, employee_phone, employee_working_status, employee_gender 
-	FROM employee WHERE center_code = #{centerCode}
-		AND employee_category LIKE '%간호%' or employee_category like '%요양%'  	
+		SELECT  employee_id, employee_name, employee_category, employee_phone, employee_working_status, employee_gender 
+		FROM employee WHERE center_code = #{centerCode}
+			AND employee_category LIKE '%간호%' or employee_category like '%요양%'  	
   	</select>
   	
-
+	<!--   일정 업데이트 -->
+	<update id="visitUpdate" parameterType="Visit">
+		UPDATE visit SET employee_id= #{employeeId}, employee_name=#{employeeName}, visit_plan_date=#{visitPlanDate}, visit_plan_time=#{visitPlanTime}, visit_service_time=#{visitServiceTime}, visit_service_category=#{visitServiceCategory}, 
+			monthly_claim_group_code=#{monthlyClaimGroupCode}, description=#{description}, yoyang_bath_nonBenefit=#{yoyangBathNonBenefit} 
+		 where visit_code=#{visitCode} 
+	</update>
+	
+	<!--   일정 삭제 -->
+	<delete id="visitDelete" parameterType="String">
+		DELETE FROM visit WHERE visit_code =#{visitCode}
+	</delete>	
   </mapper>

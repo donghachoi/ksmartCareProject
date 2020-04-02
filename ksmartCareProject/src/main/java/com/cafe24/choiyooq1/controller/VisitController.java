@@ -26,8 +26,6 @@ public class VisitController {
 	@Autowired
 	private VisitService visitservice;
 	
-	@Autowired
-	private VisitSearchService visitSerchService;
 	//임의에 세션값 
 	private String centerCode= "3-41590-00001";
 	private String canterName ="전주스마트재가센터";
@@ -59,8 +57,8 @@ public class VisitController {
 			smonth ="0"+smonth;
 		}
 		
-		List<Visit> calender = visitservice.vCalenderList(elder_id);
-		
+		List<Visit> calender = visitservice.vCalenderList(elder_id); 
+		List<Employee> empList = visitservice.emplyeeList(centerCode);  //센터별 직원 목록 가져옴
 		Map<String, Integer>  list = visitservice.elderBenefitCost(elder_id, syear, smonth, maxcost);
 		list.put("syear", Integer.parseInt(syear));
 		list.put("smonth", Integer.parseInt(smonth));
@@ -68,6 +66,7 @@ public class VisitController {
 		Map<String, Object> totle =new HashMap<String, Object>();
 		totle.put("cost", list);
 		totle.put("calender", calender);
+		totle.put("empList", empList);
 		return totle; 
 	}
 	
@@ -92,18 +91,17 @@ public class VisitController {
 		return list;
 	}
 
+	
 	//직원 같은날짜, 시간 중복 체크
-//	@PostMapping("/employee/emplyeeDayCheck")
-//	public String vemplyeeDayCheck(@RequestParam(value="employeeId") String employeeId, 
-//			@RequestParam(value="visitPlanDate") String visitPlanDate,
-//			@RequestParam(value="visitPlanTime") String visitPlanTime) {
-//		   
-//		visitservice.vemplyeeDayCheck(employeeId, visitPlanDate, visitPlanTime);
-//		           
-//		
-//				return visitPlanTime;
-//	}
-//	
+	@PostMapping("/employee/emplyeeDayCheck")
+	public @ResponseBody int vemplyeeDayCheck(@RequestParam(value="employeeId") String employeeId, 
+			@RequestParam(value="visitPlanDate") String visitPlanDate,
+			@RequestParam(value="visitPlanTime") String visitPlanTime) {
+		   
+		int result = visitservice.vemplyeeDayCheck(employeeId, visitPlanDate, visitPlanTime);
+		           
+		return result;
+	}
 	
 	//일정등록 
     @PostMapping("/employee/visitInsert")
@@ -117,4 +115,18 @@ public class VisitController {
 		return str;
 	}
     
+    //일정 업데이트 
+    @PostMapping("/employee/visitUpdate")
+    public @ResponseBody int visitUpdate(Visit visit) {
+    	System.out.println("dfdfsdfsdfsdf"+ visit);
+    	int result = visitservice.visitUpdate(visit);
+		return result;
+    }
+    
+    //일정 삭제
+    @GetMapping("/employee/visitDelete")
+    public @ResponseBody int visitDelete(String visitCode) {
+    	int result = visitservice.visitDelete(visitCode);
+		return result;
+    }
 }

@@ -21,7 +21,6 @@ public class VisitService {
 	@Autowired
 	private VisitMapper visitMapper;
 	
-	private int elderMaxCost =0;
 	private int subCost = 0;
 	
 	//수급자 목록 
@@ -105,7 +104,6 @@ public class VisitService {
 	}
 	
 	
-	
 	//일정 등록 
 	public String visitInsert(Visit visit){
 //	public List<Visit> visitInsert(Visit visit){
@@ -120,14 +118,13 @@ public class VisitService {
 				visit.getVisitServiceTime());
 		
 		visit.setVisitServiceTime(ort);
-		if(subCost- bcost.getBenefitCost()<0) {
+		if(subCost- bcost.getBenefitCost() <0) {
 			str ="초과";
 		}else {
 			visitMapper.visitInsert(visit);
 			str ="정상";
 		}
 		
-		//
 		return str;
 	}
 	
@@ -145,20 +142,24 @@ public class VisitService {
 		return list;
 	}
 	
-//	//직원 같은날짜, 시간 중복 체크
-//	public void vemplyeeDayCheck(String employeeId, String visitPlanDate, String visitPlanTime) {
-//		//String[] visitPlanTime1 = visitPlanTime.split("~");
-//		
-//		
-//		visitMapper.emplyeeDayCheck(employeeId, visitPlanDate, visitPlanTime.replace("[^0-9]", ""));
-//		//visitMapper.emplyeeDayCheck(employeeId, visitPlanDate,visitPlanTime1[0], visitPlanTime1[1]);
-//		// TODO Auto-generated method stub
-//		
-//	}
-
+	//직원 같은날짜, 시간 중복 체크
+	public int vemplyeeDayCheck(String employeeId, String visitPlanDate, String visitPlanTime) {
+		String[] str = visitPlanTime.split("~");
+		str[0] = str[0].replace(":", "");
+		str[1] = str[1].replace(":", "");
+		
+		return visitMapper.emplyeeDayCheck(employeeId, visitPlanDate, str[0], str[1]);	
+	}
 	
-	//센터별 직원 보여주기 
+	//일정 업데이트 
+	public int visitUpdate(Visit visit) {
+		int result = visitMapper.visitUpdate(visit);
+		return result;
+	}
 
-
-
+	//일정 삭제
+	public int visitDelete(String visitCode) {
+		int result = visitMapper.visitDelete(visitCode);
+		return result;
+	}
 }

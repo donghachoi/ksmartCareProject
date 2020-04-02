@@ -36,9 +36,15 @@ public interface VisitMapper {
 	public List<Employee> emplyeeList(String centerCode);
 
 	//직원 같은날짜, 시간 중복 체크
-	public Visit emplyeeDayCheck(String emplyeeId, String date, String strattime);
+	public int emplyeeDayCheck(String emplyeeId, String date, String strattime, String lasttime);
 	
 	//센터별로 직원 가져오기
 	public List<Employee> centerempCategory(String center);
+	
+	//일정등록 업데이트
+	public int visitUpdate(Visit visit);
+
+	//일정 삭제
+	public int visitDelete(String visitCode);
 	
 }
