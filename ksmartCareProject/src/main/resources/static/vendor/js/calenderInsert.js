@@ -1,5 +1,6 @@
 $(document).ready(function(){
-	
+	var firstEvent = true;
+
 	var fullCalendarReload = function(events, isFirstEvent){
 		
 		//달력 출력 부분
@@ -69,7 +70,7 @@ $(document).ready(function(){
 				    $("#close").click(function(){
 				        $("#myModal").modal("hide");
 				      });
-
+                      return false;
 				    
 /*				    $('body').on('click', function () {
 				        //$contextMenu.removeClass("contextOpened");
@@ -86,8 +87,8 @@ $(document).ready(function(){
 				 },
 				eventClick:  function (events, jsEvent, view) {
 				    editEvent(events);
-					calendar.fullCalendar('updateEvent', events);         
-					calendar.fullCalendar('removeEvents');
+			        $("#calendar").fullCalendar('updateEvent', events);
+					return false;	
 				}		    
 			});
 		}else{	
@@ -198,7 +199,6 @@ $(document).ready(function(){
 				error : function(error){
 					console.log("error", error);
 				}
-
 		});
 	});
 	

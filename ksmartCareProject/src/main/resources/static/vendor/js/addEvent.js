@@ -201,9 +201,10 @@ var newEvent = function (start, end, eventType) {
 		            	alert("한도 초과 되었습니다. 비급여를 선택해 주세요");
 		            	return false;
 		            }else{
-/*		            	//DB연동시 중복이벤트 방지를 위한
+		            	//DB연동시 중복이벤트 방지를 위한
 		    			calendar.fullCalendar('removeEvents');
-		    			calendar.fullCalendar('rerenderEvents');*/
+		    			calendar.fullCalendar('addEventSource', eventData);         
+		    			calendar.fullCalendar('rerenderEvents');
 		            }
 	            },
 	        });

@@ -33,6 +33,7 @@ var editEvent = function (event, element, view) {
     console.log("dfdfdfdf"+event.serviceTime);
     $('#visitCode').val(visitCode);
     
+    $('#serviceCategoryDetail').val('');
     //직원 목록
     for(var i=0; i< event.empList.length; i++){
     	if(event.employeeNam == event.empList[i].employeeId){
@@ -163,7 +164,7 @@ var editEvent = function (event, element, view) {
 
     //업데이트 버튼 클릭시
     $('#updateEvent').unbind();
-    $('#updateEvent').on('click', function () {
+    $(document).on('click', '#updateEvent', function () {
 
         var statusAllDay;
         var startDate;
@@ -207,6 +208,9 @@ var editEvent = function (event, element, view) {
             		alert('수정되지 않았습니다');
             		return false;
             	}
+            	
+            	   $("#demo-calendar").fullCalendar('removeEvents'); 
+            	   $("#demo-calendar").fullCalendar('addEventSource', eventData); 
 //    			calendar.fullCalendar('removeEvents');
 //    			calendar.fullCalendar('rerenderEvents');
             },
