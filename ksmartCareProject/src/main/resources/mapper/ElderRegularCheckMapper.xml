@@ -29,6 +29,9 @@
 		(#{elderRegularCheckCode},
 		#{centerCode}, #{centerName}, #{elderId}, #{elderName}, #{employeeId}, #{employeeName}, #{elderRegularCheckCategory}, 
 		#{elderRegularCheckPlanDate}, #{elderRegularCheckDoingDate}, NOW())
+	  <selectKey keyProperty="elderRegularCheckCode" resultType="int" order="AFTER">
+		SELECT LAST_INSERT_ID()
+	  </selectKey>
   </insert>
   
   <select id="getOneElderRegularList" resultMap="ElderRegularCheck">
@@ -66,6 +69,8 @@
 	#{centerCode}, #{centerName}, #{elderId}, #{elderName}, #{employeeId}, #{employeeName}, #{elderRegularCheckCategory}, 
 	#{elderRegularCheckPlanDate}, #{elderRegularCheckDoingDate}, #{elderRegularCheckRegistrationDate})
 	</insert>
+	
+	
   <select id="getMaxNum" resultType="int">
 	SELECT 
 		MAX(substring(elder_regular_check_code,7)) 

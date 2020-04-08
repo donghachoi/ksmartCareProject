@@ -31,6 +31,7 @@ public class ElderController {
 	@PostMapping("/employee/insertRegularCheck")
 	public @ResponseBody void insertRegularCheck(ElderRegularCheck elderRegularCheck
 												,HttpSession session) {
+		System.out.println(elderRegularCheck.toString());
 		elderService.insertRegularCheck(elderRegularCheck, session);
 	}
 	

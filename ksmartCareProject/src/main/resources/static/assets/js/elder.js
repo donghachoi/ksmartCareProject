@@ -412,16 +412,27 @@
 /***********document ready *************************************************************************************************************************************************/
       $(document).ready(function(){
     	  
+    	  
+    	  /*[검사] 수정을 위해 아래 화면에 뿌리기*/
+    	  $('#regularCheckRow').click(function(){
+    		  
+    		  $('input[name=elderId]').val($(this).find('input[name=elderId]').val())
+    		  $('input[name=elderName]').val($(this).find('input[name=elderName]').val())
+    		  console.log($('input:checkbox[name=elderRegularCheckCategory]').val());
+    	  })
+    	  
+    	  
     	  /*[검사 등록]*/
     	  $('#insertRegularCheck').click(function(){
     		  var kindOfValue = ['낙상위험','욕창위험측정','인지기능검사','욕구사정'];
     		  var elderName = $('input[name=elderName]').val();
     		  var elderId = $('input[name=elderId]').val();
     		  for(var i=0;i<kindOfValue.length;i++){
+    			  console.log(kindOfValue[i])
     			  formData = $('#regularCheck').serializeArray();
     			  var elderRegularCheckDoingDate = $('#elderRegularCheckDoingDate')
     			  var elderRegularCheckPlanDate = $('#elderRegularCheckPlanDate')
-    			  var $chk = $('#elderRegularCheckCategory'+i+''); 
+    			  var $chk = $('#elderRegularCheckCategory'+i+'');
     			  if($chk.is(':checked')){
     				  formData.push({
     					  name : "elderName", 
@@ -443,6 +454,7 @@
     					  name : "elderRegularCheckDoingDate",
     					  value : elderRegularCheckDoingDate.val()
     				  });
+    				  console.log(formData);
     				  $.ajax({
     					  type 	: 	'POST',
     					  url	:	'/employee/insertRegularCheck',
@@ -487,9 +499,9 @@
     					  regularCheckHtml += "<td>"+data[i].elderRegularCheckDoingDate+"</td>";
     					  regularCheckHtml += "<td>"+data[i].elderRegularCheckRegistrationDate+"</td>";
     					  regularCheckHtml += "<td><button type=\"button\" style=\"display: none;\" class= \"deleteBtn btn btn-danger btn-xs\">삭제</button></tr>";
-    					  
     					  regularCheckHtml += "</tr>";
     				  }
+    				  
     				  $('#regularCheckRow').append(regularCheckHtml);
     				  
     				  

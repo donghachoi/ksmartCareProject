@@ -32,7 +32,6 @@ public class ElderService {
 	private String employeeId = "e_000001";
 	private String employeeName = "이형열";
 	
-	
 	/* [검사] 등록 */
 	public void insertRegularCheck(ElderRegularCheck elderRegularCheck
 			,HttpSession session) {
@@ -43,8 +42,10 @@ public class ElderService {
 		elderRegularCheck.setCenterName(centerName);
 		elderRegularCheck.setEmployeeId(employeeId);
 		elderRegularCheck.setEmployeeName(employeeName);
-		elderMapper.insertFirstRegularCheck(elderRegularCheck);
-		System.out.println(elderRegularCheck.toString());
+		//elderMapper.insertFirstRegularCheck(elderRegularCheck);
+		System.out.println("check_"+(elderMapper.getMaxNum()+1)+"<<<<<<<<<<<============ getMaxNum()");
+		System.out.println(elderRegularCheck.toString()+"<<<<<<<<========== in service");
+		
 	}
 	
 	/* [검사] 리스트 */
