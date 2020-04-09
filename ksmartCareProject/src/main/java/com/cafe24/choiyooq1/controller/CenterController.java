@@ -16,6 +16,11 @@ public class CenterController {
 	@Autowired
 	private CenterService centerService;
 
+	
+	@GetMapping("/center/cetnerEenter")
+	public String cetnerEenter() {
+		return "/mainTest";
+	}
 	// 센터가입 폼 불러오기
 	@GetMapping("/center/centerInsert")
 	public String centerInsert() {

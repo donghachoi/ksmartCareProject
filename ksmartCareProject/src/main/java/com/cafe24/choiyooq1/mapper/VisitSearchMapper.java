@@ -15,4 +15,6 @@ public interface VisitSearchMapper {
 	//방문일정 직원 일정검색
 	public List<Visit> employeeCalenderSearch(String id);
 
+	//엑셀 요양사 일정 검색
+	public List<Visit> employeeExcelDown(String id, String syear, String smoth);
 }

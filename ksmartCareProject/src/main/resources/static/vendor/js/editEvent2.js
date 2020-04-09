@@ -44,6 +44,8 @@ var editEvent = function (event, element, view) {
     	}
     }
     var test = "<option value='"+event.serviceTime+"'>"+event.serviceTime+"</option>";
+	$('#serviceCategoryDetail').append(test);
+
     //상세 서비스 내용
 	if(serviceCategory.val() =='요양'){
 		test += "<option value='인지활동'>인지활동</option>";
@@ -194,7 +196,7 @@ var editEvent = function (event, element, view) {
         event.backgroundColor = editColor.val();
         event.description = editDesc.val();
             
-        $("#calendar").fullCalendar('updateEvent', eventData);
+//        $("#calendar").fullCalendar('updateEvent', eventData);
 
         //일정 업데이트
         $.ajax({
@@ -211,7 +213,8 @@ var editEvent = function (event, element, view) {
             	
             	   $("#demo-calendar").fullCalendar('removeEvents'); 
             	   $("#demo-calendar").fullCalendar('addEventSource', eventData); 
-
+//    			calendar.fullCalendar('removeEvents');
+//    			calendar.fullCalendar('rerenderEvents');
             },
     		error : function(error){
     			console.log("error", error);
@@ -223,7 +226,7 @@ var editEvent = function (event, element, view) {
     // 삭제버튼
     $('#deleteEvent').on('click', function () {
         $('#deleteEvent').unbind();
-        $("#calendar").fullCalendar('removeEvents', eventData.id);
+       // $("#calendar").fullCalendar('removeEvents', visitCode);
         eventModal.modal('hide');
         visitCode = $('#visitCode').val();
 
@@ -239,8 +242,8 @@ var editEvent = function (event, element, view) {
                     alert('삭제되지 않앗습니다.');
                     return false;
             	}
-    			calendar.fullCalendar('removeEvents');
-    			calendar.fullCalendar('rerenderEvents');
+//    			calendar.fullCalendar('removeEvents');
+//    			calendar.fullCalendar('rerenderEvents');
             },
     		error : function(error){
     			console.log("error", error);
@@ -249,27 +252,22 @@ var editEvent = function (event, element, view) {
     });
     
     $(document).on('change', '#serviceCategory', function(){
-		$('#serviceCategoryDetail').empty();
     	 var test= "<option value=''> 서비스를 선택해주세요</option>";
-    	 var tt = $('#serviceCategory');
-    	if(tt.val() =='요양'){
-    		serviceCategoryDetail
+    	if($('#serviceCategory').val() =='요양'){
     		test += "<option value='인지활동'>인지활동</option>";
     		test += "<option value='가족케어'>가족케어</option>";
     		test += "<option value='치매가족휴가'>치매가족휴가</option>";
     		
     		$('#serviceCategoryDetail').append(test);
-    		$('#serviceCategoryDetail').parent().show();
     	}
-    	if(tt.val()  == '목욕'){
+    	if($('#serviceCategory').val()  == '목욕'){
     		test += "<option value='차량이용(차량 내)'>차량이용(차량 내)</option>";
     		test += "<option value='차량이용(가정 내)'>차량이용(가정 내)</option>";
     		test += "<option value='차량미이용'>차량미이용</option>";
     			
     		$('#serviceCategoryDetail').append(test);
-    		$('#serviceCategoryDetail').parent().show();
     	 }
-    	if(tt.val() == '간호'){
+    	if($('#serviceCategory').val() == '간호'){
     		$('#serviceCategoryDetail').parent().hide();
     	}				
     });

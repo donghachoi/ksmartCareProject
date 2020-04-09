@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.cafe24.choiyooq1.mapper.CenterMainMapper">
+
+	<resultMap type="com.cafe24.choiyooq1.domain.Center" id="centerMap">
+	  	<result property="centerCode" column="center_code"/>
+	  	<result property="centerName" column="center_name"/>
+	  	<result property="centerId" column="center_id"/>
+	  	<result property="centerPw" column="center_pw"/>
+	  	<result property="centerManagerName" column="center_manager_name"/>
+	  	<result property="conterManagerPhone" column="conter_manager_phone"/>
+	  	<result property="centerPhone" column="center_phone"/>
+	  	<result property="centerLocal" column="center_local"/>
+	  	<result property="centerAdress" column="center_adress"/>
+	  	<result property="serviceStartDate" column="service_start_date"/>
+	  	<result property="serviceEndDate" column="service_end_date"/>
+	  	<result property="serviceStatus" column="service_status"/>
+	  	<result property="businessRegistrationNumber" column="business_registration_number"/>
+	  	<result property="employerName" column="employer_name"/>
+	</resultMap>
+	
+	<resultMap type="com.cafe24.choiyooq1.domain.Elder" id="ElderMap">
+		<result property="elderId" column="elder_id"/>
+		<result property="elderName" column="elder_name"/>
+		<result property="centerCode" column="center_code"/>
+		<result property="centerName" column="center_name"/>
+		<result property="elderBirthDate" column="elder_birthdate"/>
+		<result property="elderGender" column="elder_gender"/>
+		<result property="elderFinalServiceApprovalLevel" column="elder_final_service_approval_level"/>
+		<result property="elderFinalServiceStatus" column="elder_final_service_status"/>
+		<result property="elderDisease" column="elder_disease"/>
+		<result property="elderCoinsurance" column="elder_coinsurance"/>
+		<result property="totalVisits" column="total_visits"/>
+		<result property="totalServiceTime" column="total_service_time"/>
+		<result property="serviceLocalmanageCode" column="service_localmanage_code"/>
+		<result property="serviceLocalmanageName" column="service_localmanage_name"/>
+		<result property="longTermCareNumver" column="long_term_care_numver"/>
+		<result property="longTermCareValidity" column="long_term_care_validity"/>
+		<result property="elderPhone" column="elder_phone"/>
+		<result property="elderAdressForStay" column="elder_adress_for_stay"/>
+		<result property="elderAdressForPost" column="elder_adress_for_post"/>
+		<result property="elderRemarks" column="elder_remarks"/>
+		<result property="elderGroups" column="elder_groups"/>
+	</resultMap>
+	
+     <resultMap type="com.cafe24.choiyooq1.domain.Visit" id="VisitMap">
+	  	<result property="visitCode" column="visit_code"/>
+	  	<result property="centerCode" column="center_code"/>
+	  	<result property="centerName" column="center_name"/>	  	
+	  	<result property="elderId" column="elder_id"/>	  	
+	  	<result property="elderName" column="elder_name"/>
+	  	<result property="employeeId" column="employee_id"/>
+	  	<result property="employeeName" column="employee_name"/>
+	  	<result property="visitPlanDate" column="visit_plan_date"/>
+	  	<result property="visitPlanTime" column="visit_plan_time"/>
+	  	<result property="visitServiceTime" column="visit_service_time"/>
+	  	<result property="familyRelation" column="family_relation"/>
+	  	<result property="visitServiceCategory" column="visit_service_category"/>
+	  	<result property="monthlyClaimGroupCode" column="monthly_claim_group_code"/>
+	  	<result property="description" column="description"/>
+	  	<result property="yoyangBathNonBenefit" column="yoyang_bath_non_benefit"/>  
+	  	<result property="serviceCategoryDetail" column="service_category_detail"/> 
+	  	<result property="count" column="count"/> 	  		  		  		  		  		  		  		  		  		  	
+    </resultMap>	
+	
+    
+	<select id="centerInformation" parameterType="String" resultMap="centerMap">
+		<!-- 센터정보-->
+		SELECT 
+			center_manager_name, 
+			conter_manager_phone, 
+			center_code, 
+			business_registration_number 
+		FROM
+			center
+		where
+			center_code=#{centerCode}
+	</select>
+	
+	<select id="elderStatus" parameterType="String" resultMap="centerMap">
+		SELECT elder_final_service_status AS service_status, COUNT(*) AS service_start_date
+		FROM elder 
+			where center_code= #{centerCode} 		
+			GROUP BY FIELD(elder_final_service_status, '%수급%', '보류', '해지', '사망')
+
+	</select>
+	
+	<select id="employeeStatus" parameterType="String" resultMap="centerMap">
+		SELECT employee_working_status as service_status, COUNT(*) as service_start_date
+		FROM employee 
+			where center_code= #{centerCode} 
+			group BY FIELD(employee_working_status, '재직', '휴직', '퇴사')
+	</select>
+
+	<select id="serviceStatus" parameterType="String" resultMap="ElderMap">
+		SELECT elder_id, elder_name, elder_final_service_status, long_term_care_validity 
+		FROM elder 
+			where center_code= #{centerCode}
+	</select>
+
+	<select id="dailySchedule" parameterType="String" resultMap="VisitMap">
+		SELECT elder_name, employee_name, visit_plan_date, visit_plan_time, visit_service_category 
+		FROM visit 
+			WHERE center_code=#{centerCode} and visit_plan_date=curdate()
+	</select>
+	
+</mapper>

@@ -94,7 +94,7 @@
   
   <!-- 수급자 서비스 내용 -->
   	<select id="elderBenefitCost" parameterType="String" resultMap="VisitMap">
-		select visit_service_category, monthly_claim_group_code, visit_service_time, visit_plan_date
+		select visit_service_category, monthly_claim_group_code, visit_service_time, visit_plan_date, employee_name
 		from visit WHERE elder_id=#{elder_id}
 			AND monthly_claim_group_code=CONCAT(#{syear},'-',#{smoth}) ORDER by visit_plan_date
   	</select>
@@ -170,4 +170,8 @@
 	<delete id="visitDelete" parameterType="String">
 		DELETE FROM visit WHERE visit_code =#{visitCode}
 	</delete>	
+	
+	<select id="getVisitCode" parameterType="String" resultType="String">
+		SELECT CONCAT('a', '_', (select LPAD(MAX(CONVERT(REPLACE(visit_code, 'a_00000', ''), SIGNED INTEGER))+1 ,7 ,'0') as visit_code FROM visit))
+	</select>
   </mapper>

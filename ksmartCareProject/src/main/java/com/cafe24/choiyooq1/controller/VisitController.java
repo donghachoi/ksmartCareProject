@@ -129,4 +129,11 @@ public class VisitController {
     	int result = visitservice.visitDelete(visitCode);
 		return result;
     }
+    
+    //방문코드 검색
+    @GetMapping("/employee/getVisitCode")
+    public @ResponseBody String getVisitCode(String visitCode) {
+    	String getCode = visitservice.getVisitCode(visitCode);
+		return getCode;
+    }
 }

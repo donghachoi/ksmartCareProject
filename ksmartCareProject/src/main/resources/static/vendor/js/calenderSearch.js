@@ -95,7 +95,8 @@ $(document).ready(function(){
 		var id = $(this).attr('data-elder-id');
 		var name =$(this).attr('data-elder-name');
 		$('#elderNametitle').text("\( "+ name + " \)님의 일정");
-	
+		$('#exinput').attr('href','/elder/excelDown?id='+id+'&name='+name);
+
 		$.ajax({
 			type: 'post',
 			url: '/elder/elderCalenderSearch',
@@ -151,7 +152,8 @@ $(document).ready(function(){
 		var id = $(this).attr('data-employee-id');
 		var name =$(this).attr('data-employee-name');
 		$('#employeeNametitle').text("\( "+ name + " \)님의 일정");
-	
+		$('#exinput').attr('href','/employee/excelDown?id='+id+'&name='+name);
+
 		$.ajax({
 			type: 'post',
 			url: '/employee/employeeCalenderSearch',
@@ -194,5 +196,7 @@ $(document).ready(function(){
     //직원 이름 검색 끝
    // Metis.dashboard();
     });
+    
+ 
  
 })

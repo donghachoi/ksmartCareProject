@@ -40,5 +40,13 @@
 		SELECT elder_name, visit_plan_date, visit_plan_time, visit_service_time, visit_service_category
 		FROM visit WHERE employee_id =#{id}	
 	</select>
-  
+	
+<!-- 직원 엑셀 일정 표기 -->
+	<select id="employeeExcelDown" parameterType="String" resultMap="VisitMap">
+		SELECT elder_name, visit_plan_date, visit_plan_time, visit_service_time, visit_service_category
+		FROM visit WHERE employee_id =#{id}	
+		AND monthly_claim_group_code=CONCAT(#{syear},'-',#{smoth}) 
+		ORDER by visit_plan_date
+	</select>
+
   </mapper>

@@ -60,17 +60,7 @@ $(document).ready(function(){
 
 				      //닫기 버튼이 아닐때
 				      if ($(this).data().role !== 'close') {
-				        $.ajax({
-				        	type: 'get',
-				        	url : "/employee/getVisitCode",
-				        	success : function(result){
-				        		$('#visitCode').text(result);
-				        	},
-				        	error : function(error){
-				        		console.log("error", error);
-				        	}
-				        });
-				        newEvent(start, end, $(this).html());  
+				        newEvent(start, end, $(this).html());    
 				      }
 
 				    // $contextMenu.removeClass("contextOpened");
@@ -116,9 +106,8 @@ $(document).ready(function(){
 		
 	//테이블 행 출력 갯수 
     $("#dataTable").DataTable({
-    	pageLength: 5,
-        lengthChange: false
-        
+        lengthChange: false,
+    	  displayLength: 5
     });
     
     
@@ -136,13 +125,12 @@ $(document).ready(function(){
 	
 	var firstEvent = true;
 	//수급자 총 금액과 잔액 가져옴 
-	$(document).on('click', '.eldername',function(){
+	$('.eldername').on('click', function(){
 		//$('tr').remove('#remove2');
 		$('.col-lg-12').css('display', 'block');
 		var id = $(this).attr('data-elder-id');
 		var cost = $(this).attr('max-cost');
 		var cname = $(this).attr('cname');
-
 			$.ajax({
 				type : 'POST',
 				url : '/employee/velderbenefitcost',
@@ -190,7 +178,6 @@ $(document).ready(function(){
 						
 						events.push({ 
 							eventname: "elder",
-							id: data.calender[i].visitCode,
 							title: data.calender[i].visitServiceCategory + "("+data.calender[i].visitPlanTime +")", 
 							start: data.calender[i].visitPlanDate,
 							time : data.calender[i].visitPlanTime,
@@ -216,7 +203,7 @@ $(document).ready(function(){
 	});
 	
 	//년도와 달로 수가값 가져옴
-	$(document).on('click', '#yearSearch',function(){
+	$('#yearSearch').on('click', function(){
 		//$('tr').remove('#remove2');
 		var id = $('input[name=elderId]').val();
 		var cost = $('input[name=maxcost]').val();

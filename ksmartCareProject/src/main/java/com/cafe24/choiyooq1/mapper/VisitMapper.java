@@ -47,4 +47,7 @@ public interface VisitMapper {
 	//일정 삭제
 	public int visitDelete(String visitCode);
 	
+	//방문일정 코드 가져오기 
+	public String getVisitCode(String centerCode);
+	
 }

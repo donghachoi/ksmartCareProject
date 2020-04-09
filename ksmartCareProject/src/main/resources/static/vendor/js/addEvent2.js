@@ -44,8 +44,6 @@ var newEvent = function (start, end, eventType) {
     addBtnContainer.show();
     modifyBtnContainer.hide();
     eventModal.modal('show');
-    
-    
 
     /******** 임시 RAMDON ID - 실제 DB 연동시 삭제 **********/
    //var eventId = 1 + Math.floor(Math.random() * 1000);
@@ -56,8 +54,6 @@ var newEvent = function (start, end, eventType) {
     $('#save-event').unbind();
     $(document).on('click', '#save-event', function () {
 
-    	var vCode = $('#visitCode').text();
-    	console.log("넘어 왔습니까?"+vCode);
 	    var test1 = (editTime1.val()).split(':');
 	    var test2 = (editTime2.val()).split(':');
 	    var startTime = new Date(0, 0, 0, test1[0], test1[1]);
@@ -65,7 +61,6 @@ var newEvent = function (start, end, eventType) {
 	    var tmp = (endTime.getTime() - startTime.getTime()) / 60000; 
 	
 	    	var eventData = {
-	    		id: vCode+1,
 	            title: modalTitle.text(),
 	            start: editStart.val(),
 	            type: editType.val(),
@@ -181,7 +176,6 @@ var newEvent = function (start, end, eventType) {
 				}
 				
 	        var renderData ={
-	        		id: eventData.id,
 	        		title: eventData.visitServiceCategory + "("+ eventData.visitPlanTime +")", 	
 					start: eventData.visitPlanDate,
 					time : eventData.visitPlanTime,
@@ -209,10 +203,8 @@ var newEvent = function (start, end, eventType) {
 		            }else{
 		            	//DB연동시 중복이벤트 방지를 위한
 		    			calendar.fullCalendar('removeEvents');
+		    			calendar.fullCalendar('addEventSource', eventData);         
 		    			calendar.fullCalendar('rerenderEvents');
-		    			
-		                //$('#calendar').fullCalendar('removeEvents');
-		                //$('#calendar').fullCalendar('refetchEvents');
 		            }
 	            },
 	        });

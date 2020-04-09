@@ -118,7 +118,8 @@ public class VisitService {
 				visit.getVisitServiceTime());
 		
 		visit.setVisitServiceTime(ort);
-		if(subCost- bcost.getBenefitCost() <0) {
+		if(subCost - bcost.getBenefitCost() < 0) {
+			System.out.println("dfdfsdfsdf"+ (subCost - bcost.getBenefitCost()));
 			str ="초과";
 		}else {
 			visitMapper.visitInsert(visit);
@@ -161,5 +162,11 @@ public class VisitService {
 	public int visitDelete(String visitCode) {
 		int result = visitMapper.visitDelete(visitCode);
 		return result;
+	}
+	
+	//방문코드 가져오기 
+	public String getVisitCode(String centerCode) {
+		String visitCode = visitMapper.getVisitCode(centerCode);
+		return visitCode;
 	}
 }
