@@ -29,16 +29,16 @@ public class ElderController {
 	
 	/* [검사] 등록 */
 	@PostMapping("/employee/insertRegularCheck")
-	public @ResponseBody void insertRegularCheck(ElderRegularCheck elderRegularCheck
+	public @ResponseBody void insertRegularCheck(@RequestBody List<ElderRegularCheck> list
 												,HttpSession session) {
-		System.out.println(elderRegularCheck.toString());
-		elderService.insertRegularCheck(elderRegularCheck, session);
+		elderService.insertRegularCheck(list, session);
 	}
 	
 	/* [검사] 리스트 */
 	@PostMapping("/employee/regularCheck")
 	public @ResponseBody List<ElderRegularCheck> regularCheckList(@RequestBody Map<String,Object> map){
 		String elderId = (String) map.get("elderId");
+		System.out.println(elderService.getOneElderRegularList(elderId).get(0).getElderRegularCheckDoingDate()+"<<<<<<<<<<<<<<<<<<<<<<<<<<\\=============");
 		return elderService.getOneElderRegularList(elderId);		
 	}
 	

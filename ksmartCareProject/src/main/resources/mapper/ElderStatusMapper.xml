@@ -77,7 +77,7 @@
   
   <select id="getElderStatusMaxNum" resultType="int">
 	SELECT 
-		MAX(substring(service_status_code,14)) 
+		MAX(CAST(substring(service_status_code,14)AS int)) 
 	from 
 		elder_status
   </select>

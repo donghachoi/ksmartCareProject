@@ -37,7 +37,12 @@
        <link rel="stylesheet/less" type="text/css" href="/assets/less/theme.less">
        <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.js"></script>
 
-       </style>
+<style>
+.list{
+	overflow: auto;
+	height: 150px
+}
+</style>
 </th:block>
 <th:block layout:fragment="customContents">
 <body class="  ">
@@ -232,7 +237,7 @@
 			      <div class="modal-body">
 						<h3>인정기간 이력</h3>
 						<div class="row">
-							<div id="collapse4" class="col-sm-12" style="overflow:auto; height:150px;">
+							<div id="collapse4" class="col-sm-12 list" >
 								<table id="levelTable" class="table table-bordered table-condensed table-hover table-striped modal-able" >
 									<thead>
 										<tr>
@@ -339,7 +344,7 @@
 			      <div class="modal-body">
 			      	<h3>계약이력</h3>
 						<div class="row">
-							<div id="collapse4" class="col-sm-12">
+							<div id="collapse4" class="col-sm-12 list">
 								<table class="table table-bordered table-condensed table-hover table-striped modal-able">
 									<thead>
 										<tr>
@@ -413,7 +418,7 @@
 			      </div>
 			      <div class="modal-body">
 					<div class="row">
-						<div id="collapse4" class="col-sm-12">
+						<div id="collapse4" class="col-sm-12 list">
 							<table class="table table-bordered table-condensed table-hover table-striped modal-able">
 								<thead>
 									<tr>
@@ -437,7 +442,7 @@
 							<form id="regularCheck">
 								<div class="form-group">
 									<h4>검사 선택</h4>
-									<label style="margin-right:10px;"><input name="elderRegularCheckCategory" id="elderRegularCheckCategory0" type="checkbox" value="낙상위험">낙상위험측정</label>
+									<label style="margin-right:10px;"><input name="elderRegularCheckCategory" id="elderRegularCheckCategory0" type="checkbox" value="낙상위험측정">낙상위험측정</label>
 									<label style="margin-right:10px;"><input name="elderRegularCheckCategory" id="elderRegularCheckCategory1" type="checkbox" value="욕창위험측정">욕창위험측정</label>
 									<label style="margin-right:10px;"><input name="elderRegularCheckCategory" id="elderRegularCheckCategory2" type="checkbox" value="인지기능검사">인지기능검사</label>
 									<label style="margin-right:10px;"><input name="elderRegularCheckCategory" id="elderRegularCheckCategory3" type="checkbox" value="욕구사정">욕구사정</label></br>

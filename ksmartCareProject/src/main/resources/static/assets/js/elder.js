@@ -409,108 +409,110 @@
 		  })
 	  }
 		
+	  
+	  /*[검사] 리스트 함수*/
+	  var regularCheckList =function(elderIdVal){
+		  $('#regularCheckRow').empty();
+		  var map = {};
+		  var elderId = elderIdVal;
+		  map.elderId = elderId;
+		  $.ajax({
+			  type			:	'POST',
+			  url			:	'/employee/regularCheck',
+			  data			:	JSON.stringify(map),
+			  contentType	:	'application/json',
+			  success		:	function(data){
+				  regularCheckHtml = "";
+				  for(var i=0;i<data.length;i++){
+					  regularCheckHtml += "<tr class=\"regularCheckRow\">";
+					  regularCheckHtml += "<input type=\"hidden\" name=\"elderRegularCheckCode\" value=\""+data[i].elderRegularCheckCode+"\"\/>";
+					  regularCheckHtml += "<input type=\"hidden\" name=\"elderId\" value=\""+data[i].elderId+"\"\/>";
+					  regularCheckHtml += "<input type=\"hidden\" name=\"elderName\" value=\""+data[i].elderName+"\"\/>";
+					  regularCheckHtml += "<td>"+(i+1)+"</td>";
+					  regularCheckHtml += "<td>"+data[i].elderRegularCheckCategory+"</td>";
+					  regularCheckHtml += "<td>"+data[i].elderRegularCheckPlanDate+"</td>";
+					  regularCheckHtml += "<td>"+data[i].elderRegularCheckDoingDate+"</td>";
+					  regularCheckHtml += "<td>"+data[i].elderRegularCheckRegistrationDate+"</td>";
+					  regularCheckHtml += "<td><button type=\"button\" style=\"display: none;\" class= \"deleteBtn btn btn-danger btn-xs\">삭제</button></tr>";
+					  regularCheckHtml += "</tr>";
+				  }
+				  
+				  $('#regularCheckRow').append(regularCheckHtml);
+				  deleteBtnEvent('.regularCheckRow','td:eq(5)');
+				  updateRegular();
+			  },
+			  error		:	function(error){
+				  console.log("error", error)
+			  }
+    	  })
+	  }
+	  /*[검사] 수정을 위해 아래 화면에 뿌리기*/
+	  var updateRegular = function(){
+		  $('.regularCheckRow').click(function(){
+			  
+			  /*$('input[name=elderId]').val($(this).find('input[name=elderId]').val())
+		  $('input[name=elderName]').val($(this).find('input[name=elderName]').val())*/
+			  console.log($(this).find('td:eq(1)').text())
+			  console.log($('input:checkbox(name=elderRegularCheckCategory)'))
+			  
+			  
+			  
+		  })
+	  }
 /***********document ready *************************************************************************************************************************************************/
       $(document).ready(function(){
     	  
     	  
-    	  /*[검사] 수정을 위해 아래 화면에 뿌리기*/
-    	  $('#regularCheckRow').click(function(){
-    		  
-    		  $('input[name=elderId]').val($(this).find('input[name=elderId]').val())
-    		  $('input[name=elderName]').val($(this).find('input[name=elderName]').val())
-    		  console.log($('input:checkbox[name=elderRegularCheckCategory]').val());
-    	  })
     	  
+
     	  
     	  /*[검사 등록]*/
     	  $('#insertRegularCheck').click(function(){
-    		  var kindOfValue = ['낙상위험','욕창위험측정','인지기능검사','욕구사정'];
+    		  //배열에 값 담기
+    		  formData = $('#regularCheck').serializeArray();
     		  var elderName = $('input[name=elderName]').val();
     		  var elderId = $('input[name=elderId]').val();
-    		  for(var i=0;i<kindOfValue.length;i++){
-    			  console.log(kindOfValue[i])
-    			  formData = $('#regularCheck').serializeArray();
-    			  var elderRegularCheckDoingDate = $('#elderRegularCheckDoingDate')
-    			  var elderRegularCheckPlanDate = $('#elderRegularCheckPlanDate')
-    			  var $chk = $('#elderRegularCheckCategory'+i+'');
-    			  if($chk.is(':checked')){
-    				  formData.push({
-    					  name : "elderName", 
-    					  value : elderName
-    				  });
-    				  formData.push({
-    					  name : "elderId", 
-    					  value : elderId
-    				  });
-    				  formData.push({
-    					  name : $chk.attr('name'), 
-    					  value : kindOfValue[i]
-    				  }); 
-    				  formData.push({
-    					  name : "elderRegularCheckPlanDate",
-    					  value : elderRegularCheckPlanDate.val()
+			  var elderRegularCheckDoingDate = $('#elderRegularCheckDoingDate');
+			  var elderRegularCheckPlanDate = $('#elderRegularCheckPlanDate');
+			  var chk = $('input:checkbox[name=elderRegularCheckCategory]:checked');
+			  for(var i=0;i<chk.length;i++){
+				  formData.push({
+					  elderName : elderName,
+					  elderId : elderId,
+					  elderRegularCheckCategory : chk[i].value,
+					  elderRegularCheckPlanDate : elderRegularCheckPlanDate.val(),
+					  elderRegularCheckDoingDate : elderRegularCheckDoingDate.val()
+				  });
+			  }
+    		  
+			  $.ajax({
+    			  type 	: 	'POST',
+    			  url	:	'/employee/insertRegularCheck',
+    			  data	:	JSON.stringify(formData),
+    			  contentType : 'application/json',
+    			  success	:	function(data){
+    				  
+    				  $('input:checkbox[name=elderRegularCheckCategory]').each(function(){
+    					  $(this).attr('checked',false)
     				  })
-    				  formData.push({
-    					  name : "elderRegularCheckDoingDate",
-    					  value : elderRegularCheckDoingDate.val()
-    				  });
-    				  console.log(formData);
-    				  $.ajax({
-    					  type 	: 	'POST',
-    					  url	:	'/employee/insertRegularCheck',
-    					  data	:	formData,
-    					  traditional :true,
-    					  success	:	function(data){
-    						  console.log('success')
-    					  },
-    					  error	:	function(error){
-    						  console.log("error", error)
-    					  }
-    				  })
+    				  elderRegularCheckPlanDate.val('')
+    				  elderRegularCheckDoingDate.val('')
+    				  alert('등록되었습니다.')
+    				  regularCheckList(elderId);
+    			  },
+    			  error	:	function(error){
+    				  console.log("error", error)
     			  }
-    		  }
-    	  })
+    		  })
+    	  })//[검사등록]클릭이벤트 끝 
     	  	
     	  
     	  
     	  
     	  
     	  /*[검사] 리스트*/
-    	  $('#regularCheck').click(function(){
-    		  $('#regularCheckRow').empty();
-    		  var map = {};
-    		  var elderId = $(this).parents('div').find('#elderId').text();
-    		  map.elderId = elderId;
-    		  $.ajax({
-    			  type			:	'POST',
-    			  url			:	'/employee/regularCheck',
-    			  data			:	JSON.stringify(map),
-    			  contentType	:	'application/json',
-    			  success		:	function(data){
-    				  regularCheckHtml = "";
-    				  for(var i=0;i<data.length;i++){
-    					  regularCheckHtml += "<tr class=\"regularCheckRow\">";
-    					  regularCheckHtml += "<input type=\"hidden\" name=\"elderRegularCheckCode\" value=\""+data[i].elderRegularCheckCode+"\"\/>";
-    					  regularCheckHtml += "<input type=\"hidden\" name=\"elderId\" value=\""+data[i].elderId+"\"\/>";
-    					  regularCheckHtml += "<input type=\"hidden\" name=\"elderName\" value=\""+data[i].elderName+"\"\/>";
-    					  regularCheckHtml += "<td>"+(i+1)+"</td>";
-    					  regularCheckHtml += "<td>"+data[i].elderRegularCheckCategory+"</td>";
-    					  regularCheckHtml += "<td>"+data[i].elderRegularCheckPlanDate+"</td>";
-    					  regularCheckHtml += "<td>"+data[i].elderRegularCheckDoingDate+"</td>";
-    					  regularCheckHtml += "<td>"+data[i].elderRegularCheckRegistrationDate+"</td>";
-    					  regularCheckHtml += "<td><button type=\"button\" style=\"display: none;\" class= \"deleteBtn btn btn-danger btn-xs\">삭제</button></tr>";
-    					  regularCheckHtml += "</tr>";
-    				  }
-    				  
-    				  $('#regularCheckRow').append(regularCheckHtml);
-    				  
-    				  
-    				  deleteBtnEvent('.regularCheckRow','td:eq(5)');
-    			  },
-    			  error		:	function(error){
-    				  console.log("error", error)
-    			  }
-    		  })
+    	 $('#regularCheck').click(function(){
+    		 regularCheckList($(this).parents('div').find('#elderId').text());
     	  })
     	  
     	  

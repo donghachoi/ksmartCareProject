@@ -33,18 +33,22 @@ public class ElderService {
 	private String employeeName = "이형열";
 	
 	/* [검사] 등록 */
-	public void insertRegularCheck(ElderRegularCheck elderRegularCheck
+	public void insertRegularCheck(List<ElderRegularCheck> list
 			,HttpSession session) {
-		elderRegularCheck.setElderRegularCheckCode("check_"+(elderMapper.getMaxNum()+1));
 		String centerName= (String) session.getAttribute("SCENTERNAME");
 		String centerCode= (String) session.getAttribute("SCENTERCODE");
-		elderRegularCheck.setCenterCode(centerCode);
-		elderRegularCheck.setCenterName(centerName);
-		elderRegularCheck.setEmployeeId(employeeId);
-		elderRegularCheck.setEmployeeName(employeeName);
-		//elderMapper.insertFirstRegularCheck(elderRegularCheck);
-		System.out.println("check_"+(elderMapper.getMaxNum()+1)+"<<<<<<<<<<<============ getMaxNum()");
-		System.out.println(elderRegularCheck.toString()+"<<<<<<<<========== in service");
+		for(int i =0;i<list.size();i++) {
+			System.out.println(list.get(i)+"<<<<<<================================size()");
+			System.out.println(elderMapper.getMaxNum());
+			list.get(i).setElderRegularCheckCode("check_"+(elderMapper.getMaxNum()+1));
+			list.get(i).setCenterCode(centerCode);
+			list.get(i).setCenterName(centerName);
+			list.get(i).setEmployeeId(employeeId);
+			list.get(i).setEmployeeName(employeeName);
+			list.get(i).setElderRegularCheckRegistrationDate("now()");
+			elderMapper.insertRegularCheck(list.get(i));
+			// ibatis 내에서 NOW()메서드 안먹음......
+		}
 		
 	}
 	
@@ -52,12 +56,14 @@ public class ElderService {
 	public List<ElderRegularCheck> getOneElderRegularList(String elderId){
 		List<ElderRegularCheck> list = elderMapper.getOneElderRegularList(elderId);
 		for(int i =0;i<list.size();i++) {
-			if(list.get(i).getElderRegularCheckPlanDate()==null || list.get(i).getElderRegularCheckRegistrationDate()==null) {
+			if(list.get(i).getElderRegularCheckPlanDate()==null) {
 				list.get(i).setElderRegularCheckPlanDate("");
-				list.get(i).setElderRegularCheckRegistrationDate("");
 			}
 			if(list.get(i).getElderRegularCheckDoingDate().equals("0000-00-00")) {
 				list.get(i).setElderRegularCheckDoingDate("시행전");
+			}
+			if(list.get(i).getElderRegularCheckRegistrationDate()==null) {
+				list.get(i).setElderRegularCheckRegistrationDate("");
 			}
 		}
 		return list;
