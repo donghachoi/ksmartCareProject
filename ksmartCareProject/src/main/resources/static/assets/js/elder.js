@@ -3,6 +3,7 @@
  * 
  */
 
+
 	/*[검사] 오늘 이상이면 테두리 빨강으로 바꾸기*/
 	var putRedLine = function(array){
 		var today = new Date();
@@ -502,6 +503,7 @@
     	  
     	  
     	  
+    	  
     	  /*[검사] 수정*/
     	  $('#updateRegularCheck').click(function(){
     		  regularCheckFormData = $('#regularCheckForm').serialize(); // get 방식으로 name=value& EX) ↓↓↓↓
@@ -522,15 +524,32 @@
     		  })
     	  })  
     	  
-    	  /*[검사 등록]*/
+    	  /*[검사] 등록*/
+    	  
     	  $('#insertRegularCheck').click(function(){
+    		  var elderRegularCheckPlanDate = $('#elderRegularCheckPlanDate');
+    		  var elderRegularCheckDoingDate = $('#elderRegularCheckDoingDate');
+    		  $('#elderRegularCheckCategory3').siblings('span').remove();
+    		  var chk = $('input:checkbox[name=elderRegularCheckCategory]:checked');
+    		  if(chk.length==0){
+    			  $('#elderRegularCheckCategory3').parent().append("<span style=\"color :red;\">      최소 하나는 체크 해주세요.</span>");;
+    			  return false;
+    		  }
+    		  if(checkEmpty(elderRegularCheckPlanDate)){
+    		  }else{
+    			  return false;
+    		  }
+    		  if(checkEmpty(elderRegularCheckDoingDate)){
+    		  }else{
+    			  
+    			  return false;
+    		  }
     		  //배열에 값 담기
     		  formDataTest = [];
     		  var elderName = $('input[name=elderName]').val();
     		  var elderId = $('input[name=elderId]').val();
 			  var elderRegularCheckDoingDate = $('#elderRegularCheckDoingDate');
 			  var elderRegularCheckPlanDate = $('#elderRegularCheckPlanDate');
-			  var chk = $('input:checkbox[name=elderRegularCheckCategory]:checked');
 			  for(var i=0;i<chk.length;i++){
 				  formDataTest.push({
 					  elderName : elderName,

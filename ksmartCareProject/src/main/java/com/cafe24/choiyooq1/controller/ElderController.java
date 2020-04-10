@@ -48,7 +48,6 @@ public class ElderController {
 	public @ResponseBody void insertRegularCheck(@RequestBody List<ElderRegularCheck> list
 												,HttpSession session) {
 		elderService.insertRegularCheck(list, session);
-		
 	}
 	
 	/* [검사] 리스트 */
