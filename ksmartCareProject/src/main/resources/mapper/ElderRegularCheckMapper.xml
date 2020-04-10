@@ -32,6 +32,24 @@
 		#{elderRegularCheckPlanDate}, #{elderRegularCheckDoingDate}, NOW())
   </insert>
   
+  <update id="deleteRegularCheck">
+	DELETE 
+	FROM 
+		elder_regular_check
+	WHERE 
+		elder_regular_check_code = #{elderRegularCheckCode};  
+  </update>
+  <update id="updateRegularCheck">
+  	UPDATE 
+  		elder_regular_check
+	SET
+		elder_regular_check_plan_date= 			#{elderRegularCheckPlanDate},
+		elder_regular_check_doing_date= 		#{elderRegularCheckDoingDate},
+		elder_regular_check_registration_date= 	NOW()
+	WHERE 
+		elder_regular_check_code = #{elderRegularCheckCode};
+  
+  </update>
   <select id="getOneElderRegularList" resultMap="ElderRegularCheck">
  	SELECT 
 	 	elder_id,

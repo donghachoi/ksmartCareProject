@@ -32,14 +32,27 @@ public class ElderService {
 	private String employeeId = "e_000001";
 	private String employeeName = "이형열";
 	
+	
+	
+	/* [검사] 삭제 */
+	public void deleteRegularCheck(String elderRegularCheckCode) {
+		elderMapper.deleteRegularCheck(elderRegularCheckCode);
+		
+	}
+	
+	/* [검사] 수정 */
+	public void updateRegularCheck(ElderRegularCheck elderRegularCheck) {
+		elderMapper.updateRegularCheck(elderRegularCheck);
+	}
+	
 	/* [검사] 등록 */
 	public void insertRegularCheck(List<ElderRegularCheck> list
 			,HttpSession session) {
 		String centerName= (String) session.getAttribute("SCENTERNAME");
 		String centerCode= (String) session.getAttribute("SCENTERCODE");
+		System.out.println(list.size()+"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<------ size");
+		System.out.println(list.toString()+"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<------ toString");
 		for(int i =0;i<list.size();i++) {
-			System.out.println(list.get(i)+"<<<<<<================================size()");
-			System.out.println(elderMapper.getMaxNum());
 			list.get(i).setElderRegularCheckCode("check_"+(elderMapper.getMaxNum()+1));
 			list.get(i).setCenterCode(centerCode);
 			list.get(i).setCenterName(centerName);
@@ -148,11 +161,11 @@ public class ElderService {
 			if(list.get(i).getElderRegularCheckDoingDate().equals("0000-00-00")) {
 				list.get(i).setElderRegularCheckDoingDate("시행전");
 			}
-			if(category.equals("낙상위험 측정")) {
+			if(category.equals("낙상위험측정")) {
 				map.put("fallDownCheck", list.get(i));
-			}if(category.equals("욕창위험 측정")) {
+			}if(category.equals("욕창위험측정")) {
 				map.put("bedsoreCheck", list.get(i));
-			}if(category.equals("인지기능 검사")) {
+			}if(category.equals("인지기능검사")) {
 				map.put("functionCheck", list.get(i));
 			}if(category.equals("욕구사정")) {
 				map.put("needsCheck", list.get(i));

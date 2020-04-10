@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cafe24.choiyooq1.domain.Elder;
@@ -26,12 +28,27 @@ public class ElderController {
 	@Autowired BenefitService benefitService;
 	@Autowired ElderService elderService; 
 	
+	/* [검사] 삭제 */
+	@PostMapping("/employee/deleteRegularCheck")
+	public @ResponseBody void deleteRegularCheck(@RequestBody Map<String,Object> map){
+		String elderRegularCheckCode = (String) map.get("code");
+		elderService.deleteRegularCheck(elderRegularCheckCode);
+	}
+	
+	/* [검사] 수정 */
+	@PostMapping("/employee/updateRegularCheck")
+	public @ResponseBody void updateRegularCheck(ElderRegularCheck elderRegularCheck 
+												,HttpSession session) {
+		
+		elderService.updateRegularCheck(elderRegularCheck);
+	}
 	
 	/* [검사] 등록 */
 	@PostMapping("/employee/insertRegularCheck")
 	public @ResponseBody void insertRegularCheck(@RequestBody List<ElderRegularCheck> list
 												,HttpSession session) {
 		elderService.insertRegularCheck(list, session);
+		
 	}
 	
 	/* [검사] 리스트 */

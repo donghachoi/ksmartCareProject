@@ -439,7 +439,7 @@
 					<h3>검사 등록 및 수정</h3>
 					<div class="row" >
 						<div class="col-sm-12" >
-							<form id="regularCheck">
+							<form id="regularCheckForm">
 								<div class="form-group">
 									<h4>검사 선택</h4>
 									<label style="margin-right:10px;"><input name="elderRegularCheckCategory" id="elderRegularCheckCategory0" type="checkbox" value="낙상위험측정">낙상위험측정</label>
@@ -451,9 +451,11 @@
 									<label>시행 날짜<input name="elderRegularCheckDoingDate" id="elderRegularCheckDoingDate" class="date"></label>
 									<button id="insertRegularCheck" type="button" class="btn btn-metis-5 btn-xs" style="text-align: right; margin-left: 10px;">등록하기</button>
 									<button id="updateRegularCheck" type="button" class="btn btn-metis-3 btn-xs" style="text-align: right; margin-left: 10px; display: none">수정하기</button>
+									<button id="cancelRegularCheck" type="button"  class="btn btn-metis-1 btn-xs" style="display: none" >취소</button>
 								</div>
-								<input type="hidden" name="elderId">
-								<input type="hidden" name="elderName">
+								<input type="hidden" id="elderCodeInCheck" name="elderRegularCheckCode">
+								<input type="hidden" id="elderIdInCheck" name="elderId">
+								<input type="hidden" id="elderNameInCheck" name="elderName">
 							</form>
 						</div>
 					</div>
