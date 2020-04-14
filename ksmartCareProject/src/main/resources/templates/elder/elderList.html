@@ -42,6 +42,11 @@
 	overflow: auto;
 	height: 150px
 }
+#elderSearch{
+	height: 150px;
+	text-align: center;
+	padding-top: 50px;
+}
 </style>
 </th:block>
 <th:block layout:fragment="customContents">
@@ -71,6 +76,27 @@
 					</div>
 					<h5>수급자 리스트</h5>
 				</header>
+				<th:block>
+					<form method="post" action="/employee/elderSearchList">
+						<div id="elderSearch">
+							<div class="col-lg-3">
+								<select class="form-control" name="sk" id="sk">
+									<option value="">검색옵션 선택해주세요.</option>
+									<option value="elder_name">이름</option>
+									<option value="elder_gender">성별</option>
+									<option value="elder_final_service_approval_level">등급</option>
+									<option value="elder_birthdate">생년월일</option>
+								</select>
+							</div>
+							<div class="col-lg-6" id="searchInputBox">
+								<input class="form-control" type="text" name="sv" id="sv">
+							</div>
+							<div class="col-lg-3">
+								<input type="submit" class="btn btn-primary" value="검색">
+							</div>
+						</div>
+					</form>
+				</th:block>
 				<!-- 테이블 Start -->
 				<div id="collapse4" class="body" >
 						<div class="row">
@@ -78,6 +104,7 @@
 								<table id="dataTable" class="table table-bordered table-hover" style="font-size: 15px">
 									<thead>
 										<tr role="row">
+											<th>상태</th>
 											<th>수급자아이디</th>
 											<th>수급자이름</th>
 											<th>생년월일</th>
@@ -88,7 +115,8 @@
 									</thead>
 									<tbody id="elderRow">
 										<tr role="row" class="odd" th:each="E:${elderList}" style="cursor: pointer;">
-											<td class="sorting_1" th:text="${E.elderId}"></td>
+											<td th:text="${E.elderFinalServiceStatus}"></td>
+											<td th:text="${E.elderId}"></td>
 											<td th:text="${E.elderName}"></td>
 											<td th:text="${E.elderBirthDate}"></td>
 											<td th:text="${E.elderGender}"></td>
@@ -384,7 +412,7 @@
 													<input type="radio" name="serviceTermYear" value="4"><span>4년</span></label>
 												</div>
 												<div>
-													<input class="date" name="serviceStartDate">~<input class="date" name="serviceEndDate">
+													<input class="date" name="serviceStartDate" id="statusStartDate">~<input class="date" name="serviceEndDate" id="statusEndDate">
 												</div>
 											</label>
 										<button type="button" class="btn btn-primary btn-xs" style="margin: 0 auto;" id="statusInsert">등록하기</button>

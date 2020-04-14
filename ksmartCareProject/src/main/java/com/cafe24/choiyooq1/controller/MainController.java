@@ -70,6 +70,7 @@ public class MainController {
 			 session.setAttribute("SCENTERCODE", center.getCenterCode());
 			 session.setAttribute("SCENTERNAME", center.getCenterName());
 			 session.setAttribute("SMANAGERNAME", center.getCenterManagerName());
+			 session.setMaxInactiveInterval(1);
 			 return "index1"; 
 
 		 }else {

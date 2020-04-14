@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,11 +24,27 @@ import com.cafe24.choiyooq1.domain.ElderStatus;
 import com.cafe24.choiyooq1.service.BenefitService;
 import com.cafe24.choiyooq1.service.ElderService;
 
+
 @Controller
 public class ElderController {
 	
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired BenefitService benefitService;
 	@Autowired ElderService elderService; 
+	
+	/* [수급자] 검색 */
+	@PostMapping("/employee/elderSearchList")
+	public String elderSearchList(@RequestParam(value="sk" ,required=false)String sk,
+								@RequestParam(value="sv" ,required=false)String sv,
+								@RequestParam(value="elderSearchBeginBirthdate" ,required=false)String elderSearchBeginBirthdate,
+								@RequestParam(value="elderSearchEndBirthdate" ,required=false)String elderSearchEndBirthdate,
+								HttpSession session,
+								Model model) {
+		model.addAttribute("elderList", elderService.searchElder(sk, sv,session,elderSearchBeginBirthdate,elderSearchEndBirthdate));
+		return "elder/elderList";
+	}
+	
 	
 	/* [검사] 삭제 */
 	@PostMapping("/employee/deleteRegularCheck")
@@ -132,8 +150,9 @@ public class ElderController {
 	
 	/* [수급자] 리스트 */
 	@GetMapping("/employee/elderList")
-	public String elderList(Model model) {
-		model.addAttribute("elderList", elderService.getElderList());
+	public String elderList(HttpSession session,
+							Model model) {
+		model.addAttribute("elderList", elderService.getElderList(session));
 		return "elder/elderList";
 	}
 	

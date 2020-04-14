@@ -45,8 +45,15 @@ public class LoginService {
 		return true;
 	}
 	
+	
+	/**
+	 * 로그인 체크 메서드
+	 * @param centerCode
+	 * @param centerId
+	 * @param centerPw
+	 * @return
+	 */
 	public Map<String, Object> checkLoginCenter(String centerCode, String centerId, String centerPw) {
-		
 		center = loginMapper.centerLoginCheck(centerCode);
 		Map<String, Object> map = new HashMap<String, Object>();
 		//센터 코드,아이디,비번 체크
@@ -63,7 +70,6 @@ public class LoginService {
 							System.out.println("유효기간 을 등록이나 연장해주세요.");
 							map.put("str", "유효기간 을 등록이나 연장해주세요.");
 						}
-						
 					}else {
 						System.out.println("센터 비번 불 일치");
 						map.put("str", "센터 비번 불 일치");
@@ -71,7 +77,6 @@ public class LoginService {
 				}else {
 					System.out.println("센터아이디 불 일치");
 					map.put("str", "센터 아이디 불 일치");
-					
 				}
 			}else {
 				System.out.println("없는 센터코드");

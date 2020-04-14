@@ -54,8 +54,9 @@
     <div class="tab-content">
         <div id="login" class="tab-pane active">
         	<div class="form-group"> <h4>테스트용 아이디</h4>
+	        	<label><input type="radio" name="type" value="master">마스터</label>
 	        	<label><input type="radio" name="type" value="nomal">센터 사용중</label>
-	        	<label><input type="radio" name="type" value="ended">센터 종료</label>
+	        	<label><input type="radio" name="type" value="ended">센터 종료</label></br>
 	        	<label><input type="radio" name="type" value="elder">수급자</label>
 	        	<label><input type="radio" name="type" value="guardian">보호자</label>
         	</div>
@@ -72,9 +73,9 @@
                 <th:block>
                	<label style="color: red;" id="wrong" th:text="${result ne null}? ${result}:''" ></label><br/>
                 </th:block>
-				  <label>
+				  <!-- <label>
 				    <input type="checkbox" > 아이디 기억하기
-				  </label>
+				  </label> -->
 				</div>
                 <button id="loginBtn"class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
             </form>
@@ -102,8 +103,8 @@
     <div class="text-center">
         <ul class="list-inline">
            <!--  <li><a class="text-muted" href="#login" data-toggle="tab">Login</a></li> -->
-            <li><a class="text-muted" href="#forgot" data-toggle="tab">아이디-비밀번호 찾기</a></li>
-            <li><a class="text-muted" href="#signup" data-toggle="tab">회원가입</a></li>
+           <!--  <li><a class="text-muted" href="#forgot" data-toggle="tab">아이디-비밀번호 찾기</a></li> -->
+           <!-- <li><a class="text-muted" href="#signup" data-toggle="tab">회원가입</a></li> -->
         </ul>
     </div>
   </div>
@@ -157,18 +158,20 @@
                 	$('#id').val('')
                 	$('#pw').val('')
 	              	var type = $('input[name=type]:checked').val();
-	              	if(type == 'nomal'){
-	              		$('#centerCode').val('3-41578-00153');
-	              		$('#id').val('onemindis');
-	              		$('#pw').val('onepw111');
-	              	}else if(type == 'ended'){
+                	if(type == 'master'){
+	              		$('#centerCode').val('master');
+	              		$('#id').val('');
+	              		$('#pw').val('');
+	              	}if(type == 'nomal'){
+	              		$('#centerCode').val('3-41590-00001');
+	              		$('#id').val('jjsmart1008');
+	              		$('#pw').val('jjsmart1008pw');
+	              	}if(type == 'ended'){
 	              		$('#centerCode').val('3-45677-00240');
 	              		$('#id').val('goldpa0808');
 	              		$('#pw').val('goldpw08');
 	              	}
-	              		
                 })
-              	
             });
         })(jQuery);
     </script>

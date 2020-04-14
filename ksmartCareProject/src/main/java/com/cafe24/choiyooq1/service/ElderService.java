@@ -33,6 +33,22 @@ public class ElderService {
 	private String employeeName = "이형열";
 	
 	
+	/* [수급자] 검색 */
+	public List<Elder> searchElder(String sk, String sv, HttpSession session,
+									String elderSearchBeginBirthdate,String elderSearchEndBirthdate) {
+		System.out.println(elderSearchBeginBirthdate);
+		System.out.println(elderSearchEndBirthdate);
+		System.out.println(sk);
+		System.out.println(sv);
+		String centerCode= (String) session.getAttribute("SCENTERCODE");
+		if(elderSearchBeginBirthdate==null) {
+			return elderMapper.searchElder(sk, sv, centerCode);
+		}else {
+			return elderMapper.searchElderByBirth(sk, elderSearchBeginBirthdate, elderSearchEndBirthdate, centerCode);
+		}
+		
+	}
+	
 	
 	/* [검사] 삭제 */
 	public void deleteRegularCheck(String elderRegularCheckCode) {
@@ -243,8 +259,9 @@ public class ElderService {
 	}
 	
 	/* 수급자 리스트 메서드 */
-	public List<Elder> getElderList(){
-		List<Elder> list = elderMapper.getElderList();
+	public List<Elder> getElderList(HttpSession session){
+		String centerCode= (String) session.getAttribute("SCENTERCODE");
+		List<Elder> list = elderMapper.getElderList(centerCode);
 		return list;
 	}
 	

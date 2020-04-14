@@ -40,7 +40,6 @@
 
 	/*[공통] 삭제 메서드*/
 	var deleteEvent = function(){
-		
 		$('.deleteBtn').click(function(){
 			var url = "";
 			var map = {};
@@ -163,15 +162,29 @@
 	
 	/* [계약]계약관리 등록 함수 */
 	var insertStatus = function(){
+		
 		  $('#statusInsert').click(function(){
+			  if(checkEmpty(elderStatusSelect)){
+			  }else{
+				  return false;
+			  }if(checkEmpty(statusStartDate)){
+			  }else{
+				  return false;
+			  }if(checkEmpty(statusEndDate)){
+			  }else{
+				  return false;
+			  }
 			  $.ajax({
 					type 	: 	'POST',
 					url		:	'/employee/insertStatus',
 					data	:	$("#status").serialize(),
 					traditional :true,
 					success	:	function(data){
+						alert('등록완료')
 						statusListInModal($('#elderIdInStatus').val());
-						
+						$('#elderStatusSelect').val('');
+						$('#statusStartDate').val('');
+						$('#statusEndDate').val('');
 							},
 	
 				error	:	function(error){
@@ -247,6 +260,7 @@
 			var yearInt = parseInt(year)
 			var checkedInt = parseInt($(inputName).val())
 			levelLastDate.val((yearInt+checkedInt)+monthToDay)
+			console.log(levelLastDate.val())
 	  	})
 	  }
     
@@ -501,7 +515,39 @@
       $(document).ready(function(){
     	  
     	  
+    	  /*[검색] 셀렉트 박스 바뀔때 input 박스 바꾸는 */
     	  
+    	  //성별 HTML
+    	  var searchGenderRadioBox = "";
+    	  searchGenderRadioBox += "<div id=\"genderRadio\">";
+    	  searchGenderRadioBox += "<div class=\"col-lg-3\"><label for=\"male\">남</label>";
+    	  searchGenderRadioBox += "<input class=\"form-control\" id=\"male\" type=\"radio\" name=\"sv\" value=\"남\"></div>";
+    	  searchGenderRadioBox += "<div class=\"col-lg-3\"><label for=\"female\">여</label>";
+    	  searchGenderRadioBox += "<input class=\"form-control\" id=\"female\" type=\"radio\" name=\"sv\" value=\"여\"></div></div>";
+    	  //InputBox HTML
+    	  var searchInput = "";
+    	  searchInput = "<input class=\"form-control\" type=\"text\" name=\"sv\" id=\"sv\">";
+    	  //생년월일 inputbox
+    	  var searchBirthInput = "";
+    	  searchBirthInput += "<div class=\"col-lg-6\">";
+    	  searchBirthInput += "<input class=\"date form-control\" name=\"elderSearchBeginBirthdate\" id=\"elderSearchBeginBirthdate\" placeholder=\"부터\">";
+    	  searchBirthInput += "</div><div class=\"col-lg-6\">";
+    	  searchBirthInput += "<input class=\"date form-control\" name=\"elderSearchEndBirthdate\" placeholder=\"까지\"></div>";
+    	  
+    	  //검색 select box 변경 시 input box 변경되는 js 
+    	  $('#sk').change(function(){
+    		  $('#searchInputBox').empty();		
+    		  
+    		  var selectVal = $('#sk option:selected').text();
+    		  if(selectVal=='성별'){
+    			  $('#searchInputBox').append(searchGenderRadioBox);		  
+    		  }else if(selectVal=='생년월일'){
+    			  $('#searchInputBox').append(searchBirthInput);
+    			  $( ".date" ).datepicker({});
+    		  }else{
+    			  $('#searchInputBox').append(searchInput);		  
+    		  }
+    	  })
     	  
     	  
     	  /*[검사] 수정*/
@@ -662,7 +708,7 @@
 		$('#elderRow tr').click(function(){
 			$('#defaultTable').css('display','block');
 			var map = {};
-			var Id = $(this).find('td:eq(0)').text()
+			var Id = $(this).find('td:eq(1)').text()
 			map.elderId = Id;
 			$.ajax({
 				type 	: 	'POST',
@@ -704,7 +750,7 @@
 					
 					/* 계약관리 리스트 누르면 아래 수정 화면으로 바뀌고 값 뿌려주기 */
 					UpdateStatus();
-
+					insertStatus();
 					
 					//등급인정 모달에 리스트 뿌리기.
 					$('#elderNameInLevel').val(data.elderOenList.elderName);
@@ -800,6 +846,7 @@
     	  
     	  //data table
     	  $('#dataTable').DataTable({
+    		  
               "language": 
                  {
                  "sInfo": " 총_TOTAL_건의 자료 중  _START_번부터~_END_번까지 ",

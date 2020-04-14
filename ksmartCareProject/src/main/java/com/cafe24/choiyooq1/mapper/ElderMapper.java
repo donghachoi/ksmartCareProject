@@ -12,6 +12,12 @@ import com.cafe24.choiyooq1.domain.ElderStatus;
 @Mapper
 public interface ElderMapper {
 	
+	/* 수급자 생일로 검색 */
+	public List<Elder> searchElderByBirth(String sk, String elderSearchBeginBirthdate,String elderSearchEndBirthdate,String centerCode);
+	
+	/* 수급자 검색 */
+	public List<Elder> searchElder(String sk, String sv,String centerCode);
+	
 	/* 수급자 검사 삭제 */
 	public void deleteRegularCheck(String elderRegularCheckCode);
 	
@@ -88,7 +94,7 @@ public interface ElderMapper {
 	public void insertElderCheck(ElderRegularCheck elderRegularCheck);
 	
 	/* 수급자 리스트 */
-	public List<Elder> getElderList();
+	public List<Elder> getElderList(String centerCode);
 	
 	/* 수급자 한명의 리스트 */
 	public Elder getOneElderList(String elderId);

@@ -20,7 +20,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		if(sId == null) {
 			response.sendRedirect("/login");
 		}
-		
 		return super.preHandle(request, response, handler);
 	}
 }
