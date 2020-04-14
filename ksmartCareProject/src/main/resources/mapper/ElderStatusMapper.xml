@@ -15,6 +15,18 @@
   	<result property="serviceStartDate" column="service_start_date"/>
   	<result property="serviceEndDate" column="service_end_date"/>
   </resultMap>
+  
+  <update id="updateStatus">
+  	UPDATE 
+  		elder_status
+	SET
+		service_status=#{serviceStatus},
+		service_start_date=#{serviceStartDate},
+		service_end_date=#{serviceEndDate}
+	WHERE 
+		service_status_code=#{serviceStatusCode};
+  </update>
+  
   <delete id="deleteElderStatus">
   	DELETE 
   	FROM 
@@ -65,7 +77,7 @@
   
   <select id="getElderStatusMaxNum" resultType="int">
 	SELECT 
-		MAX(substring(service_status_code,14)) 
+		MAX(CAST(substring(service_status_code,14)AS int)) 
 	from 
 		elder_status
   </select>

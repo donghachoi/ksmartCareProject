@@ -1,40 +1,99 @@
 package com.cafe24.choiyooq1.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cafe24.choiyooq1.domain.Elder;
 import com.cafe24.choiyooq1.domain.ElderLevelHistory;
+import com.cafe24.choiyooq1.domain.ElderRegularCheck;
 import com.cafe24.choiyooq1.domain.ElderStatus;
 import com.cafe24.choiyooq1.service.BenefitService;
 import com.cafe24.choiyooq1.service.ElderService;
 
+
 @Controller
 public class ElderController {
+	
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired BenefitService benefitService;
 	@Autowired ElderService elderService; 
 	
-	/* 수급자 리스트 삭제 */
+	/* [수급자] 검색 */
+	@PostMapping("/employee/elderSearchList")
+	public String elderSearchList(@RequestParam(value="sk" ,required=false)String sk,
+								@RequestParam(value="sv" ,required=false)String sv,
+								@RequestParam(value="elderSearchBeginBirthdate" ,required=false)String elderSearchBeginBirthdate,
+								@RequestParam(value="elderSearchEndBirthdate" ,required=false)String elderSearchEndBirthdate,
+								HttpSession session,
+								Model model) {
+		model.addAttribute("elderList", elderService.searchElder(sk, sv,session,elderSearchBeginBirthdate,elderSearchEndBirthdate));
+		return "elder/elderList";
+	}
+	
+	
+	/* [검사] 삭제 */
+	@PostMapping("/employee/deleteRegularCheck")
+	public @ResponseBody void deleteRegularCheck(@RequestBody Map<String,Object> map){
+		String elderRegularCheckCode = (String) map.get("code");
+		elderService.deleteRegularCheck(elderRegularCheckCode);
+	}
+	
+	/* [검사] 수정 */
+	@PostMapping("/employee/updateRegularCheck")
+	public @ResponseBody void updateRegularCheck(ElderRegularCheck elderRegularCheck 
+												,HttpSession session) {
+		
+		elderService.updateRegularCheck(elderRegularCheck);
+	}
+	
+	/* [검사] 등록 */
+	@PostMapping("/employee/insertRegularCheck")
+	public @ResponseBody void insertRegularCheck(@RequestBody List<ElderRegularCheck> list
+												,HttpSession session) {
+		elderService.insertRegularCheck(list, session);
+	}
+	
+	/* [검사] 리스트 */
+	@PostMapping("/employee/regularCheck")
+	public @ResponseBody List<ElderRegularCheck> regularCheckList(@RequestBody Map<String,Object> map){
+		String elderId = (String) map.get("elderId");
+		System.out.println(elderService.getOneElderRegularList(elderId).get(0).getElderRegularCheckDoingDate()+"<<<<<<<<<<<<<<<<<<<<<<<<<<\\=============");
+		return elderService.getOneElderRegularList(elderId);		
+	}
+	
+	
+	/* [계약] 수정 */
+	@PostMapping("/employee/statusUpdate")
+	public @ResponseBody void updateStatus(ElderStatus elderStatus) {
+		System.out.println(elderStatus.toString());
+		elderService.updateStatus(elderStatus);
+	}
+	
+	/* [계약] 삭제 */
 	@PostMapping("/employee/statusDelete")
 	public @ResponseBody void statusDelete(@RequestBody Map<String,Object> map){
 		System.out.println("계약관리 삭제!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		String code = (String) map.get("code");
 		elderService.deleteElderStatus(code);
-		
 	}
 	
 	
-	/* 수급자 계약 등록 */
+	/* [계약] 등록 */
 	@PostMapping("/employee/insertStatus")
 	public @ResponseBody void insertElderStatus(ElderStatus elderStatus
 											,HttpSession session) {
@@ -42,7 +101,7 @@ public class ElderController {
 		
 	}
 	
-	/* 수급자 등급 삭제 */
+	/* [등급] 삭제 */
 	@PostMapping("/employee/levelDelete")
 	public @ResponseBody void levelDelete(@RequestBody Map<String,Object> map){
 		String code = (String) map.get("code");
@@ -50,14 +109,14 @@ public class ElderController {
 		
 	}
 	
-	/* 수급자 등급 수정 */
+	/* [등급] 수정 */
 	@PostMapping("/employee/levelUpdate")
 	public @ResponseBody void levelUpdate(ElderLevelHistory elderLevelHistory){
 		elderService.updateElderLevel(elderLevelHistory);
 		
 	}
 	
-	/* 수급자 등급 입력 */
+	/*[등급] 입력 */
 	@PostMapping("/employee/levelInsert")
 	public @ResponseBody void levelInsert(ElderLevelHistory elderLevelHistory
 											,HttpSession session){
@@ -65,58 +124,48 @@ public class ElderController {
 		elderService.insertElderLevel(elderLevelHistory, session);
 	}
 	
-	/* 수급자 등록 */
+	/* [수급자] 등록 */
 	@PostMapping("/employee/elderInsert")
 	public String elderInsert(Elder elder
 							,ElderLevelHistory elderLevelHistory
 							,HttpSession session) {
 		
-		//수급자 입력
-		elderService.insertElder(elder, elderLevelHistory,session);
+		elderService.insertElder(elder, elderLevelHistory, session);
 		return "elder/elderInsert";
-		
 	}
 	
-	/* 수급자 아이디 체크 ajax*/
+	/* [수급자] 아이디 체크 ajax*/
 	@PostMapping("/employee/idCheck")
 	public @ResponseBody String checkId(@RequestBody Map<String,Object> map){
 		String elderId =(String) map.get("Id");
 		return elderService.checkElderId(elderId);
 	}
 	
-	/* 수급자 등록 화면으로 */
+	/* [수급자] 등록 화면으로 */
 	@GetMapping("/employee/elderInsert")
 	public String elderInsert(Model model) {
 		model.addAttribute("guaranteeingAgency", elderService.getGuaranteeingAgencyList());
 		return "elder/elderInsert";
 	}
 	
-	/* 수급자 리스트 */
+	/* [수급자] 리스트 */
 	@GetMapping("/employee/elderList")
-	public String elderList(Model model) {
-		model.addAttribute("elderList", elderService.getElderList());
+	public String elderList(HttpSession session,
+							Model model) {
+		model.addAttribute("elderList", elderService.getElderList(session));
 		return "elder/elderList";
 	}
 	
-	/* 수급자 상세 리스트 */
+	/* [수급자] 상세 리스트 */
 	@PostMapping("/elderDetailList")
 	public @ResponseBody Map<String,Object> getElderDetailList(@RequestBody Map<String,Object> map){
 		String elderId = (String) map.get("elderId");
-		System.out.println(elderId);
 		return elderService.getOneElderList(elderId);
 	}
 	
-	/* 부트스트랩 확인용 */
-	@GetMapping("/table")
-	public String table(Model model) {
-		model.addAttribute("benefitcost", benefitService.getBenefitCost());
-		return "elder/table";
-	}
-	
-	/* 수가 리스트 & 한도액 */
+	/* [공통] 수가 리스트 & 한도액 */
 	@GetMapping("/benefitcostAndMax")
 	public String sugaList(Model model) {
-		System.out.println("hi in controller");
 		model.addAttribute("benefitcost", benefitService.getBenefitCost());
 		model.addAttribute("benefitMax", benefitService.getBenefitMax());
 		

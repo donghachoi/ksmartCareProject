@@ -17,8 +17,59 @@
   	<result property="elderRegularCheckDoingDate" column="elder_regular_check_doing_date"/>
   	<result property="elderRegularCheckRegistrationDate" column="elder_regular_check_registration_date"/>
   </resultMap>
+  <insert id="insertRegularCheck">
+	INSERT INTO 
+		elder_regular_check
+	(elder_regular_check_code, 
+	center_code, center_name, 
+	elder_id, elder_name,
+	employee_id, employee_name, 
+	elder_regular_check_category, elder_regular_check_plan_date, 
+	elder_regular_check_doing_date,elder_regular_check_registration_date)
+	VALUES 
+		(#{elderRegularCheckCode},
+		#{centerCode}, #{centerName}, #{elderId}, #{elderName}, #{employeeId}, #{employeeName}, #{elderRegularCheckCategory}, 
+		#{elderRegularCheckPlanDate}, #{elderRegularCheckDoingDate}, NOW())
+  </insert>
   
-	<insert id="insertRegularCheck">
+  <update id="deleteRegularCheck">
+	DELETE 
+	FROM 
+		elder_regular_check
+	WHERE 
+		elder_regular_check_code = #{elderRegularCheckCode};  
+  </update>
+  <update id="updateRegularCheck">
+  	UPDATE 
+  		elder_regular_check
+	SET
+		elder_regular_check_plan_date= 			#{elderRegularCheckPlanDate},
+		elder_regular_check_doing_date= 		#{elderRegularCheckDoingDate},
+		elder_regular_check_registration_date= 	NOW()
+	WHERE 
+		elder_regular_check_code = #{elderRegularCheckCode};
+  
+  </update>
+  <select id="getOneElderRegularList" resultMap="ElderRegularCheck">
+ 	SELECT 
+	 	elder_id,
+	 	elder_name,
+ 		elder_regular_check_code,
+		elder_regular_check_category, 
+		elder_regular_check_plan_date, 
+		elder_regular_check_doing_date, 
+		elder_regular_check_registration_date
+	FROM 
+		elder_regular_check
+	WHERE 
+		elder_id = #{elderId}
+	ORDER BY 
+		elder_regular_check_doing_date 
+	desc;
+  </select>
+
+  
+	<insert id="insertFirstRegularCheck">
   	INSERT INTO 
   		elder_regular_check
 	(elder_regular_check_code, 
@@ -37,9 +88,11 @@
 	#{centerCode}, #{centerName}, #{elderId}, #{elderName}, #{employeeId}, #{employeeName}, #{elderRegularCheckCategory}, 
 	#{elderRegularCheckPlanDate}, #{elderRegularCheckDoingDate}, #{elderRegularCheckRegistrationDate})
 	</insert>
+	
+	
   <select id="getMaxNum" resultType="int">
-	SELECT 
-		MAX(substring(elder_regular_check_code,7)) 
+	select
+		MAX(cast(substring(elder_regular_check_code,7)AS int))
 	from 
 		elder_regular_check
   </select>

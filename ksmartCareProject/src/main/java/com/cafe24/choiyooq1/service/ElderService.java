@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cafe24.choiyooq1.domain.Elder;
 import com.cafe24.choiyooq1.domain.ElderLevelHistory;
@@ -26,6 +27,89 @@ public class ElderService {
 	@Autowired ElderMapper elderMapper;
 	@Autowired GuaranteeingAgencyMapper guaranteeingAgency;
 	
+	
+	//추후에 로그인할 직원의 세션값 
+	private String employeeId = "e_000001";
+	private String employeeName = "이형열";
+	
+	
+	/* [수급자] 검색 */
+	public List<Elder> searchElder(String sk, String sv, HttpSession session,
+									String elderSearchBeginBirthdate,String elderSearchEndBirthdate) {
+		System.out.println(elderSearchBeginBirthdate);
+		System.out.println(elderSearchEndBirthdate);
+		System.out.println(sk);
+		System.out.println(sv);
+		String centerCode= (String) session.getAttribute("SCENTERCODE");
+		if(elderSearchBeginBirthdate==null) {
+			return elderMapper.searchElder(sk, sv, centerCode);
+		}else {
+			return elderMapper.searchElderByBirth(sk, elderSearchBeginBirthdate, elderSearchEndBirthdate, centerCode);
+		}
+		
+	}
+	
+	
+	/* [검사] 삭제 */
+	public void deleteRegularCheck(String elderRegularCheckCode) {
+		elderMapper.deleteRegularCheck(elderRegularCheckCode);
+		
+	}
+	
+	/* [검사] 수정 */
+	public void updateRegularCheck(ElderRegularCheck elderRegularCheck) {
+		elderMapper.updateRegularCheck(elderRegularCheck);
+	}
+	
+	/* [검사] 등록 */
+	public void insertRegularCheck(List<ElderRegularCheck> list
+			,HttpSession session) {
+		String centerName= (String) session.getAttribute("SCENTERNAME");
+		String centerCode= (String) session.getAttribute("SCENTERCODE");
+		System.out.println(list.size()+"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<------ size");
+		System.out.println(list.toString()+"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<------ toString");
+		for(int i =0;i<list.size();i++) {
+			list.get(i).setElderRegularCheckCode("check_"+(elderMapper.getMaxNum()+1));
+			list.get(i).setCenterCode(centerCode);
+			list.get(i).setCenterName(centerName);
+			list.get(i).setEmployeeId(employeeId);
+			list.get(i).setEmployeeName(employeeName);
+			list.get(i).setElderRegularCheckRegistrationDate("now()");
+			elderMapper.insertRegularCheck(list.get(i));
+			// ibatis 내에서 NOW()메서드 안먹음......
+		}
+		
+	}
+	
+	/* [검사] 리스트 */
+	public List<ElderRegularCheck> getOneElderRegularList(String elderId){
+		List<ElderRegularCheck> list = elderMapper.getOneElderRegularList(elderId);
+		for(int i =0;i<list.size();i++) {
+			if(list.get(i).getElderRegularCheckPlanDate()==null) {
+				list.get(i).setElderRegularCheckPlanDate("");
+			}
+			if(list.get(i).getElderRegularCheckDoingDate().equals("0000-00-00")) {
+				list.get(i).setElderRegularCheckDoingDate("시행전");
+			}
+			if(list.get(i).getElderRegularCheckRegistrationDate()==null) {
+				list.get(i).setElderRegularCheckRegistrationDate("");
+			}
+		}
+		return list;
+	}
+	
+	/* [계약] 수정 */
+	public void updateStatus(ElderStatus elderStatus) {
+		
+		//만약 계약타입이 해지,사망, 타기관 일시 endDate는 null값으로 넘어오니 0000-00-00로 해둡니다.
+		String elderStatusType = elderStatus.getServiceStatus();
+		if(elderStatusType.equals("해지") || elderStatusType.equals("사망") || elderStatusType.equals("타기관")) {
+			elderStatus.setServiceEndDate("0000-00-00");
+		}
+		elderMapper.updateStatus(elderStatus);
+		
+	}
+	
 	/* 수급자 계약관리 삭제 */
 	public void deleteElderStatus(String statusCode) {
 		elderMapper.deleteElderStatus(statusCode);
@@ -37,8 +121,7 @@ public class ElderService {
 		String centerName= (String) session.getAttribute("SCENTERNAME");
 		String centerCode= (String) session.getAttribute("SCENTERCODE");
 		int maxNum = elderMapper.getElderStatusMaxNum();
-		System.out.println("elderMapper.getElderStatusMaxNum() ==>>>" + maxNum);
-		System.out.println("<<<<<====== eldertostring" + elderStatus.toString());
+		
 		if(maxNum < 9) {
 			elderStatus.setServiceStatusCode("s_current_cd_0"+(maxNum+1));
 		}else {
@@ -94,20 +177,28 @@ public class ElderService {
 			if(list.get(i).getElderRegularCheckDoingDate().equals("0000-00-00")) {
 				list.get(i).setElderRegularCheckDoingDate("시행전");
 			}
-			if(category.equals("낙상위험 측정")) {
+			if(category.equals("낙상위험측정")) {
 				map.put("fallDownCheck", list.get(i));
-			}if(category.equals("욕창위험 측정")) {
+			}if(category.equals("욕창위험측정")) {
 				map.put("bedsoreCheck", list.get(i));
-			}if(category.equals("인지기능 검사")) {
+			}if(category.equals("인지기능검사")) {
 				map.put("functionCheck", list.get(i));
 			}if(category.equals("욕구사정")) {
 				map.put("needsCheck", list.get(i));
 			}
 			
-			System.out.println(list.get(i).getElderRegularCheckDoingDate());
 		}
 		
-		map.put("elderstatusList", elderMapper.getOneElderStatusList(elderId));
+		// ServiceEndDate 시간이 0000-00-00이면 공백으로 넘깁니다.
+		List<ElderStatus> Statuslist = elderMapper.getOneElderStatusList(elderId);
+		for(int i=0;i<Statuslist.size();i++) {
+			String EndDate = Statuslist.get(i).getServiceEndDate();
+			if(EndDate.equals("0000-00-00")) {
+				Statuslist.get(i).setServiceEndDate("");
+			}
+		}
+		
+		map.put("elderstatusList", Statuslist);
 		map.put("elderOenList", elderMapper.getOneElderList(elderId));
 		map.put("elderLastLevel", elderMapper.getElderLastLevelHistory(elderId));
 		map.put("elderLastStatus", elderMapper.getElderLastStatus(elderId));
@@ -120,7 +211,7 @@ public class ElderService {
 	/* 수급자 초기 입력 메서드 */
 	public void insertElder(Elder elder,ElderLevelHistory elderLevelHistory ,HttpSession session) {
 		
-		ElderRegularCheck elderCheck = new ElderRegularCheck(); 
+		ElderRegularCheck elderRegularCheck = new ElderRegularCheck(); 
 		String centerName= (String) session.getAttribute("SCENTERNAME");
 		String centerCode= (String) session.getAttribute("SCENTERCODE");
 		elder.setCenterName(centerName);
@@ -132,14 +223,14 @@ public class ElderService {
 		//수급자 초기 체크리스트 입력
 		String[] list = {"낙상위험 측정","욕창위험 측정","인지기능 검사","욕구사정" };
 		for(int i=0;i<list.length;i++) {
-			elderCheck.setElderRegularCheckCode("check_"+(elderMapper.getMaxNum()+1));
-			elderCheck.setCenterCode(centerCode);
-			elderCheck.setCenterName(centerName);
-			elderCheck.setElderId(elder.getElderId());
-			elderCheck.setElderName(elder.getElderName());
-			elderCheck.setElderRegularCheckCategory(list[i]);
-			elderCheck.setElderRegularCheckDoingDate("0000-00-00");
-			elderMapper.insertRegularCheck(elderCheck);
+			elderRegularCheck.setElderRegularCheckCode("check_"+(elderMapper.getMaxNum()+1));
+			elderRegularCheck.setCenterCode(centerCode);
+			elderRegularCheck.setCenterName(centerName);
+			elderRegularCheck.setElderId(elder.getElderId());
+			elderRegularCheck.setElderName(elder.getElderName());
+			elderRegularCheck.setElderRegularCheckCategory(list[i]);
+			elderRegularCheck.setElderRegularCheckDoingDate("0000-00-00");
+			elderMapper.insertFirstRegularCheck(elderRegularCheck);
 		}
 		
 		//수급자 수급상태 초기 등록 
@@ -168,8 +259,9 @@ public class ElderService {
 	}
 	
 	/* 수급자 리스트 메서드 */
-	public List<Elder> getElderList(){
-		List<Elder> list = elderMapper.getElderList();
+	public List<Elder> getElderList(HttpSession session){
+		String centerCode= (String) session.getAttribute("SCENTERCODE");
+		List<Elder> list = elderMapper.getElderList(centerCode);
 		return list;
 	}
 	

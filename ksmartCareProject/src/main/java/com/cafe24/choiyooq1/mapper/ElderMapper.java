@@ -12,6 +12,27 @@ import com.cafe24.choiyooq1.domain.ElderStatus;
 @Mapper
 public interface ElderMapper {
 	
+	/* 수급자 생일로 검색 */
+	public List<Elder> searchElderByBirth(String sk, String elderSearchBeginBirthdate,String elderSearchEndBirthdate,String centerCode);
+	
+	/* 수급자 검색 */
+	public List<Elder> searchElder(String sk, String sv,String centerCode);
+	
+	/* 수급자 검사 삭제 */
+	public void deleteRegularCheck(String elderRegularCheckCode);
+	
+	/* 수급자 검사 수정 */
+	public void updateRegularCheck(ElderRegularCheck elderRegularCheck);
+	
+	/* 수급자 검사 등록 */
+	public void insertRegularCheck(ElderRegularCheck elderRegularCheck);
+	
+	/* 수급자 검사 리스트 */
+	public List<ElderRegularCheck> getOneElderRegularList(String elderId);
+	
+	/* 수급자 계약 수정 */
+	public void updateStatus(ElderStatus elderStatus);
+	
 	/* 수급자 계약 삭제 */
 	public void deleteElderStatus(String statusCode);
 	
@@ -43,7 +64,7 @@ public interface ElderMapper {
 	public int getElderStatusMaxNum();
 	
 	/* 수급자 초기입력시 검사 등록 */
-	public void insertRegularCheck(ElderRegularCheck elderCheck);
+	public void insertFirstRegularCheck(ElderRegularCheck elderRegularCheck);
 	
 	/* 수급자 초기입력시 상태 등록 */
 	public void insertFirstStatus(ElderStatus elderstatus);
@@ -70,10 +91,10 @@ public interface ElderMapper {
 	public void insertElder(Elder elder);
 	
 	/* 수급자 초기 입력때 검사 입력 */
-	public void insertElderCheck(ElderRegularCheck eldrCheck);
+	public void insertElderCheck(ElderRegularCheck elderRegularCheck);
 	
 	/* 수급자 리스트 */
-	public List<Elder> getElderList();
+	public List<Elder> getElderList(String centerCode);
 	
 	/* 수급자 한명의 리스트 */
 	public Elder getOneElderList(String elderId);
