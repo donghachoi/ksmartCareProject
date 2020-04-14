@@ -24,6 +24,7 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 48px;
+  background-color: #333;
 }
 .Footer,
 #footer {
@@ -66,7 +67,7 @@ body {
   z-index: 999;
 }
 #left {
-  position: absolute;
+  position: relative;
   left: -250px;
 }
 .sidebar-left-opened #left {

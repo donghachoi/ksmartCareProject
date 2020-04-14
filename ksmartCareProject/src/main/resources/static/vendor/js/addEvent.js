@@ -54,7 +54,7 @@ var newEvent = function (start, end, eventType) {
     $('.serviceCategory').css('display', 'none');
     //새로운 일정 저장버튼 클릭
     $('#save-event').unbind();
-    $(document).on('click', '#save-event', function () {
+    $('#save-event').on('click', function () {
 
     	var vCode = $('#visitCode').text();
     	console.log("넘어 왔습니까?"+vCode);

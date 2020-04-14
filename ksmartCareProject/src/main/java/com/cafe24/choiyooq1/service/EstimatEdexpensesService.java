@@ -37,8 +37,10 @@ public class EstimatEdexpensesService {
 		for(int i=0; i< elderList.size(); i++) {
 			EstimatedExpenses estimated = new EstimatedExpenses();
 			Elder elder = elderList.get(i);
+			
+			System.out.println("dfsdfsdfsdfsdfsdfs11111111" );
 			int maxcost = estimatedexpensesMapper.elderMaxCost(elder.getElderId());
-
+			System.out.println("dfsdfsdfsdfsdfs222222" +maxcost);
 			estimated.setMaxCost(maxcost);
 			estimated.setElderFinalServiceStatus(elder.getElderFinalServiceStatus());
 			estimated.setElerId(elder.getElderId());

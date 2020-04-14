@@ -72,7 +72,7 @@ public class MainController {
 			 session.setAttribute("SMANAGERNAME", center.getCenterManagerName());
 			 System.out.println(session.getAttribute("SID"));
 			 System.out.println(session.getAttribute("SCENTERCODE"));
-			 return "index1"; 
+			 return "redirect:/center/centerInformation"; 
 
 		 }else {
 			 redirectA.addAttribute("result", "등록된 센터가아닙니다.");	

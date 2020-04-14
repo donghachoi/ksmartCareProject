@@ -172,6 +172,6 @@
 	</delete>	
 	
 	<select id="getVisitCode" parameterType="String" resultType="String">
-		SELECT CONCAT('a', '_', (select LPAD(MAX(CONVERT(REPLACE(visit_code, 'a_00000', ''), SIGNED INTEGER))+1 ,7 ,'0') as visit_code FROM visit))
+		SELECT CONCAT('a', '_', (select LPAD(MAX(CONVERT(REPLACE(visit_code, 'a_00000', ''), SIGNED INTEGER))+1 ,8 ,'0') as visit_code FROM visit))
 	</select>
   </mapper>
