@@ -85,7 +85,7 @@
 	        </header>
 	        <div id="div-4" class="body">
 		
-	            <form class="form-horizontal" th:action="@{/center/centerInsert}" method="post">
+	            <form class="form-horizontal" th:action="@{/master/centerInsert}" method="post">
 	
 	                <div class="form-group">
 	                    <label for="text2" class="control-label col-lg-4">장기요양기관번호</label>
@@ -99,23 +99,23 @@
 	                    <label for="text1" class="control-label col-lg-4">센터명</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text1"  class="form-control" name="centerName">
+	                        <input type="text" class="form-control" name="centerName">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
 	                <div class="form-group">
-	                    <label for="text1" class="control-label col-lg-4">아이디</label>
+	                    <label class="control-label col-lg-4">아이디</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text1"  class="form-control"  name="centerId">
+	                        <input type="text" class="form-control"  name="centerId">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
 	                   <div class="form-group">
-	                    <label for="text1" class="control-label col-lg-4">센터담당자 이름</label>
+	                    <label class="control-label col-lg-4">센터담당자 이름</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text1" class="form-control" name="centerManagerName">
+	                        <input type="text" class="form-control" name="centerManagerName">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -130,18 +130,18 @@
 	                </div>
 	                <!-- /.form-group -->
 	                	 <div class="form-group">
-	                    <label for="text2" class="control-label col-lg-4" >센터담당자 연락처</label>
+	                    <label class="control-label col-lg-4" >센터담당자 연락처</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text2" placeholder="000-000-0000" class="form-control" name="conterManagerPhone">
+	                        <input type="text" placeholder="000-000-0000" class="form-control" name="conterManagerPhone">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
 	                <div class="form-group">
-	                  	<label for="text2" class="control-label col-lg-4" >센터 연락처</label>
+	                  	<label class="control-label col-lg-4" >센터 연락처</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text2" placeholder="000-000-0000" class="form-control" name="centerPhone">
+	                        <input type="text" placeholder="000-000-0000" class="form-control" name="centerPhone">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -175,29 +175,29 @@
 
 	
 	                <div class="form-group">
-	                    <label for="text2" class="control-label col-lg-4">센터 상세 주소</label>
+	                    <label class="control-label col-lg-4">센터 상세 주소</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text2" placeholder="행복시 지금구 여기로1 1-1" class="form-control" name="centerAdress" >
+	                        <input type="text" placeholder="행복시 지금구 여기로1 1-1" class="form-control" name="centerAdress" >
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
 	                
 	                <div class="form-group">
-	                    <label for="text2" class="control-label col-lg-4">사업자등록번호</label>
+	                    <label class="control-label col-lg-4">사업자등록번호</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text2" placeholder="1110001111" class="form-control" name="businessRegistrationNumber">
+	                        <input type="text" placeholder="1110001111" class="form-control" name="businessRegistrationNumber">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->				
 
 
 	                <div class="form-group">
-	                    <label for="text1" class="control-label col-lg-4">등록번호상사업자이름</label>
+	                    <label class="control-label col-lg-4">등록번호상사업자이름</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text1"  class="form-control" name="employerName">
+	                        <input type="text" class="form-control" name="employerName">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -211,6 +211,7 @@
 	                 
 	                </div>
 	                </div>
+	                </form>
 	                <!-- /.form-group -->
 
 	
@@ -231,7 +232,6 @@
                     <!-- /.outer -->
                 </div>
                 
-	            </form>
                 <!-- /#content -->
 
                     <div id="right" class="onoffcanvas is-right is-fixed bg-light" aria-expanded=false>
@@ -352,25 +352,16 @@
             <!-- Screenfull -->
             <script src="/assets/lib/screenfull/screenfull.js"></script>
 
-                    <script src="/assets/lib/inputlimiter/jquery.inputlimiter.js"></script>
-                    <script src="/assets/lib/validVal/js/jquery.validVal.min.js"></script>
-                    <script src="/assets/lib/bootstrap-daterangepicker/daterangepicker.js"></script>
+            <script src="/assets/lib/inputlimiter/jquery.inputlimiter.js"></script>
+            <script src="/assets/lib/validVal/js/jquery.validVal.min.js"></script>
+            <script src="/assets/lib/bootstrap-daterangepicker/daterangepicker.js"></script>
 
             <!-- Metis core scripts -->
             <script src="/assets/js/core.js"></script>
             <!-- Metis demo scripts -->
             <script src="/assets/js/app.js"></script>
 
-                <script>
-                    $(function() {
-                      Metis.formGeneral();
-                    });
-                </script>
-
             <script src="/assets/js/style-switcher.js"></script>
-	<!--jQuery -->
-            <script src="/assets/lib/jquery/jquery.js"></script>
-
             <!--Bootstrap -->
             <script src="/assets/lib/bootstrap/js/bootstrap.js"></script>
             <!-- MetisMenu -->
@@ -384,5 +375,10 @@
             <!-- Metis demo scripts -->
             <script src="/assets/js/app.js"></script>
             <script src="/assets/js/style-switcher.js"></script>
+<script>
+    $(function() {
+      Metis.formGeneral();
+    });
+</script>
 </th:block>
 </html>

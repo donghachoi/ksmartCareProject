@@ -54,7 +54,7 @@
     <div class="tab-content">
         <div id="login" class="tab-pane active">
         	<div class="form-group"> <h4>테스트용 아이디</h4>
-	        	<label><input type="radio" name="type" value="master">마스터</label>
+	        	<label><input type="radio" name="type" value="master">master 로그인</label></br>
 	        	<label><input type="radio" name="type" value="nomal">센터 사용중</label>
 	        	<label><input type="radio" name="type" value="ended">센터 종료</label></br>
 	        	<label><input type="radio" name="type" value="elder">수급자</label>
@@ -158,21 +158,20 @@
                 	$('#id').val('')
                 	$('#pw').val('')
 	              	var type = $('input[name=type]:checked').val();
+               		console.log(type);
 	              	if(type == 'nomal'){
 	              		$('#centerCode').val('3-41590-00001');
 	              		$('#id').val('jjsmart1008');
 	              		$('#pw').val('jjsmart1008pw');
-	              	}else if(type == 'ended'){
-                	if(type == 'master'){
+	              	}if(type == 'master'){
 	              		$('#centerCode').val('master');
-	              		$('#id').val('');
-	              		$('#pw').val('');
+	              		$('#id').val('master');
+	              		$('#pw').val('master');
 	              	}if(type == 'ended'){
 	              		$('#centerCode').val('3-45677-00240');
 	              		$('#id').val('goldpa0808');
 	              		$('#pw').val('goldpw08');
 	              	}
-              	}
                 })
             });
         })(jQuery);

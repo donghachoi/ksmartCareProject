@@ -87,38 +87,38 @@
 	        </header>
 	        <div id="div-4" class="body">
 		
-	            <form class="form-horizontal" th:action="@{/center/centerUpdate}" method="post">
+	            <form class="form-horizontal" th:action="@{/master/centerUpdate}" method="post">
 	
 	                <div class="form-group">
-	                    <label for="text2" class="control-label col-lg-4" >장기요양기관번호
+	                    <label  class="control-label col-lg-4" >장기요양기관번호
 	                    </label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text2" readonly class="form-control" name="centerCode" th:value="${Center.centerCode}" >
+	                        <input type="text" readonly class="form-control" name="centerCode" th:value="${Center.centerCode}" >
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
 	                <div class="form-group">
-	                    <label for="text1" class="control-label col-lg-4">센터명</label>
+	                    <label class="control-label col-lg-4">센터명</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text1"  class="form-control" name="centerName" th:value="${Center.centerName}" >
+	                        <input type="text"  class="form-control" name="centerName" th:value="${Center.centerName}" >
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
 	                <div class="form-group">
-	                    <label for="text1" class="control-label col-lg-4">아이디</label>
+	                    <label class="control-label col-lg-4">아이디</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text1"  class="form-control"  name="centerId" th:value="${Center.centerId}" >
+	                        <input type="text" class="form-control"  name="centerId" th:value="${Center.centerId}" >
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
 	                   <div class="form-group">
-	                    <label for="text1" class="control-label col-lg-4">센터담당자 이름</label>
+	                    <label class="control-label col-lg-4">센터담당자 이름</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text1" class="form-control" name="centerManagerName" th:value="${Center.centerManagerName}" >
+	                        <input type="text" class="form-control" name="centerManagerName" th:value="${Center.centerManagerName}" >
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -133,18 +133,18 @@
 	                </div>
 	                <!-- /.form-group -->
 	                	 <div class="form-group">
-	                    <label for="text2" class="control-label col-lg-4" >센터담당자 연락처</label>
+	                    <label class="control-label col-lg-4" >센터담당자 연락처</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text2" placeholder="000-000-0000" class="form-control" name="conterManagerPhone" th:value="${Center.conterManagerPhone}" >
+	                        <input type="text" placeholder="000-000-0000" class="form-control" name="conterManagerPhone" th:value="${Center.conterManagerPhone}" >
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
 	                <div class="form-group">
-	                  	<label for="text2" class="control-label col-lg-4" >센터 연락처</label>
+	                  	<label class="control-label col-lg-4" >센터 연락처</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text2" placeholder="000-000-0000" class="form-control" name="centerPhone" th:value="${Center.centerPhone}" >
+	                        <input type="text" placeholder="000-000-0000" class="form-control" name="centerPhone" th:value="${Center.centerPhone}" >
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -178,26 +178,26 @@
 
 	
 	                <div class="form-group">
-	                    <label for="text2" class="control-label col-lg-4">센터 상세 주소</label>
+	                    <label class="control-label col-lg-4">센터 상세 주소</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text2" placeholder="행복시 지금구 여기로1 1-1" class="form-control" name="centerAdress" th:value="${Center.centerAdress}" >
+	                        <input type="text" placeholder="행복시 지금구 여기로1 1-1" class="form-control" name="centerAdress" th:value="${Center.centerAdress}" >
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
 	                <div class="form-group">
-	                    <label for="text1" class="control-label col-lg-4">서비스시작일</label>
+	                    <label class="control-label col-lg-4">서비스시작일</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text1"  class="form-control"  name="serviceStartDate" th:value="${Center.serviceStartDate}" >
+	                        <input type="text" class="form-control date"  name="serviceStartDate" th:value="${Center.serviceStartDate}" autocomplete="off">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
 	                <div class="form-group">
-	                    <label for="text1" class="control-label col-lg-4">서비스종료일</label>
+	                    <label class="control-label col-lg-4">서비스종료일</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text1"  class="form-control"  name="serviceEndDate" th:value="${Center.serviceEndDate}" >
+	                        <input type="text" class="form-control date"  name="serviceEndDate" th:value="${Center.serviceEndDate}" autocomplete="off">
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
@@ -217,26 +217,26 @@
 					<!-- /.form-group -->
 	                
 	                <div class="form-group">
-	                    <label for="text2" class="control-label col-lg-4">사업자등록번호</label>
+	                    <label class="control-label col-lg-4">사업자등록번호</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text2" placeholder="1110001111" class="form-control" name="businessRegistrationNumber" th:value="${Center.businessRegistrationNumber}" >
+	                        <input type="text" placeholder="1110001111" class="form-control" name="businessRegistrationNumber" th:value="${Center.businessRegistrationNumber}" >
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->				
 
 
 	                <div class="form-group">
-	                    <label for="text1" class="control-label col-lg-4">등록번호상사업자이름</label>
+	                    <label class="control-label col-lg-4">등록번호상사업자이름</label>
 	
 	                    <div class="col-lg-3">
-	                        <input type="text" id="text1"  class="form-control" name="employerName" th:value="${Center.employerName}" >
+	                        <input type="text" class="form-control" name="employerName" th:value="${Center.employerName}" >
 	                    </div>
 	                </div>
 	                <!-- /.form-group -->
 	                <div class="form-group">
 	                 <div class="form-actions">
-	                    <label for="text1" class="control-label col-lg-5"></label>
+	                    <label class="control-label col-lg-5"></label>
 	
 						<div class="col-lg-3">
 						<input type="submit" value="수정하기" class="btn btn-primary">
@@ -248,8 +248,6 @@
 
 	
 	                <!-- /.row -->
-
-	           
                  </form>
 	        </div>
 	    </div>
@@ -400,13 +398,14 @@
                 <script>
                     $(function() {
                       Metis.formGeneral();
+                      $( ".date" ).datepicker({});
                     });
                 </script>
 
             <script src="/assets/js/style-switcher.js"></script>
-	<!--jQuery -->
-            <script src="/assets/lib/jquery/jquery.js"></script>
-
+			<link rel="stylesheet" href="/assets/lib/jquery/jquery-ui.min.css" type="text/css" />  
+			<script src="/assets/lib/jquery/jquery-ui.min.js"></script>
+			<script src="/assets/lib/jquery/datepicker-ko.js"></script>
             <!--Bootstrap -->
             <script src="/assets/lib/bootstrap/js/bootstrap.js"></script>
             <!-- MetisMenu -->

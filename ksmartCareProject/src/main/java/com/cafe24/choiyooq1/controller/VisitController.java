@@ -57,7 +57,7 @@ public class VisitController {
 			smonth ="0"+smonth;
 		}
 		
-		List<Visit> calender = visitservice.vCalenderList(elder_id); 
+		List<Visit> calender = visitservice.vCalenderList(elder_id);
 		List<Employee> empList = visitservice.emplyeeList(centerCode);  //센터별 직원 목록 가져옴
 		Map<String, Integer>  list = visitservice.elderBenefitCost(elder_id, syear, smonth, maxcost);
 		list.put("syear", Integer.parseInt(syear));

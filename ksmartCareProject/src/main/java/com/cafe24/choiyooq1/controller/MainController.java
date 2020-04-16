@@ -1,6 +1,8 @@
 package com.cafe24.choiyooq1.controller;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,15 +47,11 @@ public class MainController {
 		 map = loginService.checkLoginCenter(centerCode, centerId, centerPw);
 		 HttpSession session = request.getSession();
 		 
-		 
 		 String result = (String) map.get("str");
 		 center = (Center) map.get("center");
 		 if(center!=null) {
-			 System.out.println("센터 확인");
 			 if(center.getCenterId().equals(centerId)) {
-				 System.out.println("아이디 확인");
 				 if(center.getCenterPw().equals(centerPw)) {
-					 System.out.println("비번 확인");
 					 model.addAttribute("SID", center.getCenterId());
 					 model.addAttribute("SCENTERNAME", center.getCenterName());
 					 model.addAttribute("SMANAGERNAME", center.getCenterManagerName());
@@ -66,13 +64,22 @@ public class MainController {
 				 redirectA.addAttribute("result", "등록된 아이디가 아닙니다.");	
 					return "redirect:/login";
 				 }
+			 SimpleDateFormat format1 = new SimpleDateFormat ("yyyy-MM-dd");
+			 Date date = new Date();
 			 session.setAttribute("SID", center.getCenterId());
 			 session.setAttribute("SCENTERCODE", center.getCenterCode());
 			 session.setAttribute("SCENTERNAME", center.getCenterName());
 			 session.setAttribute("SMANAGERNAME", center.getCenterManagerName());
+			 session.setAttribute("today", format1.format(date));
 			 System.out.println(session.getAttribute("SID"));
-			 System.out.println(session.getAttribute("SCENTERCODE"));
-			 return "index1"; 
+			 System.out.println(session.getAttribute("SCENTERCODE")+"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< in controller");
+			 if(session.getAttribute("SCENTERCODE").equals("master")) {
+				 
+				 return "redirect:/master/centerList";
+				 
+			 }else {
+				 return "redirect:/center/centerInformation";
+			 }
 		 }else {
 			 redirectA.addAttribute("result", "등록된 센터가아닙니다.");	
 			redirectA.addAttribute("result", result);	
@@ -82,21 +89,14 @@ public class MainController {
 	  }
 
 	@GetMapping("/")
-	public String index1() {
-		return "index1";
-	}
-	
-	
-	@GetMapping("/1")
-	public String index2() {
+	public String index() {
 		return "index";
 	}
-	
+
 	@GetMapping("/login")
 	public String firstlogin(@RequestParam(value="result", required = false) String result
 			, Model model) {
 		model.addAttribute("result", result);
 		return "login/firstlogin";
 	}
-
 }

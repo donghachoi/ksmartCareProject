@@ -83,82 +83,72 @@
 												<h5>수가 리스트</h5>
 											</header> -->
 											<div class="col-sm-11" >
-												<table>
-													<tbody>
-													    <tr>
-													    	<td>년도 : </td>
-													        <td>
-													        	<select id="year" name="year">
-																	<option value="">=년도=</option>
-																	<option value="2018">2018</option>
-																	<option value="2019">2019</option>
-																	<option value="2020">2020</option>
-																</select>
-													        </td>
-													   	</tr>
+									        	<div class="form-group">
+										        	<label for="year">년도별 검색
+											        	<select class="form-control" id="year" name="year">
+															<option value="">=년도=</option>
+															<option value="2018">2018</option>
+															<option value="2019">2019</option>
+															<option value="2020">2020</option>
+														</select>
+										        	</label>
+									        	</div>
+												<table id="dataTable" class="table table-bordered table-hover" style="font-size: 15px">
+														<thead>
+															<tr role="row">
+																<th>서비스종류</th>
+																<th>시간/종류</th>
+																<th>년도</th>
+																<th>수가</th>
+																<th>본인부담금</th>
+																<th>비고</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr th:each="b : ${benefitcost}" role="row" class="odd">
+																<td th:text="${b.serviceCategory}" class="sorting_1"></td>
+															    <td th:text="${b.serviceTimeAndType}" style="text-align: right"></td>
+															    <td th:text="${b.benefitCostYear}" style="text-align: right"></td>
+															    <td th:text="${b.benefitCost}" class="price" style="text-align: right"></td>
+															    <td th:text="${b.nonBenefitCost}" class="price" style="text-align: right"></td>
+															    <td></td>
+															</tr>
 													</tbody>
-														<table id="dataTable" class="table table-bordered table-hover" style="font-size: 15px">
-																<thead>
-																	<tr role="row">
-																		<th>서비스종류</th>
-																		<th>시간/종류</th>
-																		<th>년도</th>
-																		<th>수가</th>
-																		<th>본인부담금</th>
-																		<th>비고</th>
-																	</tr>
-																</thead>
-																<tbody>
-																	<tr th:each="b : ${benefitcost}" role="row" class="odd">
-																		<td th:text="${b.serviceCategory}" class="sorting_1"></td>
-																	    <td th:text="${b.serviceTimeAndType}" style="text-align: right"></td>
-																	    <td th:text="${b.benefitCostYear}" style="text-align: right"></td>
-																	    <td th:text="${b.benefitCost}" class="price" style="text-align: right"></td>
-																	    <td th:text="${b.nonBenefitCost}" class="price" style="text-align: right"></td>
-																	    <td></td>
-																	</tr>
-															</tbody>
-														</table>
-													</table>
-												</div>
-										<!-- 테이블 End -->
+												</table>
+											</div>
+											<!-- 테이블 End -->
 									    </div>
 									    <div role="tabpanel" class="tab-pane" id="profile">
 										    <div class="col-sm-11">
-													<table>
-														<tbody>
-														    <tr>
-														    	<td>년도 : </td>
-														        <td>
-														        	<select id="year1" name="year">
-																		<option value="">=년도=</option>
-																		<option value="2018">2018</option>
-																		<option value="2019">2019</option>
-																		<option value="2020">2020</option>
-																	</select>
-														        </td>
-														   	</tr>
-														</tbody>
-															<table id="dataTable1" class="table table-bordered table-hover" style="font-size: 15px">
-																<thead>
-																	<tr role="row">
-																		<th>등급</th>
-																		<th>년도</th>
-																		<th>수가한도액</th>
-																		<th>비고</th>
-																	</tr>
-																</thead>
-																<tbody>
-																	<tr th:each="bm : ${benefitMax}" role="row" class="odd" style="text-align: right">
-																		<td th:text="${bm.serviceLevel}" ></td>
-																	    <td th:text="${bm.benefitMaxYear}"></td>
-																	    <td th:text="${bm.benefitMaxCost}" class="price"></td>
-																	    <td></td>
-																	</tr>
-																</tbody>
-															</table>
-														</table>
-													</div>
+											    <div class="form-group">
+										        	<label for="year1">년도별 검색
+											        	<select class="form-control" id=year1 name="year">
+															<option value="">=년도=</option>
+															<option value="2018">2018</option>
+															<option value="2019">2019</option>
+															<option value="2020">2020</option>
+														</select>
+										        	</label>
+									        	</div>
+												<table id="dataTable1" class="table table-bordered table-hover" style="font-size: 15px">
+													<thead>
+														<tr role="row">
+															<th>등급</th>
+															<th>년도</th>
+															<th>수가한도액</th>
+															<th>비고</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr th:each="bm : ${benefitMax}" role="row" class="odd" style="text-align: right">
+															<td th:text="${bm.serviceLevel}" ></td>
+														    <td th:text="${bm.benefitMaxYear}"></td>
+														    <td th:text="${bm.benefitMaxCost}" class="price"></td>
+														    <td></td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
 											<!-- 테이블 End -->
 									    </div>
 									  </div>
