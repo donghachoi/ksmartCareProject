@@ -55,7 +55,6 @@ public class MainController {
 					 model.addAttribute("SID", center.getCenterId());
 					 model.addAttribute("SCENTERNAME", center.getCenterName());
 					 model.addAttribute("SMANAGERNAME", center.getCenterManagerName());
-					 
 				 }else {
 					 redirectA.addAttribute("result", "틀린 비밀번호입니다.");	
 						return "redirect:/login";
