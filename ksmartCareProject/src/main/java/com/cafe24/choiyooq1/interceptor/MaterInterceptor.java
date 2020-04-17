@@ -20,11 +20,13 @@ public class MaterInterceptor extends HandlerInterceptorAdapter{
 		HttpSession session = request.getSession();
 		String sCenterCode = (String) session.getAttribute("SCENTERCODE");
 		System.out.println(sCenterCode+"   <<<<<===== sManagerName in LoginInterceptor");
-		if(sCenterCode.equals("master")) {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>alert('Center 권한이 필요합니다.') ;  window.history.back();</script>");
-			out.flush();
+		if(sCenterCode!=null) {
+			if(sCenterCode.equals("master")) {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('Center 권한이 필요합니다.') ;  window.history.back();</script>");
+				out.flush();
+			}
 		}
 		return super.preHandle(request, response, handler);
 	}

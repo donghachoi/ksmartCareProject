@@ -89,8 +89,10 @@ public class MainController {
 
 	@GetMapping("/")
 	public String index() {
-		return "index";
+		
+		return "portfolio/portfolio.html";
 	}
+	
 
 	@GetMapping("/login")
 	public String firstlogin(@RequestParam(value="result", required = false) String result

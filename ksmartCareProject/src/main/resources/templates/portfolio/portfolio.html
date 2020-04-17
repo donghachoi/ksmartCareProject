@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>Portfolio</title>
+<script src="/assets/lib/jquery/jquery.min.js"></script>
+<script src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
+<link href="/assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
+</head>
+<style>
+#img01{
+    width: 150px;
+    position: sticky;
+    top: 50px;
+    left: 1300px;
+}
+#img02{
+	width: 100%;
+    position: absolute;
+    height: 246px;
+    bottom: 0px;
+    left: 0px;
+}
+#img_background{
+	height: 100vh;
+    background: linear-gradient(rgb(23, 21, 26), rgb(36, 53, 100));
+}
+.typing-test-text{
+	display: none;
+}
+
+.typing-txt{display: none;}
+ul{list-style:none;}
+.typing ul li.on {  
+  display: inline-block; 
+  animation-name: cursor; 
+  animation-duration: 0.3s; 
+  animation-iteration-count: infinite; 
+} 
+@keyframes cursor{ 
+  0%{border-right: 1px solid #fff} 
+  50%{border-right: 1px solid #000} 
+  100%{border-right: 1px solid #fff} 
+}
+
+
+</style>
+<body>
+	<div id="img_background">
+		<img id="img01" src="/assets/img/portfolio/moon.png">
+		<img id="img02" src="/assets/img/portfolio/building.png">
+		<div class="typing-test-text">
+			<h1>최동하입니다.</h1>
+		</div>
+		<div class="typing-test">
+			<h1></h1>
+		</div>
+		<div class="typing-txt"> 
+		  <ul>
+		    <li>타이핑될 첫번째 문장</li>
+		    <li>두번째로 타이핑될 문장</li>
+		    <li>마지막 문장</li>
+		</ul>
+		
+		</div> 
+		<div class="typing">
+		   <ul>
+		     <li></li>
+		     <li></li>
+		     <li></li>
+		  </ul>
+		</div> 
+	</div>
+	
+</body>
+<script>
+var text = $('#animation').text();
+for(var i=0;i<text.length;i++){
+	text[i];
+	console.log(text[i]);
+}
+
+	var typingBoolTest = false;
+	var typingIdxTest = 0;
+	var typingTxtTestIdx = 0;
+	var typingTxtTest = $(".typing-test-text h1").text().split("");
+
+	if(typingBoolTest==false){
+		typingBoolTest = true;
+		var tyInt = setInterval(typeingTest,100);
+	}
+function typeingTest(){
+	//typing-test-text 클래스에 있는 text를 한글자 씩 잘라서 타이핑될 텍스트를 가져옴.
+	if(typingIdxTest<typingTxtTest.length){// 타이핑될 텍스트 길이만큼 반복
+		$('.typing-test h1').append(typingTxtTest[typingIdxTest])
+		console.log(typingIdxTest)
+		typingIdxTest++;
+		clearInterval(tyInt);
+	}else {
+		if(typingTxtTestIdx==typingTxtTest-1){
+			
+		}
+		setTimeout(function(){
+			typingIdxTest = 0;
+			typingBoolTest = false;
+			$('.typing-test h1').html("");
+			typingTxtTest = $(".typing-test-text h1").text().split("");
+			console.log(typingTxtTest);
+	           //1초후에 다시 타이핑 반복 시작
+	           tyInt = setInterval(typeingTest,100);
+				
+	         },1000);
+	}
+}
+
+
+
+
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+var typingBool = false; 
+var typingIdx = 0; 
+var liIndex = 0;
+var liLength = $(".typing-txt>ul>li").length;
+// 타이핑될 텍스트를 가져온다 
+var typingTxt = $(".typing-txt>ul>li").eq(liIndex).text(); 
+//liIndex 인덱스로 구분해 한줄씩 가져옴
+
+typingTxt=typingTxt.split(""); // 한글자씩 잘라 배열로만든다
+
+if(typingBool==false){ // 타이핑이 진행되지 않았다면 
+    typingBool=true; 
+    var tyInt = setInterval(typing,100); // 반복동작 
+}
+     
+function typing(){
+  $(".typing ul li").removeClass("on");
+   $(".typing ul li").eq(liIndex).addClass("on");
+   
+  //현재 타이핑되는 문장에만 커서 애니메이션을 넣어준다.
+  
+  if(typingIdx<typingTxt.length){ // 타이핑될 텍스트 길이만큼 반복 
+     $(".typing ul li").eq(liIndex).append(typingTxt[typingIdx]); // 한글자씩 이어준다. 
+     typingIdx++; 
+   } else{ //한문장이끝나면
+     if(liIndex<liLength-1){
+     //다음문장으로  가기위해 인덱스를 1증가
+       liIndex++; 
+     //다음문장을 타이핑하기위한 셋팅
+        typingIdx=0;
+        typingBool = false;
+        typingTxt = $(".typing-txt>ul>li").eq(liIndex).text();
+       
+     //다음문장 타이핑전 1초 쉰다
+         clearInterval(tyInt);
+          //타이핑종료
+     
+         setTimeout(function(){
+           //1초후에 다시 타이핑 반복 시작
+           tyInt = setInterval(typing,100);
+         },1000);
+        } else if(liIndex==liLength-1){
+          
+          //마지막 문장까지 써지면 반복종료
+          clearInterval(tyInt);
+          
+          //1초후
+          setTimeout(function(){
+	          //사용했던 변수 초기화
+	          typingBool = false; 
+	          liIndex=0;
+	          typingIdx=-0;
+	            
+	          //첫번째 문장으로 셋팅
+	          typingTxt = $(".typing-txt>ul>li").eq(liIndex).text(); 
+	               //타이핑 결과 모두 지우기
+	          $(".typing ul li").html("")
+	            
+	          //반복시작
+	          tyInt = setInterval(typing,100);
+          }, 1000);
+        }
+    }
+}  
+
+</script>
+</html>
