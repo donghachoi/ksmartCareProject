@@ -37,4 +37,10 @@ public class CenterMainController {
 		model.addAttribute("dailySchedule", dailySchedule);
 		return "/center/centerMain";
 	}
+	
+	
+	@GetMapping("/song")
+	public String song() {
+		return "/songhyun/songhyun";
+	}
 }

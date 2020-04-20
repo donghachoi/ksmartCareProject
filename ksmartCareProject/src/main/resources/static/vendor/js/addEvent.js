@@ -220,7 +220,7 @@ var newEvent = function (start, end, eventType) {
 };
 
 //직원 날짜 시간 중복 체크 하는 부분 쿼리문이 문제 
-$(document).on('change', employeeId,  function(){
+$(document).on('change', '#employeeId',  function(){
 	
 	$.ajax({
 		type: 'post',

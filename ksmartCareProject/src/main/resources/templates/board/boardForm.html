@@ -46,7 +46,7 @@
 			            </header>
 			            
 				        <div id="div-1" class="body">
-				            <form class="form-horizontal" th:action="@{/board/boardInsert}" method="post">	
+				            <form class="form-horizontal" th:action="@{/board/boardInsert}"  enctype="multipart/form-data" method="post">	
 				                        
 						        <!-- 제목 -->
 				                <div class="form-group">
@@ -69,7 +69,7 @@
 			                            <div class="fileinput fileinput-new" data-provides="fileinput">
 									      <div class="input-group">
 											<div class="form-control uneditable-input span3" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
-											<span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">파일선택</span><span class="fileinput-exists">다른파일</span><input type="file" name="boardFile"></span>
+											<span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">파일선택</span><span class="fileinput-exists">다른파일</span><input type="file" name="file"></span>
 											<a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">삭제</a>
 									      </div>
 						    			</div>
