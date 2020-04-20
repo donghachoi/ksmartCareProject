@@ -43,80 +43,445 @@ ul{list-style:none;}
   50%{border-right: 1px solid #000} 
   100%{border-right: 1px solid #fff} 
 }
+.navibar {
+    background-color: rgb(39, 48, 53);
+    position: sticky;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    overflow: hidden;
+}
+.ul_navis {
+    margin: 0;
+    padding: 0;
+    height: 4rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    align-items: center;
+    font-size: 1.6rem;
+    border-top: 1.5px solid rgb(5, 1, 1);
+    border-bottom: 5px solid rgb(5, 134, 219);
+}
 
-
+.ul_navis li {
+    flex-grow: 1;
+    cursor: pointer;
+}
+.scroll {
+    padding-right: 5%;
+}
+.ul_navis button {
+    display: block;
+    cursor: pointer;
+    background-color: rgb(39, 48, 53);
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+    margin-left: 33%;
+    padding: 6px 30px;
+    font-family: 'Times New Roman', Times, serif;
+}
+button {
+    -webkit-appearance: button;
+    -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    align-items: flex-start;
+    box-sizing: border-box;
+    margin: 0em;
+    font: 400 13.3333px Arial;
+}
 </style>
 <body>
 	<div id="img_background">
 		<img id="img01" src="/assets/img/portfolio/moon.png">
 		<img id="img02" src="/assets/img/portfolio/building.png">
-		<div class="typing-test-text">
-			<h1>최동하입니다.</h1>
-		</div>
-		<div class="typing-test">
-			<h1></h1>
-		</div>
 		<div class="typing-txt"> 
 		  <ul>
-		    <li>타이핑될 첫번째 문장</li>
+		    <li>개발자 최동하의 포트폴리오 입니다.</li>
 		    <li>두번째로 타이핑될 문장</li>
 		    <li>마지막 문장</li>
 		</ul>
-		
-		</div> 
+		</div>
 		<div class="typing">
 		   <ul>
 		     <li></li>
 		     <li></li>
 		     <li></li>
 		  </ul>
-		</div> 
+		</div>
 	</div>
-	
+	<nav class="navibar">
+		<ul class="ul_navis">
+			<li class="nav_li scroll"><button>Home</button></li>
+			<li class="nav_li scroll"><button>Home</button></li>
+			<li class="nav_li scroll"><button>Home</button></li>
+			<li class="nav_li scroll"><button>Home</button></li>
+			<li class="nav_li scroll"><button>Home</button></li>
+		</ul>
+	</nav>
+	<article class="article_about">
+        <h1 id="ABOUT">
+            ABOUT
+        </h1>
+        <div class="introduce fadeinleft" style="opacity: 1; margin-left: 200px;">
+            <ul class="menus">
+                <a href="#none" class="menu-link menu_active" id="menu-link_1">생활 신조</a>
+                <a href="#none" class="menu-link menu_active2" id="menu-link_2">성격의 장점과 단점</a>
+                <a href="#none" class="menu-link menu_active2" id="menu-link_3">학력 및 전공</a>
+                <a href="#none" class="menu-link menu_active2" id="menu-link_4">경력 사항</a>
+            </ul>
+            <div class="about_1 ">
+                <span class="about_1_p">[ "소통은 모든 것의 만병통치약이다" ]</span>
+                <br>
+                <img class="img_juyoung " src="/img/Profile.jpg" alt="증명사진(장주영)" title="장주영_증명사진">
+                <p>사람은 말이나 글 같은 다양한 방법으로 자신의 생각, 감정, 정보 따위를 전달해 서로 의사 소통을 합니다. 그러한 소통을 뭉친것이 
+                    커뮤니케이션이라고 생각하고 커뮤니케이션은 사람들 사이의 접촉에 의해 이루어지는 의사소통 과정이라고 생각하는데. 
+                    이와 같이 소통은 표현을 하지 않으면 서로가 개개인의 생활이 되어 간다고 생각합니다. 인간은 커뮤니케이션을 통해 공동체를
+                    만들어 간다고 생각하고 커뮤니케이션이 원할하게 잘된다면 어떠한 고충도 치료할수 있는 최고의 보약이 된다고 생각합니다. </p>
+            </div>
+            <div class="about_2 ">
+                <p> 주어진 업무에 대해서는 결과를 도출하는 <strong class="strong_p">책임감이 강하다는 것</strong>이 저의 큰 장점이라고 생각합니다. 맡은 업무에 책임감을 가진다면
+                    업무에서의 책임감이란 일이 일찍 끝나거나 늦게 끝나는 것이 중요한 것이 아닌 일의 끝마침이라고 생각합니다. 군 복무를 통신병으로 근무하는 중
+                    작업을 일찍 끝마치고 쉬고 싶은 <strong class="strong_p">오만함</strong>을 가지고 선로작업을 꼼꼼히 못한 적이 있는데, 이러한 실수로 인해 저의 부대 절반이 내선전화기나 비상벨등
+                    문제가 생겨 마비가 되어 큰 낭패를 당한적이 있습니다. 사람의 눈속임은 언젠가 죄로 돌아온다고 생각하여 그런 <strong class="strong_p">오만함과 자만심</strong>이 가득했던 단점들을
+                    책임감이란 단어를 항상 생각하고 꼼꼼함을 가지며 단점을 보완하고자 항상 노력하고 있습니다.  
+                   
+                </p>
+            </div>
+            <div class="about_3 ">
+                <ul>
+                    <li>평촌공업고등학교 U-네트워크과 (졸업)<br>(2011.03 ~ 2014.02)</li>
+                    <li>대림대학교 전자통신과 (졸업)<br>(2014.03 ~ 2019.02)</li>
+                    <li>대림대학교 전자통신공학과 학사과정 취득 (졸업)<br>(2019.03 ~ 2020.02)</li><br>
+                    <a href="/daerim_jumsu.pdf" target="_blank">
+                        <li>대림대학교 성적증명서 보기</li>
+                    </a><br>
+                    <a href="/daerim_bye.pdf" target="_blank">
+                        <li>대림대학교 졸업증명서 보기</li>
+                    </a>
+                </ul>
+            </div>
+            <div class="about_4 ">
+                <strong class="strong_p">(주)한국EnE (2018.10.22 ~ 2019.12.31)</strong>
+                <p><br>한국EnE는 주유기를 판매하는 회사였으며 업무지원팀이였습니다. 역할은 셀프주유기의 UI테스트하는 것이 저의 주 업무였으며, 연구소의 재고관리도 함께 했었습니다.
+                    또한 외부에서 작업하는 필드 엔지니어들의 지원 요청시 지원을 나가며 필요한 개선사항이 필요할시 자체적으로 나가 주유소 직원들의 NEED를 들으며 개선 사항을 
+                    정리하여 고객이 만족함을 충족시키기 위한 UI/UX가 되도록 업무를 보조하며 테스트 하였습니다.
+                </p>
+                
+            </div>
+        </div>
+    </article>
+    <article class="article_skills">
+        <h1 id="SKILLS">
+            <main-skills></main-skills>
+            SKILLS
+        </h1>
+        <div id="skillbox_containar" class="fadeinleft_2">
+            <div class="skills_skillsbox_box">
+                <div class="skills_skillbox ">
+                    <span class="skills_title">HTML5</span>
+                    <div class="skills_img" style="background-image: url('./img/html.png')"></div>
+                    <p class="skills_text">
+                        ㆍ레이아웃 구조<br>
+                        ㆍ문서의 구조에 대한 이해<br>
+                        ㆍ웹표준 기반 태그<br>
+                    </p>
+                </div>
+                <div class="skills_skillbox ">
+                    <span class="skills_title">CSS</span>
+                    <div class="skills_img" style="background-image: url('./img/css.png')"></div>
+                    <p class="skills_text">
+                        ㆍFlex레이아웃 구조<br>
+                        ㆍ@Media query 작성<br>
+                        ㆍ애니메이션에 대한 이해<br>
+                    </p>
+                </div>
+                <div class="skills_skillbox ">
+                    <span class="skills_title">JavaScript</span>
+                    <div class="skills_img" style="background-image: url('./img/js.png')"></div>
+                    <p class="skills_text">
+                        ㆍDOM 작성<br>
+                        ㆍ이벤트 함수 응용<br>
+                        ㆍ파일 모듈화 정리<br>
+                    </p>
+                </div>
+            </div>
+            <div class="skills_skillbox_all">
+                <span class="skills_title">Jquery</span>
+                <div class="skills_img" style="background-image: url('./img/jquery.png')"></div>
+                <p class="skills_text">
+                    ㆍjquery 셀렉터 사용<br>
+                    ㆍ이벤트 바인딩과 속성 작성<br>
+                </p>
+            </div>
+            <div class="skills_skillbox_all">
+                <span class="skills_title">Vue.js</span>
+                <div class="skills_img" style="background-image: url('./img/vue.png')"></div>
+                <p class="skills_text">
+                    ㆍ컴포넌트 통신<br>
+                    ㆍHTTP 통신 라이브러리<br>
+                    
+                </p>
+            </div>
+            <div class="skills_skillbox_all">
+                <span class="skills_title">C++</span>
+                <div class="skills_img" style="background-image: url('./img/c++.png')"></div>
+                <p class="skills_text">
+                    ㆍAPI 활용<br>
+                    ㆍ랜덤함수 적용<br>
+                    ㆍUI 작업 <br>
+                </p>
+            </div>
+        
+        </div>
+        <!-- <label for="readmore_checkbox" id="skills_button" onclick="event_button()">스킬 더보기</label> -->
+        <div>
+        <label for="readmore_checkbox" class="skills_button" onclick="event_button()">스킬 더보기 ↓</label>
+    
+    </div></article>
+    <article class="article_projects">
+        <h1 id="Project">
+            Project
+        </h1>
+        <div class="article_project">
+            <div class="project_img">
+                <img src="/img/pj_01.png" alt="프로젝트_장주영" class="pj_01">
+            </div>
+            <div class="project_ex">
+            <span style="font-size: 30px; font-weight: bold;">미니UI 프로젝트</span><br><br><br>
+            사용자의 관점에서 재미삼아 제작하게 된 미니게임UI 영상입니다.<br><br><br>
+            
+                2019.10 - 2019.11<br>
+                리눅스/Qt Creator/C++<br>
+                기획/개발 참여도 100%<br><br>
+                <div class="project_intro_button_box">
+                <div class="project_intro_button" onclick="youtube_on('C2n_y1lDTWY')">
+                    Youtube 보기
+                </div>
+                <div class="project_intro_button" onclick="github_on('RunRun-')">
+                    Github 보기
+                </div>
+                </div>
+            </div>
+        </div>
+    </article>
+    <footer class="footer">
+        <div class="footer_topbutton_container">
+            <div class="up_button" onclick="fnMove('#img_backcolor')"><span class="up_ani">↑</span></div>
+        </div>
+        <div class="fontello_all_div">
+            <div class="fontello1">
+                <i class="icon-phone-squared"> <span class="phone_num">010.9974.1067</span></i>
+                <i class="icon-mail"> <span class="phone_num">wkdwndud13@naver.com</span></i>
+                <i class="icon-location"> <span class="location" '="">경기도 의왕시 내손2동 약수터1길 63</span></i>
+                </div>
+                <div class=" fontello2">
+                        <a href="https://open.kakao.com/o/s9VECw4b" target="_blank" class="fontel_talking"><i class="icon-talking"></i></a>
+                        <a href="https://github.com/jangju" target="_blank" class="fontel_github"><i class="icon-github-squared"></i></a>
+                        <a href="https://www.facebook.com/wkdwndud12" target="_blank" class="fontel_facebook"><i class="icon-facebook-squared"></i></a>
+            </div>
+            
+        </div>
+        <div class="footer_jangjuyoung">
+            JU YOUNG <span class="footer_span">©2020</span>
+        </div>
+    
+    </footer>
+    <div class="modal" onclick="modal_off()">
+        <div class="modal_close"><i class="icon-cancel"></i></div>
+        <div class="modal_youtube" id="player"></div>
+    </div>
 </body>
 <script>
-var text = $('#animation').text();
-for(var i=0;i<text.length;i++){
-	text[i];
-	console.log(text[i]);
-}
+var PREFIX = "touchenex";
+var EVENT_FROM_PAGE = "__" + PREFIX + '__rw_chrome_ext_' + new Date().getTime();
+var EVENT_REPLY = "__" + PREFIX + '__rw_chrome_ext_reply_' + new Date().getTime();
 
-	var typingBoolTest = false;
-	var typingIdxTest = 0;
-	var typingTxtTestIdx = 0;
-	var typingTxtTest = $(".typing-test-text h1").text().split("");
+var s = document.createElement('script');
+s.textContent = '(' + function(prefix, send_event_name, reply_event_name) {
 
-	if(typingBoolTest==false){
-		typingBoolTest = true;
-		var tyInt = setInterval(typeingTest,100);
-	}
-function typeingTest(){
-	//typing-test-text 클래스에 있는 text를 한글자 씩 잘라서 타이핑될 텍스트를 가져옴.
-	if(typingIdxTest<typingTxtTest.length){// 타이핑될 텍스트 길이만큼 반복
-		$('.typing-test h1').append(typingTxtTest[typingIdxTest])
-		console.log(typingIdxTest)
-		typingIdxTest++;
-		clearInterval(tyInt);
-	}else {
-		if(typingTxtTestIdx==typingTxtTest-1){
-			
-		}
-		setTimeout(function(){
-			typingIdxTest = 0;
-			typingBoolTest = false;
-			$('.typing-test h1').html("");
-			typingTxtTest = $(".typing-test-text h1").text().split("");
-			console.log(typingTxtTest);
-	           //1초후에 다시 타이핑 반복 시작
-	           tyInt = setInterval(typeingTest,100);
+	//var func = "window." + prefix + "_nativecall = function(request, callback) { sendMessage(request, callback); };";
+	//eval(func);
+	window[prefix + "_nativecall"] = function(request, callback) { sendMessage(request, callback); }
+	
+    function sendMessage(message, callback) {
+		if(message.cmd == "setcallback")
+		{
+			var transporter = document.getElementById("setcallback");
+			var tag_id = "";
+			if(transporter == undefined)
+			{
+				transporter = document.createElement('dummy');
+				transporter.id = "setcallback";
 				
-	         },1000);
+				tag_id = '_' + prefix + '_dummy_id_' + new Date().getTime();
+				if(message.id && typeof message.id == "string")
+					tag_id = message.id;
+				
+				transporter.setAttribute('tag', tag_id);
+			
+				transporter.addEventListener(reply_event_name, function(event) {
+					var result = this.getAttribute('result');
+					var tagid = this.getAttribute('tag');
+	
+					result = JSON.parse(result);
+					var cbfunction = result.callback;
+					
+					var idx = cbfunction.indexOf("_setcallback_");
+					if(idx > -1)
+					{
+						var _tagid = cbfunction.substr(idx + 13);
+						if(_tagid != tagid)
+							return;
+						
+						cbfunction = cbfunction.substr(0, idx);
+					}
+					
+					var reply = JSON.stringify(result.reply);
+					var script_str = cbfunction + "(" + reply + ");";
+					//eval(script_str);
+					if(typeof window[cbfunction] == 'function')
+					{
+						window[cbfunction](reply);
+					}
+					else
+					{
+					/*
+						var w = window;
+						w = event.path[event.path.length - 1];
+						var cbfv = cbfunction.split(".");
+						cbfunction = cbfv[cbfv.length-1];
+						if(typeof w[cbfunction] == 'function')
+						{
+							w[cbfunction](reply);
+						}
+					*/
+						if(cbfunction && cbfunction.indexOf("top.") == 0){
+							var cba = cbfunction.split(".");
+							var fwin = top;
+							for(var i = 0; i < cba.length -1; i++){
+								if(i==0) continue;
+								else if(i < cba.length) {
+									var cbcb = cba[i];
+									cbcb = cbcb.replace("frames[", "");
+									cbcb = cbcb.replace("]", "");
+									fwin = fwin.frames[cbcb];
+								}
+							}
+							
+							var cb = cba[cba.length - 1];
+							if(typeof fwin[cb] == 'function')
+							{
+								fwin[cb](reply);
+							}
+						}
+					}
+				});
+				(document.body||document.documentElement).appendChild(transporter);
+			}
+			else
+			{
+				tag_id = transporter.getAttribute('tag');
+			}
+			
+			try {
+				for(i = 0; i < message.exfunc.args.length; i++)
+				{
+					message.exfunc.args[i].callback = message.exfunc.args[i].callback + "_setcallback_" + tag_id;
+				}
+
+			} catch(e) {}
+			
+			
+			var event = document.createEvent('Events');
+			event.initEvent(send_event_name, true, false);
+			transporter.setAttribute('data', JSON.stringify(message));
+			transporter.dispatchEvent(event);	
+		}
+		else
+		{
+			var tag_id = '_' + prefix + '_dummy_id_' + new Date().getTime();
+			var transporter = document.createElement('dummy');
+		
+			if(!message.id || typeof message.id != "string")
+				transporter.id = tag_id;
+			else
+				transporter.id = message.id;
+			
+			transporter.addEventListener(reply_event_name, function(event) {
+				var result = this.getAttribute('result');
+				
+				if(this.parentNode) this.parentNode.removeChild(this);
+
+				if (typeof callback == 'function') {
+					result = JSON.parse(result);
+					callback(result);
+				}
+			});
+
+			var event = document.createEvent('Events');
+			event.initEvent(send_event_name, true, false);
+			transporter.setAttribute('data', JSON.stringify(message));
+			(document.body||document.documentElement).appendChild(transporter);
+			transporter.dispatchEvent(event);		
+		}
 	}
-}
+} + ')("' + PREFIX + '", ' + JSON.stringify(EVENT_FROM_PAGE) + ', ' +
+           JSON.stringify(EVENT_REPLY) + ');';
+document.documentElement.appendChild(s);
+s.parentNode.removeChild(s);
 
+document.addEventListener(EVENT_FROM_PAGE, function(e) {
+	if(!e) return;
+	var transporter = e.target;
+    if (transporter) {
+		var request = JSON.parse(transporter.getAttribute('data'));
+        transporter.removeAttribute('data');
+		request.id = transporter.id;
+		
+		try {
+			chrome.runtime.sendMessage(request, function(response) {
+				if(!response) { return; }
+				var event = document.createEvent('Events');
+				event.initEvent(EVENT_REPLY, false, false);
+				transporter.setAttribute('result', JSON.stringify(response));
+				transporter.dispatchEvent(event);
+			});
+		} catch(e)
+		{
+		}
+    }
+});
 
+chrome.runtime.onMessage.addListener(
+	function(request, sender, sendResponse) {
+		if(!request) return;
+		
+		if(request.error != null)
+		{
+			console.log(PREFIX+" Error: " + request.error);
+			return;
+		}
 
+		var eventid = request.response.id;
+		var transporter = document.getElementById(eventid);
 
+		if(transporter != undefined)
+		{
+			var event = document.createEvent('Events');
+			event.initEvent(EVENT_REPLY, false, false);
+			transporter.setAttribute('result', JSON.stringify(request.response));
+			transporter.dispatchEvent(event);
+		}
+	}
+);
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 

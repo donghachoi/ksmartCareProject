@@ -35,6 +35,12 @@ public class MainController {
 		 return "login/firstlogin";
 	 }
 	 
+	 //메인화면
+	 @GetMapping("/main")
+	 public String getMainpage() {
+		 return "/index";
+	 }
+	 
 	 //로그인 확인
 	 @PostMapping("/login") 
 	 public String login(@RequestParam(value="centerCode")String centerCode
@@ -90,7 +96,7 @@ public class MainController {
 	@GetMapping("/")
 	public String index() {
 		
-		return "portfolio/portfolio.html";
+		return "portfolio/portfolio1.html";
 	}
 	
 
