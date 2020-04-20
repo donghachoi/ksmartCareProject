@@ -4,8 +4,6 @@
                     <!-- .navbar -->
                     <nav class="navbar navbar-inverse navbar-static-top">
                         <div class="container-fluid">
-                    
-                    
                             <!-- Brand and toggle get grouped for better mobile display -->
                             <header class="navbar-header">
                     
@@ -27,7 +25,7 @@
                                         <i class="glyphicon glyphicon-fullscreen"></i>
                                     </a>
                                 </div> -->
-                                <div class="btn-group">
+                                <!-- <div class="btn-group">
                                     <a data-placement="bottom" data-original-title="E-mail" data-toggle="tooltip"
                                        class="btn btn-default btn-sm">
                                         <i class="fa fa-envelope"></i>
@@ -43,7 +41,7 @@
                                        href="#helpModal">
                                         <i class="fa fa-question"></i>
                                     </a>
-                                </div>
+                                </div> -->
                                 <div class="btn-group">
                                     <a href="/login" data-toggle="tooltip" data-original-title="Login" data-placement="bottom"
                                        class="btn btn-primary btn-sm">
@@ -59,9 +57,9 @@
                                        class="btn btn-primary btn-sm toggle-left" id="menu-toggle">
                                         <i class="fa fa-bars"></i>
                                     </a>
-                                    <a href="#right" data-toggle="onoffcanvas" class="btn btn-default btn-sm" aria-expanded="false">
+                                    <!-- <a href="#right" data-toggle="onoffcanvas" class="btn btn-default btn-sm" aria-expanded="false">
                                         <span class="fa fa-fw fa-comment"></span>
-                                    </a>
+                                    </a> -->
                                 </div>
                     
                             </div>
@@ -73,24 +71,6 @@
                     
                                 <!-- .nav -->
                                 <ul class="nav navbar-nav">
-                                    <li><a href="#">#Dashboard</a></li>
-                                    <li><a href="#">#Tables</a></li>
-                                    
-                                    <li class='dropdown '>
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                            #Form Elements <b class="caret"></b>
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#">#General</a></li>
-                                            <li><a href="#">#Validation</a></li>
-                                            <li><a href="#">#WYSIWYG</a></li>
-                                            <li><a href="#">#Wizard &amp; File Upload</a></li>
-                                        </ul>
-                                    </li>
-                                    <th:block>
-	                                    <li><a th:if="${session.SCENTERNAME ne null}" th:text="${session.SCENTERNAME}+ '에  '+${session.SMANAGERNAME}+' 님 '+${session.SID}+'아이디로 로그인중 '"></a></li>
-	                                    <li><a th:unless="${session.SCENTERNAME ne null}">마스터 로그인</a></li>
-                                    </th:block>
                                 </ul>
                                 <!-- /.nav -->
                             </div>
@@ -112,12 +92,6 @@
                                     </form>
                                     <!-- /.main-search -->                                </div>
                                 <!-- /.search-bar -->
-                            <div class="main-bar">
-                                <h3>
-              <i class="fa fa-home"></i>&nbsp;
-            	한국스마트케어시스템
-          </h3>
-                            </div>
                             <!-- /.main-bar -->
                         </header>
                         <!-- /.head -->

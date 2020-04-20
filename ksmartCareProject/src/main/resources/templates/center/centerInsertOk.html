@@ -53,13 +53,13 @@
     	<hr>
 	    <div class="tab-content">
 	        <div id="login" class="tab-pane active">
-	            <form action="/">
-	                <p class="text-muted text-center" style="text-align: center">
-	            		<h4 style="text-align: center">가입완료</h4>
-	            		<h5 style="text-align: center">회원가입을 진심으로 환영합니다</h5>
-	                	<h5 style="text-align: center">가입승인을 위해 기재하신 번호로 <br>연락 드리겠습니다</h5>                
-	                <button class="btn btn-lg btn-primary btn-block" onclick = "location.href = '/' ">홈으로</button>
-	            </form>
+                <th:block>
+		            <form action="/">
+		                <p class="text-muted text-center" style="text-align: center">
+		            		<h4 style="text-align: center" th:text="${centerName}+'님 등록완료' "></h4>
+		                <button class="btn btn-lg btn-primary btn-block" onclick = "location.href = '/' ">홈으로</button>
+		            </form>
+                </th:block>
 	        </div>      
 	    </div>
     <hr>

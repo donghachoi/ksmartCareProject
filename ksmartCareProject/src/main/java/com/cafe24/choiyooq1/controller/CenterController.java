@@ -17,23 +17,25 @@ public class CenterController {
 	private CenterService centerService;
 
 	
-	@GetMapping("/center/cetnerEenter")
+	@GetMapping("/master/cetnerEenter")
 	public String cetnerEenter() {
 		return "/mainTest";
 	}
 	// 센터가입 폼 불러오기
-	@GetMapping("/center/centerInsert")
+	@GetMapping("/master/centerInsert")
 	public String centerInsert() {
 		return "center/centerInsert";
 	}
 
 	// 센터가입 진행
-	@PostMapping("/center/centerInsert")
-	public String centerInsert(Center center) {
+	@PostMapping("/master/centerInsert")
+	public String centerInsert(Center center,Model model) {
 		System.out.println(center.toString());
 		int result = centerService.centerInsert(center);
+		
 		if (result > 0) {
-			return "/center/centerInsertOk";
+			model.addAttribute("centerName", center.getCenterName());
+			return "center/centerInsertOk";
 		}
 		return null;
 	}
@@ -45,7 +47,7 @@ public class CenterController {
 	}
 
 	// 센터 리스트
-	@GetMapping("/center/centerList")
+	@GetMapping("/master/centerList")
 	public String centerList(Model model) {
 		model.addAttribute("centerList", centerService.getCenterList());
 		// System.out.println(centerService.getCenterList().toString());
@@ -61,25 +63,24 @@ public class CenterController {
 	}
 	
 	// 센터 정보수정 처리 
-	@PostMapping("/center/centerUpdate")
+	@PostMapping("/master/centerUpdate")
 	public String centerUpdate(Center center) {
 		int result = centerService.centerUpdate(center);
 		if (result > 0) {
-			return "redirect:/center/centerList";
+			return "redirect:/master/centerList";
 		}
-		return "redirect:/center/centerList";
+		return "redirect:/master/centerList";
 	}
 
 	// 센터 삭제
 	@GetMapping("/master/centerDelete")
 	public String centerDelete(@RequestParam(value = "centerCode") String centerCode, Model model) {
 		model.addAttribute("Center", centerService.centerDelete(centerCode));
-		Center center = null;
 		int result = centerService.centerDelete(centerCode);
 		if (result > 0) {
-			return "redirect:/center/centerList";
+			return "redirect:/master/centerList";
 		}
-		return "redirect:/center/centerList";
+		return "redirect:/master/centerList";
 	}
 	
 	/*

@@ -20,6 +20,5 @@ public class MybatisConfig {
 		bean.setMapperLocations(context.getResources("classpath:mapper/**/*.xml"));
 		bean.setDataSource(dataSource);
 		return bean.getObject();
-		
 	}
 }

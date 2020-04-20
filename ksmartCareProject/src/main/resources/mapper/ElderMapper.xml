@@ -28,7 +28,42 @@
   	<result property="elderRemarks" column="elder_remarks"/>
   	<result property="elderGroups" column="elder_groups"/>
   </resultMap>
-  
+  <!-- 수급자 검색 by birthday -->
+  <select id="searchElderByBirth" parameterType="String" resultMap="ElderMap">
+   	
+	<![CDATA[
+		SELECT 
+			elder_id, 
+			elder_name, 
+			elder_birthdate, 
+			elder_gender, 
+			elder_final_service_approval_level, 
+			elder_final_service_status,
+			long_term_care_numver, 
+			long_term_care_validity
+		FROM 
+			elder
+		WHERE 
+			center_code = #{centerCode} and ${sk} >= #{elderSearchBeginBirthdate} and ${sk} <= #{elderSearchEndBirthdate};
+	]]>
+		
+  </select>
+  <!-- 수급자 검색 -->
+    <select id="searchElder" parameterType="String" resultMap="ElderMap">
+  	SELECT 
+		elder_id, 
+		elder_name, 
+		elder_birthdate, 
+		elder_gender, 
+		elder_final_service_approval_level, 
+		elder_final_service_status,
+		long_term_care_numver, 
+		long_term_care_validity
+	FROM 
+		elder
+		WHERE center_code = #{centerCode} and ${sk} LIKE '%${sv}%';
+		
+  </select>
   <!-- 수급자 한명의 리스트 -->  
   <select id="getOneElderList" parameterType="String" resultMap="ElderMap">
 	SELECT 
@@ -40,16 +75,18 @@
   </select>
   
   <!-- 수급자 리스트 -->
-  <select id="getElderList" resultMap="ElderMap">
+  <select id="getElderList" parameterType="String" resultMap="ElderMap">
   	SELECT 
 		elder_id, 
 		elder_name, 
 		elder_birthdate, 
 		elder_gender, 
 		elder_final_service_approval_level, 
+		elder_final_service_status,
 		long_term_care_numver, 
 		long_term_care_validity
-	FROM elder;
+	FROM elder
+	WHERE center_code = #{centerCode};
   
   </select>
   

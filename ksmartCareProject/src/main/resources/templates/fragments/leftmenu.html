@@ -6,20 +6,21 @@
 			<span class="fa fa-user"></span>
 		</div>
 		<div class="user-wrapper bg-dark">
-			<a class="user-link" href=""> <img
+			<a class="user-link" href="#"> <img
 				class="media-object img-thumbnail user-img" alt="User Picture"
 				src="/assets/img/user.gif"> <span
-				class="label label-danger user-label">16</span>
+				class="label label-danger user-label"></span>
 			</a>
-
 			<div class="media-body">
-				<h5 class="media-heading">Archie</h5>
+			<th:block>
+				<h5 th:if="${session.SCENTERNAME ne null}" th:text="${session.SCENTERNAME}" class="media-heading"></h5>
+				<h5 th:unless="${session.SCENTERNAME ne null}" class="media-heading">로그인 해주세요.</h5>
 				<ul class="list-unstyled user-info">
-					<li><a href="">Administrator</a></li>
-					<li>Last Access : <br> <small><i
-							class="fa fa-calendar"></i>&nbsp;16 Mar 16:32</small>
+					<li><h5 th:if="${session.SCENTERNAME ne null}" th:text="${session.SID}"></h5></li>
+					<li th:text="${session.today}"><i class="fa fa-calendar"></i>
 					</li>
 				</ul>
+            </th:block>
 			</div>
 		</div>
 	</div>
@@ -27,59 +28,52 @@
 	<ul id="menu" class="bg-blue dker">
 		<li class="nav-header" style="font-size:20px;">Menu</li>
 		<li class="nav-divider"></li>
+	<!-- 센터관리 -->
+	<li class="">
+		<a href="javascript:;"> 
+			<i class="fa fa-building "></i> 
+			<span class="link-title">센터관리 1 .박</span>
+			<span class="fa arrow"></span>
+		</a>
+		<ul class="collapse">
+			<li>
+				<a href="/master/centerInsert"> 
+					<i class="fa fa-angle-right"></i>
+					&nbsp;센터등록 1-1
+				</a>
+			</li>
+			<li>
+				<a href="/master/centerList"> 
+					<i class="fa fa-angle-right"></i>
+					&nbsp;센터조회 1-2
+				</a>
+			</li>
+		</ul>			
+	</li>
+	<!-- 직원관리 -->
+	<li class="">
+		<a href="javascript:;"> 
+			<i class="fa fa-building"></i> 
+			<span class="link-title">!직원관리 2 .박</span>
+			<span class="fa arrow"></span>
+		</a>
 		
-		<!-- 센터관리 -->
-		<li class="">
-			<a href="javascript:;"> 
-				<i class="fa fa-building "></i> 
-				<span class="link-title">센터관리 1 .박</span>
-				<span class="fa arrow"></span>
-			</a>
-			
-			<!-- 직원등록 -->
-			<ul class="collapse">
-				<li>
-					<a href="/center/centerInsert"> 
-						<i class="fa fa-angle-right"></i>
-						&nbsp;센터등록 1-1
-					</a>
-				</li>
-				<li>
-					<a href="/center/centerList"> 
-						<i class="fa fa-angle-right"></i>
-						&nbsp;센터조회 1-2
-					</a>
-				</li>
-			</ul>			
-		</li>
-		
-		
-		
-		<!-- 직원관리 -->
-		<li class="">
-			<a href="javascript:;"> 
-				<i class="fa fa-building"></i> 
-				<span class="link-title">!직원관리 2 .박</span>
-				<span class="fa arrow"></span>
-			</a>
-			
-			<!-- 직원등록 -->
-			<ul class="collapse">
-				<li>
-					<a href="/center/employeeInsert"> 
-						<i class="fa fa-angle-right"></i>
-						&nbsp;직원등록 2-1
-					</a>
-				</li>
-				<li>
-					<a href="/center/employeeList"> 
-						<i class="fa fa-angle-right"></i>
-						&nbsp;!직원목록 및 관리 2-2
-					</a>
-				</li>
-			</ul>			
-		</li>
-	
+		<!-- 직원등록 -->
+		<ul class="collapse">
+			<li>
+				<a href="/center/employeeInsert"> 
+					<i class="fa fa-angle-right"></i>
+					&nbsp;직원등록 2-1
+				</a>
+			</li>
+			<li>
+				<a href="/center/employeeList"> 
+					<i class="fa fa-angle-right"></i>
+					&nbsp;!직원목록 및 관리 2-2
+				</a>
+			</li>
+		</ul>			
+	</li>
 	<!-- 보호자관리 -->
 	<li class="">
 		<a href="javascript:;"> 
@@ -109,13 +103,12 @@
 			</li>
 		</ul>
 	</li>
-	
 	<!-- 수급자관리 -->	
 	<li class="">
 		<a href="javascript:;"> 
 			<i class="fa fa-building"></i>
 
-			<span class="link-title">!수급자관리 4 .최</span> 
+			<span class="link-title">수급자관리 4 .최</span> 
 
 			<span class="fa arrow"></span>
 		</a>
@@ -129,12 +122,12 @@
 				<li>
 					<a href="/employee/elderList">
 					<i class="fa fa-angle-right"></i>
-					&nbsp;!수급자검색 4-2
+					&nbsp;수급자검색 4-2
 				</a>
 				</li>
 			</ul>
 	</li>
-		<!-- 방문일정관리 -->	
+	<!-- 방문일정관리 -->	
 	<li class="">
 		<a href="javascript:;"> 
 			<i class="fa fa-building"></i>
@@ -270,7 +263,7 @@
 				</li>
 			</ul>
 		</li>		
-		<!--  직원 급여 관리  -->
+		<!--  직원 급여 관리
 		<li class="">
 			<a href="javascript:;"> 
 				<i class="fa fa-building"></i> 
@@ -301,17 +294,14 @@
 					</a>
 				</li>				
 			</ul>
-		</li>
+		</li> -->
         <li class="">
 			<a href="/benefitcostAndMax">
 	       		<i class="fa fa-building"></i>
-	       		<span class="link-title">&nbsp;!수급 현황 및 리스트11 . 최</span>
+	       		<span class="link-title">&nbsp;수급 현황 및 리스트10 . 최</span>
 	        </a>
         </li>
 	</ul>
 	<!-- /#menu -->
 </div>
-
-<!-- /#left -->
-
 </html>
