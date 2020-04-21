@@ -54,21 +54,20 @@
     <div class="tab-content">
         <div id="login" class="tab-pane active">
         	<div class="form-group"> <h4>테스트용 아이디</h4>
-	        	<label><input type="radio" name="type" value="master">master 로그인</label></br>
+	        	<label><input type="radio" name="type" value="master" checked>master 로그인</label></br>
 	        	<label><input type="radio" name="type" value="nomal">센터 사용중</label>
 	        	<label><input type="radio" name="type" value="ended">센터 종료</label></br>
-	        	<label><input type="radio" name="type" value="elder">수급자</label>
-	        	<label><input type="radio" name="type" value="guardian">보호자</label>
+	        	<a class="btn btn-default btn-sm" href="/">비회원 로그인</a>
         	</div>
             <form action="/login" method="Post">
                 <p class="text-muted text-center">
                     	장기요양기관번호와 아이디, <br>
                     	비밀번호를 입력해주세요
                 </p>
-                <input type="text" placeholder="장기요양기관번호(예:3-41590-00000)" class="form-control top" name="centerCode" id="centerCode">
+                <input type="text" placeholder="장기요양기관번호(예:3-41590-00000)" class="form-control top" name="centerCode" id="centerCode" value="master">
                 <br>
-                <input type="text" placeholder="아이디" class="form-control top" name="centerId" id="id" >
-                <input type="password" placeholder="비밀번호" class="form-control bottom" name="centerPw" id="pw">
+                <input type="text" placeholder="아이디" class="form-control top" name="centerId" id="id" value="master">
+                <input type="password" placeholder="비밀번호" class="form-control bottom" name="centerPw" id="pw" value="master">
                 <div class="checkbox">
                 <th:block>
                	<label style="color: red;" id="wrong" th:text="${result ne null}? ${result}:''" ></label><br/>
@@ -108,6 +107,14 @@
         </ul>
     </div>
   </div>
+<div class="container">
+	<div class="row">
+        <div class="col-md-12 button-div">
+		    <button class="btn btn-default orange-circle-button" onclick="location.href='/donghachoi'">최동하 <br />포트폴리오<br />바로가기<span class="orange-circle-greater-than">></span></button>
+		    <button class="btn btn-default orange-circle-button" onclick="location.href='#'">김송현 <br />포트폴리오<br />바로가기<span class="orange-circle-greater-than">></span></button>
+        </div>   
+	</div>
+</div>
 
 
     <!--jQuery -->

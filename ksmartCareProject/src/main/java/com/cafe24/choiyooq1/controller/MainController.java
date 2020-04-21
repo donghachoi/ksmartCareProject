@@ -93,12 +93,23 @@ public class MainController {
 		 
 	  }
 
-	@GetMapping("/")
-	public String index() {
+	@GetMapping("/donghachoi")
+	public String getDongaHaChoiPortfolio() {
 		
-		return "portfolio/portfolio1.html";
+		return "portfolio/portfolio";
 	}
-	
+	@GetMapping("/")
+	public String index(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		SimpleDateFormat format1 = new SimpleDateFormat ("yyyy-MM-dd");
+		 Date date = new Date();
+		session.setAttribute("SID", null);
+		session.setAttribute("SCENTERCODE", null);
+		session.setAttribute("SCENTERNAME", null);
+		session.setAttribute("SMANAGERNAME", null);
+		session.setAttribute("today", format1.format(date));
+		return "index";
+	}
 
 	@GetMapping("/login")
 	public String firstlogin(@RequestParam(value="result", required = false) String result
