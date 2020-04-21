@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/default}">
+
+<!-- 사용자css -->
+<th:block layout:fragment="customCss">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.5/fullcalendar.min.css">
+    	
+	​<style>
+		body {background-color: #333;}
+		#left{position: relative}
+	</style>	
+	<!-- <script src="/vendor/js/visit.js"></script> -->
+</th:block>
+
+<th:block layout:fragment="customContents">
+<div id="content">
+	 <header class="head" >
+		<div class="main-bar">
+			<h3>
+				<i class="fa fa-calendar">&nbsp;태그 결과값 대비 수급자 청구액</i>
+			</h3>
+		</div>
+	</header>
+	<div class="outer">
+		<div class="inner bg-light lter">
+			<!--Begin Datatables-->
+			<div class="row">
+				<!--수급자 목록-->
+				<div class="col-lg-12">
+					<div class="box">
+						<header>
+							<div class="icons">
+								<i class="fa fa-table"></i>
+							</div>
+							<h5>수급자목록</h5>
+						</header>
+						<div id="collapse4" class="body">
+							<table id="dataTable"
+								class="table table-bordered table-condensed table-hover sortableTable">
+								<thead>
+									<tr>
+										<th>상태</th>
+										<th>이름</th>
+										<th>생년월일</th>
+										<th>성별</th>
+										<th>등급</th>
+										<th>질병구분</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="e: ${list}">
+									    <td th:text="${e.elderFinalServiceStatus}"></td>
+										<td><a href="javascript:void(0)" class="elderId" 
+											th:data-elder-id="${e.elderId}" th:data-elder-name="${e.elderName}">[[${e.elderName}]]</a></td>
+										<td th:text="${e.elderBirthDate}"></td>
+										<td th:text="${e.elderGender}"></td>
+										<td th:text="${e.elderFinalServiceApprovalLevel}"></td>
+										<td th:text="${e.elderDisease}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<!--/수급자 목록-->	
+				
+				
+	 			<!--  수급자 청구액 -->
+			    <div class="col-lg-7" style="display:none;">
+				<div class="box">
+					<header>
+						<div class="icons">
+							<i class="fa fa-table"></i>
+						</div>
+						<h5>수급자 청구액</h5>
+					</header>
+				     <div id="collapse4" class="body">
+						<div class="row">
+							<div class="col-sm-12">											
+							<table id="dataTable" class="table table-bordered" style="font-size: 10px">
+									
+										<div class="toolbar" style="margin-bottom:20px;">
+								
+											<div class="btn-group">
+										
+												<button type="button"  
+																data-toggle="modal" data-target="#myModal"
+																class="btn btn-default btn-sm btn-line"
+																>
+																<span class="ui-button-text">시간차 30분 이상</span>
+												</button>
+												<button type="button"  
+																data-toggle="modal" data-target="#myModal"
+																class="btn btn-default btn-sm btn-line"
+																>
+																<span class="ui-button-text">제공자 다름</span>
+												</button>
+												<!-- <a href="#defaultTable" data-toggle="collapse"
+													class="btn btn-sm btn-default minimize-box"> 
+													<i class="fa fa-angle-up"></i>
+												</a> -->
+											</div>
+										</div>
+								      <thead>
+										<tr role="row">
+											<tr>
+												<th rowspan="2">날짜 </th>
+												<th rowspan="2">태그코드 </th>
+										        <th rowspan="2">수급자<br/>코드</th>
+										        <th rowspan="2">수급자<br/>이름</th>
+										        <th rowspan="2">제공<br/>서비스</th>
+										        <th colspan="2">방문시간</th>
+										        <th colspan="2">종료시간</th>
+										        <th colspan="2">제공시간</th>
+										        <th rowspan="2">시간차</th>
+										        <th colspan="2">급여<br/>제공자</th>
+										        <th rowspan="2">제공자<br/>다름</th>
+											</tr>	
+											<tr role="row">
+										        <th>태그</th>
+										        <th>계획</th>
+										        <th>태그</th>
+										        <th>계획</th>
+										        <th>태그</th>
+										        <th>계획</th>
+										        <th>태그</th>
+										        <th>계획</th>
+										    </tr>
+										</thead>
+									<tbody>
+										<tr role="row" class="odd">
+											<td>2020-02-21  </td>
+											<td>t_000001</td>
+								            <td class="sorting_1">s_000001</td>
+								            <td>나수급</td>
+								            <td>요양</td>
+								            <td>12:00</td>
+								          	<td>12:00</td>
+								          	<td>15:00</td>
+								          	<td>15:00</td>
+								          	<td>90</td>
+								            <td>90</td>
+								            <td>0</td>
+								            <td>나요보</td>
+								            <td>나요보</td>
+								            <td></td>
+								      
+								        </tr><tr role="row" class="odd">
+								            <td>2020-02-22 </td>
+								            <td>t_000002</td>
+								            <td class="sorting_1">s_000001</td>
+								            <td>나수급</td>
+								            <td>요양</td>
+								            <td>12:00</td>
+								            <td>12:00</td>
+								            <td>15:00</td>
+								            <td>15:00</td>
+								            <td>90</td>
+								            <td>90</td>
+								            <td>0</td>
+								            <td>나보호</td>
+								            <td>나보호</td>
+								            <td></td>
+								        </tr><tr role="row" class="odd">
+								            <td>2020-02-22 </td>
+								            <td>t_000003</td>
+								            <td class="sorting_1">s_000002</td>
+								            <td>나평가</td>
+								            <td>요양</td>
+								            <td>16:00</td>
+								            <td>16:00</td>
+								            <td>18:00</td>
+								            <td>18:00</td>
+								            <td>60</td>
+								            <td>60</td>
+								            <td>0</td>
+								            <td>나보호</td>
+								            <td>나보호</td>
+								            <td></td>
+								        </tr><tr role="row" class="odd">
+								            <td>2020-02-22</td>
+								            <td>t_000004</td>
+								            <td class="sorting_1">s_000003</td>
+								            <td>나아파</td>
+								            <td>간호</td>
+								            <td>13:55</td>
+								            <td>12:00</td>
+								            <td>15:00</td>
+								            <td>15:00</td>
+								            <td>65</td>
+								            <td>60</td>
+								            <td>5</td>
+								            <td>나간호</td>
+								            <td>나간호</td>
+								            <td></td>
+								        </tr><tr role="row" class="odd">
+								            <td>2020-02-22 </td>
+								            <td>t_000005</td>
+								            <td class="sorting_1">s_000005</td>
+								            <td>가평가</td>
+								            <td>요양</td>
+								            <td>16:00</td>
+								            <td>16:00</td>
+								            <td>18:10</td>
+								            <td>18:00</td>
+								            <td>60</td>
+								            <td>70</td>
+								            <td>10</td>
+								            <td>가요보</td>
+								            <td>가요보</td>
+								            <td></td>
+								        </tr><tr role="row" class="odd">
+								            <td>2020-02-25 </td>
+								            <td>t_000006</td>
+								            <td class="sorting_1">s_000005</td>
+								            <td>가평가</td>
+								            <td>요양</td>
+								            <td>16:00</td>
+								            <td>16:00</td>
+								            <td>18:15</td>
+								            <td>18:00</td>
+								            <td>60</td>
+								            <td>75</td>
+								            <td>15</td>
+								            <td>가요보</td>
+								            <td>가요보</td>
+								            <td></td>
+								        </tr>
+									</tbody>
+								</table>					
+							</div>
+	   					</div>
+					</div>
+			    </div>
+			  </div>	 
+			    <!--  수급자 청구액 -->  						    	 			
+			 </div>
+			</div>
+		</div>	
+	</div>
+</th:block>
+
+<th:block layout:fragment="customPlugin">
+    <script src="/assets/lib/jquery/jquery.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+    <script src="/assets/js/jquery.dataTables.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.5/fullcalendar.min.js"></script>
+    <script src="/assets/lib/fullcalendar/locale/ko.js"></script>  
+    
+   
+<!--     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.18.4/js/jquery.tablesorter.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
+<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.min.js"></script> -->
+<!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.selection.min.js"></script> -->
+<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.resize.min.js"></script> -->
+                                
+    <!--Bootstrap -->
+    <script src="/assets/lib/bootstrap/js/bootstrap.js"></script>
+    <!-- MetisMenu -->
+    <script src="/assets/lib/metismenu/metisMenu.js"></script>
+    <!-- onoffcanvas -->
+    <script src="/assets/lib/onoffcanvas/onoffcanvas.js"></script>
+    <!-- Screenfull -->
+    <script src="/assets/lib/screenfull/screenfull.js"></script>
+ 	  
+
+    <script src="/vendor/js/calenderSearch.js"></script>
+
+    <!-- Metis core scripts -->
+    <script src="/assets/js/core.js"></script>
+    <!-- Metis demo scripts -->
+    <script src="/assets/js/app.js"></script>
+
+
+    <script src="/assets/js/style-switcher.js"></script>
+</th:block>
+</html>
+		

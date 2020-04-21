@@ -1,5 +1,6 @@
 package com.cafe24.choiyooq1.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -58,4 +59,11 @@ public class BoardController {
 		return "/board/boardDetail";
 	}
 	
+	
+	@GetMapping("/board/boardSerch")
+	public String boardSerch(@RequestParam(value="sk") String sk, @RequestParam(value="sv") String sv, Model model) {
+		List<CenterBoard> list = boardService.boardSerch(sk, sv);
+		model.addAttribute("boardList", list);
+		return "/board/boardList";
+	}
 }
