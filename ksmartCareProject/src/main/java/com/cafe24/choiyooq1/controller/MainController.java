@@ -36,13 +36,13 @@ public class MainController {
 	 }
 	 
 	 //메인화면
-	 @GetMapping("/main")
-	 public String getMainpage() {
-		 return "/index";
+	 @GetMapping("/")
+	 public String getBoard() {
+		 return "redirect:/board/boardList";
 	 }
 	 
 	 //로그인 확인
-	 @PostMapping("/login") 
+	 @PostMapping("/login")
 	 public String login(@RequestParam(value="centerCode")String centerCode
 						 ,@RequestParam(value="centerId")String centerId
 						 ,@RequestParam(value="centerPw")String centerPw
@@ -69,6 +69,7 @@ public class MainController {
 				 redirectA.addAttribute("result", "등록된 아이디가 아닙니다.");	
 					return "redirect:/login";
 				 }
+			 
 			 SimpleDateFormat format1 = new SimpleDateFormat ("yyyy-MM-dd");
 			 Date date = new Date();
 			 session.setAttribute("SID", center.getCenterId());
@@ -98,7 +99,7 @@ public class MainController {
 		
 		return "portfolio/portfolio";
 	}
-	@GetMapping("/")
+	@GetMapping("/loginForNonmember")
 	public String index(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		SimpleDateFormat format1 = new SimpleDateFormat ("yyyy-MM-dd");
@@ -110,6 +111,7 @@ public class MainController {
 		session.setAttribute("today", format1.format(date));
 		return "redirect:/board/boardList";
 	}
+	
 
 	@GetMapping("/login")
 	public String firstlogin(@RequestParam(value="result", required = false) String result
