@@ -14,7 +14,7 @@
 			<div class="media-body">
 			<th:block>
 				<h5 th:if="${session.SCENTERNAME ne null}" th:text="${session.SCENTERNAME}" class="media-heading"></h5>
-				<h5 th:unless="${session.SCENTERNAME ne null}" class="media-heading">로그인 해주세요.</h5>
+				<h5 th:unless="${session.SCENTERNAME ne null}" class="media-heading" onclick="location.href='/login'" style="cursor: pointer;">로그인 해주세요.</h5>
 				<ul class="list-unstyled user-info">
 					<li><h5 th:if="${session.SCENTERNAME ne null}" th:text="${session.SID}"></h5></li>
 					<li th:text="${session.today}"><i class="fa fa-calendar"></i>

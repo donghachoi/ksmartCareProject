@@ -39,12 +39,16 @@ public class WebConfig implements WebMvcConfigurer{
 		registry.addInterceptor(loginInterceptor)
 				.addPathPatterns("/**")
 				.excludePathPatterns("/login")
+				.excludePathPatterns("/board/**")
+				.excludePathPatterns("/*")
 				.excludePathPatterns("/vendor/**")
 				.excludePathPatterns("/assets/**");
 		
 		registry.addInterceptor(masterInterceptor)
 				.addPathPatterns("/**")
 				.excludePathPatterns("/login")
+				.excludePathPatterns("/board/**")
+				.excludePathPatterns("/*")
 				.excludePathPatterns("/master/**")
 				.excludePathPatterns("/vendor/**")
 				.excludePathPatterns("/assets/**");
@@ -52,6 +56,8 @@ public class WebConfig implements WebMvcConfigurer{
 		registry.addInterceptor(centerInterceptor)
 				.addPathPatterns("/master/**")
 				.excludePathPatterns("/login")
+				.excludePathPatterns("/board/**")
+				.excludePathPatterns("/*")
 				.excludePathPatterns("/vendor/**")
 				.excludePathPatterns("/assets/**");
 		}

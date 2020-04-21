@@ -60,8 +60,8 @@
 			<div class="outer">
 				<div class="inner bg-light lter">
 					<div class="col-lg-12 ui-sortable">
-							<div class="box ui-sortable-handle"
-								style="position: relative; left: 0px; top: 0px;">
+						<div class="box ui-sortable-handle"
+							style="position: relative; left: 0px; top: 0px;">
 				<header>
 					<div class="icons">
 						<i class="fa fa-table"></i>
@@ -72,9 +72,7 @@
 				<div id="collapse4" class="body">
 						<div class="row">
 							<div class="col-sm-12">
-								
 								<form th:action="@{/center/centerList}" method="post">
-																		
 									<table id="dataTable" class="table table-bordered table-hover" style="font-size: 15px">
 										<thead>
 											<tr role="row">
@@ -122,129 +120,95 @@
 						</div>
 					</div>
 				</div>
-			
 				<!-- 개략 테이블 End -->
 				<!-- 수급자 상세정보 Start -->
-						<div class="col-lg-13 ui-sortable">
-							<form class="form-horizontal" method="get">
-							
-							<div class="box ui-sortable-handle">
-								<header>
-									<div class="icons">
-										<i class="fa fa-table"></i>
-									</div>
-									<h5>센터 상세 정보</h5>
-									<div class="toolbar">
-										<div class="btn-group">
-											<button type="button"  
-													data-toggle="modal" data-target="#myModal"
-													class="btn btn-default btn-sm btn-line"
-													id="btnCenterCodeForUpdate"
-													>
-													<span class="ui-button-text" >
-														정보수정
-													</span>
-											</button>
-											
-											<button type="button"  
-													data-toggle="modal" data-target="#myModal"
-													class="btn btn-default btn-sm btn-line"
-													id="btnCenterCodeForDelete"
-													>
-													<span class="ui-button-text">
-														센터삭제
-													</span>
-											</button>
-											</form>
-										<!-- 	<a href="#defaultTable" data-toggle="collapse"
-												class="btn btn-sm btn-default minimize-box"> 
-												<i class="fa fa-angle-up"></i>
-											</a> -->
-										</div>
-									</div>
-									
-								</header>
-								<div id="defaultTable" class="body collapse in">
-									<table class="table responsive-table">
-										<tbody>
-											<tr>
-												<th>장기요양기관번호</th>
-												<td id="centerCode"></td>
-												<th>센터명</th>
-												<td id="centerName"></td>
-												<th>아이디</th>
-												<td id="centerId"></td>
-											</tr>
-											<tr>
-												<th>비밀번호</th>
-												<td id="centerPw"></td>
-												<th>담당자</th>
-												<td id="centerManagerName"></td>
-												<th>담당자연락처</th>
-												<td id="conterManagerPhone"></td>
-											</tr>
-											<tr>
-												<th>센터연락처</th>
-												<td id="centerPhone"></td>
-												<th>지역구분</th>
-												<td id="centerLocal"></td>
-												<th>상세주소</th>
-												<td id="centerAdress"></td>
-											</tr>
-											<tr>
-												<th>서비스시작일</th>
-												<td id="serviceStartDate"></td>
-												<th>서비스종료일</th>
-												<td id="serviceEndDate"></td>
-												<th>서비스이용상태</th>
-												<td id="serviceStatus"></td>
-											</tr>
-											<tr>
-												<th>사업자등록번호</th>
-												<td id="businessRegistrationNumber"></td>
-												<th>등록번호상 사업자이름</th>
-												<td id="employerName"></td>
-												<th>비고</th>
-												<td></td>
-											</tr>
-										</tbody>
-									</table>
-								
-								</div>
-								
+				<div class="col-lg-13 ui-sortable">
+					<form class="form-horizontal" method="get">
+						<div class="box ui-sortable-handle">
+							<header>
+							<div class="icons">
+								<i class="fa fa-table"></i>
+							</div>
+							<h5>센터 상세 정보</h5>
+							<div class="toolbar">
+								<div class="btn-group">
+									<button type="button"  
+											data-toggle="modal" data-target="#myModal"
+											class="btn btn-default btn-sm btn-line"
+											id="btnCenterCodeForUpdate"
+											>
+											<span class="ui-button-text" >
+												정보수정
+											</span>
+									</button>
+									<button type="button"  
+											data-toggle="modal" data-target="#myModal"
+											class="btn btn-default btn-sm btn-line"
+											id="btnCenterCodeForDelete"
+											>
+											<span class="ui-button-text">
+												센터삭제
+											</span>
+									</button>
 								</div>
 							</div>
+							</header>
 						</div>
-						<!-- 수급자 상세정보 End-->
-					
-			
-					<!-- 센터 리스트 끝  -->
-
-			
-				<!-- /.inner -->
-	
-			<!-- /.outer -->
+					</form>
+				</div>
+			</div>
+				<div id="defaultTable" class="body collapse in">
+					<table class="table responsive-table">
+						<tbody>
+							<tr>
+								<th>장기요양기관번호</th>
+								<td id="centerCode"></td>
+								<th>센터명</th>
+								<td id="centerName"></td>
+								<th>아이디</th>
+								<td id="centerId"></td>
+							</tr>
+							<tr>
+								<th>비밀번호</th>
+								<td id="centerPw"></td>
+								<th>담당자</th>
+								<td id="centerManagerName"></td>
+								<th>담당자연락처</th>
+								<td id="conterManagerPhone"></td>
+							</tr>
+							<tr>
+								<th>센터연락처</th>
+								<td id="centerPhone"></td>
+								<th>지역구분</th>
+								<td id="centerLocal"></td>
+								<th>상세주소</th>
+								<td id="centerAdress"></td>
+							</tr>
+							<tr>
+								<th>서비스시작일</th>
+								<td id="serviceStartDate"></td>
+								<th>서비스종료일</th>
+								<td id="serviceEndDate"></td>
+								<th>서비스이용상태</th>
+								<td id="serviceStatus"></td>
+							</tr>
+							<tr>
+								<th>사업자등록번호</th>
+								<td id="businessRegistrationNumber"></td>
+								<th>등록번호상 사업자이름</th>
+								<td id="employerName"></td>
+								<th>비고</th>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
-		<!-- /#content -->           
-		<!-- /#wrap -->          
+	</div>
 	</body>
 </th:block>
 <th:block layout:fragment="customPlugin">
- 	<!--jQuery -->
-    <script src="/assets/lib/jquery/jquery.js"></script>
-    Bootstrap
-	<script src="/assets/lib/bootstrap/js/bootstrap.js"></script>
-    MetisMenu
-    <script src="/assets/lib/metismenu/metisMenu.js"></script>
-    onoffcanvas
-    <script src="/assets/lib/onoffcanvas/onoffcanvas.js"></script>
-    Screenfull
-    <script src="/assets/lib/screenfull/screenfull.js"></script>
-    Metis core scripts
-    <script src="/assets/js/core.js"></script>
-    Metis demo scripts
-    <script src="/assets/js/app.js"></script>
-    <script src="/assets/js/style-switcher.js"></script> -->
     
     <!--jQuery -->
     <script src="/assets/lib/jquery/jquery.js"></script>
@@ -253,24 +217,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.26.6/js/jquery.tablesorter.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
-
-	<!--Bootstrap -->
+    <!-- Bootstrap -->
 	<script src="/assets/lib/bootstrap/js/bootstrap.js"></script>
-	
-	<!-- MetisMenu -->
-	<script src="/assets/lib/metismenu/metisMenu.js"></script>
-	
-	<!-- onoffcanvas -->
-	<script src="/assets/lib/onoffcanvas/onoffcanvas.js"></script>
-	
-	<!-- Screenfull -->
-	<script src="/assets/lib/screenfull/screenfull.js"></script>
+    <!-- MetisMenu -->
+    <script src="/assets/lib/metismenu/metisMenu.js"></script>
+    <!-- onoffcanvas -->
+    <script src="/assets/lib/onoffcanvas/onoffcanvas.js"></script>
+    <!-- Screenfull -->
+    <script src="/assets/lib/screenfull/screenfull.js"></script>
+    <!-- Metis core scripts -->
+    <script src="/assets/js/core.js"></script>
+    <!-- Metis demo scripts -->
+    <script src="/assets/js/app.js"></script>
+    <script src="/assets/js/style-switcher.js"></script>
 
-	<!-- Metis core scripts -->
-	<script src="/assets/js/core.js"></script>
-	
-	<!-- Metis demo scripts -->
-	<script src="/assets/js/app.js"></script>
 	<script>
 		$(function() {
 			$('#dataTable').DataTable({

@@ -35,6 +35,12 @@ public class MainController {
 		 return "login/firstlogin";
 	 }
 	 
+	 //메인화면
+	 @GetMapping("/main")
+	 public String getMainpage() {
+		 return "/index";
+	 }
+	 
 	 //로그인 확인
 	 @PostMapping("/login") 
 	 public String login(@RequestParam(value="centerCode")String centerCode
@@ -87,9 +93,22 @@ public class MainController {
 		 
 	  }
 
+	@GetMapping("/donghachoi")
+	public String getDongaHaChoiPortfolio() {
+		
+		return "portfolio/portfolio";
+	}
 	@GetMapping("/")
-	public String index() {
-		return "index";
+	public String index(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		SimpleDateFormat format1 = new SimpleDateFormat ("yyyy-MM-dd");
+		 Date date = new Date();
+		session.setAttribute("SID", null);
+		session.setAttribute("SCENTERCODE", null);
+		session.setAttribute("SCENTERNAME", null);
+		session.setAttribute("SMANAGERNAME", null);
+		session.setAttribute("today", format1.format(date));
+		return "redirect:/board/boardList";
 	}
 
 	@GetMapping("/login")

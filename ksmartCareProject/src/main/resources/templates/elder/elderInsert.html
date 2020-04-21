@@ -287,6 +287,7 @@ function Idcheck(){
 	if($('#elderId').val()==""){
 		$('#elderId').parent().append("<span style=\"color :red;\">아이디를 입력해주세요.</span>");
 		$('#elderId').focus();
+		return false;
 	}else{
 		map.Id = $('#elderId').val();
 		 var result = $.ajax({
@@ -298,9 +299,11 @@ function Idcheck(){
 			success	:	function(data){
 				if("아이디 사용가능합니다"==data){
 					$('#elderId').parent().append("<span style=\"color :blue;\">"+data+"</span>");
+					return true;
 				}else{
 					$('#elderId').parent().append("<span style=\"color :red;\">"+data+"</span>");
 					$('#elderId').focus();
+					return false;
 				}
 			},
 			error	:	function(error){
@@ -418,7 +421,9 @@ var getAddress = function(inputboxId){
 				$('#elderServiceApprovalEndDate').focus();
 				return false;
 			}
-			Idcheck();
+			if(!Idcheck()){
+				return false;
+			}
 			
 			if(DayCheck(day)){
 				console.log('성공')

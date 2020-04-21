@@ -2534,4 +2534,37 @@ body.error .logo h1 {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+.orange-circle-button {
+	box-shadow: 2px 4px 0 2px rgba(0,0,0,0.1);
+	border: .5em solid #2e6ca0;
+	font-size: 1em;
+	line-height: 1.1em;
+	color: #ffffff;
+	background-color: #337ab7;
+	margin: 40px;
+	border-radius: 50%;
+	height: 7em;
+	width: 7em;
+	position: relative;
+}
+.orange-circle-button:hover {
+	color:#ffffff;
+    background-color: #337ab7;
+	text-decoration: none;
+	border-color: #609ed2;
+	
+}
+.orange-circle-button:visited {
+	color:#ffffff;
+    background-color: #337ab7;
+	text-decoration: none;
+	
+}
+.orange-circle-link-greater-than {
+    font-size: 1em;
+}
+.button-div{
+	text-align: center;	
+	
+}
 /* END LOGIN PAGE STYLES */
