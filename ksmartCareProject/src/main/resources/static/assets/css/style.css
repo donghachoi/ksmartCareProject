@@ -468,7 +468,7 @@ section {
   min-height: 400px;
 }
 .about .image1{
-  background: url("../img/portfolio/mainPage.png") center center no-repeat;
+  background: url("../img/portfolio/mainPage.jpg") center center no-repeat;
   background-size: cover;
   min-height: 400px;
   
@@ -1096,4 +1096,5 @@ section {
 }
 .project-li{
 	border: 1px solid;
+	margin-left: 10px;
 }
