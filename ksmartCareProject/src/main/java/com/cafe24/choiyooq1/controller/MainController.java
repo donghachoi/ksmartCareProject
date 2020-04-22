@@ -38,7 +38,7 @@ public class MainController {
 	 //메인화면
 	 @GetMapping("/")
 	 public String getBoard() {
-		 return "redirect:/board/boardList";
+		 return "login/firstlogin";
 	 }
 	 
 	 //로그인 확인
