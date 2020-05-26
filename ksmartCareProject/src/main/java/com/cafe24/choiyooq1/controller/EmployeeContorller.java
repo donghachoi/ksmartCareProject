@@ -32,7 +32,7 @@ public class EmployeeContorller {
 		if(result >0) {
 			return "/employee/employeeList";
 		}
-				
+		
 		return "/employee/employeeList";		
 	}
 	
@@ -41,7 +41,7 @@ public class EmployeeContorller {
 	public String employeeList(Model model) {
 		model.addAttribute("employeeList", employeeService.getEmployeeList());
 		return "/employee/employeeList";
-		
+	
 	}
 	
 	// 직원 정보수정을 위한 페이지로 이동

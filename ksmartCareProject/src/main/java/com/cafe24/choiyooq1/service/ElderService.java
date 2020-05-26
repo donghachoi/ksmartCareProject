@@ -32,6 +32,12 @@ public class ElderService {
 	private String employeeId = "e_000001";
 	private String employeeName = "이형열";
 	
+	/* [수급자] 삭제 */
+	public void elderDelete(String elderId) {
+		System.out.println(elderId +"in service");
+		elderMapper.deleteElder(elderId);
+		
+	}
 	
 	/* [수급자] 검색 */
 	public List<Elder> searchElder(String sk, String sv, HttpSession session,
@@ -66,8 +72,6 @@ public class ElderService {
 			,HttpSession session) {
 		String centerName= (String) session.getAttribute("SCENTERNAME");
 		String centerCode= (String) session.getAttribute("SCENTERCODE");
-		System.out.println(list.size()+"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<------ size");
-		System.out.println(list.toString()+"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<------ toString");
 		for(int i =0;i<list.size();i++) {
 			list.get(i).setElderRegularCheckCode("check_"+(elderMapper.getMaxNum()+1));
 			list.get(i).setCenterCode(centerCode);
@@ -171,6 +175,8 @@ public class ElderService {
 		
 		Map<String,Object> map = new HashMap<String,Object>();
 		
+		
+		//하나의 수급자 최근의 정기검사 
 		List<ElderRegularCheck> list = elderMapper.getLastElderRegularHistory(elderId);
 		for(int i = 0; i< list.size();i++) {
 			String category = list.get(i).getElderRegularCheckCategory();
@@ -186,7 +192,6 @@ public class ElderService {
 			}if(category.equals("욕구사정")) {
 				map.put("needsCheck", list.get(i));
 			}
-			
 		}
 		
 		// ServiceEndDate 시간이 0000-00-00이면 공백으로 넘깁니다.
@@ -221,7 +226,7 @@ public class ElderService {
 		elderMapper.insertElder(elder);
 		
 		//수급자 초기 체크리스트 입력
-		String[] list = {"낙상위험 측정","욕창위험 측정","인지기능 검사","욕구사정" };
+		String[] list = {"낙상위험측정","욕창위험측정","인지기능검사","욕구사정" };
 		for(int i=0;i<list.length;i++) {
 			elderRegularCheck.setElderRegularCheckCode("check_"+(elderMapper.getMaxNum()+1));
 			elderRegularCheck.setCenterCode(centerCode);
@@ -275,7 +280,6 @@ public class ElderService {
 	
 	/* 수급자 아이디 체크 */
 	public String checkElderId(String elderId) {
-		System.out.println(elderId);
 		String result = "아이디 사용가능합니다";
 		List<Elder> list = elderMapper.checkElderId();
 		for(int i=0;i<list.size();i++) {
@@ -284,7 +288,6 @@ public class ElderService {
 				result = "아이디 중복";
 			}
 		}
-		
 		System.out.println(result);
 		return result;
 	}

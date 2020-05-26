@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div id="left" th:fragment="leftmenuFragment" style="border: 1px solid #">
+<div id="left" th:fragment="leftmenuFragment" style="border: 1px solid ">
 	<div class="media user-media bg-dark dker">
 		<div class="user-media-toggleHover">
 			<span class="fa fa-user"></span>
@@ -14,7 +14,7 @@
 			<div class="media-body">
 			<th:block>
 				<h5 th:if="${session.SCENTERNAME ne null}" th:text="${session.SCENTERNAME}" class="media-heading"></h5>
-				<h5 th:unless="${session.SCENTERNAME ne null}" class="media-heading" onclick="location.href='/login'" style="cursor: pointer;">로그인 해주세요.</h5>
+				<h5 th:unless="${session.SCENTERNAME ne null}" class="mediwa-heading" onclick="location.href='/login'" style="cursor: pointer;">로그인 해주세요.</h5>
 				<ul class="list-unstyled user-info">
 					<li><h5 th:if="${session.SCENTERNAME ne null}" th:text="${session.SID}"></h5></li>
 					<li th:text="${session.today}"><i class="fa fa-calendar"></i>
@@ -137,7 +137,7 @@
 		</a>
 		<ul class="collapse">
 
-			<li><a th:href="@{/employee/velderList(centerCode=3-41590-00001)}">
+			<li><a th:href="@{/employee/velderList(centerCode=${session.SCENTERCODE})}">
 
 			<i class="fa fa-angle-right"></i>&nbsp;방문일정등록(수급자) 5-1
 			</a></li>

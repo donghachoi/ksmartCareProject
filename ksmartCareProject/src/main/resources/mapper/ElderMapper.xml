@@ -28,6 +28,18 @@
   	<result property="elderRemarks" column="elder_remarks"/>
   	<result property="elderGroups" column="elder_groups"/>
   </resultMap>
+  
+  <!-- 수급자 삭제  -->
+  <delete id="deleteElder" parameterType="String">
+  	DELETE FROM 
+  		elder 
+  	WHERE 
+  		elder_id = #{elderId};
+  </delete>
+  
+  
+  
+  
   <!-- 수급자 검색 by birthday -->
   <select id="searchElderByBirth" parameterType="String" resultMap="ElderMap">
    	

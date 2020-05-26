@@ -515,8 +515,28 @@
       $(document).ready(function(){
     	  
     	  
-    	  /*[검색] 셀렉트 박스 바뀔때 input 박스 바꾸는 */
+ 
+    	  //삭제버튼에 마우스 올리면 삭제버튼생김.
+    	  deleteBtnEvent('.elderRow','td:eq(7)')
     	  
+    	  
+    	  
+    	  //[수급자]눌르면 삭제
+    	  $('.elderDelete').click(function(){
+    		  var elderId = $(this).val();
+    		  var result = confirm('정말 삭제하시겠습니까?'); 
+    		  if(result) { //yes 
+    			  console.log('yes')
+    			  location.href = "/employee/elderDelete?elderId="+elderId;
+
+    		  } 
+    		  else { //no 
+    			  console.log('no')
+    		  }
+    	  })
+
+
+    	  /*[검색] 셀렉트 박스 바뀔때 input 박스 바꾸는 */
     	  //성별 HTML
     	  var searchGenderRadioBox = "";
     	  searchGenderRadioBox += "<div id=\"genderRadio\">";
@@ -716,8 +736,6 @@
 				data	:	JSON.stringify(map),
 				contentType	:	'application/json',
 				success	:	function(data){
-					
-					
 					/* [계약] 리스트  */
 					var status = data.elderstatusList
 					$('#elderStatus').empty();
@@ -778,7 +796,6 @@
 					var bedsoreCheckDate = data.bedsoreCheck.elderRegularCheckDoingDate
 					var functionCheckDate = data.functionCheck.elderRegularCheckDoingDate
 					var needsCheckDate = data.needsCheck.elderRegularCheckDoingDate
-					
 					//수급자 수급 인정기간 
 					var serviceEndDate = data.elderLastStatus.serviceEndDate;
 					var serviceStartDate = data.elderFirstStatusDate.serviceStartDate;

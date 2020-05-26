@@ -32,13 +32,13 @@
 		#{elderRegularCheckPlanDate}, #{elderRegularCheckDoingDate}, NOW())
   </insert>
   
-  <update id="deleteRegularCheck">
+  <delete id="deleteRegularCheck">
 	DELETE 
 	FROM 
 		elder_regular_check
 	WHERE 
 		elder_regular_check_code = #{elderRegularCheckCode};  
-  </update>
+  </delete>
   <update id="updateRegularCheck">
   	UPDATE 
   		elder_regular_check
@@ -92,7 +92,7 @@
 	
   <select id="getMaxNum" resultType="int">
 	select
-		MAX(cast(substring(elder_regular_check_code,7)AS int))
+		CAST(MAX(substring(elder_regular_check_code,7)) AS SIGNED)
 	from 
 		elder_regular_check
   </select>

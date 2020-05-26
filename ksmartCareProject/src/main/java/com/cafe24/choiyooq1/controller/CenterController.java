@@ -50,7 +50,6 @@ public class CenterController {
 	@GetMapping("/master/centerList")
 	public String centerList(Model model) {
 		model.addAttribute("centerList", centerService.getCenterList());
-		// System.out.println(centerService.getCenterList().toString());
 		return "center/centerList";
 	}
 

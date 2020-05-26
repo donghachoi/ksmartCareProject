@@ -3,6 +3,7 @@ package com.cafe24.choiyooq1.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -42,6 +43,19 @@ public class ElderController {
 								HttpSession session,
 								Model model) {
 		model.addAttribute("elderList", elderService.searchElder(sk, sv,session,elderSearchBeginBirthdate,elderSearchEndBirthdate));
+		return "elder/elderList";
+	}
+	
+	/* [수급자] 삭제 */
+	@GetMapping("/employee/elderDelete")
+	public String elderDelete(HttpSession session,
+								Model model,
+								HttpServletRequest request) {
+		String elderId = request.getParameter("elderId");
+		
+		elderService.elderDelete(elderId);
+		
+		model.addAttribute("elderList", elderService.getElderList(session));
 		return "elder/elderList";
 	}
 	

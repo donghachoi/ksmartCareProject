@@ -20,6 +20,11 @@ public class CenterService {
 	}
 	//센터 리스트
 	public List<Center> getCenterList(){
+		for(int i=0;i<centerMapper.getCenterList().size();i++) {
+			if("master".equals(centerMapper.getCenterList().get(i).getCenterCode())) {
+				centerMapper.getCenterList().remove(i);
+			}
+		}
 		return centerMapper.getCenterList();	
 	}
 	//센터 정보 업데이트를 위한 내용 불러오기

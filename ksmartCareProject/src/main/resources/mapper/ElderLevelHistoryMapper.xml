@@ -85,7 +85,7 @@
   </insert>
   <select id="getElderLevelMaxNum" resultType="int">
 	SELECT 
-		MAX(CAST(substring(elder_level_history_code,17)as INT))
+		CAST(MAX(substring(elder_level_history_code,17))AS SIGNED)
 	from 
 		elder_level_history
   </select>

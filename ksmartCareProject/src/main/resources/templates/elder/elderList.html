@@ -111,10 +111,11 @@
 											<th>성별</th>
 											<th>등급</th>
 											<th>인정만료일</th>
+											<th>삭제</th>
 										</tr>
 									</thead>
 									<tbody id="elderRow">
-										<tr role="row" class="odd" th:each="E:${elderList}" style="cursor: pointer;">
+										<tr role="row" class="odd elderRow" th:each="E:${elderList}" style="cursor: pointer;">
 											<td th:text="${E.elderFinalServiceStatus}"></td>
 											<td th:text="${E.elderId}"></td>
 											<td th:text="${E.elderName}"></td>
@@ -122,6 +123,7 @@
 											<td th:text="${E.elderGender}"></td>
 											<td th:text="${E.elderFinalServiceApprovalLevel}"></td>
 											<td th:text="${E.longTermCareValidity}"></td>
+											<td><button style="display: none" class="elderDelete btn btn-danger btn-xs"  th:value="${E.elderId}">삭제</button></td>
 										</tr>
 									</tbody>
 								</table>

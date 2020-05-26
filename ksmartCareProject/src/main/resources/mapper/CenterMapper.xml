@@ -65,10 +65,11 @@
  	</insert>
  	<!-- 센터리스트 불러오기 -->
   	<select id="getCenterList" resultType ="com.cafe24.choiyooq1.domain.Center" resultMap="centerMap">
-				SELECT 
+		SELECT 
 			@rownum:=@rownum+1
-			, center.*
-		FROM center, (SELECT@rownum:=0)TMP;
+			,center.*
+		FROM 
+			center, (SELECT@rownum:=0)TMP;
 	</select>
 		
 	<!-- 센터업데이트를 위한 해당 센터정보 불러오기 -->

@@ -12,6 +12,10 @@ import com.cafe24.choiyooq1.domain.ElderStatus;
 @Mapper
 public interface ElderMapper {
 	
+	
+	/* 수급자 한명의 정보 모두 삭제 */
+	public void deleteElder(String elderId);
+	
 	/* 수급자 생일로 검색 */
 	public List<Elder> searchElderByBirth(String sk, String elderSearchBeginBirthdate,String elderSearchEndBirthdate,String centerCode);
 	
