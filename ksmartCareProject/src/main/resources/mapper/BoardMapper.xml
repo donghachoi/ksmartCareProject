@@ -11,14 +11,15 @@
   			<result property="boardUser" column="board_user" />
   			<result property="boardDate" column="board_date" />
   			<result property="boardFile" column="board_file" />
+  			<result property="boardUserId" column="board_userId" />
   		</resultMap>
   	
   		<insert id="boardInsert" parameterType="CenterBoard">
   			<selectKey resultType="int" keyProperty="boardNo" order="BEFORE">
 				SELECT MAX(board_no)+1 AS board_no FROM centerboard   			
 			</selectKey>
- 			insert into centerboard(board_no, board_title, board_content,  board_user, board_date, board_file )
- 			value(#{boardNo}, #{boardTitle}, #{boardContent}, #{boardUser}, NOW(), #{boardFile})
+ 			insert into centerboard(board_no, board_title, board_content,  board_user, board_date, board_file , board_userId)
+ 			value(#{boardNo}, #{boardTitle}, #{boardContent}, #{boardUser}, NOW(), #{boardFile}, #{boardUserId})
 
   		</insert>
   		
@@ -35,7 +36,7 @@
 			,board_title		
 			,board_content		
 			,board_user			
-			,board_date			
+			,board_date		
 		FROM centerboard
 		ORDER BY board_no DESC
 		LIMIT #{startRow},#{rowPerPage}
@@ -43,10 +44,13 @@
 	
 	<select id="boardDetail" resultMap="BoardMap">
 		SELECT 
-			 board_title		
+			 board_no
+			,board_title		
 			,board_content		
 			,board_user			
-			,board_date			
+			,board_date		
+			,board_file	
+			,board_userId		
 		FROM centerboard
 		where board_no = #{boardNo}
 	</select>		
@@ -58,12 +62,22 @@
 			,board_title		
 			,board_content		
 			,board_user			
-			,board_date			
+			,board_date	
 		FROM centerboard 
 		<if test="sv !=null and sv neq ''.toString()">
 			WHERE ${sk} LIKE CONCAT('%',#{sv}, '%')
 		</if>
 		ORDER BY board_no DESC
 	</select>		
-  	
+	
+	<update id="boardUpdate" parameterType="CenterBoard">
+		UPDATE centerboard 
+		SET board_title=#{boardTitle}, board_content= #{boardContent}, board_user =#{boardUser}, board_userId =#{boardUserId}, 
+		center_code =#{centerCode}, center_name =#{centerName}, board_file =#{boardFile}, board_date= NOW()
+		WHERE board_no=#{boardNo}	
+	</update>
+  
+  	<delete id="boardDelecte" parameterType="String">
+  		DELETE from centerboard WHERE board_no= #{boardNo}
+  	</delete>
   	</mapper>

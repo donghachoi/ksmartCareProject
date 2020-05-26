@@ -1,28 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/default}">
-
-<!-- 사용자css -->
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layout/default}">
 <th:block layout:fragment="customCss">
-
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.5/fullcalendar.min.css">
-    
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<!-- <script src="/vendor/js/visit.js"></script> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.5/fullcalendar.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	​<style>
-		body {background-color: #333;}
-		#left{position: relative}
-		a {color: black;}
-		tr{height: 20px; padding:10px;}
-		.title {width:150px; text-align:center;}
-		.content{height:400px;}
-		.btn{align:right;}
-		.bt1 td{ border-right:none; border-left:none; border-bottom:none;}
-		.bt1 td button {float:right;}
+	body{background-color: #333;}
+	#left{position: relative}
+	a{color: black;}
+	tr{height: 20px; padding:10px;}
+	.title{width:150px; text-align:center;}
+	.content{height:400px;}
+	.btn{align:right;}
+	.bt1 td{ border-right:none; border-left:none; border-bottom:none;}
+	.bt1 td button {float:right;margin-left:10px;}
 	</style>
-	
 </th:block>
 <th:block layout:fragment="customContents">
 <div id="content">
@@ -66,11 +60,22 @@
 									<tr class="content">
 										<td class="title">내용</td>
 										<td th:utext="${l.boardContent}"></td>
-									</tr>																
+									</tr>	
+									<tr>
+										<td class="title">첨부파일</td>
+										<td><a th:href="@{/files/{boardFile}(boardFile = ${l.boardFile})}" th:text="${l.boardFile}"></a></td>
+									</tr>																									
+								
+								<tr class="bt1">
+									<td colspan="2">
+									<th:block th:if="${#strings.equals(sId, l.boardUserId)}">
+									<a th:href="@{/board/boardUpdateForm(boardNo = ${l.boardNo})}"><button type="button" class="btn btn-primary btn-sm">수정</button></a>
+									</th:block>
+									<a th:href="@{/board/boardList}"><button type="button" class="btn btn-primary btn-sm">목록</button></a>
+									</td>
+								</tr>
 								</th:block>
-								<tr class="bt1"><td colspan="2"><a th:href="@{/board/boardList}"><button type="button" class="btn btn-primary btn-sm">목록</button></a></td></tr>
 							</table>
-							
 						</div>
 					</div>
 				</div>	

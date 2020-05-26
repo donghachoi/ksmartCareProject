@@ -68,7 +68,7 @@
 								<tbody>		
 									<tr th:each="l :${boardList}">
 										<td th:text="${l.boardNo}"></td>
-										<td><a th:href="@{/board/boardDetail(boardNo=${l.boardNo})}"><th:block th:text="${l.boardTitle}"></th:block></a></td>
+										<td><a th:href="@{/board/boardDetail(boardNo=${l.boardNo})}" th:text="${l.boardTitle}"></a></td>
 										<td th:text="${l.boardUser}"></td>
 										<td th:text="${l.boardDate}"></td>
 									</tr>	

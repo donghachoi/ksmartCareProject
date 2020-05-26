@@ -8,7 +8,28 @@ public class CenterBoard {
 	private String boardUser;
 	private String boardDate;
 	private String boardFile;
+	private String boardUserId;
+	private String centerCode;
+	private String centerName;
 	
+	public String getCenterCode() {
+		return centerCode;
+	}
+	public void setCenterCode(String centerCode) {
+		this.centerCode = centerCode;
+	}
+	public String getCenterName() {
+		return centerName;
+	}
+	public void setCenterName(String centerName) {
+		this.centerName = centerName;
+	}
+	public String getBoardUserId() {
+		return boardUserId;
+	}
+	public void setBoardUserId(String boardUserId) {
+		this.boardUserId = boardUserId;
+	}
 	public int getBoardNo() {
 		return boardNo;
 	}

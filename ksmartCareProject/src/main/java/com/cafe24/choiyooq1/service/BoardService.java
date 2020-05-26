@@ -32,6 +32,12 @@ public class BoardService {
 	@Autowired
 	private BoardMapper boardMapper;
 	
+	/**
+	 * 게시글 등록
+	 * @param filename, centerBoard
+	 * 
+	 * @return 없음
+	 */	
 	public void boardInsert(CenterBoard centerBoard, MultipartFile boardfile) {
 		String filename = StringUtils.cleanPath(boardfile.getOriginalFilename());
 		centerBoard.setBoardFile(filename);
@@ -50,6 +56,33 @@ public class BoardService {
 			}
 		}
 	}
+	
+	/*
+	 * @param centerBoard, filename
+	 * @file BoardService.java
+	 * @name boardUpdate
+	 * @brief 상세보기 -> 수정화면 
+	 * @author 김송현
+	 * @return
+	 */
+	public void boardUpdate(CenterBoard centerBoard, MultipartFile file) {
+		String filename = StringUtils.cleanPath(file.getOriginalFilename());
+		if(file.isEmpty()) {
+			boardMapper.boardUpdate(centerBoard);
+		}else {
+			try {
+				InputStream inputStream = file.getInputStream();
+				Files.copy(inputStream, getPath().resolve(filename), StandardCopyOption.REPLACE_EXISTING);
+				centerBoard.setBoardFile(filename);
+				boardMapper.boardUpdate(centerBoard);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
 	
 	/**
 	 * 파일 다운로드 
@@ -152,4 +185,11 @@ public class BoardService {
 		List<CenterBoard> list = boardMapper.boardSerch(sk, sv);
 		return list;
 	}
+
+	public void boardDelecte(String boardNo) {
+		// TODO Auto-generated method stub
+		boardMapper.boardDelecte(boardNo);
+	}
+
+
 }

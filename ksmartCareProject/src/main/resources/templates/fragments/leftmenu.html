@@ -29,32 +29,61 @@
 		<li class="nav-header" style="font-size:20px;">Menu</li>
 		<li class="nav-divider"></li>
 	<!-- 센터관리 -->
+	<th:block th:if="${session.SCENTERCODE =='master'}">
 	<li class="">
 		<a href="javascript:;"> 
 			<i class="fa fa-building "></i> 
-			<span class="link-title">센터관리 1 .박</span>
+			<span class="link-title">센터관리</span>
 			<span class="fa arrow"></span>
 		</a>
 		<ul class="collapse">
 			<li>
-				<a href="/master/centerInsert"> 
+				<a th:href="@{/master/centerInsert}"> 
 					<i class="fa fa-angle-right"></i>
-					&nbsp;센터등록 1-1
+					&nbsp;센터등록
 				</a>
 			</li>
 			<li>
-				<a href="/master/centerList"> 
+				<a th:href="@{/master/centerList}"> 
 					<i class="fa fa-angle-right"></i>
-					&nbsp;센터조회 1-2
+					&nbsp;센터조회
 				</a>
 			</li>
 		</ul>			
 	</li>
+	</th:block>
+	<!--공지사항  -->
+	<li class="">
+		<th:block th:if="${session.SID == null or session.SID  != 'master'}">
+		<a href="javascript:;" > 
+			<i class="fa fa-building "></i> 
+			<span class="link-title">공지사항</span>
+			<span class="fa arrow"></span>
+		</a>
+		
+		<ul class="collapse">
+			<li th:if="${session.SID != null and session.SID  != 'master'}">
+				<a th:href="@{/board/boardForm}"> 
+					<i class="fa fa-angle-right"></i>
+					&nbsp;공지사항 등록
+				</a>
+			</li>
+			<li>
+				<a th:href="@{/board/boardList}"> 
+					<i class="fa fa-angle-right"></i>
+					&nbsp;공지사항 리스트
+				</a>
+			</li>
+		</ul>	
+		</th:block>		
+	</li>	
+	<!--/공지사항  -->
+	<th:block th:if="${session.SCENTERCODE !='master' and session.SID != null}">
 	<!-- 직원관리 -->
 	<li class="">
 		<a href="javascript:;"> 
 			<i class="fa fa-building"></i> 
-			<span class="link-title">!직원관리 2 .박</span>
+			<span class="link-title">직원관리</span>
 			<span class="fa arrow"></span>
 		</a>
 		
@@ -63,13 +92,13 @@
 			<li>
 				<a href="/center/employeeInsert"> 
 					<i class="fa fa-angle-right"></i>
-					&nbsp;직원등록 2-1
+					&nbsp;직원등록
 				</a>
 			</li>
 			<li>
 				<a href="/center/employeeList"> 
 					<i class="fa fa-angle-right"></i>
-					&nbsp;!직원목록 및 관리 2-2
+					&nbsp;직원목록 및 관리
 				</a>
 			</li>
 		</ul>			
@@ -79,7 +108,7 @@
 		<a href="javascript:;"> 
 			<i class="fa fa-building"></i>
 
-			<span class="link-title">보호자관리 3 .박</span> 
+			<span class="link-title">보호자관리</span> 
 
 			<span class="fa arrow"></span>
 		</a>
@@ -88,7 +117,7 @@
 				<a href="/center/guardianInsert"> 
 				<i class="fa fa-angle-right"></i>
 
-				<span class="link-title">&nbsp;보호자등록 3-1</span> 
+				<span class="link-title">&nbsp;보호자등록</span> 
 
 				</a>
 			</li>
@@ -97,7 +126,7 @@
 				<a href="/center/guardianList"> 
 				<i class="fa fa-angle-right"></i>
 
-				<span class="link-title">&nbsp;보호자목록 및 관리 3-2</span>
+				<span class="link-title">&nbsp;보호자목록 및 관리</span>
 
 				</a>
 			</li>
@@ -108,7 +137,7 @@
 		<a href="javascript:;"> 
 			<i class="fa fa-building"></i>
 
-			<span class="link-title">수급자관리 4 .최</span> 
+			<span class="link-title">수급자관리</span> 
 
 			<span class="fa arrow"></span>
 		</a>
@@ -116,13 +145,13 @@
 				<li>
 					<a href="/employee/elderInsert"> 
 					<i class="fa fa-angle-right"></i>
-					&nbsp;수급자등록 4-1
+					&nbsp;수급자등록 
 				</a>
 				</li>
 				<li>
 					<a href="/employee/elderList">
 					<i class="fa fa-angle-right"></i>
-					&nbsp;수급자검색 4-2
+					&nbsp;수급자검색 
 				</a>
 				</li>
 			</ul>
@@ -131,29 +160,24 @@
 	<li class="">
 		<a href="javascript:;"> 
 			<i class="fa fa-building"></i>
-			<span class="link-title">방문일정관리 5</span> 
+			<span class="link-title">방문일정관리</span> 
 
 			<span class="fa arrow"></span>
 		</a>
 		<ul class="collapse">
 
-			<li><a th:href="@{/employee/velderList(centerCode=${session.SCENTERCODE})}">
+			<li><a th:href="@{/employee/velderList(centerCode=3-41590-00001)}">
 
-			<i class="fa fa-angle-right"></i>&nbsp;방문일정등록(수급자) 5-1
+			<i class="fa fa-angle-right"></i>&nbsp;방문일정등록(수급자)
 			</a></li>
 			
 			<li><a th:href="@{/employee/elderCalenderSearch}"> <i
-					class="fa fa-angle-right"></i>&nbsp;방문일정검색 수급자별 5-2
+					class="fa fa-angle-right"></i>&nbsp;방문일정검색 수급자별 
 			</a></li>
 	
 			<li><a th:href="@{/employee/emplyeeCalenderSearch}"> 
-			<i class="fa fa-angle-right"></i>&nbsp;방문일정검색 요양보호사별 5-3
-			</a></li>
-			<!--  	
-			<li><a href="#"> <i
-					class="fa fa-angle-right"></i>&nbsp;#방문일정검색 기간별 5-3
-			</a></li>	
-		    -->							
+			<i class="fa fa-angle-right"></i>&nbsp;방문일정검색 요양보호사별
+			</a></li>					
 		</ul>
 	</li>	
 	
@@ -161,81 +185,52 @@
       <li class="">
          <a href="javascript:;"> 
             <i class="fa fa-building"></i> 
-            <span class="link-title">!태그 관리 6 .박</span>
+            <span class="link-title">태그 관리</span>
             <span class="fa arrow"></span>
          </a>
          <ul class="collapse">
             <li>
                <a href="/center/tagList"> 
                   <i class="fa fa-angle-right"></i>
-
-                  &nbsp;태그 리스트 조회 및 검색 6-1
-
-
+                  &nbsp;태그 리스트 조회 및 검색
                </a>
             </li>
             <li>
                <a href="/center/tagCompareList"> 
                   <i class="fa fa-angle-right"></i>
-                  &nbsp;!태그_방문계획 비교 6-2
+                  &nbsp;태그_방문계획 비교
                </a>
             </li>
 
          </ul>
       </li>   
-	
 		<!-- 방문일정 대비 예상청구비용 -->
 		<li class="">
 			<a href="javascript:;"> 
 				<i class="fa fa-building"></i> 
-				<span class="link-title">&nbsp;방문일정 &nbsp;대비 &nbsp;예상청구비용 &nbsp; 7</span>
+				<span class="link-title">&nbsp;방문일정 &nbsp;대비 &nbsp;예상청구비용 &nbsp;</span>
 				<span class="fa arrow"></span>
 			</a>
 			<ul class="collapse">
 				<li>
 					<a th:href="@{/elder/estimatedExpensesList}"> 
 						<i class="fa fa-angle-right"></i>
-						&nbsp;방문일정 대비 예상청구비용 관리 7-1
+						&nbsp;방문일정 대비 예상청구비용 관리
 					</a>
 				</li>
 			</ul>
 		</li>		
-	
-		<!--  태그 결과값 대비 공단 청구액 
 		<li class="">
 			<a href="javascript:;"> 
 				<i class="fa fa-building"></i> 
-				<span class="link-title">&nbsp;#태그&nbsp; 결과값&nbsp; 대비 공단 청구액 8 .김</span>
-				<span class="fa arrow"></span>
-			</a>
-			<ul class="collapse">
-				<li>
-					<a href="#"> 
-						<i class="fa fa-angle-right"></i>
-						&nbsp;#태그 결과값 대비 공단 청구액 관리 8-1
-					</a>
-				</li>
-				<li>
-					<a href="#"> 
-						<i class="fa fa-angle-right"></i>
-						&nbsp;#태그 결과값 대비 공단 청구액 검색 8-2
-					</a>
-				</li>
-			</ul>
-		</li>	
-		-->
-		<!--  태그 결과값 수급자 청구액 -->
-		<li class="">
-			<a href="javascript:;"> 
-				<i class="fa fa-building"></i> 
-				<span class="link-title">태그 결과값 대비 수급자 청구액  8</span>
+				<span class="link-title">태그 결과값 대비 수급자 청구액</span>
 				<span class="fa arrow"></span>
 			</a>
 			<ul class="collapse">
 				<li>
 					<a th:href="@{/center/tagelderList}"> 
 						<i class="fa fa-angle-right"></i>
-						&nbsp;태그 결과값 대비 수급자 청구액 관리 8-1
+						&nbsp;태그 결과값 대비 수급자 청구액 관리
 					</a>
 				</li>
 			</ul>
@@ -245,62 +240,26 @@
 		<li class="">
 			<a href="javascript:;"> 
 				<i class="fa fa-building"></i> 
-				<span class="link-title">!공단 및 수급자 수금 및 미납금9 .최</span>
+				<span class="link-title">공단 및 수급자 수금 및 미납금</span>
 				<span class="fa arrow"></span>
 			</a>
 			<ul class="collapse">
 				<li>
-					<a href="#"> 
-						<i class="fa fa-angle-right"></i>
-						&nbsp;#공단 및 수급자 수금 및 미납금 관리 9-1
-					</a>
-				</li>
-				<li>
 					<a href="/center/unpaidList"> 
 						<i class="fa fa-angle-right"></i>
-						&nbsp;!공단 및 수급자 수금 및 미납금 검색 9-2
+						&nbsp;공단 및 수급자 수금 및 미납금 검색
 					</a>
 				</li>
 			</ul>
 		</li>		
-		<!--  직원 급여 관리
-		<li class="">
-			<a href="javascript:;"> 
-				<i class="fa fa-building"></i> 
-
-				<span class="link-title">!직원 급여 관리 10 .최</span>
-
-				<span class="fa arrow"></span>
-			</a>
-			<ul class="collapse">
-				<li>
-					<a href="/employee/employeeSalary"> 
-						<i class="fa fa-angle-right"></i>
-
-						&nbsp;!직원 급여  관리 10-1
-
-					</a>
-				</li>
-				<li>
-					<a href="#"> 
-						<i class="fa fa-angle-right"></i>
-						&nbsp;#직원 급여  확정(등록) 10-2
-					</a>
-				</li>
-				<li>
-					<a href="#"> 
-						<i class="fa fa-angle-right"></i>
-						&nbsp;#직원 급여  검색 10-3
-					</a>
-				</li>				
-			</ul>
-		</li> -->
+		
         <li class="">
 			<a href="/benefitcostAndMax">
 	       		<i class="fa fa-building"></i>
-	       		<span class="link-title">&nbsp;수급 현황 및 리스트10 . 최</span>
+	       		<span class="link-title">&nbsp;수급 현황 및 리스트</span>
 	        </a>
         </li>
+     </th:block>   
 	</ul>
 	<!-- /#menu -->
 </div>

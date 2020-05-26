@@ -1,6 +1,6 @@
 package com.cafe24.choiyooq1.domain;
 
-public class boardFile {
+public class BoardFile {
     private int fno;
     private int bno;
     private String fileName;     //저장할 파일
