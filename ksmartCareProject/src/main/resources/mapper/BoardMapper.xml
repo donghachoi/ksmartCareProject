@@ -20,7 +20,6 @@
 			</selectKey>
  			insert into centerboard(board_no, board_title, board_content,  board_user, board_date, board_file , board_userId)
  			value(#{boardNo}, #{boardTitle}, #{boardContent}, #{boardUser}, NOW(), #{boardFile}, #{boardUserId})
-
   		</insert>
   		
   		

@@ -33,6 +33,7 @@ public class BoardController {
 		return "/board/boardForm";
 	}
 
+	//게시글 등록
 	@PostMapping("/board/boardInsert")
 	public String boardInsert(HttpSession session, CenterBoard centerBoard, @RequestParam("file") MultipartFile file) {
 		
@@ -61,6 +62,8 @@ public class BoardController {
 	public String boardDetail(@RequestParam(value="boardNo") String boardNo, Model model, HttpSession session) {
 		CenterBoard centerBoard = boardService.boardDetail(boardNo);
 		String sid = (String)session.getAttribute("SID");
+		System.out.println(sid);
+		System.out.println(centerBoard.toString());
 		model.addAttribute("boardDetail", centerBoard);
 		model.addAttribute("sId", sid);
 		return "/board/boardDetail";

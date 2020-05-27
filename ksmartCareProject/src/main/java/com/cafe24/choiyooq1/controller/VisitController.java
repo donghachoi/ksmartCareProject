@@ -37,6 +37,7 @@ public class VisitController {
 		
 		model.addAttribute("list", list);
 		return "/visit/calenderInsert";
+		
 	}
 	
 	//수급자 총 금

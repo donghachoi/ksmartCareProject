@@ -35,7 +35,6 @@ public class BoardService {
 	/**
 	 * 게시글 등록
 	 * @param filename, centerBoard
-	 * 
 	 * @return 없음
 	 */	
 	public void boardInsert(CenterBoard centerBoard, MultipartFile boardfile) {
@@ -46,7 +45,10 @@ public class BoardService {
 			boardMapper.boardInsert(centerBoard);
 		}else {
 			try {
+				
 				InputStream inputStream = boardfile.getInputStream();
+				//지정된 dic에 파일을 복사합니다.
+					   //Paths.get(fileUploadPath)
 				Files.copy(inputStream, getPath().resolve(filename),
 						StandardCopyOption.REPLACE_EXISTING);
 				boardMapper.boardInsert(centerBoard);
@@ -62,7 +64,6 @@ public class BoardService {
 	 * @file BoardService.java
 	 * @name boardUpdate
 	 * @brief 상세보기 -> 수정화면 
-	 * @author 김송현
 	 * @return
 	 */
 	public void boardUpdate(CenterBoard centerBoard, MultipartFile file) {
@@ -72,6 +73,7 @@ public class BoardService {
 		}else {
 			try {
 				InputStream inputStream = file.getInputStream();
+				
 				Files.copy(inputStream, getPath().resolve(filename), StandardCopyOption.REPLACE_EXISTING);
 				centerBoard.setBoardFile(filename);
 				boardMapper.boardUpdate(centerBoard);
@@ -176,11 +178,14 @@ public class BoardService {
 		return resultMap;
 	}
 	
+	
 	public CenterBoard boardDetail(String boardNo) {
 		CenterBoard centerBoard = boardMapper.boardDetail(boardNo);
 		return centerBoard;
 	}
 
+	
+	//게시판 검색
 	public List<CenterBoard> boardSerch(String sk, String sv) {
 		List<CenterBoard> list = boardMapper.boardSerch(sk, sv);
 		return list;

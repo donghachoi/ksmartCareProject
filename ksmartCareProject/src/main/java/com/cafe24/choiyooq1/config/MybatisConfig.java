@@ -19,6 +19,7 @@ public class MybatisConfig {
 		SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
 		bean.setMapperLocations(context.getResources("classpath:mapper/**/*.xml"));
 		bean.setDataSource(dataSource);
+		
 		return bean.getObject();
 	}
 }

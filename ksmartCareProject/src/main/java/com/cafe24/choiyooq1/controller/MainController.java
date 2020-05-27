@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -100,10 +101,12 @@ public class MainController {
 		return "portfolio/portfolio";
 	}
 	@GetMapping("/loginForNonmember")
-	public String index(HttpServletRequest request) {
+	public String index(HttpServletRequest request,HttpSession sessiontest) {
 		HttpSession session = request.getSession();
+		System.out.println(sessiontest.getAttribute("SCENTERNAME"));
+		System.out.println(session.getAttribute("SCENTERNAME"));
 		SimpleDateFormat format1 = new SimpleDateFormat ("yyyy-MM-dd");
-		 Date date = new Date();
+		Date date = new Date();
 		session.setAttribute("SID", null);
 		session.setAttribute("SCENTERCODE", null);
 		session.setAttribute("SCENTERNAME", null);
@@ -119,4 +122,5 @@ public class MainController {
 		model.addAttribute("result", result);
 		return "login/firstlogin";
 	}
+	
 }
