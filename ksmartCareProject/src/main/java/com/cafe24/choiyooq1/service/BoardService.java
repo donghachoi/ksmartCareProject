@@ -41,17 +41,20 @@ public class BoardService {
 		String filename = StringUtils.cleanPath(boardfile.getOriginalFilename());
 		centerBoard.setBoardFile(filename);
 		
-		if(boardfile.isEmpty()) {
+		if(boardfile.isEmpty()) {								//파일이 없으면 게시글만 insert합니다.
 			boardMapper.boardInsert(centerBoard);
 		}else {
 			try {
-				
+				//boardfile을  복사하기위해 inputStream으로 변환합니다.
 				InputStream inputStream = boardfile.getInputStream();
+				
 				//지정된 dic에 파일을 복사합니다.
-					   //Paths.get(fileUploadPath)
-				Files.copy(inputStream, getPath().resolve(filename),
-						StandardCopyOption.REPLACE_EXISTING);
-				boardMapper.boardInsert(centerBoard);
+				Files.copy(
+						inputStream, 							//복사할 파일
+						getPath().resolve(filename),			//대상파일의 이름입니다. 똑같은 파일 이름입니다.
+						StandardCopyOption.REPLACE_EXISTING);	//3번쨰 인자는 대상 파일을 덮어쓸수 있으면 true 그렇지 않으면 false입니다.
+																//REPLACE_EXISTING 은 만약 같은 파일이있어도 바꾸는 옵션입니다.
+				boardMapper.boardInsert(centerBoard);			//DB에 insert합니다.
 			}
 			catch (IOException e) {
 				e.printStackTrace();
@@ -93,8 +96,9 @@ public class BoardService {
 	 */
 	public Resource loadAsResource(String filename) {
 		try {
-			Path file = getPath().resolve(filename);
-			Resource resource = new UrlResource(file.toUri());
+			
+			Path file = getPath().resolve(filename); 			//파일의 이름과 경로를 file 객체에 담습니다.
+			Resource resource = new UrlResource(file.toUri());	
 			if (resource.exists() || resource.isReadable()) {
 				return resource;
 			}
@@ -104,14 +108,6 @@ public class BoardService {
 		return null;
 	}
 	
-	/**
-	 * 해당 폴더에 있는 파일 전체 제거
-	
-	public void deleteAll() {
-		
-		FileSystemUtils.deleteRecursively(getPath().toFile());
-	}
- */
 	/**
 	 * 업로드 폴더 없을 경우 생성
 	 */

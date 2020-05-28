@@ -81,9 +81,9 @@ public class BoardController {
 	@GetMapping("/files/{boardFile:.+}")
 	@ResponseBody
 	public ResponseEntity<Resource> serveFile(@PathVariable("boardFile") String boardFile) {
+		
 		//파일 다운로드
 		Resource file = boardService.loadAsResource(boardFile);
-		System.out.println("파일이름을 알려줘"+ file.getFilename());
 		ResponseEntity<Resource>  re = ResponseEntity.ok().header(
 				HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\""
 		).body(file);
