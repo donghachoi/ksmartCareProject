@@ -150,7 +150,7 @@ public class ElderController {
 	
 	/* [수급자] 아이디 체크 ajax*/
 	@PostMapping("/employee/idCheck")
-	public @ResponseBody String checkId(@RequestBody Map<String,Object> map){
+	public @ResponseBody boolean checkId(@RequestBody Map<String,Object> map){
 		String elderId =(String) map.get("Id");
 		return elderService.checkElderId(elderId);
 	}

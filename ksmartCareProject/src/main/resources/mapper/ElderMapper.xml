@@ -37,12 +37,8 @@
   		elder_id = #{elderId};
   </delete>
   
-  
-  
-  
   <!-- 수급자 검색 by birthday -->
   <select id="searchElderByBirth" parameterType="String" resultMap="ElderMap">
-   	
 	<![CDATA[
 		SELECT 
 			elder_id, 

@@ -279,16 +279,14 @@ public class ElderService {
 	
 	
 	/* 수급자 아이디 체크 */
-	public String checkElderId(String elderId) {
-		String result = "아이디 사용가능합니다";
+	public boolean checkElderId(String elderId) {
+		boolean result = true;
 		List<Elder> list = elderMapper.checkElderId();
 		for(int i=0;i<list.size();i++) {
 			if(elderId.equals(list.get(i).getElderId())) {
-				System.out.println("아이디중복.");
-				result = "아이디 중복";
+				result = false;
 			}
 		}
-		System.out.println(result);
 		return result;
 	}
 }

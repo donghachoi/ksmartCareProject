@@ -1,3 +1,0 @@
-jquery 
-	jquery는 selecter를 통해 javaScript를 더 편하게 사용 할수있게해주는 라이브러리입니다. 또한 개발자가 플러그인을 개발할 수 있는 기능을 제공한다.
-

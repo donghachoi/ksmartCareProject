@@ -78,8 +78,6 @@ public class MainController {
 			 session.setAttribute("SCENTERNAME", center.getCenterName());
 			 session.setAttribute("SMANAGERNAME", center.getCenterManagerName());
 			 session.setAttribute("today", format1.format(date));
-			 System.out.println(session.getAttribute("SID"));
-			 System.out.println(session.getAttribute("SCENTERCODE")+"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< in controller");
 			 if(session.getAttribute("SCENTERCODE").equals("master")) {
 				 
 				 return "redirect:/master/centerList";

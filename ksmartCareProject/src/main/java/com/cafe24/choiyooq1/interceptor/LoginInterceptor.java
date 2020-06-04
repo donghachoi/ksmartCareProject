@@ -19,12 +19,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			throws Exception {
 		HttpSession session = request.getSession();
 		String sId = (String) session.getAttribute("SID");
-		String sCenterName = (String) session.getAttribute("SCENTERNAME");
-		String sCenterCode = (String) session.getAttribute("SCENTERCODE");
-		String sManagerName = (String) session.getAttribute("SMANAGERNAME");
-		System.out.println(sId+"   <<<<<===== sId in LoginInterceptor");
-		System.out.println(sCenterName+"   <<<<<===== sCenterName in LoginInterceptor");
-		System.out.println(sManagerName+"   <<<<<===== sManagerName in LoginInterceptor");
 		if(sId==null) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();

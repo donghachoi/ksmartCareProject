@@ -5,28 +5,26 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.cafe24.choiyooq1.domain.BoardFile;
 import com.cafe24.choiyooq1.domain.CenterBoard;
 
 @Mapper
 public interface BoardMapper {
 	
-
-	public int boardInsert(CenterBoard centerBoard);
+	//게시판 수정
+	public void updateBoard(CenterBoard centerBoard);
 	
-	public int fileInsert(BoardFile file);
+	//게시판 삭제
+	public void deleteBoard(int boardNo);
 	
-	public List<CenterBoard> getBoardList(Map<String, Integer> map);
-
-	public int getBoardAllCount();
+	//게시판 insert
+	public void insertBoard(CenterBoard centerBoard);
 	
-	public CenterBoard boardDetail(String boardNo);
-
-	public List<CenterBoard> boardSerch(String sk, String sv);
-
-	public CenterBoard boardUpdateForm(String boardNo);
-
-	public void boardUpdate(CenterBoard centerBoard);
-
-	public void boardDelecte(String boardNo);
+	//하나의 게시판 디테일
+	public CenterBoard getOneBoardList(int boardNo);
+	
+	//게시판 전체리스트 가져오기
+	public List<CenterBoard> getBoardList(Map<String,Object> map);
+	
+	//게시판 전체 행의 갯수 
+	public double getBoardCount();
 }

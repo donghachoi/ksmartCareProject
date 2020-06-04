@@ -17,8 +17,7 @@
 				<h5 th:unless="${session.SCENTERNAME ne null}" class="mediwa-heading" onclick="location.href='/login'" style="cursor: pointer;">로그인 해주세요.</h5>
 				<ul class="list-unstyled user-info">
 					<li><h5 th:if="${session.SCENTERNAME ne null}" th:text="${session.SID}"></h5></li>
-					<li th:text="${session.today}"><i class="fa fa-calendar"></i>
-					</li>
+					<li th:text="${session.today}"><i class="fa fa-calendar"></i></li>
 				</ul>
             </th:block>
 			</div>
@@ -49,12 +48,12 @@
 					&nbsp;센터조회
 				</a>
 			</li>
+
 		</ul>			
 	</li>
 	</th:block>
 	<!--공지사항  -->
 	<li class="">
-		<th:block th:if="${session.SID == null or session.SID  != 'master'}">
 		<a href="javascript:;" > 
 			<i class="fa fa-building "></i> 
 			<span class="link-title">공지사항</span>
@@ -62,20 +61,19 @@
 		</a>
 		
 		<ul class="collapse">
-			<li th:if="${session.SID != null and session.SID  != 'master'}">
-				<a th:href="@{/board/boardForm}"> 
+			<li>
+				<a th:href="@{/board/boardWirte}"> 
 					<i class="fa fa-angle-right"></i>
 					&nbsp;공지사항 등록
 				</a>
 			</li>
 			<li>
-				<a th:href="@{/board/boardList}"> 
+				<a href="/board/boardlist"> 
 					<i class="fa fa-angle-right"></i>
-					&nbsp;공지사항 리스트
+					&nbsp;공지사항
 				</a>
 			</li>
 		</ul>	
-		</th:block>		
 	</li>	
 	<!--/공지사항  -->
 	<th:block th:if="${session.SCENTERCODE !='master' and session.SID != null}">

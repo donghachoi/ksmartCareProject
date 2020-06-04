@@ -280,7 +280,7 @@
 <script type="text/javascript">
 /* 아이디 체크 함수 */
 function Idcheck(){
-	var isIdcheck = false;
+	var isIdCheck = false;
 	var map = {};
 		$('#elderId').siblings('span').remove();
 	if($('#elderId').val()==""){
@@ -288,20 +288,21 @@ function Idcheck(){
 		$('#elderId').focus();
 	}else{
 		map.Id = $('#elderId').val();
-		var data = "";
-		 var result = $.ajax({
+		console.log(isIdCheck);
+		$.ajax({
 			type 	: 	'POST',
 			url		:	'/employee/idCheck',
-			async	:	'true',
+			async	:	'false',
 			data	:	JSON.stringify(map),
 			contentType	:	'application/json',
 			success	:	function(data){
-				if("아이디 사용가능합니다"==data){
-					isIdcheck = true;
-					$('#elderId').parent().append("<span style=\"color :blue;\">"+data+"</span>");
+				if(data){
+					$('#elderId').parent().append("<span style=\"color :blue;\">사용가능한아이디</span>");
+					isIdCheck = data;
 				}else{
-					$('#elderId').parent().append("<span style=\"color :red;\">"+data+"</span>");
+					$('#elderId').parent().append("<span style=\"color :red;\">아이디중복</span>");
 					$('#elderId').focus();
+					isIdCheck = data;
 				}
 			},
 			error	:	function(error){
@@ -309,7 +310,7 @@ function Idcheck(){
 			}
 		})  
 	}
-	return isIdcheck; 
+	return isIdCheck;
 }
 
 
@@ -365,9 +366,6 @@ var getAddress = function(inputboxId){
 		{
 		    var strValue = Obj.val();
 		    var chk1 = /[0-9]{4}-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])/
-		    /* var chk2 = /^(19|20)\d{2}\/([0][1-9]|1[012])\/(0[1-9]|[12][0-9]|3[01])$/; */
-		    //var chk2 = /^(19|20)\d{2}-([0][1-9]|1[012])-([012][1-9]|3[01])$/;
-		    console.log(strValue);
 		    if (strValue == "")
 		    { // 공백이면 무시
 		        return false;
@@ -385,15 +383,16 @@ var getAddress = function(inputboxId){
 		
 		//유효성검사
 		$("#btn").click(function(){
+			
 			var day =$('.date');
 			if($("#elderId").val()==null || $("#elderId").val()==""){
 				alert('아이디를 입력해주세요.')
 				$("#elderId").focus();
 				return false;
 			}
-			if(Idcheck()==false) {
-				return false
-			};
+			if(!Idcheck()){
+				return false;
+			}
 			if($("#elderName").val()==null || $("#elderName").val()==""){
 				alert('이름 입력해주세요.')
 				$("#elderName").focus();
@@ -402,8 +401,7 @@ var getAddress = function(inputboxId){
 				alert('성별을 선택해주세요.')
 				$("input[name='elderGender']").focus();
 				return false;
-			}
-			if($('#elderBirthDate').val()==null || $('#elderBirthDate').val()==""){
+			}if($('#elderBirthDate').val()==null || $('#elderBirthDate').val()==""){
 				alert('생일 입력해주세요.')
 				$('#elderBirthDate').focus();
 				return false;
